@@ -1,5 +1,5 @@
 # V.E.D.I.C.
-Virtual Environment for Developing Interactive Code
+Virtual Environment for Developing Interactive Code<br/><br/>
 
 The purpose of his project will be to create an object-oriented programming environment entirely in virtual reality (ie. Oculus Rift). Where an IDE like Sublime Text or Eclipse does in 2D space, VEDIC will do in 3D space. <br/><br/>
 
