@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/WilliamRADFunk/vedic.png?label=ready&title=Ready)](https://waffle.io/WilliamRADFunk/vedic)
 # V.E.D.I.C.
 Virtual Environment for Developing Interactive Code<br/><br/>
 
