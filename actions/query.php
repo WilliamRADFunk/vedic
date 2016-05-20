@@ -1,30 +1,76 @@
 <?php
 include_once "config.php";
 
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-
-echo "<MessageXML>";
-
-echo "<Message>";
-echo "<MsgID>Msg</MsgID>";
-echo "<From>Funk</From>";
-echo "<Email>contact@williamradfunk.com</Email>";
-echo "<MsgDate>05/18/2016</MsgDate>";
-echo "<MsgTime>01:01:01</MsgTime>";
-echo "</Message>";
-
-echo "</MessageXML>";
-
-//Connecting to DB
-$conn = new mysqli($hostname, $username, $password, $dbname); or die('Error connecting to mysql');
-$result = $conn->query($query);
-
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-echo "<MessageXML>";
-while($row = mysqli_fetch_row($result))
+// Create connection
+$conn = new mysqli($hostname, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error)
 {
- echo "<Data>"."<Email>{$row['email']}</Email>"."<Name>{$row['name']}</Name>"."<Password>{$row['password']}</Password>"."<Question>{$row['question']}</Question>"."<Answer>{$row['answer']}</Answer>"."</Data>";
+    die("Connection failed: " . $conn->connect_error);
 }
-echo "</MessageXML>";
-$conn->close();
+
+$query = $_POST['query'];
+echo "\n\nQUERY: " . $query . "\n\n";
+// User sent an empty string.
+if($query === "")
+{
+	echo "Error: empty query";
+	$conn->close();
+}
+// User sent a SELECT query
+elseif(strlen($query) >= 6 && strpos(strtoupper($query), "SELECT") !== false)
+{
+	$result = $conn->query($query);
+	// Query was unvalid
+	if(!$result)
+	{
+		echo "Invalid query: " . $conn->error;
+		$conn->close();
+	}
+	else
+	{
+		echo "SELECT QUERY RESULTS";
+		echo "\n\n******************************************************************************************\n";
+		for($i = 0; $i < mysqli_num_fields($result); $i++)
+		{
+			$field_info = mysqli_fetch_field($result);
+			echo "    " . $field_info->name . "    ";
+		}
+		echo "\n******************************************************************************************\n";
+
+		while ( $db_row = mysqli_fetch_row($result) )
+		{
+			for($j = 0; $j < mysqli_num_fields($result); $j++)
+			{
+				echo "    " . $db_row[$j] . "    ";
+			}
+			echo "\n------------------------------------------------------------------------------------------\n";
+		}
+		$conn->close();
+	}
+}
+// User sent a query other than SELECT
+elseif(strlen($query) >= 6)
+{
+	// Query was unvalid
+	if($conn->query($query) !== TRUE)
+	{
+		echo "Invalid query: " . $conn->error;
+		$conn->close();
+	}
+	else
+	{
+		if(strpos(strtoupper($query), "INSERT") === 0) echo "Your INSERT was a success";
+		elseif(strpos(strtoupper($query), "DELETE") === 0) echo "Your DELETE was a success";
+		elseif(strpos(strtoupper($query), "UPDATE") === 0) echo "Your UPDATE was a success";
+		elseif(strpos(strtoupper($query), "DROP") === 0) echo "Your DROP was a success";
+		$conn->close();
+	}
+}
+else
+{
+	echo "Invalid query.";
+	$conn->close();
+}
+
 ?>
