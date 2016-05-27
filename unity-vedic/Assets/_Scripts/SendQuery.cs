@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Collections;
 
-public class SendQuery : MonoBehaviour {
+public class SendQuery : MonoBehaviour
+{
+    public UnityEngine.UI.Text Output;
 
 	// Use this for initialization
-	void Start ()
+	public void Send(Text input)
     {
-        Console.Write("Enter query here: ");
-        string query = Console.ReadLine();
-        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/query.php", "POST", "query=" + query);
-        Console.Write(mwr.GetResponse());
-        Console.Read();
+        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/query.php", "POST", "query=" + input.text);
+        string reply = mwr.GetResponse();
+        Output.text = reply;
     }
     public class MyWebRequest
     {
@@ -25,36 +26,18 @@ public class SendQuery : MonoBehaviour {
 
         public String Status
         {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                status = value;
-            }
+            get { return status; }
+            set { status = value; }
         }
 
-        public MyWebRequest(string url)
-        {
-            // Create a request using a URL that can receive a post.
-
-            request = WebRequest.Create(url);
-        }
+        public MyWebRequest(string url) { request = WebRequest.Create(url); }
 
         public MyWebRequest(string url, string method)
             : this(url)
         {
 
-            if (method.Equals("GET") || method.Equals("POST"))
-            {
-                // Set the Method property of the request to POST.
-                request.Method = method;
-            }
-            else
-            {
-                throw new Exception("Invalid Method Type");
-            }
+            if (method.Equals("GET") || method.Equals("POST")) { request.Method = method; }
+            else { throw new Exception("Invalid Method Type"); }
         }
 
         public MyWebRequest(string url, string method, string data)
