@@ -5,22 +5,26 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-public class SendQuery : MonoBehaviour
+public class ImportDatabase : MonoBehaviour
 {
-    public UnityEngine.UI.Text Output;
+    public Text dbname;
+    public Text hostname;
+    public Text username;
+    public Text password;
 
-	// Use this for initialization
-	public void Send(Text input)
+    // Use this for initialization
+    public void Send()
     {
-        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/query.php", "POST", "query=" + input.text);
+        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/import.php", "POST", "dbname=" + dbname.text + "&hostname=" + hostname.text + "&username=" + username.text + "&password=" + password.text);
         string reply = mwr.GetResponse();
-        Output.text = reply;
+        Debug.Log("Receiving Reply");
+        Debug.Log(reply);
     }
     public class MyWebRequest
     {
         private WebRequest request;
         private Stream dataStream;
- 
+
         private string status;
 
         public String Status
