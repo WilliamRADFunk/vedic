@@ -81,14 +81,12 @@ else
 					array_push($tab->columns, $col);
 				}
 
-				$counter = 0;
 				while ( $db_row = mysqli_fetch_row($result) )
 				{
 					for($j = 0; $j < mysqli_num_fields($result); $j++)
 					{
-						array_push($tab->columns[$counter]->fields, $db_row[$j]);
+						array_push($tab->columns[$j]->fields, $db_row[$j]);
 					}
-					$counter++;
 				}
 				array_push($tables, $tab);
 			}
@@ -103,7 +101,6 @@ else
 				$jsonString .= $tables[$a]->columns[$b]->name . ":[";
 				for($c = 0; $c < count($tables[$a]->columns[$b]->fields); $c++)
 				{
-					echo "\n" . $tables[$a]->columns[$b]->fields[$c];
 					$jsonString .= $tables[$a]->columns[$b]->fields[$c];
 					if($c !== count($tables[$a]->columns[$b]->fields) - 1)
 					{
