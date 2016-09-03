@@ -74,7 +74,6 @@ else
 				$col = new Column;
 				$field_info = mysqli_fetch_field($result);
 				$col->name = $field_info->name;
-				echo "    " . $field_info->name . "    ";
 
 				array_push($tab->columns, $col);
 			}
@@ -85,12 +84,23 @@ else
 				for($j = 0; $j < mysqli_num_fields($result); $j++)
 				{
 					array_push($tab->columns[$counter], $db_row[$j]);
-					echo "    " . $db_row[$j] . "    ";
 				}
 				$counter++;
 			}
 			array_push($tables, $tab);
 		}
+
+		$jsonString = "database: {";
+		for($a = 0; $a < count($tables); $a++)
+		{
+			$jsonString .= $tables[$a]->stringify();
+			if($i !== count($tables) - 1)
+			{
+				$jsonString .= ",";
+			}
+		}
+		$jsonString .= "}";
+		echo $jsonString;
 		$conn->close();
 	}
 }
