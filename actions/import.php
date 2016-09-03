@@ -7,10 +7,6 @@ $dbname = $_POST['dbname'];
 $password = $_POST['password'];
 $username = $_POST['username'];
 $hostname = $_POST['hostname'];
-echo "\n\nDBNAME: " . $dbname . "\n\n";
-echo "\n\nPASSWORD: " . $password . "\n\n";
-echo "\n\nUSERNAME: " . $username . "\n\n";
-echo "\n\nHOSTNAME: " . $hostname . "\n\n";
 // Create connection
 $conn = new mysqli($hostname, $username, $password, $dbname);
 // Check connection
@@ -59,42 +55,71 @@ else
 			for($j = 0; $j < mysqli_num_fields($result); $j++)
 			{
 				array_push($tableNames, $db_row[$j]);
-				echo $db_row[$j];
 			}
 		}
 		$tables = [];
 		// Gets all columns and field data for each of the tables.
 		for($i = 0; $i < count($tableNames); $i++)
 		{
-			$tab = new Table;
-			$tab->name = $tableNames[$i];
-
-			for($k = 0; $k < mysqli_num_fields($result); $k++)
+			$getTableData = "select * from " . $tableNames[$i];
+			$result = $conn->query($getTableData);
+			if(!$result)
 			{
-				$col = new Column;
-				$field_info = mysqli_fetch_field($result);
-				$col->name = $field_info->name;
-
-				array_push($tab->columns, $col);
+				echo "table data fetch failed: " . $conn->error;
+				$conn->close();
 			}
-
-			$counter = 0;
-			while ( $db_row = mysqli_fetch_row($result) )
+			else
 			{
-				for($j = 0; $j < mysqli_num_fields($result); $j++)
+				$tab = new Table;
+				$tab->name = $tableNames[$i];
+
+				for($k = 0; $k < mysqli_num_fields($result); $k++)
 				{
-					array_push($tab->columns[$counter], $db_row[$j]);
+					$col = new Column;
+					$field_info = mysqli_fetch_field($result);
+					$col->name = $field_info->name;
+					array_push($tab->columns, $col);
 				}
-				$counter++;
+
+				$counter = 0;
+				while ( $db_row = mysqli_fetch_row($result) )
+				{
+					for($j = 0; $j < mysqli_num_fields($result); $j++)
+					{
+						array_push($tab->columns[$counter]->fields, $db_row[$j]);
+					}
+					$counter++;
+				}
+				array_push($tables, $tab);
 			}
-			array_push($tables, $tab);
 		}
 
-		$jsonString = "database: {";
+		$jsonString = "database:{";
 		for($a = 0; $a < count($tables); $a++)
 		{
-			$jsonString .= $tables[$a]->stringify();
-			if($i !== count($tables) - 1)
+			$jsonString .= $tables[$a]->name . ":{";
+			for($b = 0; $b < count($tables[$a]->columns); $b++)
+			{
+				$jsonString .= $tables[$a]->columns[$b]->name . ":[";
+				for($c = 0; $c < count($tables[$a]->columns[$b]->fields); $c++)
+				{
+					echo "\n" . $tables[$a]->columns[$b]->fields[$c];
+					$jsonString .= $tables[$a]->columns[$b]->fields[$c];
+					if($c !== count($tables[$a]->columns[$b]->fields) - 1)
+					{
+						$jsonString .= ",";
+					}
+				}
+				$jsonString .= "]";	
+
+				if($b !== count($tables[$a]->columns) - 1)
+				{
+					$jsonString .= ",";
+				}
+			}
+			$jsonString .= "}";
+
+			if($a !== count($tables) - 1)
 			{
 				$jsonString .= ",";
 			}
