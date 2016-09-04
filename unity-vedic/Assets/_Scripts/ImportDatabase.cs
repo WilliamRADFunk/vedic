@@ -17,7 +17,7 @@ public class ImportDatabase : MonoBehaviour
     {
         MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/import.php", "POST", "dbname=" + dbname.text + "&hostname=" + hostname.text + "&username=" + username.text + "&password=" + password.text);
         string reply = mwr.GetResponse();
-        Debug.Log("Receiving Reply");
+        Debug.Log("Receiving Database");
         Debug.Log(reply);
     }
     public class MyWebRequest
