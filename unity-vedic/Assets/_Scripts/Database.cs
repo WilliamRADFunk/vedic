@@ -46,6 +46,7 @@ namespace Database
         }
         public static Database ConstructDB(string name, string data)
         {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
             Database db = new Database();
             db.name = name;
             db.tables = new List<Table>();
@@ -64,7 +65,16 @@ namespace Database
                 {
                     Column col = new Column();
                     col.name = data.Substring(0, data.IndexOf(":"));
-                    col.color = getRandomColor();
+                    if (dic.ContainsKey(col.name))
+                    {
+                        col.ChangeColor(dic[col.name]);
+                    }
+                    else
+                    {
+                        string c = getRandomColor();
+                        dic.Add(col.name, c);
+                        col.ChangeColor(c);
+                    }
                     col.fields = new List<string>();
                     data = data.Substring(data.IndexOf("[") + 1);
 
@@ -109,6 +119,9 @@ namespace Database
             {
                 for (int j = 0; j < db.tables[i].columns.Count; j++)
                 {
+                    //Column oldCol = db.tables[i].columns[j];
+                    //oldCol.color = getRandomColor();
+                    //db.tables[i].columns[j] = oldCol;
                     Debug.Log(db.tables[i].name + "--->" + db.tables[i].columns[j].name + "--->" + db.tables[i].columns[j].color + "\n");
                 }
             }
