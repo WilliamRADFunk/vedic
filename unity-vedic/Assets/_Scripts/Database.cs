@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Database
 {
+    public static class VedicDatabase
+    {
+        public static DatabaseBuilder.Database db;
+    }
     public class DatabaseBuilder
     {
         public struct Database
@@ -40,6 +44,59 @@ namespace Database
         {
             Database db = new Database();
             db.name = name;
+            db.tables = new List<Table>();
+
+            data = data.Substring(10);
+            while (true)
+            {
+                Table tb = new Table();
+                tb.name = data.Substring(0, data.IndexOf(":"));
+                tb.columns = new List<Column>();
+                data = data.Substring(data.IndexOf("{") + 1);
+
+                while (true)
+                {
+                    Column col = new Column();
+                    col.name = data.Substring(0, data.IndexOf(":"));
+                    col.fields = new List<string>();
+                    data = data.Substring(data.IndexOf("[") + 1);
+
+                    do
+                    {
+                        if (data.IndexOf(",") != -1 && data.IndexOf(",") < data.IndexOf("]"))
+                        {
+                            col.AddField(data.Substring(0, data.IndexOf(",")));
+                            data = data.Substring(data.IndexOf(",") + 1);
+                        }
+                        else
+                        {
+                            col.AddField(data.Substring(0, data.IndexOf("]")));
+                            data = data.Substring(data.IndexOf("]") + 1);
+                            break;
+                        }
+                    } while (true);
+                    tb.AddColumn(col);
+                    if(data.Substring(0, 1).Equals(","))
+                    {
+                        data = data.Substring(1);
+                    }
+                    else
+                    {
+                        data = data.Substring(1);
+                        break;
+                    }
+                }
+                db.AddTable(tb);
+                if (data.Substring(0, 1).Equals(","))
+                {
+                    data = data.Substring(1);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
             return db;
         }
         public static Table ConstructTable(string name)

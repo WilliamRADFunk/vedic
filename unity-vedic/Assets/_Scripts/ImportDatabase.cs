@@ -19,11 +19,24 @@ public class ImportDatabase : MonoBehaviour
     {
         MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/import.php", "POST", "dbname=" + dbname.text + "&hostname=" + hostname.text + "&username=" + username.text + "&password=" + password.text);
         string reply = mwr.GetResponse();
-        Debug.Log("Receiving Database");
+        Debug.Log("Received Database");
+
+        VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
+        /* For database import verfification purposes only.
         Debug.Log(reply);
-
-        DatabaseBuilder.Database db = DatabaseBuilder.ConstructDB(dbname.text, reply);
-
+        for(int i = 0; i < VedicDatabase.db.tables.Count; i++)
+        {
+            Debug.Log(VedicDatabase.db.tables[i].name + "\n");
+            for (int j = 0; j < VedicDatabase.db.tables[i].columns.Count; j++)
+            {
+                Debug.Log("     " + VedicDatabase.db.tables[i].columns[j].name + "\n");
+                for (int k = 0; k < VedicDatabase.db.tables[i].columns[j].fields.Count; k++)
+                {
+                    Debug.Log("          " + VedicDatabase.db.tables[i].columns[j].fields[k] + "\n");
+                }
+            }
+        }
+        */
         gameObject.SetActive(false);
     }
     public class MyWebRequest

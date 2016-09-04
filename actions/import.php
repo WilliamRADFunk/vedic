@@ -113,12 +113,20 @@ else
 				{
 					$jsonString .= ",";
 				}
+				else
+				{
+					// End of column
+				}
 			}
 			$jsonString .= "}";
 
 			if($a !== count($tables) - 1)
 			{
 				$jsonString .= ",";
+			}
+			else
+			{
+				// End of table
 			}
 		}
 		$jsonString .= "}";
