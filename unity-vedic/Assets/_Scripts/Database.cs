@@ -58,6 +58,7 @@ namespace Database
                 {
                     Column col = new Column();
                     col.name = data.Substring(0, data.IndexOf(":"));
+                    col.color = getRandomColor();
                     col.fields = new List<string>();
                     data = data.Substring(data.IndexOf("[") + 1);
 
@@ -76,7 +77,7 @@ namespace Database
                         }
                     } while (true);
                     tb.AddColumn(col);
-                    if(data.Substring(0, 1).Equals(","))
+                    if (data.Substring(0, 1).Equals(","))
                     {
                         data = data.Substring(1);
                     }
@@ -96,7 +97,17 @@ namespace Database
                     break;
                 }
             }
-            
+
+            for (int i = 0; i < db.tables.Count; i++)
+            {
+                Debug.Log(db.tables[i].name + "\n");
+                for (int j = 0; j < db.tables[i].columns.Count; j++)
+                {
+                    Debug.Log("     " + db.tables[i].columns[j].name);
+                    Debug.Log("     " + db.tables[i].columns[j].color + "\n");
+                }
+            }
+
             return db;
         }
         public static Table ConstructTable(string name)
@@ -110,6 +121,25 @@ namespace Database
             Column col = new Column();
             col.name = name;
             return col;
+        }
+        public static string getRandomColor()
+        {
+            string[] letters = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
+            string color = "#";
+            for (int i = 0; i < 6; i++)
+            {
+                color += letters[Tools.GetRandomNum(16)];
+            }
+            return color;
+        }
+    }
+    // Miscellaneous functions used across the game.
+    public static class Tools
+    {
+        private static System.Random rando = new System.Random();
+        public static int GetRandomNum(int number)
+        {
+            return rando.Next(number);
         }
     }
 }
