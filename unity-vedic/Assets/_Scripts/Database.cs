@@ -39,14 +39,19 @@ namespace Database
             {
                 fields.Add(f);
             }
+            public void ChangeColor(string c)
+            {
+                color = c;
+            }
         }
         public static Database ConstructDB(string name, string data)
         {
             Database db = new Database();
             db.name = name;
             db.tables = new List<Table>();
-
             data = data.Substring(10);
+
+            // Loops through all the tables for this database.
             while (true)
             {
                 Table tb = new Table();
@@ -54,6 +59,7 @@ namespace Database
                 tb.columns = new List<Column>();
                 data = data.Substring(data.IndexOf("{") + 1);
 
+                // Loops through all the columns for this table.
                 while (true)
                 {
                     Column col = new Column();
@@ -62,12 +68,13 @@ namespace Database
                     col.fields = new List<string>();
                     data = data.Substring(data.IndexOf("[") + 1);
 
+                    // Loops through all the fields for this column.
                     do
                     {
                         if (data.IndexOf(",") != -1 && data.IndexOf(",") < data.IndexOf("]"))
                         {
                             col.AddField(data.Substring(0, data.IndexOf(",")));
-                            data = data.Substring(data.IndexOf(",") + 1);
+                            data = data.Substring(data.IndexOf(",") + 1); // There's a 'next' field
                         }
                         else
                         {
@@ -79,7 +86,7 @@ namespace Database
                     tb.AddColumn(col);
                     if (data.Substring(0, 1).Equals(","))
                     {
-                        data = data.Substring(1);
+                        data = data.Substring(1); // There's a 'next' column
                     }
                     else
                     {
@@ -90,21 +97,19 @@ namespace Database
                 db.AddTable(tb);
                 if (data.Substring(0, 1).Equals(","))
                 {
-                    data = data.Substring(1);
+                    data = data.Substring(1); // There's a 'next' table
                 }
                 else
                 {
                     break;
                 }
             }
-
+            // Print out in the debugger for the colors to each column
             for (int i = 0; i < db.tables.Count; i++)
             {
-                Debug.Log(db.tables[i].name + "\n");
                 for (int j = 0; j < db.tables[i].columns.Count; j++)
                 {
-                    Debug.Log("     " + db.tables[i].columns[j].name);
-                    Debug.Log("     " + db.tables[i].columns[j].color + "\n");
+                    Debug.Log(db.tables[i].name + "--->" + db.tables[i].columns[j].name + "--->" + db.tables[i].columns[j].color + "\n");
                 }
             }
 
