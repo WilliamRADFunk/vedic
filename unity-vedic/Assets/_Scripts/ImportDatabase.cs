@@ -5,6 +5,8 @@ using System.IO;
 using System.Net;
 using System.Text;
 
+using Database;
+
 public class ImportDatabase : MonoBehaviour
 {
     public Text dbname;
@@ -19,6 +21,10 @@ public class ImportDatabase : MonoBehaviour
         string reply = mwr.GetResponse();
         Debug.Log("Receiving Database");
         Debug.Log(reply);
+
+        DatabaseBuilder.Database db = DatabaseBuilder.ConstructDB(dbname.text, reply);
+
+        gameObject.SetActive(false);
     }
     public class MyWebRequest
     {
