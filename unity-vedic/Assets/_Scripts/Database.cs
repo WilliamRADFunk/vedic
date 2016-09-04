@@ -148,9 +148,6 @@ namespace Database
             {
                 for (int j = 0; j < db.tables[i].columns.Count; j++)
                 {
-                    //Column oldCol = db.tables[i].columns[j];
-                    //oldCol.color = getRandomColor();
-                    //db.tables[i].columns[j] = oldCol;
                     Debug.Log(db.tables[i].GetName() + "--->" + db.tables[i].columns[j].GetName() + "--->" + db.tables[i].columns[j].GetColor() + "\n");
                 }
             }
