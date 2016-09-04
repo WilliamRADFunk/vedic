@@ -11,44 +11,72 @@ namespace Database
     {
         public struct Database
         {
-            public string name;
+            private string name;
             public List<Table> tables;
 
             public void AddTable(Table t)
             {
                 tables.Add(t);
             }
+            public void SetName(string n)
+            {
+                name = n;
+            }
+            public string GetName()
+            {
+                return name;
+            }
         }
         public struct Table
         {
-            public string name;
+            private string name;
             public List<Column> columns;
 
             public void AddColumn(Column c)
             {
                 columns.Add(c);
             }
+            public void SetName(string n)
+            {
+                name = n;
+            }
+            public string GetName()
+            {
+                return name;
+            }
         }
         public struct Column
         {
-            public string name;
+            private string name;
             public List<string> fields;
-            public string color;
+            private string color;
 
             public void AddField(string f)
             {
                 fields.Add(f);
             }
-            public void ChangeColor(string c)
+            public void SetName(string n)
+            {
+                name = n;
+            }
+            public string GetName()
+            {
+                return name;
+            }
+            public string GetColor()
+            {
+                return color;
+            }
+            public void SetColor(string c)
             {
                 color = c;
             }
         }
         public static Database ConstructDB(string name, string data)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, string> dic = new Dictionary<string, string>(); // Color matching
             Database db = new Database();
-            db.name = name;
+            db.SetName(name);
             db.tables = new List<Table>();
             data = data.Substring(10);
 
@@ -56,7 +84,7 @@ namespace Database
             while (true)
             {
                 Table tb = new Table();
-                tb.name = data.Substring(0, data.IndexOf(":"));
+                tb.SetName( data.Substring(0, data.IndexOf(":")) );
                 tb.columns = new List<Column>();
                 data = data.Substring(data.IndexOf("{") + 1);
 
@@ -64,16 +92,17 @@ namespace Database
                 while (true)
                 {
                     Column col = new Column();
-                    col.name = data.Substring(0, data.IndexOf(":"));
-                    if (dic.ContainsKey(col.name))
+                    col.SetName( data.Substring(0, data.IndexOf(":")) );
+                    // If column exists elsewhere, use same color.
+                    if (dic.ContainsKey(col.GetName()))
                     {
-                        col.ChangeColor(dic[col.name]);
+                        col.SetColor(dic[col.GetName()]);
                     }
                     else
                     {
                         string c = getRandomColor();
-                        dic.Add(col.name, c);
-                        col.ChangeColor(c);
+                        dic.Add(col.GetName(), c);
+                        col.SetColor(c);
                     }
                     col.fields = new List<string>();
                     data = data.Substring(data.IndexOf("[") + 1);
@@ -122,7 +151,7 @@ namespace Database
                     //Column oldCol = db.tables[i].columns[j];
                     //oldCol.color = getRandomColor();
                     //db.tables[i].columns[j] = oldCol;
-                    Debug.Log(db.tables[i].name + "--->" + db.tables[i].columns[j].name + "--->" + db.tables[i].columns[j].color + "\n");
+                    Debug.Log(db.tables[i].GetName() + "--->" + db.tables[i].columns[j].GetName() + "--->" + db.tables[i].columns[j].GetColor() + "\n");
                 }
             }
 
@@ -131,13 +160,13 @@ namespace Database
         public static Table ConstructTable(string name)
         {
             Table tab = new Table();
-            tab.name = name;
+            tab.SetName(name);
             return tab;
         }
         public static Column ConstructColumn(string name)
         {
             Column col = new Column();
-            col.name = name;
+            col.SetName(name);
             return col;
         }
         public static string getRandomColor()
