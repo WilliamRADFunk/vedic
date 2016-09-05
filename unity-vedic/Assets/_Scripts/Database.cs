@@ -29,6 +29,7 @@ namespace Database
         }
         public struct Table
         {
+            private string id;
             private string name;
             public List<Column> columns;
 
@@ -44,9 +45,18 @@ namespace Database
             {
                 return name;
             }
+            public void SetId(string i)
+            {
+                id = i;
+            }
+            public string GetId()
+            {
+                return id;
+            }
         }
         public struct Column
         {
+            private string id;
             private string name;
             public List<string> fields;
             private string color;
@@ -62,6 +72,14 @@ namespace Database
             public string GetName()
             {
                 return name;
+            }
+            public void SetId(string i)
+            {
+                id = i;
+            }
+            public string GetId()
+            {
+                return id;
             }
             public string GetColor()
             {
@@ -79,20 +97,27 @@ namespace Database
             db.SetName(name);
             db.tables = new List<Table>();
             data = data.Substring(10);
+            int tableCounter = -1;
+            int columnCounter = -1;
 
             // Loops through all the tables for this database.
             while (true)
             {
+                tableCounter++;
+                columnCounter = -1;
                 Table tb = new Table();
                 tb.SetName( data.Substring(0, data.IndexOf(":")) );
+                tb.SetId("T" + tableCounter);
                 tb.columns = new List<Column>();
                 data = data.Substring(data.IndexOf("{") + 1);
 
                 // Loops through all the columns for this table.
                 while (true)
                 {
+                    columnCounter++;
                     Column col = new Column();
                     col.SetName( data.Substring(0, data.IndexOf(":")) );
+                    col.SetId("T" + tableCounter + "-C" + columnCounter);
                     // If column exists elsewhere, use same color.
                     if (dic.ContainsKey(col.GetName()))
                     {
@@ -148,7 +173,9 @@ namespace Database
             {
                 for (int j = 0; j < db.tables[i].columns.Count; j++)
                 {
-                    Debug.Log(db.tables[i].GetName() + "--->" + db.tables[i].columns[j].GetName() + "--->" + db.tables[i].columns[j].GetColor() + "\n");
+                    Debug.Log(  db.tables[i].GetName() + "(" + db.tables[i].GetId() + ")--->" +
+                                db.tables[i].columns[j].GetName() + "(" + db.tables[i].columns[j].GetId() + ")--->" + 
+                                db.tables[i].columns[j].GetColor() + "\n");
                 }
             }
 
