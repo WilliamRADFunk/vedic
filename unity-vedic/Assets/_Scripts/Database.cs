@@ -5,91 +5,10 @@ namespace Database
 {
     public static class VedicDatabase
     {
-        public static DatabaseBuilder.Database db;
+        public static Database db;
     }
     public class DatabaseBuilder
     {
-        public struct Database
-        {
-            private string name;
-            public List<Table> tables;
-
-            public void AddTable(Table t)
-            {
-                tables.Add(t);
-            }
-            public void SetName(string n)
-            {
-                name = n;
-            }
-            public string GetName()
-            {
-                return name;
-            }
-        }
-        public struct Table
-        {
-            private string id;
-            private string name;
-            public List<Column> columns;
-
-            public void AddColumn(Column c)
-            {
-                columns.Add(c);
-            }
-            public void SetName(string n)
-            {
-                name = n;
-            }
-            public string GetName()
-            {
-                return name;
-            }
-            public void SetId(string i)
-            {
-                id = i;
-            }
-            public string GetId()
-            {
-                return id;
-            }
-        }
-        public struct Column
-        {
-            private string id;
-            private string name;
-            public List<string> fields;
-            private string color;
-
-            public void AddField(string f)
-            {
-                fields.Add(f);
-            }
-            public void SetName(string n)
-            {
-                name = n;
-            }
-            public string GetName()
-            {
-                return name;
-            }
-            public void SetId(string i)
-            {
-                id = i;
-            }
-            public string GetId()
-            {
-                return id;
-            }
-            public string GetColor()
-            {
-                return color;
-            }
-            public void SetColor(string c)
-            {
-                color = c;
-            }
-        }
         public static Database ConstructDB(string name, string data)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>(); // Color matching
@@ -181,18 +100,6 @@ namespace Database
 
             return db;
         }
-        public static Table ConstructTable(string name)
-        {
-            Table tab = new Table();
-            tab.SetName(name);
-            return tab;
-        }
-        public static Column ConstructColumn(string name)
-        {
-            Column col = new Column();
-            col.SetName(name);
-            return col;
-        }
         public static string getRandomColor()
         {
             string[] letters = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
@@ -202,6 +109,87 @@ namespace Database
                 color += letters[Tools.GetRandomNum(16)];
             }
             return color;
+        }
+    }
+    public struct Database
+    {
+        private string name;
+        public List<Table> tables;
+
+        public void AddTable(Table t)
+        {
+            tables.Add(t);
+        }
+        public void SetName(string n)
+        {
+            name = n;
+        }
+        public string GetName()
+        {
+            return name;
+        }
+    }
+    public struct Table
+    {
+        private string id;
+        private string name;
+        public List<Column> columns;
+
+        public void AddColumn(Column c)
+        {
+            columns.Add(c);
+        }
+        public void SetName(string n)
+        {
+            name = n;
+        }
+        public string GetName()
+        {
+            return name;
+        }
+        public void SetId(string i)
+        {
+            id = i;
+        }
+        public string GetId()
+        {
+            return id;
+        }
+    }
+    public struct Column
+    {
+        private string id;
+        private string name;
+        public List<string> fields;
+        private string color;
+
+        public void AddField(string f)
+        {
+            fields.Add(f);
+        }
+        public void SetName(string n)
+        {
+            name = n;
+        }
+        public string GetName()
+        {
+            return name;
+        }
+        public void SetId(string i)
+        {
+            id = i;
+        }
+        public string GetId()
+        {
+            return id;
+        }
+        public string GetColor()
+        {
+            return color;
+        }
+        public void SetColor(string c)
+        {
+            color = c;
         }
     }
     // Miscellaneous functions used across the game.
