@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace Database
+namespace DatabaseUtilities
 {
+
+    public enum View_Type { Harness, Table, Column };
+
     public static class VedicDatabase
     {
         public static Database db;

@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-using Database;
+using DatabaseUtilities;
 
 public class ImportDatabase : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class ImportDatabase : MonoBehaviour
         Debug.Log("Received Database");
 
         VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
+
+        ViewAssembler.GenerateViewObject(VedicDatabase.db);      
         /* For database import verfification purposes only.
         Debug.Log(reply);
         for(int i = 0; i < VedicDatabase.db.tables.Count; i++)
