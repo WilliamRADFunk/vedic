@@ -45,7 +45,7 @@ public class TableHarness : MonoBehaviour {
 
         for(int i = 0; i < matrixSize; i++)
         {
-            for(int j = 0; i < matrixSize; j++)
+            for(int j = 0; j < matrixSize; j++)
             {
                 float x = (j * segments) + (NodeDivisions * j);
                 float z = (i * segments) + (NodeDivisions * i);
