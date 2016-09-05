@@ -84,7 +84,7 @@ public static class ViewAssembler {
     private static GameObject GenerateColumnObj(DatabaseUtilities.Column col, Transform parent, int key)
     {
         GameObject curCol =  Generate((int)View_Type.Column);
-        curCol.GetComponent<Column>().Initialize(key, parent);
+        curCol.GetComponent<Column>().Initialize(key, parent, col.GetId(), col.GetColor());
 
         return curCol;
         
