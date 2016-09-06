@@ -11,11 +11,13 @@ public class Column : MonoBehaviour, ViewObj {
     int colHeight;
 
     bool virgin;
+    bool triggered;
 
 
 	// Use this for initialization
 	void Start () {
 
+        triggered = false;
         virgin = true;
         objMesh = gameObject.GetComponent<Renderer>().material;
 
@@ -27,9 +29,16 @@ public class Column : MonoBehaviour, ViewObj {
         {
             virgin = false;
             objMesh.color = instanceColor;
+        }
 
+        if(Input.GetKeyDown("space"))
+        {
+            
+            columnTriggered();
         }
 	}
+
+    
 
 
     public void Initialize(int key, Transform father, string identification, string hexColor)
@@ -94,5 +103,19 @@ public class Column : MonoBehaviour, ViewObj {
 
         return color;
         
+    }
+
+    void columnTriggered()
+    {
+        if(triggered)
+        {
+            ResetObjectDefault();
+            triggered = false;
+        }
+        else
+        {
+            gameObject.transform.localPosition = new Vector3(0, colHeight + (0.5f*(colHeight)) + 0.5f, 0);
+            triggered = true;
+        }
     }
 }
