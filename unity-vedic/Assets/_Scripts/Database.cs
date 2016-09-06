@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DatabaseUtilities
 {
-
     public enum View_Type { Harness, Table, Column };
 
     public static class VedicDatabase
@@ -100,7 +99,6 @@ namespace DatabaseUtilities
                                 db.tables[i].columns[j].GetColor() + "\n");
                 }
             }
-
             return db;
         }
         public static string getRandomColor()
