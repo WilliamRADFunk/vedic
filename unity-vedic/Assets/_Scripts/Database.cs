@@ -89,16 +89,6 @@ namespace DatabaseUtilities
                     break;
                 }
             }
-            // Print out in the debugger for the colors to each column
-            for (int i = 0; i < db.tables.Count; i++)
-            {
-                for (int j = 0; j < db.tables[i].columns.Count; j++)
-                {
-                    Debug.Log(  db.tables[i].GetName() + "(" + db.tables[i].GetId() + ")--->" +
-                                db.tables[i].columns[j].GetName() + "(" + db.tables[i].columns[j].GetId() + ")--->" + 
-                                db.tables[i].columns[j].GetColor() + "\n");
-                }
-            }
             return db;
         }
         public static string getRandomColor()
