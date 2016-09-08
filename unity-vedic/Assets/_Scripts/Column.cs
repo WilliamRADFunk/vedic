@@ -161,8 +161,13 @@ public class Column : MonoBehaviour, ViewObj {
         }
         else
         {
+            while(currentPosition.y > colHeight)
+            {
+                currentPosition.y = currentPosition.y - triggerMovementOffset;
+                gameObject.transform.localPosition = currentPosition;
+                yield return new WaitForSeconds(0.01f);
+            }
             ResetObjectDefault();
-
         }
         
     }
