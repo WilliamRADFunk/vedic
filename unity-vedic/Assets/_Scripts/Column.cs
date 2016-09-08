@@ -5,10 +5,16 @@ using System.Globalization;
 
 public class Column : MonoBehaviour, ViewObj {
 
+    public float triggeredColumnOffset;
+    public int offsetFrameCount;
+
+    float finalTriggeredHeight;
+    float triggerMovementOffset;
+
     string ID;
+    int colHeight;
     Material objMesh;
     Color instanceColor;
-    int colHeight;
 
     bool virgin;
     bool triggered;
@@ -21,7 +27,8 @@ public class Column : MonoBehaviour, ViewObj {
         virgin = true;
         objMesh = gameObject.GetComponent<Renderer>().material;
 
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,11 +50,16 @@ public class Column : MonoBehaviour, ViewObj {
 
     public void Initialize(int key, Transform father, string identification, string hexColor)
     {
-        this.colHeight = key;
-        ID = identification;
+        //Initialize the positional vectors to keep track up for simple y vector movements.
+        colHeight = key;
+        finalTriggeredHeight = colHeight + (triggeredColumnOffset * colHeight);
+        float distance = finalTriggeredHeight - key;
+        triggerMovementOffset = distance / offsetFrameCount;
 
+        Debug.Log(triggerMovementOffset);
+        
+        ID = identification;
         instanceColor = HexToColor(hexColor);
-        //gameObject.GetComponent<Renderer>().material.SetColor("DATCOLOR",instanceColor);
         ParentObject(father);
         ResetObjectDefault();
 
@@ -107,15 +119,51 @@ public class Column : MonoBehaviour, ViewObj {
 
     void columnTriggered()
     {
+        StartCoroutine(triggerHandler());
+    }
+
+    private IEnumerator triggerHandler()
+    {
+        float startPoint = gameObject.transform.position.y;
+        float endPointTop = finalTriggeredHeight;
+        float endPointBottom = colHeight;
+
         if(triggered)
-        {
-            ResetObjectDefault();
+        { 
             triggered = false;
+            yield return StartCoroutine(triggerTransition(startPoint, endPointBottom));
         }
         else
         {
-            gameObject.transform.localPosition = new Vector3(0, colHeight + (0.5f*(colHeight)) + 0.5f, 0);
             triggered = true;
+            yield return StartCoroutine(triggerTransition(startPoint, endPointTop));
         }
+        
+    }
+
+    private IEnumerator triggerTransition(float start, float end)
+    {
+        Vector3 currentPosition = gameObject.transform.localPosition;
+
+
+        if(start < end)
+        {
+            for(int i = 0; i < offsetFrameCount; i++)
+            {
+                if(!triggered)
+                {
+                    yield break;
+                }
+                currentPosition.y = currentPosition.y + triggerMovementOffset;
+                gameObject.transform.localPosition = currentPosition;
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+        else
+        {
+            ResetObjectDefault();
+
+        }
+        
     }
 }
