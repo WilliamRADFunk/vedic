@@ -46,8 +46,6 @@ public static class ViewAssembler {
         List<DatabaseUtilities.Table> tableInfo = database.tables;
         int tableCount = tableInfo.Count;
 
-        Debug.Log(tableCount);
-
         GameObject[] tables = new GameObject[tableCount];
 
         for(int i = 0; i < tableCount; i++)
