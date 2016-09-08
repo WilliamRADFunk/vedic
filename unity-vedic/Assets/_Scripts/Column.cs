@@ -112,12 +112,11 @@ public class Column : MonoBehaviour, ViewObj {
         color.g = newG;
         color.b = newB;
         
-
         return color;
         
     }
 
-    void columnTriggered()
+    public void columnTriggered()
     {
         StartCoroutine(triggerHandler());
     }

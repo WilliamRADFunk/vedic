@@ -34,9 +34,7 @@ public class TableHarness : MonoBehaviour {
         for(int i = 0; i < tableCount; i++)
         {
             tables[i].transform.localPosition = tableSlots[i];
-        }
-        
-              
+        }         
     }
 
     private void SetPositionMatrix()
@@ -64,11 +62,5 @@ public class TableHarness : MonoBehaviour {
                 break;
             }
         }
-
-
-
-
-
-
     }
 }
