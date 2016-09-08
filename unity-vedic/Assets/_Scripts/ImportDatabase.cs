@@ -23,22 +23,7 @@ public class ImportDatabase : MonoBehaviour
 
         VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
 
-        ViewAssembler.GenerateViewObject(VedicDatabase.db);      
-        /* For database import verfification purposes only.
-        Debug.Log(reply);
-        for(int i = 0; i < VedicDatabase.db.tables.Count; i++)
-        {
-            Debug.Log(VedicDatabase.db.tables[i].name + "\n");
-            for (int j = 0; j < VedicDatabase.db.tables[i].columns.Count; j++)
-            {
-                Debug.Log("     " + VedicDatabase.db.tables[i].columns[j].name + "\n");
-                for (int k = 0; k < VedicDatabase.db.tables[i].columns[j].fields.Count; k++)
-                {
-                    Debug.Log("          " + VedicDatabase.db.tables[i].columns[j].fields[k] + "\n");
-                }
-            }
-        }
-        */
+        ViewAssembler.GenerateViewObject(VedicDatabase.db);
         gameObject.SetActive(false);
     }
     public class MyWebRequest
@@ -56,18 +41,14 @@ public class ImportDatabase : MonoBehaviour
 
         public MyWebRequest(string url) { request = WebRequest.Create(url); }
 
-        public MyWebRequest(string url, string method)
-            : this(url)
+        public MyWebRequest(string url, string method) : this(url)
         {
-
             if (method.Equals("GET") || method.Equals("POST")) { request.Method = method; }
             else { throw new Exception("Invalid Method Type"); }
         }
 
-        public MyWebRequest(string url, string method, string data)
-            : this(url, method)
+        public MyWebRequest(string url, string method, string data) : this(url, method)
         {
-
             // Create POST data and convert it to a byte array.
             string postData = data;
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
@@ -86,7 +67,6 @@ public class ImportDatabase : MonoBehaviour
 
             // Close the Stream object.
             dataStream.Close();
-
         }
 
         public string GetResponse()
@@ -112,6 +92,5 @@ public class ImportDatabase : MonoBehaviour
 
             return responseFromServer;
         }
-
     }
 }
