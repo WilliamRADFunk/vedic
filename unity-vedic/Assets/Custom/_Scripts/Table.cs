@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class Table : MonoBehaviour, ViewObj
 {
-    
-
     public GameObject tempPrefabReference; //To be passed in by parent?
 
     List<GameObject> columns = new List<GameObject>();
@@ -18,10 +16,12 @@ public class Table : MonoBehaviour, ViewObj
 
     bool initialized = false;
     bool virgin = true;
+    bool activated;
 
     // Use this for initialization
     void Start()
     {
+        activated = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
     }
 
@@ -59,8 +59,6 @@ public class Table : MonoBehaviour, ViewObj
         }
         else
         {
-            Debug.Log(columnObjects.Length);
-
             for (int i = 0; i < columnObjects.Length; i++)
             {
                 columns.Add(columnObjects[i]);
@@ -84,9 +82,26 @@ public class Table : MonoBehaviour, ViewObj
 
     public void OnTriggerEnter(Collider other)
     {
-        for(int i = 0; i < columns.Count; i++)
+        if (!activated)
         {
-            columns[i].GetComponent<Column>().columnTriggered();
+            for (int i = 0; i < columns.Count; i++)
+            {
+                columns[i].GetComponent<Column>().columnTriggered();
+            }
         }
+        activated = true;
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(activated)
+        {
+            for (int i = 0; i < columns.Count; i++)
+            {
+                columns[i].GetComponent<Column>().columnTriggered();
+            }
+        }
+        activated = false;
+    }
+
 }

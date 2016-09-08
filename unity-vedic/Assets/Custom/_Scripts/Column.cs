@@ -55,8 +55,6 @@ public class Column : MonoBehaviour, ViewObj {
         finalTriggeredHeight = colHeight + (triggeredColumnOffset * colHeight);
         float distance = finalTriggeredHeight - key;
         triggerMovementOffset = distance / offsetFrameCount;
-
-        Debug.Log(triggerMovementOffset);
         
         ID = identification;
         instanceColor = HexToColor(hexColor);
