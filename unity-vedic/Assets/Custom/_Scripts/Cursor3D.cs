@@ -92,10 +92,10 @@ public class Cursor3D : MonoBehaviour {
             switch (curFrame.Hands[whichHand].IsRight)
             {
                 case true:
-                    ProjectionOrigin = InputTracking.GetLocalPosition(VRNode.Head) + CurrentRotation * new Vector3(0.15f, -0.13f, 0.1f);
+                    ProjectionOrigin = InputTracking.GetLocalPosition(VRNode.Head) + CurrentRotation * new Vector3(0.15f, -0.13f, -0.1f);
                     break;
                 case false:
-                    ProjectionOrigin = InputTracking.GetLocalPosition(VRNode.Head) + CurrentRotation * new Vector3(-0.15f, -0.13f, 0.1f);
+                    ProjectionOrigin = InputTracking.GetLocalPosition(VRNode.Head) + CurrentRotation * new Vector3(-0.15f, -0.13f, -0.1f);
                     break;
             }
 
