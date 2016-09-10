@@ -3,8 +3,8 @@ using System.Collections;
 using DatabaseUtilities;
 using System.Collections.Generic;
 
-public class TableHarness : MonoBehaviour {
-
+public class TableHarness : MonoBehaviour
+{
     public float NodeDivisions;
     public float scaleSize;
     public float segments;
@@ -13,15 +13,15 @@ public class TableHarness : MonoBehaviour {
 
     Vector3[] tableSlots;
 
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+	void Start ()
+    {
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 
