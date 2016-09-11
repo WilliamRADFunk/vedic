@@ -55,7 +55,7 @@ public static class ViewAssembler {
 
         currentHarness.GetComponent<TableHarness>().Initialize(tables);
 
-        currentHarness.transform.position = new Vector3(0, 0, 0);
+        currentHarness.transform.localPosition = new Vector3(0, 0, 0);
         return currentHarness;
     }
 

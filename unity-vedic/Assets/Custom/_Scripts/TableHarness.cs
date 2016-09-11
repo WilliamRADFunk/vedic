@@ -22,7 +22,7 @@ public class TableHarness : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
+        //gameObject.transform.localPosition = Vector3.zero;
 	}
 
     public void Initialize(GameObject[] tables)
@@ -34,7 +34,11 @@ public class TableHarness : MonoBehaviour
         for(int i = 0; i < tableCount; i++)
         {
             tables[i].transform.localPosition = tableSlots[i];
-        }         
+        }
+
+        GameObject ped = GameObject.FindGameObjectWithTag("Pedestal");
+        gameObject.transform.parent = ped.transform;
+        gameObject.transform.localPosition = Vector3.zero;      
     }
 
     private void SetPositionMatrix()

@@ -65,7 +65,7 @@ public class Column : MonoBehaviour, ViewObj {
 
     public void ResetObjectDefault()
     {
-        gameObject.transform.localPosition = new Vector3(0, colHeight, 0);
+        gameObject.transform.localPosition = new Vector3(0, colHeight + 0.5f, 0);
     }
 
     public void ParentObject(Transform parentTransform)
