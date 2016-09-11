@@ -16,22 +16,30 @@ public class ImportDatabase : MonoBehaviour
 
     private string[][] storedDatabases = new string[9][];
 
-    // Populate previously store databases
-    // TODO: Create a more permanent storage method.
+    // Populate previously stored databases
     public void Awake()
     {
-        for(int i = 0; i < storedDatabases.Length; i++)
+        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
+        string reply = mwr.GetResponse();
+        Debug.Log(reply);
+
+        string[] splitReply = reply.Split(',');
+        for (int i = 0; i < storedDatabases.Length; i++)
         {
-            storedDatabases[i] = new string[4];
-            storedDatabases[i][0] = "Database " + (i + 1);
-            storedDatabases[i][1] = "";
-            storedDatabases[i][2] = "";
-            storedDatabases[i][3] = "";
+            int replyBase = i * 4;
+            if( replyBase >= splitReply.Length - 1)
+            {
+                break;
+            }
+            else
+            {
+                storedDatabases[i] = new string[4];
+                storedDatabases[i][0] = splitReply[replyBase];
+                storedDatabases[i][1] = splitReply[replyBase + 1];
+                storedDatabases[i][2] = splitReply[replyBase + 2];
+                storedDatabases[i][3] = splitReply[replyBase + 3];
+            }
         }
-        storedDatabases[0][0] = "db627045533";
-        storedDatabases[0][1] = "db627045533.db.1and1.com";
-        storedDatabases[0][2] = "dbo627045533";
-        storedDatabases[0][3] = "Dumbass090!";
     }
     public void LoadDB(int dbIndex)
     {
@@ -45,7 +53,6 @@ public class ImportDatabase : MonoBehaviour
                 allOff = false;
             }
         }
-        Debug.Log("LOAD!");
         if ( !allOff )
         {
             dbname.text = storedDatabases[dbIndex][0];
@@ -81,9 +88,13 @@ public class ImportDatabase : MonoBehaviour
             storedDatabases[dbIndex][1] = hostname.text;
             storedDatabases[dbIndex][2] = username.text;
             storedDatabases[dbIndex][3] = password.text;
+
+            MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/setDbInfo.php", "POST",
+                "dbNum=" + dbIndex + "&dbname=" + storedDatabases[dbIndex][0] + "&hostname=" + storedDatabases[dbIndex][1] + 
+                "&username=" + storedDatabases[dbIndex][2] + "&password=" + storedDatabases[dbIndex][3]);
+            string reply = mwr.GetResponse();
+            Debug.Log(reply);
         }
-        Debug.Log(hostname.text);
-        Debug.Log(storedDatabases[dbIndex][1]);
     }
 
     // Use this for initialization
