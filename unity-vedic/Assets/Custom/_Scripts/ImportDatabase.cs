@@ -9,10 +9,82 @@ using DatabaseUtilities;
 
 public class ImportDatabase : MonoBehaviour
 {
-    public Text dbname;
-    public Text hostname;
-    public Text username;
-    public Text password;
+    public InputField dbname;
+    public InputField hostname;
+    public InputField username;
+    public InputField password;
+
+    private string[][] storedDatabases = new string[9][];
+
+    // Populate previously store databases
+    // TODO: Create a more permanent storage method.
+    public void Awake()
+    {
+        for(int i = 0; i < storedDatabases.Length; i++)
+        {
+            storedDatabases[i] = new string[4];
+            storedDatabases[i][0] = "Database " + (i + 1);
+            storedDatabases[i][1] = "";
+            storedDatabases[i][2] = "";
+            storedDatabases[i][3] = "";
+        }
+        storedDatabases[0][0] = "db627045533";
+        storedDatabases[0][1] = "db627045533.db.1and1.com";
+        storedDatabases[0][2] = "dbo627045533";
+        storedDatabases[0][3] = "Dumbass090!";
+    }
+    public void LoadDB(int dbIndex)
+    {
+        bool allOff = true;
+        GameObject[] dbTogglers = GameObject.FindGameObjectsWithTag("DatabaseToggle");
+        for (int i = 0; i < dbTogglers.Length; i++)
+        {
+            Toggle otherToggle = dbTogglers[i].GetComponent<Toggle>();
+            if (otherToggle.isOn)
+            {
+                allOff = false;
+            }
+        }
+        Debug.Log("LOAD!");
+        if ( !allOff )
+        {
+            dbname.text = storedDatabases[dbIndex][0];
+            hostname.text = storedDatabases[dbIndex][1];
+            username.text = storedDatabases[dbIndex][2];
+            password.text = storedDatabases[dbIndex][3];
+        }
+        else
+        {
+            dbname.text = "";
+            hostname.text = "";
+            username.text = "";
+            password.text = "";
+        }
+    }
+    // Save new DB info into this DB slot.
+    public void SaveDB()
+    {
+        int dbIndex = -1;
+        GameObject[] dbTogglers = GameObject.FindGameObjectsWithTag("DatabaseToggle");
+        for (int i = 0; i < dbTogglers.Length; i++)
+        {
+            Toggle otherToggle = dbTogglers[i].GetComponent<Toggle>();
+            if (otherToggle.isOn)
+            {
+                dbIndex = Int32.Parse(dbTogglers[i].name.Substring(dbTogglers[i].name.Length - 1, 1)) - 1;
+            }
+        }
+        Debug.Log(dbIndex);
+        if (dbIndex > -1)
+        {
+            storedDatabases[dbIndex][0] = dbname.text;
+            storedDatabases[dbIndex][1] = hostname.text;
+            storedDatabases[dbIndex][2] = username.text;
+            storedDatabases[dbIndex][3] = password.text;
+        }
+        Debug.Log(hostname.text);
+        Debug.Log(storedDatabases[dbIndex][1]);
+    }
 
     // Use this for initialization
     public void Send()
@@ -24,7 +96,6 @@ public class ImportDatabase : MonoBehaviour
         VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
 
         ViewAssembler.GenerateViewObject(VedicDatabase.db);
-        gameObject.SetActive(false);
     }
     public class MyWebRequest
     {
