@@ -26,8 +26,7 @@ if ($conn->connect_error)
 // User sent a SELECT query
 else
 {
-	$getInfo = "UPDATE dbases SET DatabaseName = " + $dbname + ", HostName = " + $hostname +
-	", Password = " + $password + ", Username = " + $username + " WHERE dbNum = " + $dbNum;
+	$getInfo = "UPDATE dbases SET DatabaseName = '" . $dbname . "', HostName = '" . $hostname . "', Password = '" . $password . "', Username = '" . $username . "' WHERE dbNum = " . $dbNum;
 
 	if($conn->query($getInfo) !== TRUE)
 	{
