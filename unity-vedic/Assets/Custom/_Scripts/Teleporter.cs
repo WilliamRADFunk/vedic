@@ -1,35 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Teleporter : MonoBehaviour {
+public class Teleporter : MonoBehaviour
+{
 
     Vector3 mainEnviormentLocation;
     Transform currentPosition;
 
     Transform[] teleLocations;
 
+    int index;
     bool virgin = true;
-    bool teleported;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         GameObject tempEnviorment = GameObject.FindGameObjectWithTag("Pedestal");
         currentPosition = tempEnviorment.transform;
         mainEnviormentLocation = currentPosition.transform.localPosition;
-        teleported = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if(virgin)
+        index = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (virgin)
         {
             virgin = false;
             teleLocations = initializeJumpLocations();
 
             InvokeRepeating("jumpSwitch", 10, 10);
         }
-	}
+    }
 
     private Vector3 newCoordinate(Vector3 telePosition)
     {
@@ -48,16 +51,9 @@ public class Teleporter : MonoBehaviour {
         GameObject[] arrayOfJumps = GameObject.FindGameObjectsWithTag("tele");
         Transform[] jumpLocations = new Transform[arrayOfJumps.Length];
 
-        foreach (GameObject obj in arrayOfJumps)
+        for (int i = 0; i < arrayOfJumps.Length; i++)
         {
-            if(obj.GetComponent<TeleportLocation>().retrieveStastion() == "default")
-            {
-                jumpLocations[0] = obj.transform;
-            } 
-            else
-            {
-                jumpLocations[1] = obj.transform;
-            }
+            jumpLocations[i] = arrayOfJumps[i].transform;
         }
 
         return jumpLocations;
@@ -65,16 +61,11 @@ public class Teleporter : MonoBehaviour {
 
     private void jumpSwitch()
     {
-        if(!teleported)
+        currentPosition.localPosition = newCoordinate(teleLocations[index].localPosition);
+        index++;
+        if (index > teleLocations.Length - 1)
         {
-            currentPosition.localPosition = newCoordinate(teleLocations[1].localPosition);
-            teleported = true;
-        }
-        else
-        {
-            teleported = false;
-            resetPosition();
+            index = 0;
         }
     }
-   
 }
