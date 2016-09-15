@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DatabaseToggle
   - Pedestal
+  - tele
   layers:
   - Default
   - TransparentFX
