@@ -27,13 +27,11 @@ namespace Leap.Unity.InputModule
             if (toggle.isOn)
             {
                 // text.text = "On"; // Removed to keep db save toggles from changing.
-                text.color = Color.white;
                 image.color = OnColor;
             }
             else
             {
                 // text.text = "Off"; // Removed to keep db save toggles from changing.
-                text.color = new Color(0.3f, 0.3f, 0.3f);
                 image.color = OffColor;
             }
         }
