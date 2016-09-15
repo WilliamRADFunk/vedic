@@ -40,16 +40,12 @@ public class TableHarness : MonoBehaviour
         GameObject ped = GameObject.FindGameObjectWithTag("Pedestal");
         gameObject.transform.parent = ped.transform;
         gameObject.transform.localPosition = Vector3.zero;
-        //gameObject.transform.localScale = new Vector3(1,1,1);
-        //gameObject.transform.localScale.x / 2.75f, gameObject.transform.localScale.y / 2.75f, gameObject.transform.localScale.z / 2.75f
     }
 
     private void SetPositionMatrix()
     {
         int matrixSize = Mathf.CeilToInt(Mathf.Sqrt(tableCount));
-        Debug.Log(matrixSize);
         float newScale = 1 - (scaleBaseDecrease * (matrixSize - 2));
-        Debug.Log(newScale);
         gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         tableSlots = new Vector3[tableCount];
         int counter = 0;
