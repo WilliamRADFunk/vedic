@@ -1,5 +1,8 @@
 <?php
-include_once "config.php";
+$dbname = $_POST['dbname'];
+$hostname = $_POST['hostname'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 // Create connection
 $conn = new mysqli($hostname, $username, $password, $dbname);

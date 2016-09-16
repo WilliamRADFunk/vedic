@@ -7,12 +7,16 @@ using System.Text;
 
 public class SendQuery : MonoBehaviour
 {
-    public UnityEngine.UI.Text Output;
+    public Text Output;
+    public Text dbname;
+    public Text hostname;
+    public Text username;
+    public Text password;
 
 	// Use this for initialization
 	public void Send(Text input)
     {
-        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/query.php", "POST", "query=" + input.text);
+        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/query.php", "POST", "dbname=" + dbname.text + "&hostname=" + hostname.text + "&username=" + username.text + "&password=" + password.text + "&query=" + input.text);
         string reply = mwr.GetResponse();
         Output.text = reply;
     }
