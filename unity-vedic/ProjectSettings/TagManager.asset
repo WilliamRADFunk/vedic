@@ -9,6 +9,7 @@ TagManager:
   - tele
   - DbImporter
   - DbExporter
+  - enviorment
   layers:
   - Default
   - TransparentFX

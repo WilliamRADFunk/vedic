@@ -16,7 +16,7 @@ public class Teleporter : MonoBehaviour
     void Start()
     {
 
-        GameObject tempEnviorment = GameObject.FindGameObjectWithTag("Pedestal");
+        GameObject tempEnviorment = GameObject.FindGameObjectWithTag("enviorment");
         currentPosition = tempEnviorment.transform;
         mainEnviormentLocation = currentPosition.transform.localPosition;
         index = 0;
@@ -29,16 +29,21 @@ public class Teleporter : MonoBehaviour
         {
             virgin = false;
             teleLocations = initializeJumpLocations();
+        }
 
-            InvokeRepeating("jumpSwitch", 10, 10);
+        if (Input.GetKeyDown("space"))
+        {
+            jumpSwitch(1);
         }
     }
 
     private Vector3 newCoordinate(Vector3 telePosition)
     {
         Vector3 endLocation = mainEnviormentLocation;
-        endLocation = endLocation - telePosition;
-        return endLocation;
+        float x = endLocation.x - telePosition.x;
+        float z = endLocation.z - telePosition.z;
+        Vector3 finalEnd = new Vector3(x, endLocation.y, z);
+        return finalEnd;
     }
 
     private void resetPosition()
@@ -59,13 +64,14 @@ public class Teleporter : MonoBehaviour
         return jumpLocations;
     }
 
-    private void jumpSwitch()
+    private void jumpSwitch(int station)
     {
-        currentPosition.localPosition = newCoordinate(teleLocations[index].localPosition);
-        index++;
-        if (index > teleLocations.Length - 1)
+        if(station > teleLocations.Length)
         {
-            index = 0;
+            Debug.Log("Incorrect teleportation integer inputted");
+            return;
         }
+
+        currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
     }
 }
