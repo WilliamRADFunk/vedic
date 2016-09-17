@@ -64,7 +64,7 @@ public class Teleporter : MonoBehaviour
         return jumpLocations;
     }
 
-    private void jumpSwitch(int station)
+    public void jumpSwitch(int station)
     {
         if(station > teleLocations.Length)
         {
