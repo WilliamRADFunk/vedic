@@ -27,7 +27,7 @@ public class Column : MonoBehaviour, ViewObj {
         virgin = true;
         objMesh = gameObject.GetComponent<Renderer>().material;
 
-
+        gameObject.layer = 14;
     }
 	
 	// Update is called once per frame
