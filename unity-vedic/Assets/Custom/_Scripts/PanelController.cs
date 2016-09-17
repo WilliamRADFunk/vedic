@@ -10,8 +10,8 @@ public class PanelController : MonoBehaviour
     {
         if(pristine)
         {
-            DbImporter = GameObject.FindGameObjectWithTag("DbImporter");
             DbExporter = GameObject.FindGameObjectWithTag("DbExporter");
+            DbImporter = GameObject.FindGameObjectWithTag("DbImporter");
             DbExporter.SetActive(false);
             pristine = false;
         }
@@ -24,7 +24,7 @@ public class PanelController : MonoBehaviour
 
     public void ShowDbExporter()
     {
-        DbImporter.SetActive(false);
         DbExporter.SetActive(true);
+        DbImporter.SetActive(false);
     }
 }
