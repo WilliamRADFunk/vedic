@@ -213,7 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Layers:
-  - LayerTransform: {fileID: 22451162}
+  - Label: ToggleBackdrop Layer
+    LayerTransform: {fileID: 22451162}
     MaxFloatDistance: 0.01
     MinFloatDistance: 0
     Shadow: {fileID: 11473714}
@@ -224,7 +225,8 @@ MonoBehaviour:
     touchingFinger: 0
     distanceToAboveLayer: 0
     maxDistanceToAboveLayer: 0
-  - LayerTransform: {fileID: 22494924}
+  - Label: Text Layer
+    LayerTransform: {fileID: 22494924}
     MaxFloatDistance: 0.015
     MinFloatDistance: 0
     Shadow: {fileID: 0}
