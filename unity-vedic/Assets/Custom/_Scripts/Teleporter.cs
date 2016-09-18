@@ -72,6 +72,10 @@ public class Teleporter : MonoBehaviour
             return;
         }
 
+        Fader.Instance.FadeOut(null);
+
         currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
+
+        Fader.Instance.FadeIn(null);
     }
 }
