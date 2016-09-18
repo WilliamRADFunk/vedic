@@ -3,10 +3,11 @@
 public class PanelController : MonoBehaviour
 {
     private bool pristine = true;
-    GameObject DbImporter;
-    GameObject DbExporter;
-    GameObject MenuTeleport;
-    GameObject MenuMain;
+    public GameObject DbImporter;
+    public GameObject DbExporter;
+    public GameObject MenuTeleport;
+    public GameObject MenuMain;
+    public GameObject teleporter;
 
     void Update()
     {
@@ -47,6 +48,16 @@ public class PanelController : MonoBehaviour
 
     public void OnTeleportHover(int loc)
     {
+        teleporter.GetComponent<Teleporter>().OnHoverTele(loc);
+    }
 
+    public void OnTeleportExit(int loc)
+    {
+        teleporter.GetComponent<Teleporter>().OffHoverTele(loc);
+    }
+
+    public void OnTeleportClick(int loc)
+    {
+        teleporter.GetComponent<Teleporter>().OffHoverTele(loc);
     }
 }
