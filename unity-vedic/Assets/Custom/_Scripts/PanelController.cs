@@ -44,4 +44,9 @@ public class PanelController : MonoBehaviour
         MenuTeleport.SetActive(true);
         MenuMain.SetActive(false);
     }
+
+    public void OnTeleportHover(int loc)
+    {
+
+    }
 }
