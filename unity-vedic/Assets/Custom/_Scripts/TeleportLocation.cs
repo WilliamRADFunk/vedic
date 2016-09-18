@@ -4,6 +4,7 @@ using System.Collections;
 public class TeleportLocation : MonoBehaviour
 {
     public GameObject beam;
+    public int stationInt;
     Vector3 localPos;
     Quaternion localRot;
 
