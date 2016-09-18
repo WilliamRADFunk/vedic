@@ -3,8 +3,7 @@ using System.Collections;
 
 public class TeleportLocation : MonoBehaviour
 {
-
-    public string id;
+    public GameObject beam;
     Vector3 localPos;
     Quaternion localRot;
 
@@ -13,7 +12,6 @@ public class TeleportLocation : MonoBehaviour
 
         localPos = gameObject.transform.localPosition;
         localRot = gameObject.transform.localRotation;
-        gameObject.tag = "tele";
 	}
 	
 	// Update is called once per frame
@@ -31,8 +29,13 @@ public class TeleportLocation : MonoBehaviour
         return localRot;
     }
 
-    public string retrieveStastion()
+    public void Reveal()
     {
-        return id;
+        beam.SetActive(true);
+    }
+
+    public void Unreveal()
+    {
+        beam.SetActive(false);
     }
 }
