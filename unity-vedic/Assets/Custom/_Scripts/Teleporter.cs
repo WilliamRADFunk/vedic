@@ -10,6 +10,8 @@ public class Teleporter : MonoBehaviour
     GameObject[] arrayOfJumps;
     Transform[] teleLocations;
 
+    public GameObject ui;
+
     int curStation;
     bool virgin = true;
 
@@ -88,6 +90,7 @@ public class Teleporter : MonoBehaviour
 
         currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
         gameObject.transform.localRotation = teleLocations[station].localRotation;
+        ui.transform.localRotation = teleLocations[station].localRotation;
         curStation = station;
 
 
