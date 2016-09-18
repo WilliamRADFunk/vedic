@@ -11,8 +11,6 @@ public class Teleporter : MonoBehaviour
     Transform[] teleLocations;
 
     int curStation;
-
-    int index;
     bool virgin = true;
 
     // Use this for initialization
@@ -97,6 +95,10 @@ public class Teleporter : MonoBehaviour
 
     public void OnHoverTele(int station)
     {
+        if(station == curStation)
+        {
+            return;
+        }
         arrayOfJumps[station].GetComponent<TeleportLocation>().Reveal();
     }
 
