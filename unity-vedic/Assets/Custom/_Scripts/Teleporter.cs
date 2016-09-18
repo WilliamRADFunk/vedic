@@ -7,6 +7,7 @@ public class Teleporter : MonoBehaviour
     Vector3 mainEnviormentLocation;
     Transform currentPosition;
 
+    GameObject[] arrayOfJumps;
     Transform[] teleLocations;
 
     int index;
@@ -53,7 +54,7 @@ public class Teleporter : MonoBehaviour
 
     private Transform[] initializeJumpLocations()
     {
-        GameObject[] arrayOfJumps = GameObject.FindGameObjectsWithTag("tele");
+        arrayOfJumps = GameObject.FindGameObjectsWithTag("tele");
         Transform[] jumpLocations = new Transform[arrayOfJumps.Length];
 
         for (int i = 0; i < arrayOfJumps.Length; i++)
@@ -78,4 +79,15 @@ public class Teleporter : MonoBehaviour
 
         Fader.Instance.FadeIn(null);
     }
+
+    public void OnHoverTele(int station)
+    {
+        arrayOfJumps[station].GetComponent<TeleportLocation>().Reveal();
+    }
+
+    public void OffHoverTele(int station)
+    {
+        arrayOfJumps[station].GetComponent<TeleportLocation>().Unreveal();
+    }
+
 }
