@@ -57,9 +57,17 @@ public class Teleporter : MonoBehaviour
         arrayOfJumps = GameObject.FindGameObjectsWithTag("tele");
         Transform[] jumpLocations = new Transform[arrayOfJumps.Length];
 
-        for (int i = 0; i < arrayOfJumps.Length; i++)
+        for (int x = 0; x < arrayOfJumps.Length; x++)
         {
-            jumpLocations[i] = arrayOfJumps[i].transform;
+            for (int i = 0; i < arrayOfJumps.Length; i++)
+            {
+                if(arrayOfJumps[i].GetComponent<TeleportLocation>().stationInt == x)
+                {
+                    jumpLocations[x] = arrayOfJumps[i].transform;
+                    break;
+                }
+                
+            }
         }
 
         return jumpLocations;

@@ -672,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beam: {fileID: 2028871998}
+  stationInt: 1
 --- !u!1 &170908584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6765,6 +6766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beam: {fileID: 1878287359}
+  stationInt: 0
 --- !u!1 &1306442875 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011912386066, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
@@ -8351,6 +8353,26 @@ Prefab:
         type: 2}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013027654824, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013027654824, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012992563274, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012992563274, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
