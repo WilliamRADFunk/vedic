@@ -10,6 +10,8 @@ public class Teleporter : MonoBehaviour
     GameObject[] arrayOfJumps;
     Transform[] teleLocations;
 
+    int curStation;
+
     int index;
     bool virgin = true;
 
@@ -20,7 +22,7 @@ public class Teleporter : MonoBehaviour
         GameObject tempEnviorment = GameObject.FindGameObjectWithTag("enviorment");
         currentPosition = tempEnviorment.transform;
         mainEnviormentLocation = currentPosition.transform.localPosition;
-        index = 0;
+        curStation = 0;
     }
 
     // Update is called once per frame
@@ -87,6 +89,8 @@ public class Teleporter : MonoBehaviour
         Fader.Instance.FadeOut(null);
 
         currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
+        curStation = station;
+
 
         Fader.Instance.FadeIn(null);
     }
@@ -99,6 +103,11 @@ public class Teleporter : MonoBehaviour
     public void OffHoverTele(int station)
     {
         arrayOfJumps[station].GetComponent<TeleportLocation>().Unreveal();
+    }
+
+    public int getCurrentStation()
+    {
+        return curStation;
     }
 
 }
