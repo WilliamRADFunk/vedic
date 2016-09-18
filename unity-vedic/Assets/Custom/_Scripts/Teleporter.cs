@@ -87,7 +87,7 @@ public class Teleporter : MonoBehaviour
         Fader.Instance.FadeOut(null);
 
         currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
-        currentPosition.localRotation = teleLocations[station].localRotation;
+        gameObject.transform.localRotation = teleLocations[station].localRotation;
         curStation = station;
 
 
