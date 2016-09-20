@@ -104,4 +104,9 @@ public class TableHarness : MonoBehaviour
             }
         }       
     }
+
+    public void Deconstruct()
+    {
+        GameObject.Destroy(gameObject);
+    }
 }
