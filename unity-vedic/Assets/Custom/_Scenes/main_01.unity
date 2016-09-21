@@ -1672,7 +1672,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.99934, y: -26}
+  m_AnchoredPosition: {x: 66.99934, y: -216}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365002756
@@ -6528,7 +6528,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -74.9993, y: -26}
+  m_AnchoredPosition: {x: -74.9993, y: -216}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066630907
@@ -14103,6 +14103,16 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: Beethoven
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013693152362, guid: 741a9c5755853ac4db34a1b44d696626,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011511512120, guid: 741a9c5755853ac4db34a1b44d696626,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -127
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 741a9c5755853ac4db34a1b44d696626, type: 2}
