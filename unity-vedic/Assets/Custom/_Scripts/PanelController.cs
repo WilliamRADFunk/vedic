@@ -6,6 +6,7 @@ public class PanelController : MonoBehaviour
     private bool is3dCursors = true;
     public GameObject DbImporter;
     public GameObject DbExporter;
+    public GameObject MenuSound;
     public GameObject MenuInput;
     public GameObject MenuTeleport;
     public GameObject MenuMain;
@@ -22,10 +23,12 @@ public class PanelController : MonoBehaviour
             MenuMain = GameObject.FindGameObjectWithTag("MenuMain");
             MenuInput = GameObject.FindGameObjectWithTag("MenuInput");
             threeDCursors = GameObject.FindGameObjectWithTag("3dCursors");
+            MenuSound = GameObject.FindGameObjectWithTag("MenuSound");
             DbExporter.SetActive(false);
             MenuTeleport.SetActive(false);
             MenuInput.SetActive(false);
             threeDCursors.SetActive(false);
+            MenuSound.SetActive(false);
             is3dCursors = false;
             pristine = false;
         }
@@ -45,6 +48,7 @@ public class PanelController : MonoBehaviour
     public void ShowMenuMain()
     {
         MenuMain.SetActive(true);
+        MenuSound.SetActive(false);
         MenuTeleport.SetActive(false);
         MenuInput.SetActive(false);
     }
@@ -52,6 +56,7 @@ public class PanelController : MonoBehaviour
     public void ShowMenuTeleport()
     {
         MenuTeleport.SetActive(true);
+        MenuSound.SetActive(false);
         MenuInput.SetActive(false);
         MenuMain.SetActive(false);
     }
@@ -59,6 +64,15 @@ public class PanelController : MonoBehaviour
     public void ShowMenuInput()
     {
         MenuInput.SetActive(true);
+        MenuSound.SetActive(false);
+        MenuTeleport.SetActive(false);
+        MenuMain.SetActive(false);
+    }
+
+    public void ShowMenuSound()
+    {
+        MenuSound.SetActive(true);
+        MenuInput.SetActive(false);
         MenuTeleport.SetActive(false);
         MenuMain.SetActive(false);
     }
