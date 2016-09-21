@@ -13,15 +13,18 @@ namespace Leap.Unity.InputModule
 
         public void SetToggle(Toggle toggle)
         {
-            GameObject[] dbTogglers = GameObject.FindGameObjectsWithTag("DatabaseToggle");
-            for(int i = 0; i < dbTogglers.Length; i++)
+            if ((toggle.name).Contains("Database"))
             {
-                Toggle otherToggle = dbTogglers[i].GetComponent<Toggle>();
-                if (!string.Equals(dbTogglers[i].name, gameObject.name) && otherToggle.isOn)
+                GameObject[] dbTogglers = GameObject.FindGameObjectsWithTag("DatabaseToggle");
+                for (int i = 0; i < dbTogglers.Length; i++)
                 {
-                    otherToggle.isOn = false;
-                    dbTogglers[i].GetComponent<ToggleToggler>().text.color = new Color(0.3f, 0.3f, 0.3f);
-                    dbTogglers[i].GetComponent<ToggleToggler>().image.color = OffColor;
+                    Toggle otherToggle = dbTogglers[i].GetComponent<Toggle>();
+                    if (!string.Equals(dbTogglers[i].name, gameObject.name) && otherToggle.isOn)
+                    {
+                        otherToggle.isOn = false;
+                        dbTogglers[i].GetComponent<ToggleToggler>().text.color = new Color(0.3f, 0.3f, 0.3f);
+                        dbTogglers[i].GetComponent<ToggleToggler>().image.color = OffColor;
+                    }
                 }
             }
             if (toggle.isOn)

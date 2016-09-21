@@ -12,6 +12,8 @@ TagManager:
   - enviorment
   - MenuMain
   - MenuTeleport
+  - MenuInput
+  - 3dCursors
   layers:
   - Default
   - TransparentFX
