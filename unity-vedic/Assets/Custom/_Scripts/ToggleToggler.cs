@@ -27,14 +27,39 @@ namespace Leap.Unity.InputModule
                     }
                 }
             }
+            if ((toggle.tag).Contains("MusicToggle"))
+            {
+                GameObject[] musicTogglers = GameObject.FindGameObjectsWithTag("MusicToggle");
+                for (int i = 0; i < musicTogglers.Length; i++)
+                {
+                    Toggle otherToggle = musicTogglers[i].GetComponent<Toggle>();
+                    if (!string.Equals(musicTogglers[i].name, gameObject.name) && otherToggle.isOn)
+                    {
+                        otherToggle.isOn = false;
+                        musicTogglers[i].GetComponent<ToggleToggler>().text.color = new Color(0.3f, 0.3f, 0.3f);
+                        musicTogglers[i].GetComponent<ToggleToggler>().image.color = OffColor;
+                    }
+                }
+            }
             if (toggle.isOn)
             {
-                // text.text = "On"; // Removed to keep db save toggles from changing.
+                if ((toggle.tag).Contains("MuteToggle"))
+                {
+                    text.text = "On";
+                }
                 image.color = OnColor;
             }
             else
             {
-                // text.text = "Off"; // Removed to keep db save toggles from changing.
+                if ((toggle.tag).Contains("MusicToggle"))
+                {
+                    GameObject source = GameObject.FindGameObjectWithTag("MusicSource");
+                    source.GetComponent<MusicController>().PlaylistStop();
+                }
+                else if ((toggle.tag).Contains("MuteToggle"))
+                {
+                    text.text = "Off";
+                }
                 image.color = OffColor;
             }
         }

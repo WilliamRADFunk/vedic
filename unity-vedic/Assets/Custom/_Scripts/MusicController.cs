@@ -72,12 +72,13 @@ public class MusicController : MonoBehaviour
     public void PlaylistStop()
     {
         audio.Stop();
+        isMusic = false;
     }
 
     public void MuteMusic()
     {
-        if(audio.mute) audio.mute = true;
-        else audio.mute = false;
+        if(audio.mute) audio.mute = false;
+        else audio.mute = true;
     }
 
     public void MuteSound()

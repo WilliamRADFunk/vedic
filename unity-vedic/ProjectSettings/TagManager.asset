@@ -15,6 +15,9 @@ TagManager:
   - MenuInput
   - 3dCursors
   - MenuSound
+  - MusicToggle
+  - MusicSource
+  - MuteToggle
   layers:
   - Default
   - TransparentFX
