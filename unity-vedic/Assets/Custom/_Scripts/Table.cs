@@ -17,11 +17,15 @@ public class Table : MonoBehaviour, ViewObj
     bool initialized = false;
     bool virgin = true;
     bool activated;
+    bool triggered;
+    int timer;
 
     // Use this for initialization
     void Start()
     {
+        timer = -1;
         activated = false;
+        triggered = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
     }
 
@@ -30,8 +34,18 @@ public class Table : MonoBehaviour, ViewObj
     {
         if (virgin)
         {
+            InvokeRepeating("CountDown", 0.1f, 0.1f);
             virgin = false;
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
+        }
+
+        if(timer == 0)
+        {
+            for (int i = 0; i < columns.Count; i++)
+            {
+                columns[i].GetComponent<Column>().columnTriggered(false);
+            }
+            triggered = false;
         }
     }
 
@@ -81,13 +95,14 @@ public class Table : MonoBehaviour, ViewObj
         gameObject.transform.parent = parent;
     }
 
+    /*
     public void OnTriggerEnter(Collider other)
     {
         if (!activated)
         {
             for (int i = 0; i < columns.Count; i++)
             {
-                columns[i].GetComponent<Column>().columnTriggered();
+                columns[i].GetComponent<Column>().columnTriggered(true);
             }
         }
         activated = true;
@@ -99,10 +114,30 @@ public class Table : MonoBehaviour, ViewObj
         {
             for (int i = 0; i < columns.Count; i++)
             {
-                columns[i].GetComponent<Column>().columnTriggered();
+                columns[i].GetComponent<Column>().columnTriggered(false);
             }
         }
         activated = false;
+    }
+    */
+
+    public void OnTriggerStay(Collider other)
+    {
+        timer = 5;
+
+        if(!triggered)
+        {
+            triggered = true;
+            for (int i = 0; i < columns.Count; i++)
+            {
+                columns[i].GetComponent<Column>().columnTriggered(true);
+            }
+        }
+    }
+
+    private void CountDown()
+    {
+        timer--;
     }
 
 }
