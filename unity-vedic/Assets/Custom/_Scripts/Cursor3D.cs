@@ -60,6 +60,7 @@ public class Cursor3D : MonoBehaviour {
             Cursors[i].AddComponent<MeshRenderer>().sharedMaterial = _sphereMaterial;
             Cursors[i].AddComponent<Rigidbody>().isKinematic = true;
             Cursors[i].AddComponent<BoxCollider>();
+            Cursors[i].layer = 14;
             Cursors[i].transform.parent = transform;
             Cursors[i].transform.localScale = Vector3.one * RenderSphereDiameter;
         }
