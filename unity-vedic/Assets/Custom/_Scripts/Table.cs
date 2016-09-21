@@ -6,12 +6,12 @@ using System.Collections.Generic;
 public class Table : MonoBehaviour, ViewObj
 {
     public GameObject tempPrefabReference; //To be passed in by parent?
-
     List<GameObject> columns = new List<GameObject>();
     Vector3 location;
 
     BoxCollider areaOfEffect;
 
+    string ID;
     int tableHeight;
 
     bool initialized = false;
@@ -35,12 +35,13 @@ public class Table : MonoBehaviour, ViewObj
         }
     }
 
-    public bool initialization(GameObject[] columnObjects, Transform father)
+    public bool initialization(string name, GameObject[] columnObjects, Transform father)
     {
         if (!initialized)
         {
             initialize(columnObjects, father);
             initialized = true;
+            ID = name;
             return true;
         }
         else

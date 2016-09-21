@@ -74,8 +74,7 @@ public static class ViewAssembler {
             cols[i] = GenerateColumnObj(columnInfo[i], tableTransform, i);
         }
 
-        currentTable.GetComponent<Table>().initialization(cols, harness);
-
+        currentTable.GetComponent<Table>().initialization(table.GetId(), cols, harness);
         return currentTable;
     }
 
@@ -85,6 +84,5 @@ public static class ViewAssembler {
         curCol.GetComponent<Column>().Initialize(key, parent, col.GetId(), col.GetColor());
 
         return curCol;
-        
     }
 }

@@ -33,11 +33,6 @@ public class Teleporter : MonoBehaviour
             virgin = false;
             teleLocations = initializeJumpLocations();
         }
-
-        if (Input.GetKeyDown("space"))
-        {
-            jumpSwitch(1);
-        }
     }
 
     private Vector3 newCoordinate(Vector3 telePosition)
