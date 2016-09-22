@@ -29,7 +29,7 @@ public class MusicController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMusic && !audio.isPlaying) PlaylistStart();
+        if (isMusic && !audio.isPlaying) PlayNextSong();
     }
 
     public void PlaylistStart(int artist)
@@ -85,6 +85,7 @@ public class MusicController : MonoBehaviour
     {
         isMusic = true;
         currentSong++;
+        if (currentSong >= playlists[currentList].Length) currentSong = 0;
         audio.clip = playlists[currentList][currentSong];
         audio.Play();
     }
