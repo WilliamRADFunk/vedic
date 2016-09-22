@@ -6,11 +6,13 @@ public class RtsHandler : MonoBehaviour {
     GameObject tableHarnessInstance;
 
     Leap.Unity.LeapRTS rtsInstance;
+    bool virgin;
     bool toggled;
     bool initialized;
 
 	// Use this for initialization
 	void Start () {
+        virgin = false;
         toggled = false;
         initialized = false;
         rtsInstance = gameObject.GetComponent<Leap.Unity.LeapRTS>();
@@ -18,6 +20,11 @@ public class RtsHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(virgin)
+        {
+            rtsInstance.enabled = false;
+        }
 
         if(initialized)
         {
