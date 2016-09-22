@@ -12,7 +12,7 @@ public class RtsHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        virgin = false;
+        virgin = true;
         toggled = false;
         initialized = false;
         rtsInstance = gameObject.GetComponent<Leap.Unity.LeapRTS>();
@@ -23,6 +23,7 @@ public class RtsHandler : MonoBehaviour {
 
         if(virgin)
         {
+            virgin = false;
             rtsInstance.enabled = false;
         }
 
