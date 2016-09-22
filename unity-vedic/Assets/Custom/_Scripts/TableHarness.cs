@@ -40,10 +40,7 @@ public class TableHarness : MonoBehaviour
 
     public void Initialize(GameObject[] tables)
     {
-        if(gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
-        {
-            gameObject.GetComponentInParent<RtsHandler>().killHarness();
-        }
+        
 
         int count = tables.Length;
         tableCount = count;
@@ -58,6 +55,11 @@ public class TableHarness : MonoBehaviour
         gameObject.transform.parent = ped.transform;
         gameObject.transform.localPosition = Vector3.zero;
         initialLocalPos = Vector3.zero;
+
+        if (gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
+        {
+            gameObject.GetComponentInParent<RtsHandler>().killHarness();
+        }
 
         gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
     }
