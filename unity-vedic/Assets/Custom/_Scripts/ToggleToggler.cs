@@ -10,6 +10,7 @@ namespace Leap.Unity.InputModule
         public UnityEngine.UI.Image image;
         public Color OnColor;
         public Color OffColor;
+        public GameObject soundFx;
 
         public void SetToggle(Toggle toggle)
         {
@@ -48,15 +49,7 @@ namespace Leap.Unity.InputModule
                     text.text = "On";
                     if ((toggle.name).Contains("SoundMute"))
                     {
-                        AudioSource[] sources = FindObjectsOfType<AudioSource>();
-                        foreach (AudioSource source in sources)
-                        {
-                            if( !(source.name).Contains("MusicSource") )
-                            {
-                                source.mute = true;
-                            }
-                            else Debug.Log("Here");
-                        }
+                        soundFx.GetComponent<AudioSource>().mute = true;
                     }
                 }
                 image.color = OnColor;
@@ -73,14 +66,7 @@ namespace Leap.Unity.InputModule
                     text.text = "Off";
                     if ((toggle.name).Contains("SoundMute"))
                     {
-                        AudioSource[] sources = FindObjectsOfType<AudioSource>();
-                        foreach (AudioSource source in sources)
-                        {
-                            if (!(source.name).Contains("MusicSource"))
-                            {
-                                source.mute = false;
-                            }
-                        }
+                        soundFx.GetComponent<AudioSource>().mute = false;
                     }
                 }
                 image.color = OffColor;
