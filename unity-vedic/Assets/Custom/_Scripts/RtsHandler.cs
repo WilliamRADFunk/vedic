@@ -7,7 +7,11 @@ public class RtsHandler : MonoBehaviour {
     Transform rtsMain;
 
     Vector3 initialLocalPos;
+    Vector3 initialLocalRtsPos;
+    Quaternion initialLocalRotation;
+    Quaternion initialLocalRtsRotation;
     Vector3 initialLocalScale;
+    Vector3 initialLocalRtsScale;
 
     Leap.Unity.LeapRTS rtsInstance;
     bool virgin;
@@ -31,10 +35,6 @@ public class RtsHandler : MonoBehaviour {
         {
             virgin = false;
             rtsMain = gameObject.transform.parent;
-
-            initialLocalPos = gameObject.transform.localPosition;
-            initialLocalScale = gameObject.transform.localScale;
-
             rtsInstance.enabled = false;
         }
 	}
@@ -45,7 +45,7 @@ public class RtsHandler : MonoBehaviour {
         initialized = true;
     }
 
-    public void InteractOn()
+    public bool InteractOn()
     {
 
         if(initialized)
@@ -57,10 +57,12 @@ public class RtsHandler : MonoBehaviour {
             }
             
             rtsInstance.enabled = true;
+            return true;
         }
         else
         {
             Debug.Log("InteractOn cannot be reliably called because tableharness is initialized to its observed object.");
+            return false;
         }
         
     }
@@ -90,20 +92,32 @@ public class RtsHandler : MonoBehaviour {
 
     private void ResetToDefault()
     {
-        gameObject.transform.position = initialLocalPos;
-        //gameObject.transform.localScale = initialLocalScale;
+        rtsMain.transform.localPosition = initialLocalRtsPos;
+        rtsMain.transform.localRotation = initialLocalRtsRotation;
+        rtsMain.transform.localScale = initialLocalRtsScale;
+
+        gameObject.transform.localPosition = initialLocalPos;
+        gameObject.transform.localRotation = initialLocalRotation;
+        gameObject.transform.localScale = initialLocalScale;
     }
 
     private void BringToUser()
     {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        Vector3 camWorldVector = tempCamLocation.position;
 
-        initialLocalPos = gameObject.transform.position;
+        camWorldVector.x = camWorldVector.x + 3;
+
+
+        initialLocalPos = gameObject.transform.localPosition;
+        initialLocalRotation = gameObject.transform.rotation;
         initialLocalScale = gameObject.transform.localScale;
-        
-        gameObject.transform.position = tempCamLocation.position;
-        //Write Transform function that brings table to the user, scaling it to its appropriate size.
-        Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
-        //gameObject.transform.localScale.Scale(scalar);
+
+        initialLocalRtsPos = rtsMain.transform.localPosition;
+        initialLocalRtsRotation = rtsMain.transform.rotation;
+        initialLocalRtsScale = rtsMain.transform.localScale;
+
+        gameObject.transform.position = camWorldVector;
+        gameObject.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
     }
 }
