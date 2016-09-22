@@ -4,17 +4,23 @@ using System.Collections;
 public class RtsHandler : MonoBehaviour {
 
     GameObject tableHarnessInstance;
+    Transform rtsMain;
+
+    Vector3 initialLocalPos;
+    Vector3 initialLocalScale;
 
     Leap.Unity.LeapRTS rtsInstance;
     bool virgin;
     bool toggled;
     bool initialized;
+    bool firstTime;
 
 	// Use this for initialization
 	void Start () {
         virgin = true;
         toggled = false;
         initialized = false;
+        firstTime = true;
         rtsInstance = gameObject.GetComponent<Leap.Unity.LeapRTS>();
 	}
 	
@@ -24,6 +30,11 @@ public class RtsHandler : MonoBehaviour {
         if(virgin)
         {
             virgin = false;
+            rtsMain = gameObject.transform.parent;
+
+            initialLocalPos = rtsMain.localPosition;
+            initialLocalScale = rtsMain.localScale;
+
             rtsInstance.enabled = false;
         }
 	}
@@ -39,7 +50,12 @@ public class RtsHandler : MonoBehaviour {
 
         if(initialized)
         {
-            tableHarnessInstance.GetComponent<TableHarness>().BringToUser();
+            if(firstTime)
+            {
+                firstTime = false;
+                BringToUser();
+            }
+            
             rtsInstance.enabled = true;
         }
         else
@@ -51,12 +67,9 @@ public class RtsHandler : MonoBehaviour {
 
     public void InteractOff()
     {
-
         if(initialized)
         {
             rtsInstance.enabled = false;
-            tableHarnessInstance.GetComponent<TableHarness>().ResetToDefault();
-            
         }
         else
         {
@@ -64,8 +77,32 @@ public class RtsHandler : MonoBehaviour {
         }
     }
 
+    public void ResetRig()
+    {
+        if(initialized)
+        {
+            firstTime = true;
+            rtsInstance.enabled = false;
+            ResetToDefault();
+        }
+        
+    }
 
+    private void ResetToDefault()
+    {
+        rtsMain.transform.localPosition = initialLocalPos;
+        rtsMain.transform.localScale = initialLocalScale;
+    }
 
+    private void BringToUser()
+    {
+        Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        Vector3 cameRelative = rtsMain.transform.InverseTransformPoint(tempCamLocation.position);
+        cameRelative.x += 1;
 
-      
+        rtsMain.transform.localPosition = cameRelative;
+        //Write Transform function that brings table to the user, scaling it to its appropriate size.
+        Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
+        rtsMain.transform.localScale.Scale(scalar);
+    }
 }

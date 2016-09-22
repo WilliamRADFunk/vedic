@@ -118,13 +118,13 @@ public class TableHarness : MonoBehaviour
         GameObject.Destroy(gameObject);
     }
 
-    public void ResetToDefault()
+    private void ResetToDefault()
     {
         gameObject.transform.localPosition = initialLocalPos;
         gameObject.transform.localScale = initialLocalScale;
     }
 
-    public void BringToUser()
+    private void BringToUser()
     {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
         Vector3 cameRelative = gameObject.transform.InverseTransformPoint(tempCamLocation.position);
