@@ -108,7 +108,7 @@ public class RtsHandler : MonoBehaviour {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
         Vector3 camWorldVector = tempCamLocation.position;
 
-        camWorldVector.x = camWorldVector.x + 3;
+        camWorldVector.x = camWorldVector.x + 1;
         camWorldVector.y--;
 
         initialWorldPos = gameObject.transform.position;

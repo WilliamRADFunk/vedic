@@ -17,16 +17,25 @@ public class TableHarness : MonoBehaviour
 
     Vector3[] tableSlots;
 
+    bool virgin;
+
+    GameObject uiHead;
+
     // Use this for initialization
 	void Start ()
     {
-
+        virgin = true;
+        uiHead = GameObject.FindGameObjectWithTag("UserInterface");
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //gameObject.transform.localPosition = Vector3.zero;
+        if(virgin)
+        {
+            virgin = false;
+            SendGameObject();
+        }
 	}
 
     public void Initialize(GameObject[] tables)
@@ -134,5 +143,10 @@ public class TableHarness : MonoBehaviour
         //Write Transform function that brings table to the user, scaling it to its appropriate size.
         Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
         gameObject.transform.localScale.Scale(scalar);
+    }
+
+    private void SendGameObject()
+    {
+        uiHead.GetComponent<PanelController>().SendTableHarnessManager(gameObject);
     }
 }
