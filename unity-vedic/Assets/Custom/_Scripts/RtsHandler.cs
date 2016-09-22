@@ -90,15 +90,14 @@ public class RtsHandler : MonoBehaviour {
 
     private void ResetToDefault()
     {
-        gameObject.transform.localPosition = initialLocalPos;
-        gameObject.transform.localScale = initialLocalScale;
+        gameObject.transform.position = initialLocalPos;
     }
 
     private void BringToUser()
     {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
-        initialLocalPos = gameObject.transform.localPosition;
+        initialLocalPos = gameObject.transform.position;
         initialLocalScale = gameObject.transform.localScale;
 
         gameObject.transform.position = tempCamLocation.position;
