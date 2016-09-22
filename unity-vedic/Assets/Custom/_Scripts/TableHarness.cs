@@ -40,6 +40,11 @@ public class TableHarness : MonoBehaviour
 
     public void Initialize(GameObject[] tables)
     {
+        if(gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
+        {
+            gameObject.GetComponentInParent<RtsHandler>().killHarness();
+        }
+
         int count = tables.Length;
         tableCount = count;
         SetPositionMatrix();  

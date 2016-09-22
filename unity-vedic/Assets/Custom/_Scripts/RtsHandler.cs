@@ -127,4 +127,15 @@ public class RtsHandler : MonoBehaviour {
     {
         initialized = temp;
     }
+
+    public bool GetInitializedBool()
+    {
+        return initialized;
+    }
+
+    public void killHarness()
+    {
+        SetInitializedBool(false);
+        GameObject.Destroy(tableHarnessInstance);
+    }
 }
