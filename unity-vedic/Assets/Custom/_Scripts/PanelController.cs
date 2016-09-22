@@ -6,15 +6,15 @@ public class PanelController : MonoBehaviour
     private bool is3dCursors = true;
     private bool isRTSon = false;
     private GameObject tableHarManager;
-    public GameObject DbImporter;
-    public GameObject DbExporter;
-    public GameObject MenuSound;
-    public GameObject MenuInput;
-    public GameObject MenuTeleport;
-    public GameObject MenuMain;
+    private GameObject DbImporter;
+    private GameObject DbExporter;
+    private GameObject MenuSound;
+    private GameObject MenuInput;
+    private GameObject MenuTeleport;
+    private GameObject MenuMain;
+    private GameObject threeDCursors;
+    private GameObject BigTable;
     public GameObject teleporter;
-    public GameObject threeDCursors;
-    public GameObject BigTable;
 
     void Update()
     {
