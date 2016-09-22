@@ -111,6 +111,10 @@ public class PanelController : MonoBehaviour
     public void ResetRtsToggle()
     {
         GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
+        UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+        tog.isOn = false;
+        isRTSon = false;
+        tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
     }
 
     public void OnTeleportHover(int loc)
