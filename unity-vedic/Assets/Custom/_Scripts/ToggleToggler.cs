@@ -44,7 +44,6 @@ namespace Leap.Unity.InputModule
             }
             if (toggle.isOn)
             {
-                Debug.Log("This happened: " + toggle.name);
                 if ((toggle.tag).Contains("MuteToggle") || (toggle.name).Contains("RtsOn"))
                 {
                     text.text = "On";

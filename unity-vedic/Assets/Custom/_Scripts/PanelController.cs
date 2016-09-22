@@ -103,8 +103,14 @@ public class PanelController : MonoBehaviour
         }
         else
         {
-            BigTable.GetComponent<RtsHandler>().InteractOn();
-            isRTSon = true;
+            if(BigTable.GetComponent<RtsHandler>().InteractOn())
+            {
+                isRTSon = true;
+            }
+            else
+            {
+                ResetRtsToggle();
+            }
         }
     }
 
