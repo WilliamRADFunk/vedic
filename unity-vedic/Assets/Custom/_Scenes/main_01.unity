@@ -15042,6 +15042,7 @@ GameObject:
   - 23: {fileID: 1141546070}
   - 114: {fileID: 1141546069}
   - 114: {fileID: 1141546072}
+  - 114: {fileID: 1141546073}
   m_Layer: 0
   m_Name: Screen03-Scifi-Blank
   m_TagString: Pedestal
@@ -15136,6 +15137,17 @@ MonoBehaviour:
   _allowScale: 1
   _toggleGuiState: 0
   _showGUI: 1
+--- !u!114 &1141546073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141546067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78d956b6e515e84c94a59929c118490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1144264643
 GameObject:
   m_ObjectHideFlags: 0
