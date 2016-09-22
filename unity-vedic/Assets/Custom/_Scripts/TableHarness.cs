@@ -110,7 +110,7 @@ public class TableHarness : MonoBehaviour
                     break;
                 }
             }
-        }       
+        }
     }
 
     public void Deconstruct()
