@@ -29,7 +29,7 @@ public class MusicController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMusic && !audio.isPlaying) PlaylistStop();
+        if (isMusic && !audio.isPlaying) PlaylistStart();
     }
 
     public void PlaylistStart(int artist)
