@@ -82,7 +82,7 @@ public class RtsHandler : MonoBehaviour {
 
     public void ResetRig()
     {
-        if(initialized)
+        if(initialized && firstTime)
         {
             firstTime = true;
             rtsInstance.enabled = false;
