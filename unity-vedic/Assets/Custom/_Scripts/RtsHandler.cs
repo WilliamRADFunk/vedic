@@ -113,11 +113,11 @@ public class RtsHandler : MonoBehaviour {
 
         initialWorldPos = gameObject.transform.position;
         initialLocalPos = gameObject.transform.localPosition;
-        initialLocalRotation = gameObject.transform.rotation;
+        initialLocalRotation = gameObject.transform.localRotation;
         initialLocalScale = gameObject.transform.localScale;
 
         initialLocalRtsPos = rtsMain.transform.localPosition;
-        initialLocalRtsRotation = rtsMain.transform.rotation;
+        initialLocalRtsRotation = rtsMain.transform.localRotation;
         initialLocalRtsScale = rtsMain.transform.localScale;
 
         gameObject.transform.position = camWorldVector;
