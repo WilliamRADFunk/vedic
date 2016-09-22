@@ -12169,6 +12169,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1886097242}
     m_Modifications:
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010162732570, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.46
@@ -12205,7 +12210,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1886097243}
+      objectReference: {fileID: 1141546073}
     - target: {fileID: 114000013870719062, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12616,6 +12621,40 @@ Prefab:
       propertyPath: soundFx
       value: 
       objectReference: {fileID: 1886097241}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1886097243}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetRtsToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010965923070, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012940986360, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
+      propertyPath: m_TagString
+      value: RtsToggle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
   m_IsPrefabParent: 0

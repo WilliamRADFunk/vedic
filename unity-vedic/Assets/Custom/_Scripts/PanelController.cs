@@ -108,6 +108,11 @@ public class PanelController : MonoBehaviour
         }
     }
 
+    public void ResetRtsToggle()
+    {
+        //GameObject.FindGameObjectWithTag("RtsToggle").GetComponent<>
+    }
+
     public void OnTeleportHover(int loc)
     {
         teleporter.GetComponent<Teleporter>().OnHoverTele(loc);
