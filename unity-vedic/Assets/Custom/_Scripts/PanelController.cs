@@ -117,11 +117,24 @@ public class PanelController : MonoBehaviour
 
     public void ResetRtsToggle()
     {
-        GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
-        UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
-        tog.isOn = false;
-        isRTSon = false;
-        tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+        if(MenuInput.activeSelf)
+        {
+            GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
+            UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+            tog.isOn = false;
+            isRTSon = false;
+            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+        }
+        else
+        {
+            MenuInput.SetActive(true);
+            GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
+            UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+            tog.isOn = false;
+            isRTSon = false;
+            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            MenuInput.SetActive(false);
+        }
     }
 
     public void SendTableHarnessManager(GameObject tblHarManager)
