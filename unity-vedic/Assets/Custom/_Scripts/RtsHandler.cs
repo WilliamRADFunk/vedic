@@ -91,6 +91,7 @@ public class RtsHandler : MonoBehaviour {
     private void ResetToDefault()
     {
         gameObject.transform.position = initialLocalPos;
+        gameObject.transform.localScale = initialLocalScale;
     }
 
     private void BringToUser()
@@ -99,10 +100,10 @@ public class RtsHandler : MonoBehaviour {
 
         initialLocalPos = gameObject.transform.position;
         initialLocalScale = gameObject.transform.localScale;
-
+        
         gameObject.transform.position = tempCamLocation.position;
         //Write Transform function that brings table to the user, scaling it to its appropriate size.
         Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
-        //gameObject.transform.localScale.Scale(scalar);
+        gameObject.transform.localScale.Scale(scalar);
     }
 }
