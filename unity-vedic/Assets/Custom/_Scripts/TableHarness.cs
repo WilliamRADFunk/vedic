@@ -110,7 +110,7 @@ public class TableHarness : MonoBehaviour
             }
         }
 
-        gameObject.transform.parent.GetComponent<RtsHandler>().AllocateTableHarness(gameObject);       
+        gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);       
     }
 
     public void Deconstruct()

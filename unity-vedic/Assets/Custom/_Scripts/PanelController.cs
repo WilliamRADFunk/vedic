@@ -4,6 +4,7 @@ public class PanelController : MonoBehaviour
 {
     private bool pristine = true;
     private bool is3dCursors = true;
+    private bool isRTSon = false;
     public GameObject DbImporter;
     public GameObject DbExporter;
     public GameObject MenuSound;
@@ -12,6 +13,7 @@ public class PanelController : MonoBehaviour
     public GameObject MenuMain;
     public GameObject teleporter;
     public GameObject threeDCursors;
+    public GameObject BigTable;
 
     void Update()
     {
@@ -24,6 +26,7 @@ public class PanelController : MonoBehaviour
             MenuInput = GameObject.FindGameObjectWithTag("MenuInput");
             threeDCursors = GameObject.FindGameObjectWithTag("3dCursors");
             MenuSound = GameObject.FindGameObjectWithTag("MenuSound");
+            BigTable = GameObject.FindGameObjectWithTag("Pedestal");
             DbExporter.SetActive(false);
             MenuTeleport.SetActive(false);
             MenuInput.SetActive(false);
@@ -88,6 +91,20 @@ public class PanelController : MonoBehaviour
         {
             threeDCursors.SetActive(true);
             is3dCursors = true;
+        }
+    }
+
+    public void ToggleRts()
+    {
+        if (isRTSon)
+        {
+            BigTable.GetComponent<RtsHandler>().InteractOff();
+            isRTSon = false;
+        }
+        else
+        {
+            BigTable.GetComponent<RtsHandler>().InteractOn();
+            isRTSon = true;
         }
     }
 
