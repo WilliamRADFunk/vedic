@@ -103,9 +103,24 @@ public class PanelController : MonoBehaviour
         }
         else
         {
-            BigTable.GetComponent<RtsHandler>().InteractOn();
-            isRTSon = true;
+            if(BigTable.GetComponent<RtsHandler>().InteractOn())
+            {
+                isRTSon = true;
+            }
+            else
+            {
+                ResetRtsToggle();
+            }
         }
+    }
+
+    public void ResetRtsToggle()
+    {
+        GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
+        UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+        tog.isOn = false;
+        isRTSon = false;
+        tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
     }
 
     public void OnTeleportHover(int loc)

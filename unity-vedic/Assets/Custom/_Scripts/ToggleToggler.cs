@@ -44,7 +44,7 @@ namespace Leap.Unity.InputModule
             }
             if (toggle.isOn)
             {
-                if ((toggle.tag).Contains("MuteToggle") || (toggle.tag).Contains("RtsOn"))
+                if ((toggle.tag).Contains("MuteToggle") || (toggle.name).Contains("RtsOn"))
                 {
                     text.text = "On";
                     if ((toggle.name).Contains("SoundMute"))
@@ -61,7 +61,7 @@ namespace Leap.Unity.InputModule
                     GameObject source = GameObject.FindGameObjectWithTag("MusicSource");
                     source.GetComponent<MusicController>().PlaylistStop();
                 }
-                else if ((toggle.tag).Contains("MuteToggle") || (toggle.tag).Contains("RtsOn"))
+                else if ((toggle.tag).Contains("MuteToggle") || (toggle.name).Contains("RtsOn"))
                 {
                     text.text = "Off";
                     if ((toggle.name).Contains("SoundMute"))
