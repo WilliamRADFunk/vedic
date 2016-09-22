@@ -48,7 +48,6 @@ public class RtsHandler : MonoBehaviour {
 
     public bool InteractOn()
     {
-
         if(initialized)
         {
             if(firstTime)
@@ -122,5 +121,10 @@ public class RtsHandler : MonoBehaviour {
 
         gameObject.transform.position = camWorldVector;
         gameObject.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+    }
+
+    public void SetInitializedBool(bool temp)
+    {
+        initialized = temp;
     }
 }

@@ -124,7 +124,9 @@ public class TableHarness : MonoBehaviour
 
     public void Deconstruct()
     {
-        GameObject.Destroy(gameObject);
+        gameObject.GetComponentInParent<RtsHandler>().SetInitializedBool(false);
+       // GameObject.Destroy(gameObject);
+
     }
 
     private void ResetToDefault()
