@@ -5,6 +5,7 @@ public class PanelController : MonoBehaviour
     private bool pristine = true;
     private bool is3dCursors = true;
     private bool isRTSon = false;
+    private GameObject tableHarManager;
     public GameObject DbImporter;
     public GameObject DbExporter;
     public GameObject MenuSound;
@@ -121,6 +122,16 @@ public class PanelController : MonoBehaviour
         tog.isOn = false;
         isRTSon = false;
         tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+    }
+
+    public void SendTableHarnessManager(GameObject tblHarManager)
+    {
+        tableHarManager = tblHarManager;
+    }
+
+    public void ClearAllTables()
+    {
+        tableHarManager.GetComponent<TableHarness>().Deconstruct();
     }
 
     public void OnTeleportHover(int loc)
