@@ -32,8 +32,8 @@ public class RtsHandler : MonoBehaviour {
             virgin = false;
             rtsMain = gameObject.transform.parent;
 
-            initialLocalPos = rtsMain.localPosition;
-            initialLocalScale = rtsMain.localScale;
+            initialLocalPos = gameObject.transform.localPosition;
+            initialLocalScale = gameObject.transform.localScale;
 
             rtsInstance.enabled = false;
         }
@@ -90,19 +90,19 @@ public class RtsHandler : MonoBehaviour {
 
     private void ResetToDefault()
     {
-        rtsMain.transform.localPosition = initialLocalPos;
-        rtsMain.transform.localScale = initialLocalScale;
+        gameObject.transform.localPosition = initialLocalPos;
+        gameObject.transform.localScale = initialLocalScale;
     }
 
     private void BringToUser()
     {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        Vector3 cameRelative = rtsMain.transform.InverseTransformPoint(tempCamLocation.position);
+        Vector3 cameRelative = gameObject.transform.InverseTransformPoint(tempCamLocation.position);
         cameRelative.x += 1;
 
-        rtsMain.transform.localPosition = cameRelative;
+        gameObject.transform.localPosition = cameRelative;
         //Write Transform function that brings table to the user, scaling it to its appropriate size.
         Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
-        rtsMain.transform.localScale.Scale(scalar);
+        gameObject.transform.localScale.Scale(scalar);
     }
 }
