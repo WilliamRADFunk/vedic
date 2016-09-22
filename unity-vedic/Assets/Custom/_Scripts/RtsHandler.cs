@@ -6,6 +6,7 @@ public class RtsHandler : MonoBehaviour {
     GameObject tableHarnessInstance;
     Transform rtsMain;
 
+    Vector3 initialWorldPos;
     Vector3 initialLocalPos;
     Vector3 initialLocalRtsPos;
     Quaternion initialLocalRotation;
@@ -96,9 +97,10 @@ public class RtsHandler : MonoBehaviour {
         rtsMain.transform.localRotation = initialLocalRtsRotation;
         rtsMain.transform.localScale = initialLocalRtsScale;
 
-        gameObject.transform.localPosition = initialLocalPos;
+        //gameObject.transform.localPosition = initialLocalPos;
         gameObject.transform.localRotation = initialLocalRotation;
         gameObject.transform.localScale = initialLocalScale;
+        gameObject.transform.position = initialWorldPos;
     }
 
     private void BringToUser()
@@ -107,8 +109,9 @@ public class RtsHandler : MonoBehaviour {
         Vector3 camWorldVector = tempCamLocation.position;
 
         camWorldVector.x = camWorldVector.x + 3;
+        camWorldVector.y--;
 
-
+        initialWorldPos = gameObject.transform.position;
         initialLocalPos = gameObject.transform.localPosition;
         initialLocalRotation = gameObject.transform.rotation;
         initialLocalScale = gameObject.transform.localScale;
