@@ -58,6 +58,7 @@ public class TableHarness : MonoBehaviour
 
         if (gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
         {
+            gameObject.GetComponentInParent<RtsHandler>().ResetRig();
             gameObject.GetComponentInParent<RtsHandler>().killHarness();
         }
 
