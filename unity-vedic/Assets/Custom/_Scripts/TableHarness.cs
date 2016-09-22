@@ -44,6 +44,8 @@ public class TableHarness : MonoBehaviour
         gameObject.transform.parent = ped.transform;
         gameObject.transform.localPosition = Vector3.zero;
         initialLocalPos = Vector3.zero;
+
+        gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
     }
 
     private void SetPositionMatrix()
@@ -109,8 +111,6 @@ public class TableHarness : MonoBehaviour
                 }
             }
         }
-
-        gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);       
     }
 
     public void Deconstruct()
