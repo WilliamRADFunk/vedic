@@ -26,18 +26,6 @@ public class RtsHandler : MonoBehaviour {
             virgin = false;
             rtsInstance.enabled = false;
         }
-
-        if(initialized)
-        {
-            if (!toggled)
-            {
-                rtsInstance.enabled = false;
-            }
-            else
-            {
-                rtsInstance.enabled = true;
-            }
-        }
 	}
 
     public void AllocateTableHarness(GameObject harnessInstance)
