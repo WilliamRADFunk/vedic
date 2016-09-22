@@ -97,10 +97,11 @@ public class RtsHandler : MonoBehaviour {
     private void BringToUser()
     {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        Vector3 cameRelative = gameObject.transform.InverseTransformPoint(tempCamLocation.position);
-        cameRelative.x += 1;
 
-        gameObject.transform.localPosition = cameRelative;
+        initialLocalPos = gameObject.transform.localPosition;
+        initialLocalScale = gameObject.transform.localScale;
+
+        gameObject.transform.position = tempCamLocation.position;
         //Write Transform function that brings table to the user, scaling it to its appropriate size.
         Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
         gameObject.transform.localScale.Scale(scalar);
