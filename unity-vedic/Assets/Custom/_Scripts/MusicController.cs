@@ -81,11 +81,6 @@ public class MusicController : MonoBehaviour
         else audio.mute = true;
     }
 
-    public void MuteSound()
-    {
-        // TODO: Mute all sound effects
-    }
-
     void PlayNextSong()
     {
         isMusic = true;

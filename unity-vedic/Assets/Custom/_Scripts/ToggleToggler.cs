@@ -46,6 +46,18 @@ namespace Leap.Unity.InputModule
                 if ((toggle.tag).Contains("MuteToggle"))
                 {
                     text.text = "On";
+                    if ((toggle.name).Contains("SoundMute"))
+                    {
+                        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+                        foreach (AudioSource source in sources)
+                        {
+                            if( !(source.name).Contains("MusicSource") )
+                            {
+                                source.mute = true;
+                            }
+                            else Debug.Log("Here");
+                        }
+                    }
                 }
                 image.color = OnColor;
             }
@@ -59,6 +71,17 @@ namespace Leap.Unity.InputModule
                 else if ((toggle.tag).Contains("MuteToggle"))
                 {
                     text.text = "Off";
+                    if ((toggle.name).Contains("SoundMute"))
+                    {
+                        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+                        foreach (AudioSource source in sources)
+                        {
+                            if (!(source.name).Contains("MusicSource"))
+                            {
+                                source.mute = false;
+                            }
+                        }
+                    }
                 }
                 image.color = OffColor;
             }
