@@ -19,6 +19,7 @@ TagManager:
   - MusicSource
   - MuteToggle
   - RtsToggle
+  - UserInterface
   layers:
   - Default
   - TransparentFX
