@@ -121,6 +121,6 @@ public class RtsHandler : MonoBehaviour {
         initialLocalRtsScale = rtsMain.transform.localScale;
 
         gameObject.transform.position = camWorldVector;
-        gameObject.transform.localScale -= new Vector3(0.8f, 0.8f, 0.8f);
+        gameObject.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
     }
 }
