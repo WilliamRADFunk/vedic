@@ -10,6 +10,9 @@ public class TableHarness : MonoBehaviour
     public float segments;
     public float scaleBaseDecrease;
 
+    Vector3 initialLocalPos;
+    Vector3 initialLocalScale;
+
     int tableCount;
 
     Vector3[] tableSlots;
@@ -40,13 +43,16 @@ public class TableHarness : MonoBehaviour
         GameObject ped = GameObject.FindGameObjectWithTag("Pedestal");
         gameObject.transform.parent = ped.transform;
         gameObject.transform.localPosition = Vector3.zero;
+        initialLocalPos = Vector3.zero;
     }
 
     private void SetPositionMatrix()
     {
         int matrixSize = Mathf.CeilToInt(Mathf.Sqrt(tableCount));
         float newScale = 1 - (scaleBaseDecrease * (matrixSize - 2));
-        gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+        initialLocalScale = new Vector3(newScale, newScale, newScale);
+        gameObject.transform.localScale = initialLocalScale;
+        
         tableSlots = new Vector3[tableCount];
         int counter = 0;
 
@@ -102,11 +108,31 @@ public class TableHarness : MonoBehaviour
                     break;
                 }
             }
-        }       
+        }
+
+        gameObject.transform.parent.GetComponent<RtsHandler>().AllocateTableHarness(gameObject);       
     }
 
     public void Deconstruct()
     {
         GameObject.Destroy(gameObject);
+    }
+
+    public void ResetToDefault()
+    {
+        gameObject.transform.localPosition = initialLocalPos;
+        gameObject.transform.localScale = initialLocalScale;
+    }
+
+    public void BringToUser()
+    {
+        Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        Vector3 cameRelative = gameObject.transform.InverseTransformPoint(tempCamLocation.position);
+        cameRelative.x += 1;
+
+        gameObject.transform.localPosition = cameRelative;
+        //Write Transform function that brings table to the user, scaling it to its appropriate size.
+        Vector3 scalar = new Vector3(0.5f, 0.5f, 0.5f);
+        gameObject.transform.localScale.Scale(scalar);
     }
 }
