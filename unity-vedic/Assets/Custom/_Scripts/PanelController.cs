@@ -244,19 +244,18 @@ public class PanelController : MonoBehaviour
         {
             if ((toggles[i].name).Contains(pod))
             {
-                Debug.Log("This other thing happened");
                 Toggle tog = toggles[i].GetComponent<Toggle>();
                 if (!tog.isOn)
                 {
-                    Debug.Log("1");
                     tog.isOn = false;
                     tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                    BigTable.GetComponent<PodManager>().DeactivatePod( System.Int32.Parse(pod) );
                 }
                 else
                 {
-                    Debug.Log("2");
                     tog.isOn = true;
                     tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                    BigTable.GetComponent<PodManager>().ActivatePod(System.Int32.Parse(pod));
                 }
             }
         }

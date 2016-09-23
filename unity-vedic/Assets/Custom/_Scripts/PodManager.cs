@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DatabaseUtilities;
+using System.Collections.Generic;
 
 public class PodManager : MonoBehaviour {
 
@@ -14,7 +15,7 @@ public class PodManager : MonoBehaviour {
 
         podStates = new bool[pods.Length];
 
-        //Invoke("test", 30f);
+        //Invoke("Test", 30f);
 	}
 	
 	// Update is called once per frame
@@ -110,13 +111,16 @@ public class PodManager : MonoBehaviour {
         c.SetName("Sam");
         c.SetId("12");
         c.SetColor("FFFFFF");
+        c.fields = new List<string>();
         c.AddField("Dogs");
 
         DatabaseUtilities.Table t = new DatabaseUtilities.Table();
         t.SetId("34");
         t.SetName("Dean");
+        t.columns = new List<DatabaseUtilities.Column>();
         t.AddColumn(c);
 
+        test.tables =  new List<DatabaseUtilities.Table>();
         test.AddTable(t);
 
         BuildPod(test);
