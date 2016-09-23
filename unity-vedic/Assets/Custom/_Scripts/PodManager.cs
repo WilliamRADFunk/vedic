@@ -13,6 +13,8 @@ public class PodManager : MonoBehaviour {
         pods = tempPods;
 
         podStates = new bool[pods.Length];
+
+        //Invoke("test", 30f);
 	}
 	
 	// Update is called once per frame
@@ -96,5 +98,28 @@ public class PodManager : MonoBehaviour {
         {
             podStates[i] = pods[i].GetComponent<Pod>().GetState();
         }
+    }
+
+    private void Test()
+    {
+        Debug.Log("STARTING TEST...");
+
+        Database test = new Database();
+
+        DatabaseUtilities.Column c = new DatabaseUtilities.Column();
+        c.SetName("Sam");
+        c.SetId("12");
+        c.SetColor("FFFFFF");
+        c.AddField("Dogs");
+
+        DatabaseUtilities.Table t = new DatabaseUtilities.Table();
+        t.SetId("34");
+        t.SetName("Dean");
+        t.AddColumn(c);
+
+        test.AddTable(t);
+
+        BuildPod(test);
+
     }
 }
