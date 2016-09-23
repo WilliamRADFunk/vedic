@@ -112,7 +112,7 @@ public class ImportDatabase : MonoBehaviour
 
         VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
 
-        ViewAssembler.GenerateViewObject(VedicDatabase.db);
+        ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
     }
     public class MyWebRequest
     {

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelController : MonoBehaviour
 {
     private bool pristine = true;
     private bool is3dCursors = true;
     private bool isRTSon = false;
+    private bool isKeyboard = false;
     private GameObject tableHarManager;
     private GameObject DbImporter;
     private GameObject DbExporter;
@@ -14,6 +16,7 @@ public class PanelController : MonoBehaviour
     private GameObject MenuMain;
     private GameObject threeDCursors;
     private GameObject BigTable;
+    private GameObject Keyboard;
     public GameObject teleporter;
 
     void Update()
@@ -28,11 +31,13 @@ public class PanelController : MonoBehaviour
             threeDCursors = GameObject.FindGameObjectWithTag("3dCursors");
             MenuSound = GameObject.FindGameObjectWithTag("MenuSound");
             BigTable = GameObject.FindGameObjectWithTag("Pedestal");
+            Keyboard = GameObject.FindGameObjectWithTag("Keyboard");
             DbExporter.SetActive(false);
             MenuTeleport.SetActive(false);
             MenuInput.SetActive(false);
             threeDCursors.SetActive(false);
             MenuSound.SetActive(false);
+            Keyboard.SetActive(false);
             is3dCursors = false;
             pristine = false;
         }
@@ -47,6 +52,85 @@ public class PanelController : MonoBehaviour
     {
         DbExporter.SetActive(true);
         DbImporter.SetActive(false);
+    }
+
+    public void ToggleKeyboard()
+    {
+        if (isKeyboard)
+        {
+            Keyboard.SetActive(false);
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
+                isKeyboard = false;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
+                isKeyboard = false;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
+        else
+        {
+            Keyboard.SetActive(true);
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isKeyboard = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isKeyboard = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
+    }
+
+    public void ShowKeyboard(InputField inp)
+    {
+        if (!isKeyboard)
+        {
+            Keyboard.SetActive(true);
+            isKeyboard = true;
+            Keyboard.GetComponent<KeyboardController>().SetInputField(inp);
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isKeyboard = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("KeyToggle");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isKeyboard = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
     }
 
     public void ShowMenuMain()
@@ -120,7 +204,7 @@ public class PanelController : MonoBehaviour
         if(MenuInput.activeSelf)
         {
             GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
-            UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+            Toggle tog = toggle.GetComponent<Toggle>();
             tog.isOn = false;
             isRTSon = false;
             tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
@@ -129,7 +213,7 @@ public class PanelController : MonoBehaviour
         {
             MenuInput.SetActive(true);
             GameObject toggle = GameObject.FindGameObjectWithTag("RtsToggle");
-            UnityEngine.UI.Toggle tog = toggle.GetComponent<UnityEngine.UI.Toggle>();
+            Toggle tog = toggle.GetComponent<Toggle>();
             tog.isOn = false;
             isRTSon = false;
             tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
