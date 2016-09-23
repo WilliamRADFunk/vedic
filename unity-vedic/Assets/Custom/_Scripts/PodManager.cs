@@ -83,7 +83,7 @@ public class PodManager : MonoBehaviour {
             }
         }
 
-        //GameObject.Destroy(assembledHarness);
+        GameObject.Destroy(assembledHarness);
     }
 
     public void ActivatePod(int entry)
