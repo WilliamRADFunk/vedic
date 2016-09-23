@@ -55,6 +55,7 @@ public class TableHarness : MonoBehaviour
         if(isTypePod)
         {
             type = "Pod";
+            return;
         }
         else
         {
@@ -66,22 +67,12 @@ public class TableHarness : MonoBehaviour
         gameObject.transform.localPosition = Vector3.zero;
         initialLocalPos = Vector3.zero;
 
-        if(isTypePod)
+        if (gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
         {
-            if (gameObject.GetComponentInParent<Pod>().GetInitializedBool())
-            {
-                gameObject.GetComponentInParent<Pod>().KillHarness();
-            }
-            gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
+            gameObject.GetComponentInParent<RtsHandler>().killHarness();
         }
-        else
-        {
-            if (gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
-            {
-                gameObject.GetComponentInParent<RtsHandler>().killHarness();
-            }
-            gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
-        }
+        gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
+        
     }
 
     private void SetPositionMatrix()

@@ -39,6 +39,18 @@ public class PodManager : MonoBehaviour {
         }
     }
 
+    public void DestroyPodsAuto()
+    {
+        checkActivePods();
+        for(int i = 0; i < pods.Length; i++)
+        {
+            if(podStates[i])
+            {
+                pods[i].GetComponent<Pod>().KillHarness();
+            }
+        }
+    }
+
     public string RetrievePodName(int entry)
     {
         if(entry < 0 || entry >= pods.Length)
@@ -53,9 +65,11 @@ public class PodManager : MonoBehaviour {
         }
     }
 
-    public void buildPod(Database obj)
+    public void BuildPod(Database obj)
     {
         GameObject assembledHarness = ViewAssembler.GenerateViewObject(obj, true);
+
+        checkActivePods();
 
         for(int i = 0; i < podStates.Length; i++)
         {

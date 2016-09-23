@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Pod : MonoBehaviour {
 
+    public Transform PodTransform;
+    Vector3 initialPodTransform;
+    Vector3 endPodTransform;
+
     GameObject podHarness;
     string dbName;
 
@@ -13,18 +17,33 @@ public class Pod : MonoBehaviour {
     void Start() {
         state = false;
         initialized = false;
+        initialPodTransform = PodTransform.localPosition;
+        Vector3 increaseOne = new Vector3(0, 2, 0);
+        endPodTransform = initialPodTransform + increaseOne;
     }
 
     // Update is called once per frame
     void Update() {
-
+        if(state)
+        {
+            PodTransform.localPosition = endPodTransform;
+        }
+        else
+        {
+            PodTransform.localPosition = initialPodTransform;
+        }
     }
 
     public void KillHarness()
     {
-        GameObject.Destroy(podHarness);
-        initialized = false;
-        podHarness = null;
+        if(initialized)
+        {
+            GameObject.Destroy(podHarness);
+            state = false;
+            initialized = false;
+            podHarness = null;
+        }
+        
     }
 
     public string GetDbName()
@@ -34,6 +53,14 @@ public class Pod : MonoBehaviour {
 
     public void AllocateTableHarness(GameObject temp)
     {
+        if (initialized)
+        {
+            KillHarness();
+        }
+
+        temp.transform.parent = gameObject.transform;
+        temp.transform.localPosition = Vector3.zero;
+
         podHarness = temp;
         initialized = true;
     }
