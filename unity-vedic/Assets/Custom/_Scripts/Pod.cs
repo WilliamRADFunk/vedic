@@ -39,7 +39,6 @@ public class Pod : MonoBehaviour {
         if(initialized)
         {
             GameObject.Destroy(podHarness);
-            state = false;
             initialized = false;
             podHarness = null;
         }

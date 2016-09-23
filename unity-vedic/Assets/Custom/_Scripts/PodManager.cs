@@ -78,9 +78,12 @@ public class PodManager : MonoBehaviour {
         {
             if(podStates[i])
             {
-                pods[i].GetComponent<Pod>().AllocateTableHarness(assembledHarness);
+                GameObject temp = GameObject.Instantiate(assembledHarness);
+                pods[i].GetComponent<Pod>().AllocateTableHarness(temp);
             }
         }
+
+        //GameObject.Destroy(assembledHarness);
     }
 
     public void ActivatePod(int entry)
