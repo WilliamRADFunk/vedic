@@ -24913,39 +24913,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013069175762, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000012478909886, guid: 996a26e6043201f469fdb1fae584ee53,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4520e7273170542488f183cada1a218a, type: 2}
-    - target: {fileID: 1000013207136338, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 996a26e6043201f469fdb1fae584ee53, type: 2}
   m_IsPrefabParent: 0
@@ -24967,6 +24934,7 @@ GameObject:
   - 114: {fileID: 1141546069}
   - 114: {fileID: 1141546072}
   - 114: {fileID: 1141546073}
+  - 114: {fileID: 1141546074}
   m_Layer: 0
   m_Name: Screen03-Scifi-Blank
   m_TagString: Pedestal
@@ -25078,6 +25046,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a78d956b6e515e84c94a59929c118490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1141546074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141546067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f7ac7c1a22a94449b358e7192fbb3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1144264643

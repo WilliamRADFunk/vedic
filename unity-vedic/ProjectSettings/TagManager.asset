@@ -24,6 +24,7 @@ TagManager:
   - KeyToggle
   - PodToggle
   - MenuPods
+  - Pod
   layers:
   - Default
   - TransparentFX
