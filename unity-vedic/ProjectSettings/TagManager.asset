@@ -22,6 +22,8 @@ TagManager:
   - UserInterface
   - Keyboard
   - KeyToggle
+  - PodToggle
+  - MenuPods
   layers:
   - Default
   - TransparentFX
