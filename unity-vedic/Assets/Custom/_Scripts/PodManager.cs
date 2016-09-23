@@ -15,7 +15,7 @@ public class PodManager : MonoBehaviour {
 
         podStates = new bool[pods.Length];
 
-        //Invoke("Test", 30f);
+        //Invoke("Test", 10f);
 	}
 	
 	// Update is called once per frame
@@ -113,7 +113,7 @@ public class PodManager : MonoBehaviour {
         DatabaseUtilities.Column c = new DatabaseUtilities.Column();
         c.SetName("Sam");
         c.SetId("12");
-        c.SetColor("FFFFFF");
+        c.SetColor("FFFFFFFF");
         c.fields = new List<string>();
         c.AddField("Dogs");
 
