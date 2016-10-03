@@ -34,13 +34,28 @@ public class PanelController : MonoBehaviour
             BigTable = GameObject.FindGameObjectWithTag("Pedestal");
             Keyboard = GameObject.FindGameObjectWithTag("Keyboard");
             MenuPods = GameObject.FindGameObjectWithTag("MenuPods");
-            DbExporter.SetActive(false);
-            MenuTeleport.SetActive(false);
-            MenuInput.SetActive(false);
-            threeDCursors.SetActive(false);
-            MenuSound.SetActive(false);
-            Keyboard.SetActive(false);
-            MenuPods.SetActive(false);
+
+            if(DbExporter != null) {
+                DbExporter.SetActive(false);
+            }
+            if (MenuTeleport != null) {
+                MenuTeleport.SetActive(false);
+            }
+            if (MenuInput != null) {
+                MenuInput.SetActive(false);
+            }
+            if (threeDCursors != null) {
+                threeDCursors.SetActive(false);
+            }
+            if(MenuSound != null) {
+                MenuSound.SetActive(false);
+            }
+            if (Keyboard != null) {
+                Keyboard.SetActive(false);
+            }
+            if (MenuPods != null) {
+                MenuPods.SetActive(false);
+            }
             is3dCursors = false;
             pristine = false;
         }
