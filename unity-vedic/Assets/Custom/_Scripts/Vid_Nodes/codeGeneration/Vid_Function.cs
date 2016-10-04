@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using System.Text;
 
-public class Vid_Function : Vid_Expression
+public class Vid_Function : Vid_Object
 {
     public string functionName = "defaultName";
     public int numOfPrameters = 0;
@@ -21,15 +21,11 @@ public class Vid_Function : Vid_Expression
         inputs = new Vid_ObjectInputs(numOfPrameters);
         parameters_names = new List<String>();
         prefix = new Dictionary<Vid_Prefix, string>();
-        expressionText = new StringBuilder();
         FunctionTool.getInstance().setCurrentFunction(this);
     }
 
-    public override void startStringify()
-    {
-        stringify(expressionText);
-    }
-    public override void stringify(StringBuilder targetString)
+
+    public override string ToString() 
     {
         StringBuilder sb = new StringBuilder();
         sb.Append( prefixCommon_String() + " " +
@@ -39,16 +35,11 @@ public class Vid_Function : Vid_Expression
         sb.Append("}");
 
         string text_outPut = sb.ToString();
-        targetString.Append(sb.ToString());
 
-        //if (base.sequence != null)
-        //{
-        //    base.sequence.stringify(targetString);
-        //}
+        return text_outPut;
     }
-    public override void setSequence(Vid_SequenceableObject s, int index) {
-        base.setSequence(s, index);
-    }
+
+
     /*Builder function*/
     public bool addParameter(Vid_Data data, String name)
     {
@@ -107,7 +98,6 @@ public class Vid_Function : Vid_Expression
                 break;
         }
     }
-
     private string prefixCommon_String()
     {
         switch (prefix_head)

@@ -36,26 +36,5 @@ public class Vid_ReturnBool : Vid_Return
         }
         return false;
     }
-    public override void stringify(StringBuilder targetString)
-    {
-        StringBuilder sb = new StringBuilder();   
-        if(inputs.getInput_atIndex(0) != null)
-        {
-            sb.Append("return " + inputs.getInput_atIndex(0).ToString() + ";");
-
-        }
-        else if(type == VidBool.TRUE)
-        {
-            sb.Append("return true;");
-        }
-        else
-        {
-            sb.Append("return false;");
-        }
-        //String token = tokenFactory.popToken();
-
-        ///** Should replace theses steps into a function**/
-        //targetString.Replace(token, sb.ToString());
-    }
     
 }
