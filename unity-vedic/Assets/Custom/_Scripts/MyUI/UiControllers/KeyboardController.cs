@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class KeyboardController : MonoBehaviour {
     InputField inputField;
+    public Text topbar;
     StringBuilder sb = new StringBuilder("");
 
 
     public void SetInputField(InputField inputField) {
         this.inputField = inputField;
         StringBuilder sb = new StringBuilder(inputField.text);
+        topbar.text = sb.ToString();
     }
     public void buildString(string s) {
         if(inputField == null) {
@@ -18,6 +20,7 @@ public class KeyboardController : MonoBehaviour {
         }
         sb.Append(s, inputField.caretPosition, s.Length);
         inputField.text = sb.ToString();
+        topbar.text = sb.ToString();
     }
 
     public override string ToString() {
@@ -32,6 +35,7 @@ public class KeyboardController : MonoBehaviour {
             sb.Length--;
         }
         inputField.text = sb.ToString();
+        topbar.text = sb.ToString();
     }
 
     public void clearText() {

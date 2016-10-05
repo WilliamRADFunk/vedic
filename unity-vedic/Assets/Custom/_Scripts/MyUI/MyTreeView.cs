@@ -82,7 +82,7 @@ namespace Battlehub.UIControls {
             //Do something on selection changed (just syncronized with editor's hierarchy for demo purposes)
             UnityEditor.Selection.objects = e.NewItems.OfType<GameObject>().ToArray();
 #endif
-            Debug.Log("this is a test:1");
+            Debug.Log("e.NewItem: " + e.NewItem.ToString());
         }
 
         private void OnItemsRemoved(object sender, ItemsRemovedArgs e) {

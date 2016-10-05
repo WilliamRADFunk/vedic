@@ -22,34 +22,34 @@ public class ImportDatabase : MonoBehaviour
     private string[][] storedDatabases = new string[9][];
 
     // Populate previously stored databases
-    //public void Update()
-    //{
-    //    if (pristine)
-    //    {
-    //        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
-    //        string reply = mwr.GetResponse();
-    //        Debug.Log(reply);
+    public void Update()
+    {
+        if (pristine)
+        {
+            MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
+            string reply = mwr.GetResponse();
+            Debug.Log(reply);
 
-    //        string[] splitReply = reply.Split(',');
-    //        for (int i = 0; i < storedDatabases.Length; i++)
-    //        {
-    //            int replyBase = i * 4;
-    //            if (replyBase >= splitReply.Length - 1)
-    //            {
-    //                break;
-    //            }
-    //            else
-    //            {
-    //                storedDatabases[i] = new string[4];
-    //                storedDatabases[i][0] = splitReply[replyBase];
-    //                storedDatabases[i][1] = splitReply[replyBase + 1];
-    //                storedDatabases[i][2] = splitReply[replyBase + 2];
-    //                storedDatabases[i][3] = splitReply[replyBase + 3];
-    //            }
-    //        }
-    //        pristine = false;
-    //    }
-    //}
+            string[] splitReply = reply.Split(',');
+            for (int i = 0; i < storedDatabases.Length; i++)
+            {
+                int replyBase = i * 4;
+                if (replyBase >= splitReply.Length - 1)
+                {
+                    break;
+                }
+                else
+                {
+                    storedDatabases[i] = new string[4];
+                    storedDatabases[i][0] = splitReply[replyBase];
+                    storedDatabases[i][1] = splitReply[replyBase + 1];
+                    storedDatabases[i][2] = splitReply[replyBase + 2];
+                    storedDatabases[i][3] = splitReply[replyBase + 3];
+                }
+            }
+            pristine = false;
+        }
+    }
     public void LoadDB(int dbIndex)
     {
         bool allOff = true;
