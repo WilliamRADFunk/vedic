@@ -25,12 +25,20 @@ namespace Battlehub.UIControls {
                 Debug.LogError("Set TreeView field");
                 return;
             }
-            List<GameObject> children = new List<GameObject>();
-            foreach (Transform child in tree.transform) {
-                children.Add(child.gameObject);    
+            List<TreeData> children = new List<TreeData>();
+
+            for(int i=0; i<10; i++) {
+                TreeData td = new TreeData();
+                td.childCount = 0;
+                td.name = "Test:" + i.ToString();
+                children.Add(td);
             }
 
-            IEnumerable<GameObject> dataItems = children.ToArray().OrderBy(t => t.transform.GetSiblingIndex());
+            //foreach (Transform child in tree.transform) {
+            //    children.Add(child.gameObject);    
+            //}
+
+            //IEnumerable<GameObject> dataItems = children.ToArray().OrderBy(t => t.transform.GetSiblingIndex());
 
             //subscribe to events
             TreeView.ItemDataBinding += OnItemDataBinding;
@@ -43,7 +51,7 @@ namespace Battlehub.UIControls {
 
 
             //Bind data items
-            TreeView.Items = dataItems;
+            TreeView.Items = children;
         }
 
         private void OnDestroy() {
@@ -78,10 +86,10 @@ namespace Battlehub.UIControls {
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
-#if UNITY_EDITOR
-            //Do something on selection changed (just syncronized with editor's hierarchy for demo purposes)
-            UnityEditor.Selection.objects = e.NewItems.OfType<GameObject>().ToArray();
-#endif
+//#if UNITY_EDITOR
+//            //Do something on selection changed (just syncronized with editor's hierarchy for demo purposes)
+//            UnityEditor.Selection.objects = e.NewItems.OfType<GameObject>().ToArray();
+//#endif
             Debug.Log("e.NewItem: " + e.NewItem.ToString());
         }
 
@@ -102,7 +110,9 @@ namespace Battlehub.UIControls {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnItemDataBinding(object sender, TreeViewItemDataBindingArgs e) {
-            GameObject dataItem = e.Item as GameObject;
+            //GameObject dataItem = e.Item as GameObject;
+
+            TreeData dataItem = e.Item as TreeData;
             if (dataItem != null) {
                 //We display dataItem.name using UI.Text 
                 Text text = e.ItemPresenter.GetComponentInChildren<Text>(true);
@@ -113,9 +123,9 @@ namespace Battlehub.UIControls {
                 icon.sprite = Resources.Load<Sprite>("cube");
 
                 //And specify whether data item has children (to display expander arrow if needed)
-                if (dataItem.name != "TreeView") {
-                    e.HasChildren = dataItem.transform.childCount > 0;
-                }
+                //if (dataItem.name != "TreeView") {
+                //    e.HasChildren = dataItem.transform.childCount > 0;
+                //}
 
             }
         }
@@ -123,7 +133,6 @@ namespace Battlehub.UIControls {
         private void OnItemBeginDrag(object sender, ItemDragArgs e) {
             //Could be used to change cursor
         }
-
         private void OnItemDrop(object sender, ItemDropArgs e) {
             if (e.DropTarget == null) {
                 return;
@@ -180,7 +189,6 @@ namespace Battlehub.UIControls {
                 }
             }
         }
-
         private void OnItemEndDrag(object sender, ItemDragArgs e) {
         }
     }
