@@ -30157,6 +30157,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 36.29
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013286765626, guid: 79c209f24c495ce4fa18ac217e345bdb, type: 2}
+      propertyPath: m_TagString
+      value: Keyboard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79c209f24c495ce4fa18ac217e345bdb, type: 2}
   m_IsPrefabParent: 0
