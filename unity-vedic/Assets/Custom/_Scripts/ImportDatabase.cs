@@ -42,8 +42,8 @@ public class ImportDatabase : MonoBehaviour
         else
         {
             Debug.Log("www: " + www.downloadHandler.text);
-            /*
-            string[] splitReply = reply.Split(',');
+
+            string[] splitReply = www.downloadHandler.text.Split(',');
             for (int i = 0; i < storedDatabases.Length; i++)
             {
                 int replyBase = i * 4;
@@ -60,7 +60,6 @@ public class ImportDatabase : MonoBehaviour
                     storedDatabases[i][3] = splitReply[replyBase + 3];
                 }
             }
-             */
         }
     }
 
@@ -70,11 +69,6 @@ public class ImportDatabase : MonoBehaviour
         if (pristine)
         {
             StartCoroutine(Upload());
-
-            //MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
-            //string reply = mwr.GetResponse();
-            //Debug.Log(reply);
-
             
             pristine = false;
         }
