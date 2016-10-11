@@ -40,6 +40,11 @@ public class ImportDatabase : MonoBehaviour
             for (int i = 0; i < storedDatabases.Length; i++)
             {
                 int replyBase = i * 4;
+                storedDatabases[i] = new string[4];
+                storedDatabases[i][0] = "";
+                storedDatabases[i][1] = "";
+                storedDatabases[i][2] = "";
+                storedDatabases[i][3] = "";
                 if (replyBase >= splitReply.Length - 1)
                 {
                     break;
@@ -47,10 +52,6 @@ public class ImportDatabase : MonoBehaviour
                 else
                 {
                     storedDatabases[i] = new string[4];
-                    storedDatabases[i][0] = "";
-                    storedDatabases[i][1] = "";
-                    storedDatabases[i][2] = "";
-                    storedDatabases[i][3] = "";
                     storedDatabases[i][0] = splitReply[replyBase];
                     storedDatabases[i][1] = splitReply[replyBase + 1];
                     storedDatabases[i][2] = splitReply[replyBase + 2];
