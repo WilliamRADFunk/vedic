@@ -26,7 +26,22 @@ if ($conn->connect_error)
 // User sent a SELECT query
 else
 {
-	$getInfo = "UPDATE dbases SET DatabaseName = '" . $dbname . "', HostName = '" . $hostname . "', Password = '" . $password . "', Username = '" . $username . "' WHERE dbNum = " . $dbNum;
+	$isRowExist = "SELECT EXISTS(SELECT * FROM dbases WHERE dbNum = " . $dbNum . ")";
+	$getInfo = "";
+
+	$result = $conn->query($isRowExist);
+
+	if(!$result)
+	{
+		echo "Database connect info save failed: " . $conn->error;
+		$conn->close();
+	}
+	else
+	{
+		$db_row = mysqli_fetch_row($result);
+		if($db_row[0]) $getInfo = "UPDATE dbases SET DatabaseName = '" . $dbname . "', HostName = '" . $hostname . "', Password = '" . $password . "', UserName = '" . $username . "' WHERE dbNum = " . $dbNum;
+		else $getInfo = "INSERT INTO dbases (dbNum, DatabaseName, HostName, Password, UserName) VALUES (" . $dbNum . ", '" . $dbname . "', '" . $hostname . "', '" . $password . "', '" . $username . "')";
+	}
 
 	if($conn->query($getInfo) !== TRUE)
 	{

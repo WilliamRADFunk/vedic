@@ -106,7 +106,7 @@ public class ImportDatabase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Database Saved: " + www.downloadHandler.text);
+            Debug.Log("Database Save: " + www.downloadHandler.text);
         }
     }
     // Populate previously stored databases
@@ -169,7 +169,7 @@ public class ImportDatabase : MonoBehaviour
             storedDatabases[dbIndex][2] = username.text;
             storedDatabases[dbIndex][3] = password.text;
 
-            StartCoroutine(SaveDatabaseInfo(dbIndex, storedDatabases[dbIndex][2], storedDatabases[dbIndex][1], storedDatabases[dbIndex][2], storedDatabases[dbIndex][3]));
+            StartCoroutine(SaveDatabaseInfo(dbIndex, dbname.text, hostname.text, username.text, password.text));
         }
     }
     // Use this for importing a single database.
