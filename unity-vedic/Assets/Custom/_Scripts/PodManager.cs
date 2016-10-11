@@ -70,20 +70,16 @@ public class PodManager : MonoBehaviour {
 
     public void BuildPod(Database obj)
     {
-        GameObject assembledHarness = ViewAssembler.GenerateViewObject(obj, true);
-
         checkActivePods();
 
         for(int i = 0; i < podStates.Length; i++)
         {
             if(podStates[i])
             {
-                GameObject temp = GameObject.Instantiate(assembledHarness);
-                pods[i].GetComponent<Pod>().AllocateTableHarness(temp);
+                GameObject assembledHarness = ViewAssembler.GenerateViewObject(obj, true);
+                pods[i].GetComponent<Pod>().AllocateTableHarness(assembledHarness);
             }
         }
-
-        GameObject.Destroy(assembledHarness);
     }
 
     public void ActivatePod(int entry)
@@ -109,24 +105,33 @@ public class PodManager : MonoBehaviour {
         Debug.Log("STARTING TEST...");
 
         Database test = new Database();
+        test.SetName("Bob");
+        test.tables = new List<DatabaseUtilities.Table>();
+
+        DatabaseUtilities.Table t = new DatabaseUtilities.Table();
+        t.SetName("Dean");
+        t.SetId("T34");
+        t.columns = new List<DatabaseUtilities.Column>();
 
         DatabaseUtilities.Column c = new DatabaseUtilities.Column();
         c.SetName("Sam");
         c.SetId("12");
-        c.SetColor("FFFFFFFF");
+        c.SetColor(DatabaseBuilder.GetRandomColor());
         c.fields = new List<string>();
         c.AddField("Dogs");
 
-        DatabaseUtilities.Table t = new DatabaseUtilities.Table();
-        t.SetId("34");
-        t.SetName("Dean");
-        t.columns = new List<DatabaseUtilities.Column>();
-        t.AddColumn(c);
+        DatabaseUtilities.Column c2 = new DatabaseUtilities.Column();
+        c2.SetName("Sammy");
+        c2.SetId("1234");
+        c2.SetColor(DatabaseBuilder.GetRandomColor());
+        c2.fields = new List<string>();
+        c2.AddField("Cats");
 
-        test.tables =  new List<DatabaseUtilities.Table>();
+        t.AddColumn(c);
+        t.AddColumn(c2);
+
         test.AddTable(t);
 
         BuildPod(test);
-
     }
 }
