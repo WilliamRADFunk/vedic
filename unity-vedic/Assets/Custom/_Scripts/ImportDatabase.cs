@@ -1,20 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Networking;
 
 using System;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Collections;
 
 using DatabaseUtilities;
-using UnityEngine.Networking;
-
-class MyBehavior : MonoBehaviour
-{
-    
-}
 
 public class ImportDatabase : MonoBehaviour
 {
@@ -123,6 +114,8 @@ public class ImportDatabase : MonoBehaviour
             pristine = false;
         }
     }
+    // Use this to pull database connection info from locally stored cache,
+    // and place it in the four panel input fields.
     public void LoadDB(int dbIndex)
     {
         bool allOff = true;
@@ -174,7 +167,7 @@ public class ImportDatabase : MonoBehaviour
             StartCoroutine(SaveDatabaseInfo(dbIndex, storedDatabases[dbIndex][2], storedDatabases[dbIndex][1], storedDatabases[dbIndex][2], storedDatabases[dbIndex][3]));
         }
     }
-    // Use this for initialization
+    // Use this for importing a single database.
     public void Send()
     {
         StartCoroutine(GetDatabase());
