@@ -47,6 +47,10 @@ public class ImportDatabase : MonoBehaviour
                 else
                 {
                     storedDatabases[i] = new string[4];
+                    storedDatabases[i][0] = "";
+                    storedDatabases[i][1] = "";
+                    storedDatabases[i][2] = "";
+                    storedDatabases[i][3] = "";
                     storedDatabases[i][0] = splitReply[replyBase];
                     storedDatabases[i][1] = splitReply[replyBase + 1];
                     storedDatabases[i][2] = splitReply[replyBase + 2];
