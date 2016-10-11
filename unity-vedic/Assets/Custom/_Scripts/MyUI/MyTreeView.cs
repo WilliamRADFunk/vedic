@@ -11,7 +11,7 @@ namespace Battlehub.UIControls {
     /// </summary>
     public class MyTreeView : MonoBehaviour {
         public TreeView TreeView;
-        public GameObject tree;
+        public TreeData tree;
 
         public static bool IsPrefab(Transform This) {
             if (Application.isEditor && !Application.isPlaying) {
@@ -25,20 +25,12 @@ namespace Battlehub.UIControls {
                 Debug.LogError("Set TreeView field");
                 return;
             }
-            List<TreeData> children = new List<TreeData>();
+            List<GameObject> children = new List<GameObject>();
+            children.Add(tree.gameObject);
 
-            for(int i=0; i<10; i++) {
-                TreeData td = new TreeData();
-                td.childCount = 0;
-                td.name = "Test:" + i.ToString();
-                children.Add(td);
-            }
-
-            //foreach (Transform child in tree.transform) {
-            //    children.Add(child.gameObject);    
+            //for(int i=0; i<tree.transform.childCount; i++) {
+            //    children.Add(tree.transform.GetChild(i));
             //}
-
-            //IEnumerable<GameObject> dataItems = children.ToArray().OrderBy(t => t.transform.GetSiblingIndex());
 
             //subscribe to events
             TreeView.ItemDataBinding += OnItemDataBinding;
@@ -51,7 +43,8 @@ namespace Battlehub.UIControls {
 
 
             //Bind data items
-            TreeView.Items = children;
+            TreeView.Items = children.ToArray();
+            
         }
 
         private void OnDestroy() {
@@ -72,12 +65,13 @@ namespace Battlehub.UIControls {
 
         private void OnItemExpanding(object sender, ItemExpandingArgs e) {
             //get parent data item (game object in our case)
-            GameObject gameObject = (GameObject)e.Item;
-            if (gameObject.transform.childCount > 0) {
+            TreeData td = ((GameObject)e.Item).GetComponent<TreeData>();
+            int size = td.nodes.Count;
+            if (size > 0) {
                 //get children
-                GameObject[] children = new GameObject[gameObject.transform.childCount];
-                for (int i = 0; i < children.Length; ++i) {
-                    children[i] = gameObject.transform.GetChild(i).gameObject;
+                GameObject[] children = new GameObject[size];
+                for (int i = 0; i < td.nodes.Count; ++i) {
+                    children[i] = td.nodes[i];
                 }
 
                 //Populate children collection
@@ -86,11 +80,17 @@ namespace Battlehub.UIControls {
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
-//#if UNITY_EDITOR
-//            //Do something on selection changed (just syncronized with editor's hierarchy for demo purposes)
-//            UnityEditor.Selection.objects = e.NewItems.OfType<GameObject>().ToArray();
-//#endif
-            Debug.Log("e.NewItem: " + e.NewItem.ToString());
+            //#if UNITY_EDITOR
+            //            //Do something on selection changed (just syncronized with editor's hierarchy for demo purposes)
+            //            UnityEditor.Selection.objects = e.NewItems.OfType<GameObject>().ToArray();
+            //#endif
+            //foreach (TreeData td in e.NewItems.OfType<TreeData>().ToArray()) {
+            //    Debug.Log(td.name);
+            //}
+            //if( TreeView.SelectedIndex != -1) {
+            //    Debug.Log(((TreeData)TreeView.SelectedItem).name);
+            //}
+
         }
 
         private void OnItemsRemoved(object sender, ItemsRemovedArgs e) {
@@ -110,9 +110,9 @@ namespace Battlehub.UIControls {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnItemDataBinding(object sender, TreeViewItemDataBindingArgs e) {
-            //GameObject dataItem = e.Item as GameObject;
+            GameObject dataItem = e.Item as GameObject;
 
-            TreeData dataItem = e.Item as TreeData;
+            //TreeData dataItem = e.Item as TreeData;
             if (dataItem != null) {
                 //We display dataItem.name using UI.Text 
                 Text text = e.ItemPresenter.GetComponentInChildren<Text>(true);
@@ -122,11 +122,10 @@ namespace Battlehub.UIControls {
                 Image icon = e.ItemPresenter.GetComponentsInChildren<Image>()[4];
                 icon.sprite = Resources.Load<Sprite>("cube");
 
-                //And specify whether data item has children (to display expander arrow if needed)
-                //if (dataItem.name != "TreeView") {
-                //    e.HasChildren = dataItem.transform.childCount > 0;
-                //}
-
+                //And specify whether data item has children(to display expander arrow if needed)
+                    if (dataItem.name.Equals("DataBase_Basic")) {
+                        e.HasChildren = true;
+                    }
             }
         }
 

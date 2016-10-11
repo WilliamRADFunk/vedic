@@ -13,7 +13,7 @@ namespace Battlehub.UIControls
     public class TreeViewDemo : MonoBehaviour
     {
         public TreeView TreeView;
-
+        
         public static bool IsPrefab(Transform This)
         {
             if (Application.isEditor && !Application.isPlaying)
