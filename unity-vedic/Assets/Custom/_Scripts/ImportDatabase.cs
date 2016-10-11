@@ -27,12 +27,13 @@ public class ImportDatabase : MonoBehaviour
 
     private string[][] storedDatabases = new string[9][];
 
-    IEnumerator Upload()
+    IEnumerator GetAllDatabases()
     {
+        string url = "http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php";
         WWWForm form = new WWWForm();
         form.AddField("password", "");
 
-        UnityWebRequest www = UnityWebRequest.Post("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", form);
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
         yield return www.Send();
 
         if (www.isError)
@@ -63,12 +64,38 @@ public class ImportDatabase : MonoBehaviour
         }
     }
 
+    IEnumerator GetDatabase()
+    {
+        string url = "http://www.williamrobertfunk.com/applications/vedic/actions/import.php";
+        WWWForm form = new WWWForm();
+        form.AddField("dbname", dbname.text);
+        form.AddField("hostname", hostname.text);
+        form.AddField("username", username.text);
+        form.AddField("password", password.text);
+
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        yield return www.Send();
+
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("Received Database");
+
+            VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, www.downloadHandler.text);
+
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
+        }
+    }
+
     // Populate previously stored databases
     public void Update()
     {
         if (pristine)
         {
-            StartCoroutine(Upload());
+            StartCoroutine(GetAllDatabases());
             
             pristine = false;
         }
@@ -132,13 +159,7 @@ public class ImportDatabase : MonoBehaviour
     // Use this for initialization
     public void Send()
     {
-        MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/import.php", "POST", "dbname=" + dbname.text + "&hostname=" + hostname.text + "&username=" + username.text + "&password=" + password.text);
-        string reply = mwr.GetResponse();
-        Debug.Log("Received Database");
-
-        VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, reply);
-
-        ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
+        StartCoroutine(GetDatabase());
     }
     public class MyWebRequest
     {
