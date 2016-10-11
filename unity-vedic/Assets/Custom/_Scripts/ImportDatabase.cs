@@ -27,6 +27,7 @@ public class ImportDatabase : MonoBehaviour
 
     private string[][] storedDatabases = new string[9][];
 
+    // Called from Update-Pristine --- Makes it asynchronous
     IEnumerator GetAllDatabases()
     {
         string url = "http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php";
@@ -63,7 +64,7 @@ public class ImportDatabase : MonoBehaviour
             }
         }
     }
-
+    // Called from Send --- Makes it asynchronous
     IEnumerator GetDatabase()
     {
         string url = "http://www.williamrobertfunk.com/applications/vedic/actions/import.php";
@@ -89,7 +90,29 @@ public class ImportDatabase : MonoBehaviour
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
         }
     }
+    // Called from SaveDb --- Makes it asynchronous
+    IEnumerator SaveDatabaseInfo(int dbNum, string dbname, string hostname, string username, string password)
+    {
+        string url = "http://www.williamrobertfunk.com/applications/vedic/actions/setDbInfo.php";
+        WWWForm form = new WWWForm();
+        form.AddField("dbNum", dbNum);
+        form.AddField("dbname", dbname);
+        form.AddField("hostname", hostname);
+        form.AddField("username", username);
+        form.AddField("password", password);
 
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        yield return www.Send();
+
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("Database Saved: " + www.downloadHandler.text);
+        }
+    }
     // Populate previously stored databases
     public void Update()
     {
@@ -148,89 +171,12 @@ public class ImportDatabase : MonoBehaviour
             storedDatabases[dbIndex][2] = username.text;
             storedDatabases[dbIndex][3] = password.text;
 
-            MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/setDbInfo.php", "POST",
-                "dbNum=" + dbIndex + "&dbname=" + storedDatabases[dbIndex][0] + "&hostname=" + storedDatabases[dbIndex][1] + 
-                "&username=" + storedDatabases[dbIndex][2] + "&password=" + storedDatabases[dbIndex][3]);
-            string reply = mwr.GetResponse();
-            Debug.Log(reply);
+            StartCoroutine(SaveDatabaseInfo(dbIndex, storedDatabases[dbIndex][2], storedDatabases[dbIndex][1], storedDatabases[dbIndex][2], storedDatabases[dbIndex][3]));
         }
     }
-
     // Use this for initialization
     public void Send()
     {
         StartCoroutine(GetDatabase());
-    }
-    public class MyWebRequest
-    {
-        //private UnityWebRequest request;
-        private WebRequest request;
-        private Stream dataStream;
-
-        private string status;
-
-        public String Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
-        public MyWebRequest(string url) 
-        {
-            request = WebRequest.Create(url);
-            request.Timeout = 5000;
-        }
-
-        public MyWebRequest(string url, string method) : this(url)
-        {
-            if (method.Equals("GET") || method.Equals("POST")) { request.Method = method; }
-            else { throw new Exception("Invalid Method Type"); }
-        }
-
-        public MyWebRequest(string url, string method, string data) : this(url, method)
-        {
-            // Create POST data and convert it to a byte array.
-            string postData = data;
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-
-            // Set the ContentType property of the WebRequest.
-            request.ContentType = "application/x-www-form-urlencoded";
-
-            // Set the ContentLength property of the WebRequest.
-            request.ContentLength = byteArray.Length;
-
-            // Get the request stream.
-            dataStream = request.GetRequestStream();
-
-            // Write the data to the request stream.
-            dataStream.Write(byteArray, 0, byteArray.Length);
-
-            // Close the Stream object.
-            dataStream.Close();
-        }
-
-        public string GetResponse()
-        {
-            // Get the original response.
-            WebResponse response = request.GetResponse();
-
-            this.Status = ((HttpWebResponse)response).StatusDescription;
-
-            // Get the stream containing all content returned by the requested server.
-            dataStream = response.GetResponseStream();
-
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-
-            // Read the content fully up to the end.
-            string responseFromServer = reader.ReadToEnd();
-
-            // Clean up the streams.
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-
-            return responseFromServer;
-        }
     }
 }
