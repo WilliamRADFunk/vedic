@@ -6,9 +6,15 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Collections;
 
 using DatabaseUtilities;
 using UnityEngine.Networking;
+
+class MyBehavior : MonoBehaviour
+{
+    
+}
 
 public class ImportDatabase : MonoBehaviour
 {
@@ -21,15 +27,22 @@ public class ImportDatabase : MonoBehaviour
 
     private string[][] storedDatabases = new string[9][];
 
-    // Populate previously stored databases
-    public void Update()
+    IEnumerator Upload()
     {
-        if (pristine)
-        {
-            MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
-            string reply = mwr.GetResponse();
-            Debug.Log(reply);
+        WWWForm form = new WWWForm();
+        form.AddField("password", "");
 
+        UnityWebRequest www = UnityWebRequest.Post("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", form);
+        yield return www.Send();
+
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("www: " + www.downloadHandler.text);
+            /*
             string[] splitReply = reply.Split(',');
             for (int i = 0; i < storedDatabases.Length; i++)
             {
@@ -47,6 +60,22 @@ public class ImportDatabase : MonoBehaviour
                     storedDatabases[i][3] = splitReply[replyBase + 3];
                 }
             }
+             */
+        }
+    }
+
+    // Populate previously stored databases
+    public void Update()
+    {
+        if (pristine)
+        {
+            StartCoroutine(Upload());
+
+            //MyWebRequest mwr = new MyWebRequest("http://www.williamrobertfunk.com/applications/vedic/actions/getDbInfo.php", "POST", "password=" + "");
+            //string reply = mwr.GetResponse();
+            //Debug.Log(reply);
+
+            
             pristine = false;
         }
     }
