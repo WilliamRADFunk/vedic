@@ -46,7 +46,7 @@ namespace DatabaseUtilities
                     }
                     else
                     {
-                        string c = getRandomColor();
+                        string c = GetRandomColor();
                         dic.Add(col.GetName(), c);
                         col.SetColor(c);
                     }
@@ -91,7 +91,7 @@ namespace DatabaseUtilities
             }
             return db;
         }
-        public static string getRandomColor()
+        public static string GetRandomColor()
         {
             string[] letters = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
             string color = "#";
