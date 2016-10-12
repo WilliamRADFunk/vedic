@@ -11,7 +11,8 @@ namespace Battlehub.UIControls {
     /// </summary>
     public class MyTreeView : MonoBehaviour {
         public TreeView TreeView;
-        public TreeData tree;
+        public List<GameObject> tree;
+        public List<string> names;
 
         public static bool IsPrefab(Transform This) {
             if (Application.isEditor && !Application.isPlaying) {
@@ -25,8 +26,6 @@ namespace Battlehub.UIControls {
                 Debug.LogError("Set TreeView field");
                 return;
             }
-            List<GameObject> children = new List<GameObject>();
-            children.Add(tree.gameObject);
 
             //for(int i=0; i<tree.transform.childCount; i++) {
             //    children.Add(tree.transform.GetChild(i));
@@ -43,7 +42,7 @@ namespace Battlehub.UIControls {
 
 
             //Bind data items
-            TreeView.Items = children.ToArray();
+            TreeView.Items = tree.ToArray();
             
         }
 
@@ -123,9 +122,14 @@ namespace Battlehub.UIControls {
                 icon.sprite = Resources.Load<Sprite>("cube");
 
                 //And specify whether data item has children(to display expander arrow if needed)
-                    if (dataItem.name.Equals("DataBase_Basic")) {
+                foreach(string s in names)
+                {
+                    if (dataItem.name.Equals(s))
+                    {
                         e.HasChildren = true;
                     }
+                }
+                
             }
         }
 
