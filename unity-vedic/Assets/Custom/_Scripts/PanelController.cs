@@ -20,7 +20,7 @@ public class PanelController : MonoBehaviour
     private GameObject Keyboard;
     private GameObject MenuPods;
     public GameObject teleporter;
-    public GameObject NodeSpawner;
+    private GameObject NodeSpawner;
 
     void Update()
     {
@@ -38,33 +38,40 @@ public class PanelController : MonoBehaviour
             MenuPods = GameObject.FindGameObjectWithTag("MenuPods");
             NodeSpawner = GameObject.FindGameObjectWithTag("NodeSpawner");
 
-            /*
-            if (DbExporter != null) {
+
+            if (DbExporter != null)
+            {
                 DbExporter.SetActive(false);
             }
-            if (MenuTeleport != null) {
+            if (MenuTeleport != null)
+            {
                 MenuTeleport.SetActive(false);
             }
-            if (MenuInput != null) {
+            if (MenuInput != null)
+            {
                 MenuInput.SetActive(false);
             }
-            if (threeDCursors != null) {
+            if (threeDCursors != null)
+            {
                 threeDCursors.SetActive(false);
             }
-            if(MenuSound != null) {
+            if(MenuSound != null)
+            {
                 MenuSound.SetActive(false);
             }
-            if (Keyboard != null) {
+            if (Keyboard != null)
+            {
                 Keyboard.SetActive(false);
             }
-            if (MenuPods != null) {
+            if (MenuPods != null)
+            {
                 MenuPods.SetActive(false);
             }
             if (NodeSpawner != null)
             {
                 NodeSpawner.SetActive(false);
             }
-            */
+
             pristine = false;
         }
     }
@@ -264,11 +271,12 @@ public class PanelController : MonoBehaviour
     {
         if (isNodeSpawner)
         {
+            Debug.Log("In the anti-toggler");
             NodeSpawner.SetActive(false);
 
             if (MenuInput.activeSelf)
             {
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = false;
                 isNodeSpawner = false;
@@ -277,7 +285,7 @@ public class PanelController : MonoBehaviour
             else
             {
                 MenuInput.SetActive(true);
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = false;
                 isNodeSpawner = false;
@@ -287,11 +295,12 @@ public class PanelController : MonoBehaviour
         }
         else
         {
+            Debug.Log("In the toggler");
             NodeSpawner.SetActive(true);
 
             if (MenuInput.activeSelf)
             {
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = true;
                 isNodeSpawner = true;
@@ -300,7 +309,7 @@ public class PanelController : MonoBehaviour
             else
             {
                 MenuInput.SetActive(true);
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = true;
                 isNodeSpawner = true;
@@ -319,7 +328,7 @@ public class PanelController : MonoBehaviour
 
             if (MenuInput.activeSelf)
             {
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = false;
                 tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
@@ -327,7 +336,7 @@ public class PanelController : MonoBehaviour
             else
             {
                 MenuInput.SetActive(true);
-                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeToggle");
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = false;
                 tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);

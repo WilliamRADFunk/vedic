@@ -2275,7 +2275,7 @@ GameObject:
   - 114: {fileID: 276314137}
   - 114: {fileID: 276314136}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: Btn_Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2339,6 +2339,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1886097243}
+        m_MethodName: HideNodeSpawner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1846796790}
         m_MethodName: SetActive
         m_Mode: 6
@@ -18746,6 +18757,11 @@ Prefab:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010162732570, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.46
@@ -19263,11 +19279,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011347795988, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000012317479944, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013632007038, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_IsActive
@@ -19275,7 +19291,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013470804124, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000010882445632, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
       propertyPath: m_Name
@@ -19324,6 +19340,35 @@ Prefab:
       propertyPath: m_Name
       value: Tog_Nodes
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011161612272, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
+      propertyPath: m_TagString
+      value: NodeToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1886097243}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ToggleNodeSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012256584098, guid: cf161f30f70c21e4a8e5ae554ee9ce49,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
   m_IsPrefabParent: 0
@@ -19340,7 +19385,7 @@ GameObject:
   - 114: {fileID: 1416047235}
   - 114: {fileID: 1416047234}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Btn_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24911,7 +24956,7 @@ Prefab:
       objectReference: {fileID: 1886097244}
     - target: {fileID: 1000011482084184, guid: 0562d986bad577c4aa161832e7ba76a8, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0562d986bad577c4aa161832e7ba76a8, type: 2}
@@ -25046,7 +25091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleporter: {fileID: 1204062182}
-  nodeSpawner: {fileID: 0}
 --- !u!82 &1886097244
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27619,7 +27663,7 @@ GameObject:
   - 114: {fileID: 1985720739}
   m_Layer: 5
   m_Name: Background
-  m_TagString: MenuMain
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
