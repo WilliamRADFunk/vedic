@@ -10,6 +10,7 @@ public class Table : MonoBehaviour, ViewObj
     Vector3 location;
 
     GameObject TactileText;
+    TactileText t;
 
     BoxCollider areaOfEffect;
 
@@ -29,6 +30,11 @@ public class Table : MonoBehaviour, ViewObj
         activated = false;
         triggered = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
+        TactileText = GameObject.FindGameObjectWithTag("DynamicText");
+
+        t = TactileText.GetComponent<TactileText>();
+
+
     }
 
     // Update is called once per frame
@@ -48,6 +54,7 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(false);
             }
             triggered = false;
+            t.UpdateText(ID, false); 
         }
     }
 
@@ -134,6 +141,7 @@ public class Table : MonoBehaviour, ViewObj
             {
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
+            t.UpdateText(ID, true);
         }
     }
 
