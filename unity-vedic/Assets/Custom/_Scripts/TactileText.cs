@@ -15,4 +15,20 @@ public class TactileText : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void UpdateText(string message, bool active)
+    {
+        if(!active)
+        {
+            if(birdo.text == message)
+            {
+                birdo.text = "";
+            }
+        }
+        else
+        {
+            birdo.text = message;
+        }
+        
+    }
 }
