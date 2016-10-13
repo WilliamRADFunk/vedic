@@ -23962,42 +23962,42 @@ Prefab:
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 224000012446849862, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012446849862, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 224000012568963702, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012568963702, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 114000013906823422, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -24048,6 +24048,14 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012373380168, guid: 338088151f99b824e98088a38c276d13, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012373380168, guid: 338088151f99b824e98088a38c276d13, type: 2}
+      propertyPath: m_TagString
+      value: NodeSpawner
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010260550818, guid: 338088151f99b824e98088a38c276d13, type: 2}
@@ -24901,6 +24909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleporter: {fileID: 1204062182}
+  nodeSpawner: {fileID: 0}
 --- !u!82 &1886097244
 AudioSource:
   m_ObjectHideFlags: 0

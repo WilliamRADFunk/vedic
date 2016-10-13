@@ -25,6 +25,7 @@ TagManager:
   - PodToggle
   - MenuPods
   - Pod
+  - NodeSpawner
   layers:
   - Default
   - TransparentFX

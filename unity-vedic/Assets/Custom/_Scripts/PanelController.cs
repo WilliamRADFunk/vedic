@@ -19,6 +19,7 @@ public class PanelController : MonoBehaviour
     private GameObject Keyboard;
     private GameObject MenuPods;
     public GameObject teleporter;
+    public GameObject nodeSpawner;
 
     void Update()
     {
@@ -34,8 +35,9 @@ public class PanelController : MonoBehaviour
             BigTable = GameObject.FindGameObjectWithTag("Pedestal");
             Keyboard = GameObject.FindGameObjectWithTag("Keyboard");
             MenuPods = GameObject.FindGameObjectWithTag("MenuPods");
+            nodeSpawner = GameObject.FindGameObjectWithTag("NodeSpawner");
 
-            if(DbExporter != null) {
+            if (DbExporter != null) {
                 DbExporter.SetActive(false);
             }
             if (MenuTeleport != null) {
