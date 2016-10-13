@@ -4,9 +4,10 @@ using UnityEngine.UI;
 public class PanelController : MonoBehaviour
 {
     private bool pristine = true;
-    private bool is3dCursors = true;
+    private bool is3dCursors = false;
     private bool isRTSon = false;
     private bool isKeyboard = false;
+    private bool isNodeSpawner = false;
     private GameObject tableHarManager;
     private GameObject DbImporter;
     private GameObject DbExporter;
@@ -19,7 +20,7 @@ public class PanelController : MonoBehaviour
     private GameObject Keyboard;
     private GameObject MenuPods;
     public GameObject teleporter;
-    public GameObject nodeSpawner;
+    public GameObject NodeSpawner;
 
     void Update()
     {
@@ -35,8 +36,9 @@ public class PanelController : MonoBehaviour
             BigTable = GameObject.FindGameObjectWithTag("Pedestal");
             Keyboard = GameObject.FindGameObjectWithTag("Keyboard");
             MenuPods = GameObject.FindGameObjectWithTag("MenuPods");
-            nodeSpawner = GameObject.FindGameObjectWithTag("NodeSpawner");
+            NodeSpawner = GameObject.FindGameObjectWithTag("NodeSpawner");
 
+            /*
             if (DbExporter != null) {
                 DbExporter.SetActive(false);
             }
@@ -58,7 +60,11 @@ public class PanelController : MonoBehaviour
             if (MenuPods != null) {
                 MenuPods.SetActive(false);
             }
-            is3dCursors = false;
+            if (NodeSpawner != null)
+            {
+                NodeSpawner.SetActive(false);
+            }
+            */
             pristine = false;
         }
     }
@@ -224,7 +230,6 @@ public class PanelController : MonoBehaviour
             }
         }
     }
-
     public void ShowKeyboard(InputField inp)
     {
         if (!isKeyboard)
@@ -248,6 +253,83 @@ public class PanelController : MonoBehaviour
                 Toggle tog = toggle.GetComponent<Toggle>();
                 tog.isOn = true;
                 isKeyboard = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
+    }
+
+
+    public void ToggleNodeSpawner()
+    {
+        if (isNodeSpawner)
+        {
+            NodeSpawner.SetActive(false);
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
+                isNodeSpawner = false;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
+                isNodeSpawner = false;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
+        else
+        {
+            NodeSpawner.SetActive(true);
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isNodeSpawner = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = true;
+                isNodeSpawner = true;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+                MenuInput.SetActive(false);
+            }
+        }
+    }
+
+    public void HideNodeSpawner()
+    {
+        if (isNodeSpawner)
+        {
+            NodeSpawner.SetActive(false);
+            isNodeSpawner = false;
+
+            if (MenuInput.activeSelf)
+            {
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
+                tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                GameObject toggle = GameObject.FindGameObjectWithTag("NodeSpawner");
+                Toggle tog = toggle.GetComponent<Toggle>();
+                tog.isOn = false;
                 tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
                 MenuInput.SetActive(false);
             }
