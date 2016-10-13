@@ -411,7 +411,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SUP
+  m_Text: 
 --- !u!222 &68129498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24139,7 +24139,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}

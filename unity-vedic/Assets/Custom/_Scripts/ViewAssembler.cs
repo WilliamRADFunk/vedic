@@ -74,7 +74,7 @@ public static class ViewAssembler {
             cols[i] = GenerateColumnObj(columnInfo[i], tableTransform, i);
         }
 
-        currentTable.GetComponent<Table>().initialization(table.GetId(), cols, harness);
+        currentTable.GetComponent<Table>().initialization(table.GetName(), cols, harness);
         return currentTable;
     }
 
@@ -82,7 +82,7 @@ public static class ViewAssembler {
     {
         GameObject curCol =  Generate((int)View_Type.Column);
         Debug.Log("The color of the column is string :: " + col.GetColor());
-        curCol.GetComponent<Column>().Initialize(key, parent, col.GetId(), col.GetColor());
+        curCol.GetComponent<Column>().Initialize(key, parent, col.GetName(), col.GetColor());
 
         return curCol;
     }
