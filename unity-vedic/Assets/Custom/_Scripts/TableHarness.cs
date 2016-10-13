@@ -18,8 +18,7 @@ public class TableHarness : MonoBehaviour
     Vector3[] tableSlots;
 
     bool virgin;
-
-    public GameObject TactileInfo;
+   
     GameObject uiHead;
 
     // Use this for initialization

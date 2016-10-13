@@ -26,6 +26,7 @@ TagManager:
   - MenuPods
   - Pod
   - NodeSpawner
+  - DynamicText
   layers:
   - Default
   - TransparentFX
