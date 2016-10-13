@@ -19,6 +19,7 @@ public class TableHarness : MonoBehaviour
 
     bool virgin;
 
+    public GameObject TactileInfo;
     GameObject uiHead;
 
     // Use this for initialization
