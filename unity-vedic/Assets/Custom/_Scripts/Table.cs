@@ -9,6 +9,8 @@ public class Table : MonoBehaviour, ViewObj
     List<GameObject> columns = new List<GameObject>();
     Vector3 location;
 
+    GameObject TactileText;
+
     BoxCollider areaOfEffect;
 
     string ID;
