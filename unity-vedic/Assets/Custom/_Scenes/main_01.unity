@@ -24139,7 +24139,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -26087,17 +26087,17 @@ Prefab:
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.374
+      value: 0.344
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.22733124
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.31142285
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
@@ -26107,22 +26107,22 @@ Prefab:
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9502715
+      value: 0.9738175
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.249
+      value: -0.309
       objectReference: {fileID: 0}
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
@@ -27301,7 +27301,7 @@ Prefab:
     - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 36.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013286765626, guid: 79c209f24c495ce4fa18ac217e345bdb, type: 2}
       propertyPath: m_IsActive
@@ -27310,6 +27310,11 @@ Prefab:
     - target: {fileID: 1000013286765626, guid: 79c209f24c495ce4fa18ac217e345bdb, type: 2}
       propertyPath: m_TagString
       value: Keyboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012401466298, guid: 79c209f24c495ce4fa18ac217e345bdb,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 26.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79c209f24c495ce4fa18ac217e345bdb, type: 2}
