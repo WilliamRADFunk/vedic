@@ -20,16 +20,16 @@ public class Vid_UpdateQuery : Vid_Query
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
         if (inputs.getInput_atIndex(0) == null) {
-            sb.Append("UPDATE error::NoTable SET ");
+            sb.AppendLine("UPDATE error::NoTable SET ");
         }
         else {
-            sb.Append("UPDATE " + inputs.getInput_atIndex(0).ToString() + " SET ");
-        }
-        if (inputs.getInput_atIndex(1) != null) {
-            sb.Append(inputs.getInput_atIndex(1).ToString() + " ");
-        }
-        if (inputs.getInput_atIndex(2) != null) {
-            sb.Append(inputs.getInput_atIndex(2).ToString());
+            sb.AppendLine("UPDATE " + inputs.getInput_atIndex(0).ToString());
+            if (inputs.getInput_atIndex(1) != null) {
+                sb.AppendLine(TabTool.TabCount() + " SET " + inputs.getInput_atIndex(1).ToString() + " ");
+            }
+            if (inputs.getInput_atIndex(2) != null) {
+                sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(2).ToString());
+            }
         }
         return sb.ToString();
     }

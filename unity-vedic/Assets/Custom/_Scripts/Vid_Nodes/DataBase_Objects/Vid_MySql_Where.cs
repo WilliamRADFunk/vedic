@@ -24,7 +24,7 @@ public class Vid_MySql_Where : Vid_Object
     public override string ToString() 
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}","WHERE "));
+        sb.Append("WHERE ");
         if (inputs.getInput_atIndex(0) != null) {
             if(inputs.getInput_atIndex(0).output_dataType == VidData_Type.DATABASE_COL) {
                 sb.Append(inputs.getInput_atIndex(0).ToString());
@@ -36,11 +36,11 @@ public class Vid_MySql_Where : Vid_Object
                 }
             }
             else {
-                sb.Append("( \n");
-                TabTool.tabindex++;
-                sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}", inputs.getInput_atIndex(0).ToString()));
-                TabTool.tabindex--;
-                sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}", ") \n"));
+                sb.AppendLine("(");
+                TabTool.incromentCount();
+                sb.Append(TabTool.TabCount() + inputs.getInput_atIndex(0).ToString());
+                TabTool.deccromentCount();
+                sb.AppendLine(TabTool.TabCount() + ")");
             }
         }
         else {
@@ -52,14 +52,15 @@ public class Vid_MySql_Where : Vid_Object
             }
         }
         if(inputs.getInput_atIndex(1) != null) {
-            sb.AppendLine(string.Format("{0," + TabTool.numberOfSpaces() + "}", "("));
-            TabTool.tabindex++;
-            sb.AppendLine(string.Format("{0," + TabTool.numberOfSpaces() + "}", inputs.getInput_atIndex(1).ToString()));
-            TabTool.tabindex--;
-            sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}", ")"));
+            sb.AppendLine(TabTool.TabCount() + "(");
+            TabTool.incromentCount();
+            sb.Append(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+            TabTool.deccromentCount();
+            sb.AppendLine(TabTool.TabCount() + ")");
         }
         return sb.ToString();
     }
+
     public override bool removeInput(int argumentIndex) {
         if(argumentIndex == 0) {
             inFlag = false;

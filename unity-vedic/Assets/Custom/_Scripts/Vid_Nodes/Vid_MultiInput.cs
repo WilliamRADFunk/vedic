@@ -4,13 +4,11 @@ using System.Text;
 using System;
 
 public class Vid_MultiInput : Vid_Object {
-
     public int inputSize = 1;
 
     public Vid_MultiInput(){
         output_dataType = VidData_Type.NUM;
     }
-
 
     public override void Awake() {
         base.Awake();
@@ -22,7 +20,6 @@ public class Vid_MultiInput : Vid_Object {
     public override string ToString() {
         return writeInputs();
     }
-
     /*Builder functions*/
     public override bool addInput(Vid_Object obj, int index) {
         if (output_dataType == VidData_Type.LIST) {
@@ -51,7 +48,6 @@ public class Vid_MultiInput : Vid_Object {
         }
         inputs = newInputs;
     }
-    
     /*Helper functions*/
     private string writeInputs() {
         StringBuilder sb = new StringBuilder("");
@@ -66,5 +62,4 @@ public class Vid_MultiInput : Vid_Object {
         }
         return sb.ToString();
     }
-
 }
