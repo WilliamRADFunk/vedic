@@ -102,6 +102,72 @@ namespace DatabaseUtilities
             return color;
         }
     }
+    public class SelectTable
+    {
+        private Table table;
+
+        public SelectTable(string data, string id, string name)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>(); // Color matching
+            table = new Table();
+            table.SetId(id);
+            table.SetName(name);
+            table.columns = new List<Column>();
+            // Loops through all the columns for this table.
+            int columnCounter = 0;
+            while (true)
+            {
+                columnCounter++;
+                Column col = new Column();
+                col.SetName(data.Substring(0, data.IndexOf(":")));
+                col.SetId("T:" + name + "-C:" + columnCounter);
+                // If column exists elsewhere, use same color.
+                if (dic.ContainsKey(col.GetName()))
+                {
+                    col.SetColor(dic[col.GetName()]);
+                }
+                else
+                {
+                    string c = DatabaseBuilder.GetRandomColor();
+                    dic.Add(col.GetName(), c);
+                    col.SetColor(c);
+                }
+                col.fields = new List<string>();
+                data = data.Substring(data.IndexOf("[") + 1);
+
+                // Loops through all the fields for this column.
+                do
+                {
+                    if (data.IndexOf(",") != -1 && data.IndexOf(",") < data.IndexOf("]"))
+                    {
+                        col.AddField(data.Substring(0, data.IndexOf(",")));
+                        data = data.Substring(data.IndexOf(",") + 1); // There's a 'next' field
+                    }
+                    else
+                    {
+                        col.AddField(data.Substring(0, data.IndexOf("]")));
+                        data = data.Substring(data.IndexOf("]") + 1);
+                        break;
+                    }
+                } while (true);
+                table.AddColumn(col);
+                if (data.Substring(0, 1).Equals(","))
+                {
+                    data = data.Substring(1); // There's a 'next' column
+                }
+                else
+                {
+                    data = data.Substring(1);
+                    break;
+                }
+            }
+        }
+
+        public Table GetTable()
+        {
+            return table;
+        }
+    }
     public struct Database
     {
         private string name;

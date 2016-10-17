@@ -1,4 +1,7 @@
 <?php
+include_once "Table.php";
+include_once "Column.php";
+
 $dbname = $_POST['dbname'];
 $hostname = $_POST['hostname'];
 $username = $_POST['username'];
@@ -34,10 +37,17 @@ elseif(strlen($query) >= 6 && strpos(strtoupper($query), "SELECT") !== false)
 	{
 		echo "SELECT QUERY RESULTS";
 		echo "\n\n******************************************************************************************\n";
+		$tab = new Table;
+		$tab->name = "SelectTable";
 		for($i = 0; $i < mysqli_num_fields($result); $i++)
 		{
+			// To the text box
 			$field_info = mysqli_fetch_field($result);
 			echo "    " . $field_info->name . "    ";
+			// For table constructor
+			$col = new Column;
+			$col->name = $field_info->name;
+			array_push($tab->columns, $col);
 		}
 		echo "\n******************************************************************************************\n";
 
@@ -45,10 +55,40 @@ elseif(strlen($query) >= 6 && strpos(strtoupper($query), "SELECT") !== false)
 		{
 			for($j = 0; $j < mysqli_num_fields($result); $j++)
 			{
+				// To the text box
 				echo "    " . $db_row[$j] . "    ";
+				// For table constructor
+				array_push($tab->columns[$j]->fields, $db_row[$j]);
 			}
 			echo "\n------------------------------------------------------------------------------------------\n";
 		}
+		// For table constructor
+		$jsonString = "##SelectTable##:{";
+		for($b = 0; $b < count($tab->columns); $b++)
+		{
+			$jsonString .= $tab->columns[$b]->name . ":[";
+			for($c = 0; $c < count($tab->columns[$b]->fields); $c++)
+			{
+				$jsonString .= $tab->columns[$b]->fields[$c];
+				if($c !== count($tab->columns[$b]->fields) - 1)
+				{
+					$jsonString .= ",";
+				}
+			}
+			$jsonString .= "]";	
+
+			if($b !== count($tab->columns) - 1)
+			{
+				$jsonString .= ",";
+			}
+			else
+			{
+				// End of column
+			}
+		}
+		$jsonString .= "}";
+		echo $jsonString;
+
 		$conn->close();
 	}
 }
