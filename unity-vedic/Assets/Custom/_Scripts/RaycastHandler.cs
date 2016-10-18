@@ -20,7 +20,7 @@ public class RaycastHandler : MonoBehaviour
     Ray rr = new Ray();
     RaycastHit hit;
 
-    bool active;
+    private bool active = false;
 
     void Start()
     {
@@ -28,6 +28,12 @@ public class RaycastHandler : MonoBehaviour
         leap_hand = hand_model.GetLeapHand();
         if (leap_hand == null) Debug.LogError("No leap_hand founded");
         active = false;
+        resetLineRender();
+    }
+
+    void resetLineRender()
+    {
+        lineTester.enabled = false;
     }
 
     void Update()
