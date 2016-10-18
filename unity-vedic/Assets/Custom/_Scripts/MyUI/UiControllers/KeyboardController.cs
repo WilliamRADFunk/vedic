@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine.UI;
 
@@ -8,6 +8,8 @@ public class KeyboardController : MonoBehaviour {
     public Text topbar;
     StringBuilder sb = new StringBuilder("");
 
+    public List<GameObject> shiftObj;
+    public List<GameObject> normalObj;
 
     public void SetInputField(InputField inputField) {
         this.inputField = inputField;
@@ -27,6 +29,9 @@ public class KeyboardController : MonoBehaviour {
         return sb.ToString();
     }
 
+
+
+    //SpecalOperations
     public void backSpace() {
         if (inputField == null) {
             return;
@@ -37,9 +42,26 @@ public class KeyboardController : MonoBehaviour {
         inputField.text = sb.ToString();
         topbar.text = sb.ToString();
     }
-
     public void clearText() {
         sb = new StringBuilder();
+    }
+    public void Shift(Toggle t) {
+        if (t.isOn) {
+            foreach(GameObject go in shiftObj) {
+                go.SetActive(true);
+            }
+            foreach (GameObject go in normalObj) {
+                go.SetActive(false);
+            }
+        }
+        else {
+            foreach (GameObject go in normalObj) {
+                go.SetActive(true);
+            }
+            foreach (GameObject go in shiftObj) {
+                go.SetActive(false);
+            }
+        }
     }
 
     public InputField getInputField() {

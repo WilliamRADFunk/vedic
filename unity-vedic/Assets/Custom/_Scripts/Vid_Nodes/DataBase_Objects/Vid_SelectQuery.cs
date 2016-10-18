@@ -24,24 +24,23 @@ public class Vid_SelectQuery : Vid_Query
     public override string ToString() {
         StringBuilder sb = new StringBuilder("");
         if (inputs.getInput_atIndex(1) == null) {
-            sb.AppendLine(string.Format("{0," + TabTool.numberOfSpaces() + "}","SELECT *"));
+            sb.AppendLine(TabTool.TabCount() + "SELECT *");
         }
         else {
-            sb.AppendLine(string.Format("{0," + TabTool.numberOfSpaces() + "}", 
-                                            "SELECT " + inputs.getInput_atIndex(1).ToString()));
+            sb.AppendLine(TabTool.TabCount() +
+                                            "SELECT " + inputs.getInput_atIndex(1).ToString());
         }
         if (inputs.getInput_atIndex(0) == null) {
-            sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}", 
-                                        "FROM error:NoT"));
+            sb.Append(TabTool.TabCount() + "FROM error:NoT");
         }
         else {
-            sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}",
-                                        "FROM " + inputs.getInput_atIndex(0).ToString()));
+            sb.Append(TabTool.TabCount() +
+                                        "FROM " + inputs.getInput_atIndex(0).ToString());
         }
         if (inputs.getInput_atIndex(2) != null) {
             sb.AppendLine();
-            sb.Append(string.Format("{0," + TabTool.numberOfSpaces() + "}",
-                                       inputs.getInput_atIndex(2).ToString()));
+            sb.Append(TabTool.TabCount() +
+                                       inputs.getInput_atIndex(2).ToString());
         }
         return sb.ToString();
     }

@@ -16,14 +16,14 @@ public class Vid_DeleteQuery : Vid_Query
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
         if (inputs.getInput_atIndex(0) == null) {
-            sb.Append("DELETE FROM error::NoTable ");
+            sb.AppendLine("DELETE FROM error::NoTable ");
         }
         else {
-            sb.Append("DELETE FROM " + inputs.getInput_atIndex(0).ToString() +" ");
+            sb.AppendLine("DELETE FROM " + inputs.getInput_atIndex(0).ToString() + " ");
         }
-        if (inputs.getInput_atIndex(1) != null) {
-            sb.Append(inputs.getInput_atIndex(1).ToString());
-        }
+            if (inputs.getInput_atIndex(1) != null) {
+                sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+            }
         sb.Append(";");
         return sb.ToString();
     }

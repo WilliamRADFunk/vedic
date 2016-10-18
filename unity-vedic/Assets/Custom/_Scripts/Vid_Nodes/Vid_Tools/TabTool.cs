@@ -1,9 +1,20 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Text;
 
 public class TabTool  {
-    public static int tabindex = 0;
-    public static int numberOfSpaces() {
-        return tabindex * 25;
+    static int count = 0;
+    public static string TabCount() {
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < count; i++) {
+            sb.Append("\t");
+        }
+        return sb.ToString();
+    }
+    public static void incromentCount() {
+        count++;
+    }
+    public static void deccromentCount() {
+        if (count > 0) {
+            count--;
+        }
     }
 }
