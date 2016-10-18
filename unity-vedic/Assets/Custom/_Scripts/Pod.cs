@@ -59,7 +59,7 @@ public class Pod : MonoBehaviour {
 
         temp.transform.parent = gameObject.transform;
         temp.transform.localPosition = Vector3.zero;
-        temp.transform.localScale = new Vector3(0.8f,0.8f,0.8f);
+        temp.transform.localScale = new Vector3(1f,1f,1f);
 
         podHarness = temp;
         initialized = true;
