@@ -8,11 +8,12 @@ public class Vid_CreateQuery : Vid_Query
     public override void Awake() {
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE_TABLE;
-        inputs = new Vid_ObjectInputs(3);
-        acceptableInputs = new VidData_Type[3];
+        inputs = new Vid_ObjectInputs(4);
+        acceptableInputs = new VidData_Type[4];
             acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
             acceptableInputs[1] = VidData_Type.DATABASE_COL;
             acceptableInputs[2] = VidData_Type.DATABASE_COL;
+            acceptableInputs[3] = VidData_Type.LIST;
     }
 
     public override string ToString() {
@@ -28,6 +29,9 @@ public class Vid_CreateQuery : Vid_Query
         }
         if (inputs.getInput_atIndex(2) != null) {
             sb.Append("PRIMARY KEY (" + inputs.getInput_atIndex(2).ToString() + ")");
+        }
+        if (inputs.getInput_atIndex(3) != null) {
+            sb.Append("FOREIGN KEY(" + inputs.getInput_atIndex(3).ToString() + ")" + "REFERENCES (" +""+")");
         }
         sb.Append(")");
         return sb.ToString();
@@ -46,6 +50,20 @@ public class Vid_CreateQuery : Vid_Query
                 }
             case 1:
                 if (obj.output_dataType == VidData_Type.DATABASE_COL) {
+                    Vid_DB_Col col = (Vid_DB_Col)obj;
+                    col.colMode = Vid_DB_Col.ColState.DATA;
+                    bool b = base.addInput(obj, 1);
+                    return b;
+                }
+                if (obj.output_dataType == VidData_Type.LIST) {
+                    Vid_MultiInput multiIn = (Vid_MultiInput)obj;
+                    Vid_Object[] list = multiIn.getInputs().inputs;
+                    foreach(Vid_Object o in list) {
+                        if(o.output_dataType == VidData_Type.DATABASE_COL) {
+                            Vid_DB_Col col = (Vid_DB_Col)o;
+                            col.colMode = Vid_DB_Col.ColState.DATA;
+                        } 
+                    }
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
@@ -55,6 +73,18 @@ public class Vid_CreateQuery : Vid_Query
             case 2:
                 if (obj.output_dataType == VidData_Type.DATABASE_COL) {
                     bool b = base.addInput(obj, 2);
+                    Vid_DB_Col col = (Vid_DB_Col)obj;
+                    col.colMode = Vid_DB_Col.ColState.DATA;
+                    return b;
+                }
+                else {
+                    return false;
+                }
+            case 3:
+                if (obj.output_dataType == VidData_Type.DATABASE_COL) {
+                    bool b = base.addInput(obj, 2);
+                    Vid_DB_Col col = (Vid_DB_Col)obj;
+                    col.colMode = Vid_DB_Col.ColState.DATA;
                     return b;
                 }
                 else {

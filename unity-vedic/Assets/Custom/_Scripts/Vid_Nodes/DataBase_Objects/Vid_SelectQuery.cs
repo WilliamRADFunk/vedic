@@ -15,30 +15,30 @@ public class Vid_SelectQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.LIST;
         inputs = new Vid_ObjectInputs(3);
-        acceptableInputs = new VidData_Type[3];
+        acceptableInputs = new VidData_Type[5];
             acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
             acceptableInputs[1] = VidData_Type.DATABASE_COL;
-            acceptableInputs[2] = VidData_Type.DATABASE_CALUSE;
+            acceptableInputs[2] = VidData_Type.DATABASE_CLAUSE;
+            acceptableInputs[3] = VidData_Type.LIST;
+            acceptableInputs[4] = VidData_Type.NUM;
     }
 
     public override string ToString() {
         StringBuilder sb = new StringBuilder("");
         if (inputs.getInput_atIndex(1) == null) {
-            sb.AppendLine(TabTool.TabCount() + "SELECT *");
+            sb.AppendLine("SELECT *");
+        }
+        else {
+            sb.AppendLine( "SELECT " + inputs.getInput_atIndex(1).ToString());
+        }
+        if (inputs.getInput_atIndex(0) == null) {
+            sb.AppendLine(TabTool.TabCount() + "FROM error:NoT");
         }
         else {
             sb.AppendLine(TabTool.TabCount() +
-                                            "SELECT " + inputs.getInput_atIndex(1).ToString());
-        }
-        if (inputs.getInput_atIndex(0) == null) {
-            sb.Append(TabTool.TabCount() + "FROM error:NoT");
-        }
-        else {
-            sb.Append(TabTool.TabCount() +
                                         "FROM " + inputs.getInput_atIndex(0).ToString());
         }
         if (inputs.getInput_atIndex(2) != null) {
-            sb.AppendLine();
             sb.Append(TabTool.TabCount() +
                                        inputs.getInput_atIndex(2).ToString());
         }
@@ -54,6 +54,10 @@ public class Vid_SelectQuery : Vid_Query
                     bool b = base.addInput(obj, 0);
                     return b;
                 }
+                else if (obj.output_dataType == VidData_Type.LIST) {
+                    bool b = base.addInput(obj, 0);
+                    return b;
+                }
                 else {
                     return false;
                 }
@@ -62,11 +66,15 @@ public class Vid_SelectQuery : Vid_Query
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
+                else if (obj.output_dataType == VidData_Type.NUM) {
+                    bool b = base.addInput(obj, 0);
+                    return b;
+                }
                 else {
                     return false;
                 }
             case 2:
-                if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     bool b = base.addInput(obj, 2);
                     return b;
                 }

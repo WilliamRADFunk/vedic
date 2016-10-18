@@ -7,7 +7,7 @@ public class Vid_MySql_Where : Vid_Object
     public bool likeFlag = false;
 
     public Vid_MySql_Where() {
-        output_dataType = VidData_Type.DATABASE_CALUSE;
+        output_dataType = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override void Awake() {
@@ -17,7 +17,7 @@ public class Vid_MySql_Where : Vid_Object
             acceptableInputs[0] = VidData_Type.BOOL;
             acceptableInputs[1] = VidData_Type.LIST;
             acceptableInputs[2] = VidData_Type.DATABASE_COL;
-            acceptableInputs[3] = VidData_Type.DATABASE_CALUSE;
+            acceptableInputs[3] = VidData_Type.DATABASE_CLAUSE;
             acceptableInputs[4] = VidData_Type.STRING;
     }
 
@@ -90,7 +90,7 @@ public class Vid_MySql_Where : Vid_Object
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     inFlag = false;
                     likeFlag = false;
                     bool b = base.addInput(obj, 1);

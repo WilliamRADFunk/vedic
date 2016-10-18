@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Text;
-using System;
+﻿using System.Text;
 
 public class Vid_MultiInput : Vid_Object {
     public int inputSize = 1;
@@ -61,5 +58,10 @@ public class Vid_MultiInput : Vid_Object {
             }
         }
         return sb.ToString();
+    }
+    
+    /*Getter*/
+    public Vid_ObjectInputs getInputs() {
+        return inputs;
     }
 }

@@ -10,7 +10,7 @@ public class Vid_DeleteQuery : Vid_Query
         inputs = new Vid_ObjectInputs(2);
         acceptableInputs = new VidData_Type[2];
             acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.DATABASE_CALUSE;
+            acceptableInputs[1] = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override string ToString() {
@@ -40,7 +40,7 @@ public class Vid_DeleteQuery : Vid_Query
                     return false;
                 }
             case 1:
-                if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
