@@ -6743,7 +6743,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74051cfc81028d94bba92f8467b43e3c, type: 2}
+  - {fileID: 2100000, guid: c3fc5227485defd4c89e0169be3d19ee, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -14643,7 +14643,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74051cfc81028d94bba92f8467b43e3c, type: 2}
+  - {fileID: 2100000, guid: c3fc5227485defd4c89e0169be3d19ee, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -25355,7 +25355,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
