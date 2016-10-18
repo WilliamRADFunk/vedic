@@ -100,15 +100,18 @@ public class PodManager : MonoBehaviour {
         }
     }
 
-    private void Test()
+    public void SendPod(DatabaseUtilities.Table tab, string name)
     {
         Debug.Log("STARTING TEST...");
 
         Database test = new Database();
-        test.SetName("Bob");
+        test.SetName(name);
         test.tables = new List<DatabaseUtilities.Table>();
+        test.AddTable(tab);
 
-        DatabaseUtilities.Table t = new DatabaseUtilities.Table();
+        BuildPod(test);
+
+        /*DatabaseUtilities.Table t = new DatabaseUtilities.Table();
         t.SetName("Dean");
         t.SetId("T34");
         t.columns = new List<DatabaseUtilities.Column>();
@@ -132,6 +135,6 @@ public class PodManager : MonoBehaviour {
 
         test.AddTable(t);
 
-        BuildPod(test);
+    */
     }
 }
