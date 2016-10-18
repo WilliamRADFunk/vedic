@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public class SendQuery : MonoBehaviour
 {
+    public PodManager podManager; 
     public Text Output;
     public Text dbname;
     public Text hostname;
@@ -46,7 +47,8 @@ public class SendQuery : MonoBehaviour
                 // It should consist of a combo db name it came from, and select query random unique hash
                 DatabaseUtilities.SelectTable sTable = new DatabaseUtilities.SelectTable(podData, "Test123", "FunkSelectTable");
                 DatabaseUtilities.Table t = sTable.GetTable();
-                for(int i = 0; i < t.columns.Count; i++)
+                podManager.SendPod(t, dbname + "-" + t.columns[i].GetName());
+                for (int i = 0; i < t.columns.Count; i++)
                 {
                     Debug.Log("Name: " + t.columns[i].GetName() + "   ID: " + t.columns[i].GetId() + "   Color: " + t.columns[i].GetColor());
                     for (int j = 0; j < t.columns[i].fields.Count; j++)

@@ -1642,7 +1642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24adc9bade689a640bfa7323115942b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalar: 0
   lineTester: {fileID: 963832843}
 --- !u!1 &177013127 stripped
 GameObject:
@@ -6844,6 +6843,10 @@ Prefab:
     - target: {fileID: 478480, guid: f592ed28f38d6924eab18187ea40940a, type: 2}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 164878, guid: f592ed28f38d6924eab18187ea40940a, type: 2}
+      propertyPath: m_Name
+      value: Computer_Table
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f592ed28f38d6924eab18187ea40940a, type: 2}
@@ -12656,6 +12659,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012838956182, guid: fdf79634d36d27841988a7e5e05028d2,
+        type: 2}
+      propertyPath: podManager
+      value: 
+      objectReference: {fileID: 1141546074}
     m_RemovedComponents:
     - {fileID: 114000014219851714, guid: fdf79634d36d27841988a7e5e05028d2, type: 2}
     - {fileID: 114000010145410396, guid: fdf79634d36d27841988a7e5e05028d2, type: 2}
@@ -18508,7 +18516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24adc9bade689a640bfa7323115942b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalar: 2
   lineTester: {fileID: 553513802}
 --- !u!1 &1401102207
 GameObject:
@@ -24316,7 +24323,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -26147,6 +26154,10 @@ Prefab:
     - target: {fileID: 2361334, guid: e7a0852b746b19841be6a7e77e57f26a, type: 2}
       propertyPath: m_CastShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 140994, guid: e7a0852b746b19841be6a7e77e57f26a, type: 2}
+      propertyPath: m_Name
+      value: Big_Table
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7a0852b746b19841be6a7e77e57f26a, type: 2}
