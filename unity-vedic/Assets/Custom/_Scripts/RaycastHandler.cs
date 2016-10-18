@@ -17,23 +17,62 @@ public class RaycastHandler : MonoBehaviour
     Hand leap_hand;
 
     public LineRenderer lineTester;
+    Ray rr = new Ray();
+    RaycastHit hit;
+
+    bool active;
 
     void Start()
     {
         hand_model = GetComponent<HandModel>();
         leap_hand = hand_model.GetLeapHand();
         if (leap_hand == null) Debug.LogError("No leap_hand founded");
+        active = false;
     }
 
     void Update()
     {
-        
-        LineRenderer r = new LineRenderer();
-        lineTester.SetPosition(0, hand_model.GetPalmPosition());
-        lineTester.SetPosition(1,  hand_model.GetPalmDirection() + 2 * hand_model.GetPalmPosition());// * finger.GetTipPosition());
 
-        //FingerModel finger = hand_model.fingers[1];
-        //lineTester.SetPosition(0, finger.GetTipPosition());
-        //lineTester.SetPosition(1, finger.GetRay().direction + 50 * finger.GetTipPosition());// * finger.GetTipPosition());
+        if(active)
+        {
+            lineTester.enabled = true;
+            
+            lineTester.SetPosition(0, hand_model.GetPalmPosition());
+            lineTester.SetPosition(1, (hand_model.GetPalmDirection() * 20f));//+ 2 * hand_model.GetPalmPosition());// * finger.GetTipPosition());
+
+            rr.origin = hand_model.GetPalmPosition();
+            rr.direction = hand_model.GetPalmDirection();
+
+            int bitLayer = 1 << 15;
+
+            if (Physics.Raycast(hand_model.GetPalmPosition(), hand_model.GetPalmDirection(), out hit, Mathf.Infinity, bitLayer))
+            {
+                Debug.Log("RAYCAST HIT OBJECT!");
+                Debug.Log("Object name :: " + hit.collider.gameObject.name);
+
+                if (hit.collider.CompareTag("ViewTable"))
+                {
+                    hit.collider.gameObject.GetComponent<Table>().AltActivation();
+                }
+            }
+        }
+        else
+        {
+            lineTester.enabled = false;
+        }
+    }
+
+    public bool ToggleLineRenderer()
+    {
+        if(active)
+        {
+            active = false;
+        }
+        else
+        {
+            active = true;
+        }
+
+        return active;
     }
 }

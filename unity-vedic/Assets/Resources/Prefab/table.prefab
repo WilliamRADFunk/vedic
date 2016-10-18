@@ -21,9 +21,9 @@ GameObject:
   - 4: {fileID: 4000011308392314}
   - 114: {fileID: 114000013390448734}
   - 65: {fileID: 65000010895146778}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: table
-  m_TagString: Untagged
+  m_TagString: ViewTable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

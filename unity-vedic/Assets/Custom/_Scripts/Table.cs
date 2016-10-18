@@ -150,4 +150,19 @@ public class Table : MonoBehaviour, ViewObj
         timer--;
     }
 
+    public void AltActivation()
+    {
+        timer = 5;
+
+        if(!triggered)
+        {
+            triggered = true;
+            for (int i = 0; i < columns.Count; i++)
+            {
+                columns[i].GetComponent<Column>().columnTriggered(true);
+            }
+            t.UpdateText(ID, true);
+        }
+    }
+
 }

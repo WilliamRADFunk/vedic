@@ -47,7 +47,7 @@ public class SendQuery : MonoBehaviour
                 // It should consist of a combo db name it came from, and select query random unique hash
                 DatabaseUtilities.SelectTable sTable = new DatabaseUtilities.SelectTable(podData, "Test123", "FunkSelectTable");
                 DatabaseUtilities.Table t = sTable.GetTable();
-                podManager.SendPod(t, dbname + "-" + t.columns[i].GetName());
+                podManager.SendPod(t, dbname + "-" + t.GetName());
                 for (int i = 0; i < t.columns.Count; i++)
                 {
                     Debug.Log("Name: " + t.columns[i].GetName() + "   ID: " + t.columns[i].GetId() + "   Color: " + t.columns[i].GetColor());

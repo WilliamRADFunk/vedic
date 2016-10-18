@@ -8,6 +8,7 @@ public class PanelController : MonoBehaviour
     private bool isRTSon = false;
     private bool isKeyboard = false;
     private bool isNodeSpawner = false;
+    private bool isLaserOn = false;
     private GameObject tableHarManager;
     private GameObject DbImporter;
     private GameObject DbExporter;
@@ -21,6 +22,7 @@ public class PanelController : MonoBehaviour
     private GameObject MenuPods;
     public GameObject teleporter;
     private GameObject NodeSpawner;
+    public RaycastHandler[] Lasers;
 
     void Update()
     {
@@ -185,6 +187,23 @@ public class PanelController : MonoBehaviour
             isRTSon = false;
             tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
             MenuInput.SetActive(false);
+        }
+    }
+
+    public void ToggleLaser()
+    {
+        if (isLaserOn)
+        {
+            Lasers[0].GetComponent<RaycastHandler>().ToggleLineRenderer();
+            Lasers[1].GetComponent<RaycastHandler>().ToggleLineRenderer();
+            isLaserOn = false;
+        }
+        else
+        {
+            if (Lasers[0].GetComponent<RaycastHandler>().ToggleLineRenderer() && Lasers[1].GetComponent<RaycastHandler>().ToggleLineRenderer())
+            {
+                isLaserOn = true;
+            }
         }
     }
 
