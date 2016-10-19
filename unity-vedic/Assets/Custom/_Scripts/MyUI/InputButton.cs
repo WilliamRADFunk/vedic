@@ -61,20 +61,5 @@ public class InputButton : NodeButton {
         }
         ct.resetTool();
 
-        //foreach (VidData_Type d in acceptable_dataTypes)
-        //{
-        //    if (d == outputObj.output_dataType)
-        //    {
-        //        ct.setInputButton(this);
-        //        output.setIsUse(false);
-        //        bool b = vidObj.addInput(outputObj, argumentIndex);
-        //        if (b) {
-        //            used = true;
-        //            drawline = true;
-        //        }
-        //        ct.resetTool();
-        //        break;
-        //    }
-        //}
     }
 }

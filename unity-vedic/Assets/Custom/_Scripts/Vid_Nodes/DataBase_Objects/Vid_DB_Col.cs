@@ -110,6 +110,13 @@ public class Vid_DB_Col : Vid_Object {
         throw new NotImplementedException();
     }
 
+    public override bool addInput(Vid_Object obj) {
+        if (obj.output_dataType == VidData_Type.DATABASE_TABLE) {
+            return base.addInput(obj, 0);
+        }
+        return false;
+    }
+
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         if (obj.output_dataType == VidData_Type.DATABASE_TABLE) {
             return base.addInput(obj, argumentIndex);

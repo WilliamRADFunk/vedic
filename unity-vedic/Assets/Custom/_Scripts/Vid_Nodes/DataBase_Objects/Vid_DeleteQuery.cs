@@ -28,6 +28,21 @@ public class Vid_DeleteQuery : Vid_Query
         return sb.ToString();
     }
 
+    public override bool addInput(Vid_Object obj) {
+        // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
+        bool b = false;
+        switch (obj.output_dataType) {
+            case VidData_Type.DATABASE_TABLE:
+               b = base.addInput(obj, 0);
+               return b;
+            case VidData_Type.DATABASE_CALUSE:
+               b = base.addInput(obj, 1);
+               return b;
+        }
+        return false;
+    }
+
+
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
         switch (argumentIndex) {

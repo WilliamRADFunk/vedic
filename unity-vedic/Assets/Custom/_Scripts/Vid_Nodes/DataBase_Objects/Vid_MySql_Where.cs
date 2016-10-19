@@ -69,6 +69,36 @@ public class Vid_MySql_Where : Vid_Object
         return base.removeInput(argumentIndex);
     }
 
+
+    public override bool addInput(Vid_Object obj) {
+        bool b;
+        switch (obj.output_dataType) {
+            case VidData_Type.BOOL:
+            case VidData_Type.DATABASE_COL:
+                if (obj.output_dataType == VidData_Type.DATABASE_COL) {
+                        inFlag = true;
+                }
+                b = base.addInput(obj, 0);
+                return b;
+            case VidData_Type.LIST:
+                inFlag = true;
+                likeFlag = false;
+                b = base.addInput(obj, 1);
+                return b;
+            case VidData_Type.DATABASE_CALUSE:
+                inFlag = false;
+                likeFlag = false;
+                b = base.addInput(obj, 1);
+                return b;
+            case VidData_Type.STRING:
+                inFlag = false;
+                likeFlag = true;
+                b = base.addInput(obj, 1);
+                return b;
+        }
+        return false;
+    }
+
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         switch (argumentIndex) {
             case 0:
