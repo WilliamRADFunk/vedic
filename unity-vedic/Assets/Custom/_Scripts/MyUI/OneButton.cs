@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class OneButton : NodeButton {
 
-
+    LineRenderer lr;
     public OutputButton outButton;
     public Vid_Object vidObj;
 
@@ -34,10 +34,19 @@ public class OneButton : NodeButton {
             //}
             ct.resetTool();
         }
-
-
     }
 
+    void Update() {
+        if (drawline) {
+            if (!lineRender.enabled) {
+                lineRender.enabled = true;
+            }
+            Vector3[] points = new Vector3[2];
+            points[0] = output.transform.position;
+            points[1] = this.transform.position;
+            lineRender.SetPositions(points);
+        }
+    }
 
     private void transferData() {
       //  output = ct.getOutputButton();
