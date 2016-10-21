@@ -15,7 +15,22 @@ public class InputButton : NodeButton {
 
     public override void buttonPressed()
     {
-        if (used && ct.getOutputButton() == null)
+        if (used && ct.getOutputButton() != null) {
+            if (ct.getOutputButton().inButton.Equals(this)) {
+                ct.getOutputButton().setIsUse(false);
+                lineRender.enabled = false;
+                drawline = false;
+
+                vidObj.removeInput(argumentIndex);
+
+                output = null;
+                used = false;
+                ct.resetTool();
+            }
+
+        }
+
+        else if (used && ct.getOutputButton() == null)
         {
             lineRender.enabled = false;
             drawline = false;
@@ -59,7 +74,7 @@ public class InputButton : NodeButton {
             used = true;
             drawline = true;
         }
+        output.inButton = this;
         ct.resetTool();
-
     }
 }

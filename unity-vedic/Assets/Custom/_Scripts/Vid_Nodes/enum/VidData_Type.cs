@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum  VidData_Type {
+public enum VidData_Type {
+    ASSINMENT,
     DATABASE,
     DATABASE_COL,
     DATABASE_TABLE,

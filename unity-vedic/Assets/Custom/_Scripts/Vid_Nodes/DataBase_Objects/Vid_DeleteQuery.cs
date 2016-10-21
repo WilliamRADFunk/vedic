@@ -66,4 +66,14 @@ public class Vid_DeleteQuery : Vid_Query
         return false;
     }
 
+    /*Helper Functions*/
+    public override int AcceptedInputIndex(VidData_Type t) {
+        switch (t) {
+            case VidData_Type.DATABASE_TABLE:
+                return 0;
+            case VidData_Type.DATABASE_CALUSE:
+                return 1;
+        }
+        return -1;
+    }
 }

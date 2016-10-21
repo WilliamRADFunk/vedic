@@ -26,7 +26,11 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
         }
        return false;
     }
-   
+
+    public virtual int AcceptedInputIndex(VidData_Type t) {
+        return -1;
+    }
+
     /* Getters */
     public VidData_Type[] getAcceptableInputs() {
         return acceptableInputs;

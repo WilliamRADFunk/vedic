@@ -5,6 +5,7 @@ public class OutputButton : NodeButton {
     public int outputIndex = 0;
     public Vid_Object vid_obj;
     public bool inUse = false;
+    public InputButton inButton;
 
     public override void buttonPressed()
     {

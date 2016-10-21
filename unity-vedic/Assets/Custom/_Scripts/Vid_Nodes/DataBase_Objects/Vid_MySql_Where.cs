@@ -138,4 +138,18 @@ public class Vid_MySql_Where : Vid_Object
         }
         return false;
     }
+
+    /*Helper Functions*/
+    public override int AcceptedInputIndex(VidData_Type t) {
+        switch (t) {
+            case VidData_Type.BOOL:
+            case VidData_Type.DATABASE_COL:
+                return 0;
+            case VidData_Type.LIST:
+            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.STRING:
+                return 1;
+        }
+        return -1;
+    }
 }

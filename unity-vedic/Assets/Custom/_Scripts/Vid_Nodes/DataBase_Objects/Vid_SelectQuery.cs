@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using UnityEngine;
 
 public class Vid_SelectQuery : Vid_Query
 {
@@ -51,6 +52,7 @@ public class Vid_SelectQuery : Vid_Query
         bool b = false;
         switch (obj.output_dataType) {
             case VidData_Type.DATABASE_TABLE:
+                Debug.Log("this is a test:1");
                 b = base.addInput(obj, 0);
                 return b;
             case VidData_Type.DATABASE_COL:
@@ -62,7 +64,6 @@ public class Vid_SelectQuery : Vid_Query
         }
         return false;
     }
-
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
         switch (argumentIndex) {
@@ -94,4 +95,17 @@ public class Vid_SelectQuery : Vid_Query
         return false;
     }
 
+
+    /*Helper Functions*/
+    public override int AcceptedInputIndex(VidData_Type t) {
+        switch (t) {
+            case VidData_Type.DATABASE_TABLE:
+                return 0;
+            case VidData_Type.DATABASE_COL:
+                return 1;
+            case VidData_Type.DATABASE_CALUSE:
+                return 2;
+        }
+        return -1;
+    }
 }

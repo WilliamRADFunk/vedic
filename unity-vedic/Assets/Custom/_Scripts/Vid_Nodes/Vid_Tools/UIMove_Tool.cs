@@ -45,8 +45,8 @@ public class UIMove_Tool : MonoBehaviour {
         com = holding.GetComponent<Vid_ObjContainer>();
         if (com == null) { return; }
 
-        Text t = com.getText();
-        t.text = "Active";
+        //Text t = com.getText();
+        //t.text = "Active";
         Image i = com.selectButton_background;
         if (i != null) {
             i.color = Color.green;
@@ -66,8 +66,8 @@ public class UIMove_Tool : MonoBehaviour {
             holding = null;
             return;
         }
-        Text t = com.getText();
-        t.text = "Select";
+        //Text t = com.getText();
+        //t.text = "Select";
         Image i = com.selectButton_background;
         if (i != null) {
             i.color = Color.white;

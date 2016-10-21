@@ -124,6 +124,15 @@ public class Vid_DB_Col : Vid_Object {
         return false;
     }
 
+    /*Helper Functions*/
+    public override int AcceptedInputIndex(VidData_Type t) {
+        switch (t) {
+            case VidData_Type.DATABASE_TABLE:
+                return 0;
+        }
+        return -1;
+    }
+
     /*Getters*/
     public bool isNotNull(){ return notNull; }
     public int getCarVarNumber() { return charvar_Number; }
