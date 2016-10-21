@@ -1699,7 +1699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24adc9bade689a640bfa7323115942b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineTester: {fileID: 963832843}
+  lControl: {fileID: 2107593089}
+  line: {fileID: 963832843}
 --- !u!1 &177013127 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011717010184, guid: fdf79634d36d27841988a7e5e05028d2,
@@ -19309,7 +19310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24adc9bade689a640bfa7323115942b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineTester: {fileID: 553513802}
+  lControl: {fileID: 2107593089}
+  line: {fileID: 553513802}
 --- !u!95 &1396996564
 Animator:
   serializedVersion: 3
@@ -30318,6 +30320,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2107593088}
+  - 114: {fileID: 2107593089}
   m_Layer: 0
   m_Name: Environment
   m_TagString: enviorment
@@ -30349,6 +30352,23 @@ Transform:
   - {fileID: 1454993758}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &2107593089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2107593087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7c48d063daae14291276673863ce23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftHand: {fileID: 175745782}
+  RightHand: {fileID: 1396996561}
+  leftLine: {fileID: 963832843}
+  rightLine: {fileID: 553513802}
+  leftHanded: 1
+  rightHanded: 1
 --- !u!1 &2129022462
 GameObject:
   m_ObjectHideFlags: 0
