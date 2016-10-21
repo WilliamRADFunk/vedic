@@ -15575,7 +15575,11 @@ Prefab:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1886097244}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000011932681048, guid: 1188e37317b32264892f91eefb73ad48, type: 2}
+    - {fileID: 114000012380930392, guid: 1188e37317b32264892f91eefb73ad48, type: 2}
+    - {fileID: 114000012507081168, guid: 1188e37317b32264892f91eefb73ad48, type: 2}
+    - {fileID: 114000012967575838, guid: 1188e37317b32264892f91eefb73ad48, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1188e37317b32264892f91eefb73ad48, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1093206777 stripped
