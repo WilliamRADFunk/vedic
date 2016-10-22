@@ -20,19 +20,15 @@ public class LaserController : MonoBehaviour {
     bool active;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         active = false;
-        InvokeRepeating("ManageLines", 1.0f, 1.0f);
-	}
-	
-	// Update is called once per frame
-	void Update () { 
-	}
+    }
 
     public void UpdateLineState(bool state)
     {
         active = state;
+        ManageLines();
         
     }
 

@@ -13780,6 +13780,10 @@ Prefab:
       propertyPath: m_Name
       value: Keyboard
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012176609562, guid: 19866988261c99644bfa1e4c145cc075, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19866988261c99644bfa1e4c145cc075, type: 2}
   m_IsPrefabParent: 0

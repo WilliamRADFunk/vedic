@@ -53,6 +53,10 @@ public class RaycastHandler : MonoBehaviour
                 }
             }
         }
+
+        if(gameObject.activeInHierarchy == false) {
+            lControl.UpdateLineState(active);
+        }
     }
 
     public bool ToggleLineRenderer()
@@ -69,4 +73,6 @@ public class RaycastHandler : MonoBehaviour
         lControl.UpdateLineState(active);
         return active;
     }
+
+    
 }
