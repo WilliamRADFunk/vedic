@@ -7,7 +7,7 @@ public class Vid_OrderBy : Vid_MultiInput {
     public bool[] isDesc;
 
     public Vid_OrderBy() {
-        output_dataType = VidData_Type.DATABASE_CALUSE;
+        output_dataType = VidData_Type.DATABASE_CLAUSE;
     }
     public override void Awake() {
         base.Awake();

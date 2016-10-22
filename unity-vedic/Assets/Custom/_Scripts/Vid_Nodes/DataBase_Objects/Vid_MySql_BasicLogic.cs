@@ -4,19 +4,23 @@ using System.Text;
 
 public class Vid_MySql_BasicLogic : Vid_Object {
 
+    public enum BasicLogic {
+        AND,
+        OR
+    }
     public BasicLogic logicType = BasicLogic.AND;
 
     public Vid_MySql_BasicLogic() {
-        output_dataType = VidData_Type.BOOL;
+        output_dataType = VidData_Type.WHERE_STATMENT;
     }
 
     public override void Awake() {
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[3];
+        acceptableInputs = new VidData_Type[4];
             acceptableInputs[0] = VidData_Type.DATABASE_COL;
-            acceptableInputs[1] = VidData_Type.NUM;
-            acceptableInputs[2] = VidData_Type.STRING;
+            acceptableInputs[3] = VidData_Type.WHERE_STATMENT;
     }
+
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
         if (inputs.getInput_atIndex(0) == null
@@ -41,7 +45,7 @@ public class Vid_MySql_BasicLogic : Vid_Object {
     }
     /*Builder functions*/
     public override bool addInput(Vid_Object obj, int index) {
-        if (obj.output_dataType == VidData_Type.BOOL) {
+        if (obj.output_dataType == VidData_Type.WHERE_STATMENT) {
             return base.addInput(obj, index);
         }
         return false;

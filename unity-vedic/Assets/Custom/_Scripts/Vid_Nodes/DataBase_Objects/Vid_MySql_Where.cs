@@ -7,17 +7,15 @@ public class Vid_MySql_Where : Vid_Object
     public bool likeFlag = false;
 
     public Vid_MySql_Where() {
-        output_dataType = VidData_Type.DATABASE_CALUSE;
+        output_dataType = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override void Awake() {
         base.Awake();
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[6];
-            acceptableInputs[0] = VidData_Type.BOOL;
-            acceptableInputs[1] = VidData_Type.LIST;
-            acceptableInputs[2] = VidData_Type.DATABASE_COL;
-            acceptableInputs[3] = VidData_Type.DATABASE_CALUSE;
+        acceptableInputs = new VidData_Type[5];
+            acceptableInputs[0] = VidData_Type.WHERE_STATMENT;
+            acceptableInputs[3] = VidData_Type.DATABASE_CLAUSE;
             acceptableInputs[4] = VidData_Type.STRING;
             acceptableInputs[5] = VidData_Type.Q_SELECT;
     }
@@ -91,7 +89,7 @@ public class Vid_MySql_Where : Vid_Object
                 likeFlag = false;
                 b = base.addInput(obj, 1);
                 return b;
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
                 inFlag = false;
                 likeFlag = false;
                 b = base.addInput(obj, 1);
@@ -132,7 +130,7 @@ public class Vid_MySql_Where : Vid_Object
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                else if(obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                else if(obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     inFlag = false;
                     likeFlag = false;
                     bool b = base.addInput(obj, 1);
@@ -159,7 +157,7 @@ public class Vid_MySql_Where : Vid_Object
                 return 0;
             case VidData_Type.LIST:
             case VidData_Type.Q_SELECT:
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
             case VidData_Type.STRING:
                 return 1;
         }

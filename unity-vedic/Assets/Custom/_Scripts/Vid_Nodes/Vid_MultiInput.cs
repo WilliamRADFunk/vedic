@@ -7,7 +7,7 @@ public class Vid_MultiInput : Vid_Object {
     public int inputSize = 1;
 
     public Vid_MultiInput(){
-        output_dataType = VidData_Type.DATABASE_COL;
+        output_dataType = VidData_Type.LIST;
     }
 
     public override void Awake() {

@@ -14,7 +14,7 @@ public class Vid_UpdateQuery : Vid_Query
         acceptableInputs = new VidData_Type[3];
             acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
             acceptableInputs[1] = VidData_Type.ASSINMENT;
-            acceptableInputs[2] = VidData_Type.DATABASE_CALUSE;
+            acceptableInputs[2] = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override string ToString() {
@@ -44,7 +44,7 @@ public class Vid_UpdateQuery : Vid_Query
             case VidData_Type.ASSINMENT:
                 b = base.addInput(obj, 1);
                 return b;
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
                 b = base.addInput(obj, 2);
                 return b;
         }
@@ -72,7 +72,7 @@ public class Vid_UpdateQuery : Vid_Query
                     return false;
                 }
             case 2:
-                if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     bool b = base.addInput(obj, 2);
                     return b;
                 }
@@ -91,7 +91,7 @@ public class Vid_UpdateQuery : Vid_Query
                 return 0;
             case VidData_Type.ASSINMENT:
                 return 1;
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
                 return 2;
         }
         return -1;

@@ -14,7 +14,7 @@ public class Vid_Join : Vid_Object {
     JoinType jointype = JoinType.INNER;
 
     public Vid_Join() {
-        output_dataType = VidData_Type.DATABASE_CALUSE;
+        output_dataType = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override void Awake() {
@@ -23,7 +23,7 @@ public class Vid_Join : Vid_Object {
         acceptableInputs = new VidData_Type[3];
         acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
         acceptableInputs[1] = VidData_Type.ASSINMENT;
-        acceptableInputs[2] = VidData_Type.DATABASE_CALUSE;
+        acceptableInputs[2] = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override string ToString() {
@@ -49,8 +49,10 @@ public class Vid_Join : Vid_Object {
             sb.AppendLine(inputs.getInput_atIndex(0).ToString());
         }
 
-        if(inputs.getInput_atIndex(1) != null) {
-            sb.AppendLine("ON " + inputs.getInput_atIndex(1).ToString());
+        if(jointype != JoinType.NATURAL) {
+            if (inputs.getInput_atIndex(1) != null) {
+                sb.AppendLine("ON " + inputs.getInput_atIndex(1).ToString());
+            }
         }
 
         if (inputs.getInput_atIndex(2) != null) {
@@ -75,7 +77,7 @@ public class Vid_Join : Vid_Object {
             case VidData_Type.ASSINMENT:
                 b = base.addInput(obj, 1);
                 return b;
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
                 b = base.addInput(obj, 2);
                 return b;
         }
@@ -102,7 +104,7 @@ public class Vid_Join : Vid_Object {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                else if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                else if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
@@ -124,7 +126,7 @@ public class Vid_Join : Vid_Object {
                 return 0;
             case VidData_Type.ASSINMENT:
                 return 1;
-            case VidData_Type.DATABASE_CALUSE:
+            case VidData_Type.DATABASE_CLAUSE:
                 return 2;
         }
         return -1;
