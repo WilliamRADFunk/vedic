@@ -13,12 +13,13 @@ public class Vid_MySql_Where : Vid_Object
     public override void Awake() {
         base.Awake();
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[5];
+        acceptableInputs = new VidData_Type[6];
             acceptableInputs[0] = VidData_Type.BOOL;
             acceptableInputs[1] = VidData_Type.LIST;
             acceptableInputs[2] = VidData_Type.DATABASE_COL;
             acceptableInputs[3] = VidData_Type.DATABASE_CALUSE;
             acceptableInputs[4] = VidData_Type.STRING;
+            acceptableInputs[5] = VidData_Type.Q_SELECT;
     }
 
     public override string ToString() 
@@ -60,7 +61,6 @@ public class Vid_MySql_Where : Vid_Object
         }
         return sb.ToString();
     }
-
     public override bool removeInput(int argumentIndex) {
         if(argumentIndex == 0) {
             inFlag = false;
@@ -69,11 +69,12 @@ public class Vid_MySql_Where : Vid_Object
         return base.removeInput(argumentIndex);
     }
 
-
     public override bool addInput(Vid_Object obj) {
         bool b;
         switch (obj.output_dataType) {
             case VidData_Type.BOOL:
+                b = base.addInput(obj, 0);
+                return b;
             case VidData_Type.DATABASE_COL:
                 if (obj.output_dataType == VidData_Type.DATABASE_COL) {
                         inFlag = true;
@@ -81,6 +82,11 @@ public class Vid_MySql_Where : Vid_Object
                 b = base.addInput(obj, 0);
                 return b;
             case VidData_Type.LIST:
+                inFlag = true;
+                likeFlag = false;
+                b = base.addInput(obj, 1);
+                return b;
+            case VidData_Type.Q_SELECT:
                 inFlag = true;
                 likeFlag = false;
                 b = base.addInput(obj, 1);
@@ -120,13 +126,19 @@ public class Vid_MySql_Where : Vid_Object
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                if (obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
+                else if (obj.output_dataType == VidData_Type.Q_SELECT) {
+                    inFlag = true;
+                    likeFlag = false;
+                    bool b = base.addInput(obj, 1);
+                    return b;
+                }
+                else if(obj.output_dataType == VidData_Type.DATABASE_CALUSE) {
                     inFlag = false;
                     likeFlag = false;
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                if (obj.output_dataType == VidData_Type.STRING) {
+                else if(obj.output_dataType == VidData_Type.STRING) {
                     inFlag = false;
                     likeFlag = true;
                     bool b = base.addInput(obj, 1);
@@ -146,6 +158,7 @@ public class Vid_MySql_Where : Vid_Object
             case VidData_Type.DATABASE_COL:
                 return 0;
             case VidData_Type.LIST:
+            case VidData_Type.Q_SELECT:
             case VidData_Type.DATABASE_CALUSE:
             case VidData_Type.STRING:
                 return 1;
