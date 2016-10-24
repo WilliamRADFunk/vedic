@@ -7,15 +7,16 @@ public class Vid_Where_Condition : Vid_Object {
     public Condition_Type conditionType = Condition_Type.EQU;
 
     public Vid_Where_Condition() {
-        output_dataType = VidData_Type.BOOL;
+        output_dataType = VidData_Type.WHERE_STATMENT;
     }
 
     public override void Awake() {
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[3];
+        acceptableInputs = new VidData_Type[4];
             acceptableInputs[0] = VidData_Type.DATABASE_COL;
             acceptableInputs[1] = VidData_Type.NUM;
             acceptableInputs[2] = VidData_Type.STRING;
+            acceptableInputs[3] = VidData_Type.BOOL;
     }
 
     public override string ToString() {

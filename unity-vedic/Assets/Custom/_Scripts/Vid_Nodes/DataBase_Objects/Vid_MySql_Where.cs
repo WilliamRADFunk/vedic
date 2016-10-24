@@ -4,7 +4,6 @@ public class Vid_MySql_Where : Vid_Object
 {
     public bool isEXISTS = false;
     public bool inFlag = false;
-    public bool likeFlag = false;
 
     public Vid_MySql_Where() {
         output_dataType = VidData_Type.DATABASE_CLAUSE;
@@ -13,15 +12,16 @@ public class Vid_MySql_Where : Vid_Object
     public override void Awake() {
         base.Awake();
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[5];
+        acceptableInputs = new VidData_Type[4];
             acceptableInputs[0] = VidData_Type.WHERE_STATMENT;
-            acceptableInputs[3] = VidData_Type.DATABASE_CLAUSE;
-            acceptableInputs[4] = VidData_Type.STRING;
-            acceptableInputs[5] = VidData_Type.Q_SELECT;
+            acceptableInputs[1] = VidData_Type.DATABASE_CLAUSE;
+            acceptableInputs[2] = VidData_Type.STRING;
+            acceptableInputs[3] = VidData_Type.Q_SELECT;
     }
 
     public override string ToString() 
     {
+        bool flag = false;
         StringBuilder sb = new StringBuilder();
         sb.Append("WHERE ");
         if (inputs.getInput_atIndex(0) != null) {
@@ -29,9 +29,7 @@ public class Vid_MySql_Where : Vid_Object
                 sb.Append(inputs.getInput_atIndex(0).ToString());
                 if (inFlag) {
                     sb.Append(" IN \n");
-                }
-                else if (likeFlag) {
-                    sb.Append(" LIKE \n");
+                    flag = true;
                 }
             }
             else {
@@ -50,7 +48,8 @@ public class Vid_MySql_Where : Vid_Object
                 sb.AppendLine("NOT EXISTS");
             }
         }
-        if(inputs.getInput_atIndex(1) != null) {
+        if(inputs.getInput_atIndex(1) != null &&
+                flag) {
             sb.AppendLine(TabTool.TabCount() + "(");
             TabTool.incromentCount();
             sb.Append(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
@@ -70,7 +69,7 @@ public class Vid_MySql_Where : Vid_Object
     public override bool addInput(Vid_Object obj) {
         bool b;
         switch (obj.output_dataType) {
-            case VidData_Type.BOOL:
+            case VidData_Type.WHERE_STATMENT:
                 b = base.addInput(obj, 0);
                 return b;
             case VidData_Type.DATABASE_COL:
@@ -81,22 +80,14 @@ public class Vid_MySql_Where : Vid_Object
                 return b;
             case VidData_Type.LIST:
                 inFlag = true;
-                likeFlag = false;
                 b = base.addInput(obj, 1);
                 return b;
             case VidData_Type.Q_SELECT:
                 inFlag = true;
-                likeFlag = false;
                 b = base.addInput(obj, 1);
                 return b;
             case VidData_Type.DATABASE_CLAUSE:
                 inFlag = false;
-                likeFlag = false;
-                b = base.addInput(obj, 1);
-                return b;
-            case VidData_Type.STRING:
-                inFlag = false;
-                likeFlag = true;
                 b = base.addInput(obj, 1);
                 return b;
         }
@@ -106,10 +97,13 @@ public class Vid_MySql_Where : Vid_Object
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         switch (argumentIndex) {
             case 0:
-                if (obj.output_dataType == VidData_Type.BOOL
+                if (obj.output_dataType == VidData_Type.WHERE_STATMENT
                     || obj.output_dataType == VidData_Type.DATABASE_COL) {
                     if (obj.output_dataType == VidData_Type.DATABASE_COL) {
                         inFlag = true;
+                    }
+                    else {
+                        inFlag = false;
                     }
                     bool b = base.addInput(obj, 0);
                     return b;
@@ -120,25 +114,16 @@ public class Vid_MySql_Where : Vid_Object
             case 1:
                 if (obj.output_dataType == VidData_Type.LIST) {
                     inFlag = true;
-                    likeFlag = false;
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
                 else if (obj.output_dataType == VidData_Type.Q_SELECT) {
                     inFlag = true;
-                    likeFlag = false;
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                else if(obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
+                else if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     inFlag = false;
-                    likeFlag = false;
-                    bool b = base.addInput(obj, 1);
-                    return b;
-                }
-                else if(obj.output_dataType == VidData_Type.STRING) {
-                    inFlag = false;
-                    likeFlag = true;
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
