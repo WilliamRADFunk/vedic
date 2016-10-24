@@ -137,7 +137,12 @@ public class Vid_DB_Col : Vid_Object {
     public bool isNotNull(){ return notNull; }
     public int getCarVarNumber() { return charvar_Number; }
     public bool getSetable() { return isSetable; }
-
+    public string getTableName() {
+        if(inputs.getInput_atIndex(0) != null) {
+            return inputs.getInput_atIndex(0).ToString();
+        }
+        return "";
+    }
     /*Setters*/
     public void set_NotNull(bool b){this.notNull = b; }
     public void setCarVarNumber(int i) { this.charvar_Number = i; }
