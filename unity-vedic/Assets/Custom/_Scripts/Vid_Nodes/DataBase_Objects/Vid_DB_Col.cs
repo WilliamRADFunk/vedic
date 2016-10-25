@@ -11,7 +11,7 @@ public class Vid_DB_Col : Vid_Object {
     public ColState colMode = ColState.NAME;
     public MySql_colTypes type = MySql_colTypes.MYSQL_INT;
 
-    public string colName;
+    public string colName = "defaultNAME";
     public string cellName = "defaultNAME";
     public string asName = "defaultNAME" ;
 

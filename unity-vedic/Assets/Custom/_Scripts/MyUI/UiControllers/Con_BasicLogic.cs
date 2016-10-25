@@ -35,7 +35,7 @@ public class Con_BasicLogic : MonoBehaviour {
             case Vid_MySql_BasicLogic.BasicLogic.OR:
                 vidObj.logicType = Vid_MySql_BasicLogic.BasicLogic.AND;
                 if (dataText != null) {
-                    dataText.text = "ADD";
+                    dataText.text = "AND";
                 }
                 break;
         }

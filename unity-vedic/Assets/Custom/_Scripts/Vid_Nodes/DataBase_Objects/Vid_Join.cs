@@ -11,7 +11,7 @@ public class Vid_Join : Vid_Object {
         RIGHT,
         NATURAL
     }
-    JoinType jointype = JoinType.INNER;
+    public JoinType jointype = JoinType.INNER;
 
     public Vid_Join() {
         output_dataType = VidData_Type.DATABASE_CLAUSE;

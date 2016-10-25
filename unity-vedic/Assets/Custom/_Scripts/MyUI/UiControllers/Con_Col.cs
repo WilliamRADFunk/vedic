@@ -17,7 +17,9 @@ public class Con_Col : MonoBehaviour {
     // Use this for initialization
     void Start () {
         db = VedicDatabase.db;
-        if (vidObj != null && dataText != null) {
+        if (vidObj != null && inField_ColName != null
+            && dataText != null) {
+            inField_ColName.text = vidObj.colName;
             dataText.text = vidObj.colName;
         }
         if (vidObj != null && colDataTypeText != null) {
