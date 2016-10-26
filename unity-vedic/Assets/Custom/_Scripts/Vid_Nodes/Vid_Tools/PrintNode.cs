@@ -13,9 +13,15 @@ public class PrintNode : MonoBehaviour {
 
     public void SetMySQLQuery() {
         if (ut == null) { return; }
-        Vid_Object vidObj = ut.gameObject.GetComponent<Vid_Object>();
-        if (vidObj != null) {
-            NodePrinter.GetInstance().vidObj = vidObj;
+        Vid_Object vidObj;
+        GameObject go =  ut.GetRoot();
+        if(go != null) {
+            vidObj = go.GetComponent<Vid_Object>();
+            if (vidObj != null) {
+                NodePrinter np = NodePrinter.GetInstance();
+                np.vidObj = vidObj;
+                np.PrintText();
+            }
         }
     }
 }

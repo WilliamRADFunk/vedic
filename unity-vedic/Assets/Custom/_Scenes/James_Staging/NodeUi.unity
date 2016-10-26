@@ -1028,12 +1028,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 26861747}
   - 82: {fileID: 26861752}
-  - 114: {fileID: 26861751}
-  - 114: {fileID: 26861749}
   - 114: {fileID: 26861750}
   - 114: {fileID: 26861748}
   m_Layer: 0
-  m_Name: NewInsertQuery
+  m_Name: InsertQuery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,7 +1045,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 26861746}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020990028}
-  m_LocalPosition: {x: -0.832, y: 0.003, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1068,20 +1066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output_dataType: 1
   valuesFlage: 1
---- !u!114 &26861749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 26861746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 26861747}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &26861750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,20 +1079,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &26861751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 26861746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 353096510}
-  selectButton_background: {fileID: 353096514}
 --- !u!82 &26861752
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3753,7 +3723,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: changeColMod
         m_Mode: 2
         m_Arguments:
@@ -4312,8 +4282,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 138108608}
   - 82: {fileID: 138108631}
-  - 114: {fileID: 138108630}
-  - 114: {fileID: 138108628}
   - 114: {fileID: 138108629}
   - 114: {fileID: 138108619}
   m_Layer: 0
@@ -4530,6 +4498,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 138108617}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -4566,20 +4545,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 138108615}
---- !u!114 &138108628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138108617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 138108608}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &138108629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4593,20 +4558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &138108630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138108617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 138108609}
-  selectButton_background: {fileID: 138108610}
 --- !u!82 &138108631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5413,6 +5364,11 @@ Prefab:
       propertyPath: fileObj
       value: 
       objectReference: {fileID: 1486903360}
+    - target: {fileID: 114000013123458902, guid: 99c017b6df612b14fae9e6f5b84c6539,
+        type: 2}
+      propertyPath: parentObj
+      value: 
+      objectReference: {fileID: 1486903360}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99c017b6df612b14fae9e6f5b84c6539, type: 2}
   m_IsPrefabParent: 0
@@ -5849,7 +5805,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: setAsflag
         m_Mode: 2
         m_Arguments:
@@ -7753,7 +7709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9011,10 +8967,10 @@ RectTransform:
   - {fileID: 2041393372}
   m_Father: {fileID: 1543556166}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -205}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &326101540
 MonoBehaviour:
@@ -9420,7 +9376,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: changeDataType
         m_Mode: 2
         m_Arguments:
@@ -9899,6 +9855,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 26861746}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -10323,7 +10290,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: setCellName
         m_Mode: 2
         m_Arguments:
@@ -12166,7 +12133,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: setCellName
         m_Mode: 2
         m_Arguments:
@@ -13249,7 +13216,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 446520719}
   - 82: {fileID: 446520724}
-  - 114: {fileID: 446520723}
   - 114: {fileID: 446520720}
   - 114: {fileID: 446520722}
   - 114: {fileID: 446520721}
@@ -13325,20 +13291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &446520723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 446520718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 1551728148}
-  selectButton_background: {fileID: 1551728152}
 --- !u!82 &446520724
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14607,7 +14559,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: changeDataType
         m_Mode: 2
         m_Arguments:
@@ -15117,7 +15069,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: changeColMod
         m_Mode: 2
         m_Arguments:
@@ -16392,12 +16344,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 545899107}
   - 82: {fileID: 545899112}
-  - 114: {fileID: 545899111}
-  - 114: {fileID: 545899109}
   - 114: {fileID: 545899110}
   - 114: {fileID: 545899108}
   m_Layer: 0
-  m_Name: NewDeleteQuery
+  m_Name: DeleteQuery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16411,7 +16361,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545899106}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020990028}
-  m_LocalPosition: {x: -0.832, y: 0.554, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -16431,20 +16381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   output_dataType: 1
---- !u!114 &545899109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 545899106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 545899107}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &545899110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16458,20 +16394,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &545899111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 545899106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 839958814}
-  selectButton_background: {fileID: 839958818}
 --- !u!82 &545899112
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18426,7 +18348,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: setAsflag
         m_Mode: 2
         m_Arguments:
@@ -19932,7 +19854,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: changeDataType
         m_Mode: 2
         m_Arguments:
@@ -20068,6 +19990,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 662660770}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1314025849}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -20280,6 +20213,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 670861942}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1390628346}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -21384,7 +21328,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: setCellName
         m_Mode: 2
         m_Arguments:
@@ -21478,7 +21422,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 712249071}
   - 82: {fileID: 712249074}
-  - 114: {fileID: 712249076}
   - 114: {fileID: 712249073}
   - 114: {fileID: 712249072}
   - 114: {fileID: 712249075}
@@ -21490,7 +21433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &712249071
 Transform:
   m_ObjectHideFlags: 0
@@ -21499,7 +21442,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 712249070}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020861623}
-  m_LocalPosition: {x: 0.77, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -21624,20 +21567,6 @@ MonoBehaviour:
   button: {fileID: 2103617829}
   layout: {fileID: 668606507}
   buttons: []
---- !u!114 &712249076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000011406817136, guid: 246b02853d4b90b478ea1dc5b03ef19d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 712249070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 0}
-  selectButton_background: {fileID: 0}
 --- !u!114 &712249077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25147,8 +25076,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 827786300}
   - 82: {fileID: 827786305}
-  - 114: {fileID: 827786304}
-  - 114: {fileID: 827786303}
   - 114: {fileID: 827786302}
   - 114: {fileID: 827786301}
   - 114: {fileID: 827786306}
@@ -25167,7 +25094,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 827786299}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020990028}
-  m_LocalPosition: {x: 0, y: 0.008, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -25200,34 +25127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &827786303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 827786299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 827786300}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
---- !u!114 &827786304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 827786299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 1280052}
-  selectButton_background: {fileID: 1280056}
 --- !u!82 &827786305
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25614,6 +25513,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1438269680}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -25966,6 +25876,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 839958816}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 545899106}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -29170,6 +29091,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1120969317}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -29438,7 +29370,7 @@ MonoBehaviour:
         m_MethodName: setholding
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 712249070}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -34410,7 +34342,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: setColName
         m_Mode: 2
         m_Arguments:
@@ -35322,12 +35254,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1120969318}
   - 82: {fileID: 1120969323}
-  - 114: {fileID: 1120969322}
-  - 114: {fileID: 1120969320}
   - 114: {fileID: 1120969321}
   - 114: {fileID: 1120969319}
   m_Layer: 0
-  m_Name: NewSelectQuery
+  m_Name: SelectQuery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35341,7 +35271,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120969317}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020990028}
-  m_LocalPosition: {x: 0.16999999, y: 0.554, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -35363,20 +35293,6 @@ MonoBehaviour:
   output_dataType: 6
   noRepeted: 0
   isConditional: 1
---- !u!114 &1120969320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1120969317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1120969318}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &1120969321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35390,20 +35306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1120969322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1120969317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 956321088}
-  selectButton_background: {fileID: 956321092}
 --- !u!82 &1120969323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36217,7 +36119,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: setNotNull
         m_Mode: 2
         m_Arguments:
@@ -40503,7 +40405,7 @@ GameObject:
   - 114: {fileID: 1291488180}
   - 114: {fileID: 1291488179}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GUI_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40524,7 +40426,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &1291488180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40664,7 +40566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: setCellName
         m_Mode: 2
         m_Arguments:
@@ -41012,7 +40914,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: setColName
         m_Mode: 2
         m_Arguments:
@@ -41191,8 +41093,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1314025850}
   - 82: {fileID: 1314025855}
-  - 114: {fileID: 1314025854}
-  - 114: {fileID: 1314025852}
   - 114: {fileID: 1314025853}
   - 114: {fileID: 1314025851}
   - 114: {fileID: 1314025856}
@@ -41231,20 +41131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output_dataType: 3
   tableName: Test
---- !u!114 &1314025852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1314025849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1314025850}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &1314025853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41258,20 +41144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1314025854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1314025849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 662660768}
-  selectButton_background: {fileID: 662660772}
 --- !u!82 &1314025855
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42350,7 +42222,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: setAsflag
         m_Mode: 2
         m_Arguments:
@@ -43390,7 +43262,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: setCellName
         m_Mode: 2
         m_Arguments:
@@ -43688,7 +43560,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1390628347}
   - 82: {fileID: 1390628352}
-  - 114: {fileID: 1390628351}
   - 114: {fileID: 1390628350}
   - 114: {fileID: 1390628349}
   - 114: {fileID: 1390628348}
@@ -43753,20 +43624,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1390628351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1390628346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 670861940}
-  selectButton_background: {fileID: 670861944}
 --- !u!82 &1390628352
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44734,7 +44591,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: setColName
         m_Mode: 2
         m_Arguments:
@@ -45570,7 +45427,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1438269681}
   - 82: {fileID: 1438269682}
-  - 114: {fileID: 1438269685}
   - 114: {fileID: 1438269684}
   - 114: {fileID: 1438269683}
   - 114: {fileID: 1438269686}
@@ -45589,7 +45445,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1438269680}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020861623}
-  m_LocalPosition: {x: 1.85, y: 0.691, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -45708,20 +45564,6 @@ MonoBehaviour:
   toggle: {fileID: 655741770}
   oderNodelayout: {fileID: 2034786060}
   toggles: []
---- !u!114 &1438269685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000010483400800, guid: 246b02853d4b90b478ea1dc5b03ef19d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1438269680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 0}
-  selectButton_background: {fileID: 0}
 --- !u!114 &1438269686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46703,7 +46545,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1486903361}
   m_Layer: 0
-  m_Name: fileObj
+  m_Name: ParentObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49146,7 +48988,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 545899109}
+      - m_Target: {fileID: 0}
         m_MethodName: changeColMod
         m_Mode: 2
         m_Arguments:
@@ -49481,6 +49323,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 446520718}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -49612,7 +49465,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: setAsflag
         m_Mode: 2
         m_Arguments:
@@ -53174,7 +53027,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: changeColMod
         m_Mode: 2
         m_Arguments:
@@ -53527,7 +53380,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1452385971}
   - 82: {fileID: 1678078913}
-  - 114: {fileID: 1678078912}
   - 114: {fileID: 1678078911}
   - 114: {fileID: 1678078909}
   - 114: {fileID: 1678078910}
@@ -53577,20 +53429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1678078912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1678078908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 1850118319}
-  selectButton_background: {fileID: 1850118323}
 --- !u!82 &1678078913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55286,7 +55124,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: setNotNull
         m_Mode: 2
         m_Arguments:
@@ -58232,7 +58070,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: setColName
         m_Mode: 2
         m_Arguments:
@@ -58523,6 +58361,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1811858525}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1941202400}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -59769,6 +59618,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140774753}
+        m_MethodName: setholding
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1678078908}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -60049,8 +59909,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1859847570}
   - 82: {fileID: 1859847575}
-  - 114: {fileID: 1859847574}
-  - 114: {fileID: 1859847572}
   - 114: {fileID: 1859847573}
   - 114: {fileID: 1859847571}
   m_Layer: 0
@@ -60089,20 +59947,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output_dataType: 11
   data: defaultString
---- !u!114 &1859847572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1859847569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1859847570}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &1859847573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60116,20 +59960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1859847574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1859847569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 53414546}
-  selectButton_background: {fileID: 53414550}
 --- !u!82 &1859847575
 AudioSource:
   m_ObjectHideFlags: 0
@@ -61447,7 +61277,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: changeColMod
         m_Mode: 2
         m_Arguments:
@@ -61812,7 +61642,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: setNotNull
         m_Mode: 2
         m_Arguments:
@@ -63013,7 +62843,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: setAsflag
         m_Mode: 2
         m_Arguments:
@@ -63075,12 +62905,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1941202401}
   - 82: {fileID: 1941202406}
-  - 114: {fileID: 1941202405}
-  - 114: {fileID: 1941202403}
   - 114: {fileID: 1941202404}
   - 114: {fileID: 1941202402}
   m_Layer: 0
-  m_Name: NewCreateQuery
+  m_Name: CreateQuery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63094,7 +62922,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1941202400}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000020990028}
-  m_LocalPosition: {x: -0.343, y: 0.554, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -63114,20 +62942,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   output_dataType: 3
---- !u!114 &1941202403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012046819404, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1941202400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36eeefbd1d5ca754d8c0027de2587f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1941202401}
-  node: {fileID: 114000011609077220, guid: 680072e00e34360428e8f9dba00a8667, type: 2}
 --- !u!114 &1941202404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63141,20 +62955,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectViewAnchor: {fileID: 795480655}
---- !u!114 &1941202405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012020709668, guid: 680072e00e34360428e8f9dba00a8667,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1941202400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0692bb0eb197fe4889035f2628120eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectButton: {fileID: 1811858523}
-  selectButton_background: {fileID: 1811858527}
 --- !u!82 &1941202406
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64226,7 +64026,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1859847572}
+      - m_Target: {fileID: 0}
         m_MethodName: changeDataType
         m_Mode: 2
         m_Arguments:
@@ -65500,7 +65300,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: setNotNull
         m_Mode: 2
         m_Arguments:
@@ -67924,10 +67724,10 @@ RectTransform:
   - {fileID: 296779723}
   m_Father: {fileID: 668606506}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -205}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!120 &2103617830
 LineRenderer:
@@ -68571,7 +68371,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120969320}
+      - m_Target: {fileID: 0}
         m_MethodName: changeDataType
         m_Mode: 2
         m_Arguments:
@@ -68947,7 +68747,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1941202403}
+      - m_Target: {fileID: 0}
         m_MethodName: setNotNull
         m_Mode: 2
         m_Arguments:
@@ -69268,7 +69068,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 26861749}
+      - m_Target: {fileID: 0}
         m_MethodName: setColName
         m_Mode: 2
         m_Arguments:
