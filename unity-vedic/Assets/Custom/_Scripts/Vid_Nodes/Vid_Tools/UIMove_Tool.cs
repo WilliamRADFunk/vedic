@@ -8,6 +8,7 @@ public class UIMove_Tool : MonoBehaviour {
 
     public JamesV_LeapRTS rts;
     public GameObject fileObj;
+    public Vid_Object vidObj;
 
     void Awake() {
         if (rts != null) {
@@ -20,6 +21,9 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
+    public GameObject GetHolding() {
+        return holding;
+    }
     public void setholding(GameObject obj2hold) {
         if (holding == null) {
             setNewHolder(obj2hold);
@@ -42,16 +46,17 @@ public class UIMove_Tool : MonoBehaviour {
         rts.transform.rotation = obj2hold.transform.rotation;
         holding = obj2hold;
         holding.transform.SetParent(this.transform);
-        com = holding.GetComponent<Vid_ObjContainer>();
-        if (com == null) { return; }
+        //com = holding.GetComponent<Vid_ObjContainer>();
+        //if (com == null) { return; }
 
-        //Text t = com.getText();
-        //t.text = "Active";
-        Image i = com.selectButton_background;
-        if (i != null) {
-            i.color = Color.green;
-        }
+        ////Text t = com.getText();
+        ////t.text = "Active";
+        //Image i = com.selectButton_background;
+        //if (i != null) {
+        //    i.color = Color.green;
+        //}
     }
+
     private void deActivateHolder() {
         Vid_ObjContainer com;
         rts.enabled = false;
@@ -61,16 +66,16 @@ public class UIMove_Tool : MonoBehaviour {
         else {
             holding.transform.parent = fileObj.transform;
         }
-        com = holding.GetComponent<Vid_ObjContainer>();
-        if (com == null) {
-            holding = null;
-            return;
-        }
-        //Text t = com.getText();
-        //t.text = "Select";
-        Image i = com.selectButton_background;
-        if (i != null) {
-            i.color = Color.white;
-        }
+        //com = holding.GetComponent<Vid_ObjContainer>();
+        //if (com == null) {
+        //    holding = null;
+        //    return;
+        //}
+        ////Text t = com.getText();
+        ////t.text = "Select";
+        //Image i = com.selectButton_background;
+        //if (i != null) {
+        //    i.color = Color.white;
+        //}
     }
 }
