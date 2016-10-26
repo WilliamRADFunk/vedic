@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Con_BasicLogic : MonoBehaviour {
-  
 
     public Vid_MySql_BasicLogic vidObj;
     public Text dataText;

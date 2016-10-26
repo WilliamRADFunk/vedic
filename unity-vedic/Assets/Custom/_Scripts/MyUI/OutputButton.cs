@@ -13,11 +13,13 @@ public class OutputButton : NodeButton {
         {
             if (!ct.currentSeleted())
             {
+                Debug.Log("BOB:" + inUse);
                 setIsUse(true);
                 ct.setOutputButton(this);
             }
         }
         else {
+            Debug.Log("nknkn:" + inUse);
             setIsUse(false);
             ct.setOutputButton(null);
         }

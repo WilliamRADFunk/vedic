@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class Vid_SelectQuery : Vid_Query
 {
-    public bool noRepeted;
-    public bool isConditional;
 
     public Vid_SelectQuery()
     {
-        isConditional = true;
-        noRepeted = false;
+        base.output_dataType = VidData_Type.Q_SELECT;
     }
 
     public override void Awake() {
@@ -25,22 +22,20 @@ public class Vid_SelectQuery : Vid_Query
     public override string ToString() {
         StringBuilder sb = new StringBuilder("");
         if (inputs.getInput_atIndex(1) == null) {
-            sb.AppendLine(TabTool.TabCount() + "SELECT *");
+            sb.AppendLine( "SELECT *");
+        }
+        else {
+            sb.AppendLine( "SELECT " + inputs.getInput_atIndex(1).ToString());
+        }
+        if (inputs.getInput_atIndex(0) == null) {
+            sb.AppendLine(TabTool.TabCount() + "FROM error:NoT");
         }
         else {
             sb.AppendLine(TabTool.TabCount() +
-                                            "SELECT " + inputs.getInput_atIndex(1).ToString());
-        }
-        if (inputs.getInput_atIndex(0) == null) {
-            sb.Append(TabTool.TabCount() + "FROM error:NoT");
-        }
-        else {
-            sb.Append(TabTool.TabCount() +
                                         "FROM " + inputs.getInput_atIndex(0).ToString());
         }
         if (inputs.getInput_atIndex(2) != null) {
-            sb.AppendLine();
-            sb.Append(TabTool.TabCount() +
+            sb.AppendLine(TabTool.TabCount() +
                                        inputs.getInput_atIndex(2).ToString());
         }
         return sb.ToString();
@@ -94,7 +89,6 @@ public class Vid_SelectQuery : Vid_Query
         }
         return false;
     }
-
 
     /*Helper Functions*/
     public override int AcceptedInputIndex(VidData_Type t) {

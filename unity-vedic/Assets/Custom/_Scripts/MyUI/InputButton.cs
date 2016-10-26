@@ -44,9 +44,6 @@ public class InputButton : NodeButton {
             if ((ct.getInputButton() == null) && (ct.getOutputButton() != null))
             {
                 transferData();
-                if(NodePrinter.GetInstance().vidObj != null) {
-                    NodePrinter.GetInstance().PrintText();
-                }
             }
         }
     }

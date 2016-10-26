@@ -47,5 +47,8 @@ public class ConnectionTool  {
     {
         inputButton = null;
         outputButton = null;
+        if (NodePrinter.GetInstance().vidObj != null) {
+            NodePrinter.GetInstance().PrintText();
+        }
     }
 }

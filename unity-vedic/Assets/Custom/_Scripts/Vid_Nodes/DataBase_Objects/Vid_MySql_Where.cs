@@ -1,9 +1,12 @@
 ﻿using System.Text;
+using UnityEngine;
 
 public class Vid_MySql_Where : Vid_Object
 {
+    public Con_Where controller;
     public bool isEXISTS = false;
-    public bool inFlag = false;
+    bool inFlag = false;
+
 
     public Vid_MySql_Where() {
         output_dataType = VidData_Type.DATABASE_CLAUSE;
@@ -48,11 +51,10 @@ public class Vid_MySql_Where : Vid_Object
                 sb.AppendLine("NOT EXISTS");
             }
         }
-        if(inputs.getInput_atIndex(1) != null &&
-                flag) {
+        if(inputs.getInput_atIndex(1) != null ) {
             sb.AppendLine(TabTool.TabCount() + "(");
             TabTool.incromentCount();
-            sb.Append(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+            sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
             TabTool.deccromentCount();
             sb.AppendLine(TabTool.TabCount() + ")");
         }
@@ -62,12 +64,16 @@ public class Vid_MySql_Where : Vid_Object
         if(argumentIndex == 0) {
             inFlag = false;
             base.removeInput(1);
+            if(controller != null) {
+                controller.ChangeText();
+            }
         }
         return base.removeInput(argumentIndex);
     }
 
     public override bool addInput(Vid_Object obj) {
         bool b;
+        Debug.Log("Here:2");
         switch (obj.output_dataType) {
             case VidData_Type.WHERE_STATMENT:
                 b = base.addInput(obj, 0);
@@ -95,6 +101,7 @@ public class Vid_MySql_Where : Vid_Object
     }
 
     public override bool addInput(Vid_Object obj, int argumentIndex) {
+        Debug.Log("Here:2");
         switch (argumentIndex) {
             case 0:
                 if (obj.output_dataType == VidData_Type.WHERE_STATMENT
@@ -104,8 +111,13 @@ public class Vid_MySql_Where : Vid_Object
                     }
                     else {
                         inFlag = false;
-                    }
+                    } 
+                    
                     bool b = base.addInput(obj, 0);
+                    Debug.Log("Here");
+                    if (controller != null) {
+                        controller.ChangeText();
+                    }
                     return b;
                 }
                 else {
@@ -115,19 +127,31 @@ public class Vid_MySql_Where : Vid_Object
                 if (obj.output_dataType == VidData_Type.LIST) {
                     inFlag = true;
                     bool b = base.addInput(obj, 1);
+                    if (controller != null) {
+                        controller.ChangeText();
+                    }
                     return b;
                 }
                 else if (obj.output_dataType == VidData_Type.Q_SELECT) {
                     inFlag = true;
                     bool b = base.addInput(obj, 1);
+                    if (controller != null) {
+                        controller.ChangeText();
+                    }
                     return b;
                 }
                 else if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
                     inFlag = false;
                     bool b = base.addInput(obj, 1);
+                    if (controller != null) {
+                        controller.ChangeText();
+                    }
                     return b;
                 }
                 else {
+                    if (controller != null) {
+                        controller.ChangeText();
+                    }
                     return false;
                 }
         }
@@ -139,6 +163,7 @@ public class Vid_MySql_Where : Vid_Object
         switch (t) {
             case VidData_Type.BOOL:
             case VidData_Type.DATABASE_COL:
+            case VidData_Type.WHERE_STATMENT:
                 return 0;
             case VidData_Type.LIST:
             case VidData_Type.Q_SELECT:
@@ -147,5 +172,12 @@ public class Vid_MySql_Where : Vid_Object
                 return 1;
         }
         return -1;
+    }
+
+    public bool IsInFlag() {
+        return inFlag;
+    }
+    public void setInFlag(bool b) {
+        inFlag = b;
     }
 }
