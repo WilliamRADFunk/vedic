@@ -7,25 +7,33 @@ public class SpeechController : MonoBehaviour {
 
     [SerializeField]
     private string[] m_Keywords;
+    [SerializeField]
+    private PanelController PanelController;
 
     private KeywordRecognizer m_Recognizer;
+    private bool pristine = false;
 
     void Start()
     {
-        m_Recognizer = new KeywordRecognizer(m_Keywords);
-        m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
-        m_Recognizer.Start();
+        // Checks to see if machine can use the speech recognition
+        if (PhraseRecognitionSystem.isSupported)
+        {
+            m_Recognizer = new KeywordRecognizer(m_Keywords);
+            m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
+            m_Recognizer.Start();
+        }
+        // If not, make the speech toggle (in panel) non-interactable.
+        else
+        {
+            pristine = true;
+        }
     }
-
-    int counter = 180;
     void Update()
     {
-        if (counter <= 0)
+        if(pristine)
         {
-            Debug.Log("The recognizer is running: " + m_Recognizer.IsRunning);
-            counter = 180;
+            PanelController.DeactivateSpeechToggle();
         }
-        else counter--;
     }
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {

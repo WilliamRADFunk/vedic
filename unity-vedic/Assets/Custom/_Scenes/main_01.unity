@@ -20389,6 +20389,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010152208998, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
+      propertyPath: m_TagString
+      value: SpeechToggle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
   m_IsPrefabParent: 0
@@ -30388,6 +30392,7 @@ MonoBehaviour:
   - girl
   - good
   - bad
+  PanelController: {fileID: 1886097243}
 --- !u!4 &2128819961
 Transform:
   m_ObjectHideFlags: 0

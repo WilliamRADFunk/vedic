@@ -285,12 +285,32 @@ public class PanelController : MonoBehaviour
         }
     }
 
+    public void DeactivateSpeechToggle()
+    {
+        if (MenuInput.activeSelf)
+        {
+            GameObject toggle = GameObject.FindGameObjectWithTag("SpeechToggle");
+            Toggle tog = toggle.GetComponent<Toggle>();
+            tog.isOn = false;
+            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            tog.interactable = false;
+        }
+        else
+        {
+            MenuInput.SetActive(true);
+            GameObject toggle = GameObject.FindGameObjectWithTag("SpeechToggle");
+            Toggle tog = toggle.GetComponent<Toggle>();
+            tog.isOn = false;
+            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            tog.interactable = false;
+            MenuInput.SetActive(false);
+        }
+    }
 
     public void ToggleNodeSpawner()
     {
         if (isNodeSpawner)
         {
-            Debug.Log("In the anti-toggler");
             NodeSpawner.SetActive(false);
 
             if (MenuInput.activeSelf)

@@ -31,6 +31,7 @@ TagManager:
   - ViewTable
   - LaserToggle
   - Hand
+  - SpeechToggle
   layers:
   - Default
   - TransparentFX
