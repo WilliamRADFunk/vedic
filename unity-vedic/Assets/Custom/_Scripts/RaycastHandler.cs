@@ -13,38 +13,32 @@ using System;
 
 public class RaycastHandler : MonoBehaviour
 {
+    public LaserController lControl;
+    public LineRenderer line;
+
     HandModel hand_model;
     Hand leap_hand;
 
-    public LineRenderer lineTester;
     Ray rr = new Ray();
     RaycastHit hit;
 
-    private bool active = false;
+    private bool active;
 
     void Start()
     {
+        active = false;
         hand_model = GetComponent<HandModel>();
         leap_hand = hand_model.GetLeapHand();
         if (leap_hand == null) Debug.LogError("No leap_hand founded");
-        active = false;
-        resetLineRender();
-    }
-
-    void resetLineRender()
-    {
-        lineTester.enabled = false;
     }
 
     void Update()
     {
 
         if(active)
-        {
-            lineTester.enabled = true;
-            
-            lineTester.SetPosition(0, hand_model.GetPalmPosition());
-            lineTester.SetPosition(1, (hand_model.GetPalmDirection() * 20f));//+ 2 * hand_model.GetPalmPosition());// * finger.GetTipPosition());
+        {            
+            line.SetPosition(0, hand_model.GetPalmPosition());
+            line.SetPosition(1, (hand_model.GetPalmDirection() * 20f));//+ 2 * hand_model.GetPalmPosition());// * finger.GetTipPosition());
 
             rr.origin = hand_model.GetPalmPosition();
             rr.direction = hand_model.GetPalmDirection();
@@ -53,18 +47,15 @@ public class RaycastHandler : MonoBehaviour
 
             if (Physics.Raycast(hand_model.GetPalmPosition(), hand_model.GetPalmDirection(), out hit, Mathf.Infinity, bitLayer))
             {
-                Debug.Log("RAYCAST HIT OBJECT!");
-                Debug.Log("Object name :: " + hit.collider.gameObject.name);
-
                 if (hit.collider.CompareTag("ViewTable"))
                 {
                     hit.collider.gameObject.GetComponent<Table>().AltActivation();
                 }
             }
         }
-        else
-        {
-            lineTester.enabled = false;
+
+        if(gameObject.activeInHierarchy == false) {
+            lControl.UpdateLineState(active);
         }
     }
 
@@ -79,6 +70,9 @@ public class RaycastHandler : MonoBehaviour
             active = true;
         }
 
+        lControl.UpdateLineState(active);
         return active;
     }
+
+    
 }
