@@ -23,7 +23,9 @@ public class Vid_CreateQuery : Vid_Query
             sb.AppendLine("CREATE TABLE " + inputs.getInput_atIndex(0).ToString() + " ( ");
         }
         if (inputs.getInput_atIndex(1) != null) {
+            TabTool.incromentCount();
             sb.AppendLine(inputs.getInput_atIndex(1).ToString());
+            TabTool.deccromentCount();
         }
         sb.AppendLine(")");
         return sb.ToString();

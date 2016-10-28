@@ -58,8 +58,7 @@ public class Vid_MultiInput : Vid_Object {
             if (obj != null) {
                 sb.Append(TabTool.TabCount() + obj.ToString());
                 if (i < inputs.getSize() - 1) {
-                    sb.Append(", ");
-                    sb.AppendLine();
+                    sb.AppendLine(", ");
                 }
             }
         }

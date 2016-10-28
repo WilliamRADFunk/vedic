@@ -26,14 +26,14 @@ public class Vid_ColFormater : Vid_Object {
         if(col != null) {
             switch (col.type) {
                 case MySql_colTypes.MYSQL_INT:
-                    sb.Append(col.ToString() + " int ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " int ");
                     if (notNull) {
                         sb.Append("NOT NULL ");
                     }
                     if (defaultValue) {
                         sb.Append("DEFAULT ");
                         if(inputs.getInput_atIndex(1) != null) {
-                            sb.AppendLine(inputs.getInput_atIndex(1).ToString());
+                            sb.Append(inputs.getInput_atIndex(1).ToString());
                         }
                     }
                     else if (doAutoIncrement) {
@@ -41,14 +41,14 @@ public class Vid_ColFormater : Vid_Object {
                     }
                     break;
                 case MySql_colTypes.MYSQL_FLOAT:
-                    sb.Append(col.ToString() + " float ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " float ");
                     if (notNull) {
                         sb.Append("NOT NULL ");
                     }
                     if (defaultValue) {
                         sb.Append("DEFAULT ");
                         if (inputs.getInput_atIndex(1) != null) {
-                            sb.AppendLine(inputs.getInput_atIndex(1).ToString());
+                            sb.Append(inputs.getInput_atIndex(1).ToString());
                         }
                     }
                     else if (doAutoIncrement) {
@@ -56,14 +56,14 @@ public class Vid_ColFormater : Vid_Object {
                     }
                     break;
                 case MySql_colTypes.MYSQL_DOUBLE:
-                    sb.Append(col.ToString() + " double ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " double ");
                     if (notNull) {
                         sb.Append("NOT NULL ");
                     }
                     if (defaultValue) {
                         sb.Append("DEFAULT ");
                         if (inputs.getInput_atIndex(1) != null) {
-                            sb.AppendLine(inputs.getInput_atIndex(1).ToString());
+                            sb.Append(inputs.getInput_atIndex(1).ToString());
                         }
                     }
                     else if (doAutoIncrement) {
@@ -71,7 +71,7 @@ public class Vid_ColFormater : Vid_Object {
                     }
                     break;
                 case MySql_colTypes.MYSQL_VARCHAR:
-                    sb.Append(col.ToString() + " varchar(255) ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " varchar(255) ");
                     if (notNull) {
                         sb.Append("NOT NULL ");
                     }
@@ -80,10 +80,10 @@ public class Vid_ColFormater : Vid_Object {
                     }
                     break;
                 case MySql_colTypes.MYSQL_BLOB:
-                    sb.Append(col.ToString() + " BLOB ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " BLOB ");
                     break;
                 case MySql_colTypes.MYSQL_TIMESTAMP:
-                    sb.Append(col.ToString() + " timestamp ");
+                    sb.Append(TabTool.TabCount() + col.ToString() + " timestamp ");
                     break;
             }
         }
