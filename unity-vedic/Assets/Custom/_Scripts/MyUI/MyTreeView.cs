@@ -110,6 +110,7 @@ namespace Battlehub.UIControls {
         /// <param name="e"></param>
         private void OnItemDataBinding(object sender, TreeViewItemDataBindingArgs e) {
             GameObject dataItem = e.Item as GameObject;
+            Debug.Log("THTHTHTHT:" + dataItem.ToString());
 
             //TreeData dataItem = e.Item as TreeData;
             if (dataItem != null) {
