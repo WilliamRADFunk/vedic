@@ -14,6 +14,11 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
         bool b = inputs.setInput_atIndex(obj, argumentIndex);
         return b;
     }
+
+    public virtual bool addInput(Vid_Object obj) {
+        bool b = false;
+        return b;
+    }
     public virtual bool removeInput( int argumentIndex) {
         if(inputs != null) {
             return inputs.removeInput_atIndex(argumentIndex);
@@ -21,7 +26,11 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
         }
        return false;
     }
-   
+
+    public virtual int AcceptedInputIndex(VidData_Type t) {
+        return -1;
+    }
+
     /* Getters */
     public VidData_Type[] getAcceptableInputs() {
         return acceptableInputs;

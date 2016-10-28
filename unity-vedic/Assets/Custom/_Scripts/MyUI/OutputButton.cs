@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class OutputButton : NodeButton {
     public int outputIndex = 0;
     public Vid_Object vid_obj;
-    bool inUse = false;
+    public bool inUse = false;
+    public InputButton inButton;
 
     public override void buttonPressed()
     {
@@ -12,11 +13,13 @@ public class OutputButton : NodeButton {
         {
             if (!ct.currentSeleted())
             {
+                Debug.Log("BOB:" + inUse);
                 setIsUse(true);
                 ct.setOutputButton(this);
             }
         }
         else {
+            Debug.Log("nknkn:" + inUse);
             setIsUse(false);
             ct.setOutputButton(null);
         }
