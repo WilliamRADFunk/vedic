@@ -29,12 +29,12 @@ public class Vid_MySql_BasicLogic : Vid_Object {
         else {
             switch (logicType) {
                 case BasicLogic.AND:
-                    sb.Append(inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" ADD " + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.AppendLine(inputs.getInput_atIndex(0).ToString());
+                    sb.AppendLine(TabTool.TabCount() +" ADD " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case BasicLogic.OR:
-                    sb.Append(inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" OR " + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.AppendLine(inputs.getInput_atIndex(0).ToString());
+                    sb.AppendLine(TabTool.TabCount() + " OR " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 default:
                     break;

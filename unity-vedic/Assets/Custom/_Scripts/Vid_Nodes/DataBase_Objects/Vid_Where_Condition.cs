@@ -29,33 +29,32 @@ public class Vid_Where_Condition : Vid_Object {
             switch (conditionType) {
                 case Condition_Type.LESS:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" <" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" < " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case Condition_Type.LESS_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" <=" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" <= " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case Condition_Type.GREATER:
-                    sb.Append("( " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" >" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" " + inputs.getInput_atIndex(0).ToString());
+                    sb.Append(" > " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case Condition_Type.GREATER_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" >=" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" >= " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case Condition_Type.EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" =" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" = " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 case Condition_Type.NOT_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
-                    sb.Append(" <>" + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" <> " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 default:
                     break;
             }
         }
-        sb.AppendLine();
         return sb.ToString();
     }
 

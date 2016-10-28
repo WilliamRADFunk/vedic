@@ -10,6 +10,7 @@ public enum VidData_Type {
     DATABASE_QUERY,
     WHERE_STATMENT,
     Q_SELECT,
+    KEY,
     LIST,
     BOOL,
     NUM,
