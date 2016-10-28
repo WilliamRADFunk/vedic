@@ -37,8 +37,8 @@ public class Con_Col : MonoBehaviour {
                 case MySql_colTypes.MYSQL_TIMESTAMP:
                     colDataTypeText.text = "timestamp";
                     break;
-                case MySql_colTypes.MYSQL_CHAR:
-                    colDataTypeText.text = "char";
+                case MySql_colTypes.MYSQL_VARCHAR:
+                    colDataTypeText.text = "varchar";
                     break;
                 case MySql_colTypes.MYSQL_BLOB:
                     colDataTypeText.text = "blob";
@@ -77,10 +77,10 @@ public class Con_Col : MonoBehaviour {
                 colDataTypeText.text = "timestamp";
                 break;
             case MySql_colTypes.MYSQL_TIMESTAMP:
-                vidObj.type = MySql_colTypes.MYSQL_CHAR;
-                colDataTypeText.text = "char";
+                vidObj.type = MySql_colTypes.MYSQL_VARCHAR;
+                colDataTypeText.text = "varchar";
                 break;
-            case MySql_colTypes.MYSQL_CHAR:
+            case MySql_colTypes.MYSQL_VARCHAR:
                 vidObj.type = MySql_colTypes.MYSQL_BLOB;
                 colDataTypeText.text = "blob";
                 break;
@@ -113,13 +113,13 @@ public class Con_Col : MonoBehaviour {
                 vidObj.type = MySql_colTypes.MYSQL_DOUBLE;
                 colDataTypeText.text = "double";
                 break;
-            case MySql_colTypes.MYSQL_CHAR:
+            case MySql_colTypes.MYSQL_VARCHAR:
                 vidObj.type = MySql_colTypes.MYSQL_TIMESTAMP;
                 colDataTypeText.text = "timestamp";
                 break;
             case MySql_colTypes.MYSQL_BLOB:
-                vidObj.type = MySql_colTypes.MYSQL_CHAR;
-                colDataTypeText.text = "char";
+                vidObj.type = MySql_colTypes.MYSQL_VARCHAR;
+                colDataTypeText.text = "varchar";
                 break;
             case MySql_colTypes.MYSQL_ENUM:
                 vidObj.type = MySql_colTypes.MYSQL_BLOB;
@@ -151,4 +151,8 @@ public class Con_Col : MonoBehaviour {
         vidObj.colName = inField_ColName.text;
     }
 
+    public void SetValue(InputField inField) {
+        vidObj.colName = inField.text;
+        dataText.text = inField.text;
+    }
 }

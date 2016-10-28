@@ -87,8 +87,7 @@ public class Vid_Join : Vid_Object {
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         switch (argumentIndex) {
             case 0:
-                if (obj.output_dataType == VidData_Type.BOOL
-                    || obj.output_dataType == VidData_Type.DATABASE_COL) {
+                if (obj.output_dataType == VidData_Type.DATABASE_TABLE) {
                     bool b = base.addInput(obj, 0);
                     return b;
                 }
@@ -96,20 +95,16 @@ public class Vid_Join : Vid_Object {
                     return false;
                 }
             case 1:
-                if (obj.output_dataType == VidData_Type.LIST) {
+                if (obj.output_dataType == VidData_Type.ASSINMENT) {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
-                else if (obj.output_dataType == VidData_Type.Q_SELECT) {
-                    bool b = base.addInput(obj, 1);
-                    return b;
+                else {
+                    return false;
                 }
-                else if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
-                    bool b = base.addInput(obj, 1);
-                    return b;
-                }
-                else if (obj.output_dataType == VidData_Type.STRING) {
-                    bool b = base.addInput(obj, 1);
+            case 2:
+                if (obj.output_dataType == VidData_Type.DATABASE_CLAUSE) {
+                    bool b = base.addInput(obj, 2);
                     return b;
                 }
                 else {

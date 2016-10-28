@@ -23,12 +23,7 @@ public class Vid_InsertQuery : Vid_Query
             sb.Append("INSERT INTO " + inputs.getInput_atIndex(0).ToString() + " ");
         }
         if (inputs.getInput_atIndex(1) != null) {
-            if (valuesFlage) {
-                sb.Append("VALUES (" + inputs.getInput_atIndex(1).ToString() + " )");
-            }
-            else {
-                sb.Append( inputs.getInput_atIndex(1).ToString());
-            }
+                sb.AppendLine("VALUES (" + inputs.getInput_atIndex(1).ToString() + " )");       
         }
         return sb.ToString();
     }

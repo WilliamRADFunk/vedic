@@ -21,9 +21,9 @@ public class Vid_DeleteQuery : Vid_Query
         else {
             sb.AppendLine("DELETE FROM " + inputs.getInput_atIndex(0).ToString() + " ");
         }
-            if (inputs.getInput_atIndex(1) != null) {
-                sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
-            }
+        if (inputs.getInput_atIndex(1) != null) {
+            sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+        }
         sb.Append(";");
         return sb.ToString();
     }
@@ -41,7 +41,6 @@ public class Vid_DeleteQuery : Vid_Query
         }
         return false;
     }
-
 
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  

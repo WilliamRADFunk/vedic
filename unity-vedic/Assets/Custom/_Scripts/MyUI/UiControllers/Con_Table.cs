@@ -53,4 +53,8 @@ public class Con_Table : MonoBehaviour {
         vidObj.tableName = inField_ColName.text;
     }
 
+    public void SetValue(InputField inField) {
+        vidObj.tableName = inField.text;
+        dataText.text = inField.text;
+    }
 }

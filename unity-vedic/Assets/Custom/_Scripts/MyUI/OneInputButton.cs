@@ -11,7 +11,7 @@ public class OneInputButton : NodeButton {
         if(ct.getOutputButton() != null) {
             output = ct.getOutputButton();
             int i = vidObj.AcceptedInputIndex(output.vid_obj.output_dataType);
-            Debug.Log("test:" + i);
+            
             if (i != -1 && listInputs.Count > i ) {
                 listInputs[i].buttonPressed();
             }
