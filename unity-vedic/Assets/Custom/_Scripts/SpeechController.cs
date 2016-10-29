@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
 public class SpeechController : MonoBehaviour {
 
-    [SerializeField]
-    private string[] m_Keywords;
+    private List<string> m_Keywords;
     [SerializeField]
     private PanelController PanelController;
 
@@ -15,10 +15,12 @@ public class SpeechController : MonoBehaviour {
 
     void Start()
     {
+        m_Keywords = new List<string>();
         // Checks to see if machine can use the speech recognition
         if (PhraseRecognitionSystem.isSupported)
         {
-            m_Recognizer = new KeywordRecognizer(m_Keywords);
+            m_Keywords.Add("controls");
+            m_Recognizer = new KeywordRecognizer(m_Keywords.ToArray());
             m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
             m_Recognizer.Start();
         }
