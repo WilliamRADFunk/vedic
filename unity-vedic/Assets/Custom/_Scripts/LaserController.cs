@@ -25,11 +25,14 @@ public class LaserController : MonoBehaviour {
         active = false;
     }
 
+    void Update()
+    {
+        ManageLines();
+    }
+
     public void UpdateLineState(bool state)
     {
         active = state;
-        ManageLines();
-        
     }
 
     //Called by InvokeRepeating to manage whether or not the lines should be rendered at any given time.

@@ -34,7 +34,6 @@ public class RaycastHandler : MonoBehaviour
 
     void Update()
     {
-
         if(active)
         {            
             line.SetPosition(0, hand_model.GetPalmPosition());
@@ -52,10 +51,6 @@ public class RaycastHandler : MonoBehaviour
                     hit.collider.gameObject.GetComponent<Table>().AltActivation();
                 }
             }
-        }
-
-        if(gameObject.activeInHierarchy == false) {
-            lControl.UpdateLineState(active);
         }
     }
 
