@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum  VidData_Type {
+public enum VidData_Type {
+    ASSINMENT,
     DATABASE,
     DATABASE_COL,
     DATABASE_TABLE,
-    DATABASE_CALUSE,
+    DATABASE_CLAUSE,
     DATABASE_QUERY,
+    WHERE_STATMENT,
+    Q_SELECT,
+    KEY,
     LIST,
     BOOL,
     NUM,

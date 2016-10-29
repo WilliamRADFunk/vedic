@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using Leap.Unity;
+using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 public class UIMove_Tool : MonoBehaviour {
-    GameObject holding;
+    List<GameObject> holdingV2;
 
     public JamesV_LeapRTS rts;
-    public GameObject fileObj;
+    public GameObject parentObj;
 
     void Awake() {
+        holdingV2 = new List<GameObject>();
         if (rts != null) {
             rts.enabled = false;
         }
@@ -20,57 +21,37 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
+    public GameObject GetRoot() {
+        if(holdingV2 != null) {
+            if(holdingV2.Count > 0) {
+                return holdingV2[0];
+            }
+        }
+        return null;
+    }
     public void setholding(GameObject obj2hold) {
-        if (holding == null) {
-            setNewHolder(obj2hold);
+        if (holdingV2.Contains(obj2hold)) {
+            holdingV2.Remove(obj2hold);
+            deActivateHolder(obj2hold);
         }
         else {
-            deActivateHolder();
-            if (obj2hold != holding) {
-                setNewHolder(obj2hold);
-            }
-            else {
-                holding = null;
-            }
+            holdingV2.Add(obj2hold);
+            setNewHolder(obj2hold);
         }
     }
 
     private void setNewHolder(GameObject obj2hold) {
-        Vid_ObjContainer com;
         rts.enabled = true;
-        rts.transform.position = obj2hold.transform.position;
-        rts.transform.rotation = obj2hold.transform.rotation;
-        holding = obj2hold;
-        holding.transform.SetParent(this.transform);
-        com = holding.GetComponent<Vid_ObjContainer>();
-        if (com == null) { return; }
-
-        Text t = com.getText();
-        t.text = "Active";
-        Image i = com.selectButton_background;
-        if (i != null) {
-            i.color = Color.green;
-        }
+        obj2hold.transform.SetParent(this.transform);
     }
-    private void deActivateHolder() {
-        Vid_ObjContainer com;
-        rts.enabled = false;
-        if (fileObj.Equals(holding)) {
-            holding.transform.parent = null;
+
+    private void deActivateHolder(GameObject obj2hold) {
+        if (holdingV2.Count == 0) {
+            rts.enabled = false;
+            obj2hold.transform.parent = parentObj.transform;
         }
         else {
-            holding.transform.parent = fileObj.transform;
-        }
-        com = holding.GetComponent<Vid_ObjContainer>();
-        if (com == null) {
-            holding = null;
-            return;
-        }
-        Text t = com.getText();
-        t.text = "Select";
-        Image i = com.selectButton_background;
-        if (i != null) {
-            i.color = Color.white;
+            obj2hold.transform.parent = parentObj.transform;
         }
     }
 }

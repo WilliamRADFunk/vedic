@@ -9,10 +9,10 @@ public class Controller_BasicLogic : MonoBehaviour {
     public void changeLogicType(Dropdown d) {
         switch (d.value) {
             case 0:
-                node.logicType = BasicLogic.AND;
+                node.logicType = Vid_MySql_BasicLogic.BasicLogic.AND;
                 break;
             case 1:
-                node.logicType = BasicLogic.OR;
+                node.logicType = Vid_MySql_BasicLogic.BasicLogic.OR;
                 break;
         }
     }

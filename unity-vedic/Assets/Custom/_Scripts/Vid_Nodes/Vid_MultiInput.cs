@@ -7,7 +7,7 @@ public class Vid_MultiInput : Vid_Object {
     public int inputSize = 1;
 
     public Vid_MultiInput(){
-        output_dataType = VidData_Type.NUM;
+        output_dataType = VidData_Type.LIST;
     }
 
     public override void Awake() {
@@ -22,9 +22,11 @@ public class Vid_MultiInput : Vid_Object {
     }
     /*Builder functions*/
     public override bool addInput(Vid_Object obj, int index) {
+        //if output_dataType == VidData_Type.LIST i don't cair what type of input it holds
         if (output_dataType == VidData_Type.LIST) {
             return base.addInput(obj, index);
         }
+        // output_dataType != VidData_Type.LIST I do cair about it's inputs.
         else if (obj.output_dataType == output_dataType) {
             return base.addInput(obj, index);
         }
@@ -54,9 +56,9 @@ public class Vid_MultiInput : Vid_Object {
         for (int i =0; i<inputs.getSize();i++) {
             Vid_Object obj = inputs.getInput_atIndex(i);
             if (obj != null) {
-                sb.Append(obj.ToString());
+                sb.Append(TabTool.TabCount() + obj.ToString());
                 if (i < inputs.getSize() - 1) {
-                    sb.Append(", ");
+                    sb.AppendLine(", ");
                 }
             }
         }

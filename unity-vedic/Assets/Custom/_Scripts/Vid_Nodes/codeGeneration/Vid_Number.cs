@@ -4,14 +4,12 @@ using System;
 public class Vid_Number : Vid_Object
 {
     public VidNum_Type type = VidNum_Type.INT;
-    public string data;
+    public string data = "0";
 
-    public override void Awake()
-    {
-        base.Awake();
+    public Vid_Number() {
         output_dataType = VidData_Type.NUM;
     }
-
+    
     public override string ToString() {
         return data;
     }
