@@ -58,8 +58,8 @@ public class Table : MonoBehaviour, ViewObj
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
 
             rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.LeapRTS>();
-            //rtsInstanceMinor.PinchDetectorA = GameObject.FindGameObjectWithTag("LeftPinch").GetComponent<Leap.Unity.PinchDetector>();
-            //rtsInstanceMinor.PinchDetectorB = GameObject.FindGameObjectWithTag("RightPinch").GetComponent<Leap.Unity.PinchDetector>();
+            rtsInstanceMinor.PinchDetectorA = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.LeapRTS>().PinchDetectorA;
+            rtsInstanceMinor.PinchDetectorB = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.LeapRTS>().PinchDetectorB;
             rtsMinor = gameObject.transform.parent;
             rtsInstanceMinor.enabled = false;
         }
