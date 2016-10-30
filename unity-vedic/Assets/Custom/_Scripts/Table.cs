@@ -9,6 +9,17 @@ public class Table : MonoBehaviour, ViewObj
     List<GameObject> columns = new List<GameObject>();
     Vector3 location;
 
+    Transform rtsMinor;
+    Leap.Unity.LeapRTS rtsInstanceMinor;
+
+    Vector3 initialWorldPos;
+    Vector3 initialLocalPos;
+    Vector3 initialLocalRtsPos;
+    Quaternion initialLocalRotation;
+    Quaternion initialLocalRtsRotation;
+    Vector3 initialLocalScale;
+    Vector3 initialLocalRtsScale;
+
     GameObject TactileText;
     TactileText t;
 
@@ -45,6 +56,12 @@ public class Table : MonoBehaviour, ViewObj
             InvokeRepeating("CountDown", 0.1f, 0.1f);
             virgin = false;
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
+
+            rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.LeapRTS>();
+            //rtsInstanceMinor.PinchDetectorA = GameObject.FindGameObjectWithTag("LeftPinch").GetComponent<Leap.Unity.PinchDetector>();
+            //rtsInstanceMinor.PinchDetectorB = GameObject.FindGameObjectWithTag("RightPinch").GetComponent<Leap.Unity.PinchDetector>();
+            rtsMinor = gameObject.transform.parent;
+            rtsInstanceMinor.enabled = false;
         }
 
         if(timer == 0)
@@ -102,6 +119,42 @@ public class Table : MonoBehaviour, ViewObj
     public void ParentObject(Transform parent)
     {
         gameObject.transform.parent = parent;
+    }
+
+    private void BringToActive()
+    {
+        initialWorldPos = gameObject.transform.position;
+        initialLocalPos = gameObject.transform.localPosition;
+        initialLocalRotation = gameObject.transform.localRotation;
+        initialLocalScale = gameObject.transform.localScale;
+
+        initialLocalRtsPos = rtsMinor.transform.localPosition;
+        initialLocalRtsRotation = rtsMinor.transform.localRotation;
+        initialLocalRtsScale = rtsMinor.transform.localScale;
+    }
+
+    private void ResetToDefault()
+    {
+        rtsMinor.transform.localPosition = initialLocalRtsPos;
+        rtsMinor.transform.localRotation = initialLocalRtsRotation;
+        rtsMinor.transform.localScale = initialLocalRtsScale;
+
+        gameObject.transform.localRotation = initialLocalRotation;
+        gameObject.transform.localScale = initialLocalScale;
+        gameObject.transform.position = initialWorldPos;
+    }
+
+    private void InteractOn()
+    {
+        //Possibly Signal RtsHandler to turn off its respective rts
+        rtsInstanceMinor.enabled = true;
+    }
+
+    private void InteractOff()
+    {
+        ResetToDefault();
+        rtsInstanceMinor.enabled = false;
+
     }
 
     /*
