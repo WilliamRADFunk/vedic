@@ -14482,7 +14482,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1886097243}
-        m_MethodName: HideNodeSpawner
+        m_MethodName: ToggleNodeSpawner
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -83760,6 +83760,10 @@ Prefab:
       propertyPath: m_TagString
       value: SpeechToggle
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012343445944, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
+      propertyPath: m_TagString
+      value: 3dCursorToggle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf161f30f70c21e4a8e5ae554ee9ce49, type: 2}
   m_IsPrefabParent: 0
@@ -102164,7 +102168,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}

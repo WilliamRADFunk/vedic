@@ -32,6 +32,7 @@ TagManager:
   - LaserToggle
   - Hand
   - SpeechToggle
+  - 3dCursorToggle
   layers:
   - Default
   - TransparentFX
