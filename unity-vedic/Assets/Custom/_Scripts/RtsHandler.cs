@@ -56,6 +56,7 @@ public class RtsHandler : MonoBehaviour {
                 BringToUser();
             }
             
+            //SWAP :: ViewMoveTool.RtsSetter(true);
             rtsInstance.enabled = true;
             return true;
         }
@@ -84,7 +85,10 @@ public class RtsHandler : MonoBehaviour {
         if(initialized && !firstTime)
         {
             firstTime = true;
+
+            //SWAP :: Uncecessary reference to rtsInstance
             rtsInstance.enabled = false;
+
             ResetToDefault();
         }
         
@@ -96,7 +100,6 @@ public class RtsHandler : MonoBehaviour {
         rtsMain.transform.localRotation = initialLocalRtsRotation;
         rtsMain.transform.localScale = initialLocalRtsScale;
 
-        //gameObject.transform.localPosition = initialLocalPos;
         gameObject.transform.localRotation = initialLocalRotation;
         gameObject.transform.localScale = initialLocalScale;
         gameObject.transform.position = initialWorldPos;

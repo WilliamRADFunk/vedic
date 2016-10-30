@@ -30,24 +30,14 @@ public class ViewMoveTool : MonoBehaviour {
     }
 
 	void Start () {
-	
 	}
 
-    public void SetHolding(GameObject incommingObj)
+    public void SetHolding(GameObject incommingObj, bool isTable)
     {
-        viewRTS.enabled = false;
-
-        if (holding)
-        {
-            viewRTS.enabled = false;
-            holdingObj.transform.parent = returnObject.transform;
-            holdingObj.GetComponent<Table>().ResetObjectDefault();   
-        }
-
-        holding = false;
+        DeactivateHolder();
         holdingObj = incommingObj;
         SetNewHolder(incommingObj);
-        holding = true;
+        holding = isTable;
     }
 
     private void SetNewHolder(GameObject obj2Set)
@@ -55,7 +45,39 @@ public class ViewMoveTool : MonoBehaviour {
         viewRTS.enabled = true;
         obj2Set.transform.SetParent(this.transform);
     }
-	
+
+    private void DeactivateHolder()
+    {
+        viewRTS.enabled = false;
+
+        if (holding)
+        {
+            holdingObj.transform.parent = returnObject.transform;
+            holdingObj.GetComponent<Table>().ResetObjectDefault();
+        }
+    }
+
+    public void RtsSetter(bool state)
+    {
+        if(!state)
+        {
+            if (holding)
+            {
+                viewRTS.enabled = false;
+                holdingObj.transform.parent = returnObject.transform;
+                holdingObj.GetComponent<Table>().ResetObjectDefault();
+            }
+
+            //SWAP :: Call RtsHandler.ResetRig() to put grid back on table after returning its state back to normal
+        }
+        else
+        {
+            //SET this object as parent to the Grid, namely...
+            // SetHolding(tableHarnessGrid)
+        }
+        viewRTS.enabled = state;
+    }
+
 	// Update is called once per frame
 	void Update () {
 	
