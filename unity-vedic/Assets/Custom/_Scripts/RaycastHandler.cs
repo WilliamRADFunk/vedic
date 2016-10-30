@@ -15,6 +15,7 @@ public class RaycastHandler : MonoBehaviour
 {
     public LaserController lControl;
     public LineRenderer line;
+    public bool isRight;
 
     HandModel hand_model;
     Hand leap_hand;
@@ -30,11 +31,25 @@ public class RaycastHandler : MonoBehaviour
         hand_model = GetComponent<HandModel>();
         leap_hand = hand_model.GetLeapHand();
         if (leap_hand == null) Debug.LogError("No leap_hand founded");
+        if(isRight)
+        {
+            if(!lControl.rightHanded)
+            {
+                isRight = false;
+            }
+        }
+        else
+        {
+            if(lControl.leftHanded)
+            {
+                isRight = true;
+            }
+        }
     }
 
     void Update()
     {
-        if(active)
+        if(active && isRight)
         {            
             line.SetPosition(0, hand_model.GetPalmPosition());
             line.SetPosition(1, (hand_model.GetPalmDirection() * 20f));//+ 2 * hand_model.GetPalmPosition());// * finger.GetTipPosition());
