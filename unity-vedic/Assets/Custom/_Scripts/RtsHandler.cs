@@ -54,6 +54,7 @@ public class RtsHandler : MonoBehaviour {
             {
                 firstTime = false;
                 BringToUser();
+                //SWAP :: ViewMoveTool.SetHolding(gameObject);
             }
             
             //SWAP :: ViewMoveTool.RtsSetter(true);
@@ -72,6 +73,7 @@ public class RtsHandler : MonoBehaviour {
     {
         if(initialized)
         {
+            //SWAP :: Call ViewMoveTool RtsSetter(false)
             rtsInstance.enabled = false;
         }
         else
@@ -86,7 +88,7 @@ public class RtsHandler : MonoBehaviour {
         {
             firstTime = true;
 
-            //SWAP :: Uncecessary reference to rtsInstance
+            //SWAP :: Uncecessary reference to rtsInstance. Make sure to call Reset function on ViewMoveTool
             rtsInstance.enabled = false;
 
             ResetToDefault();

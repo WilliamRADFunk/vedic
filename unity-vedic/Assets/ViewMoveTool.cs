@@ -32,6 +32,8 @@ public class ViewMoveTool : MonoBehaviour {
 	void Start () {
 	}
 
+
+    //Can be passed either the grid or table object to set rts anchor to said object
     public void SetHolding(GameObject incommingObj, bool isTable)
     {
         DeactivateHolder();
@@ -40,16 +42,24 @@ public class ViewMoveTool : MonoBehaviour {
         holding = isTable;
     }
 
+    //Sets the parent of the object passed in to this object (RTS ANCHOR)
     private void SetNewHolder(GameObject obj2Set)
     {
         viewRTS.enabled = true;
         obj2Set.transform.SetParent(this.transform);
     }
 
+    //Makes sure that the holder is not currently being occupied, managing the state in which a table is currently being used.
     private void DeactivateHolder()
     {
         viewRTS.enabled = false;
+        RemoveTableInstance();
+       
+    }
 
+    //Checks to see if a table is currently being held to reset if needed
+    private void RemoveTableInstance()
+    {
         if (holding)
         {
             holdingObj.transform.parent = returnObject.transform;
@@ -57,25 +67,17 @@ public class ViewMoveTool : MonoBehaviour {
         }
     }
 
+    //Allows for activation and deactivation of RTS
     public void RtsSetter(bool state)
     {
-        if(!state)
-        {
-            if (holding)
-            {
-                viewRTS.enabled = false;
-                holdingObj.transform.parent = returnObject.transform;
-                holdingObj.GetComponent<Table>().ResetObjectDefault();
-            }
-
-            //SWAP :: Call RtsHandler.ResetRig() to put grid back on table after returning its state back to normal
-        }
-        else
-        {
-            //SET this object as parent to the Grid, namely...
-            // SetHolding(tableHarnessGrid)
-        }
         viewRTS.enabled = state;
+    }
+
+    //Reset function to ensure that everything returns back to normal
+    public void Reset()
+    {
+        SetHolding(returnObject, false);
+        viewRTS.enabled = false;
     }
 
 	// Update is called once per frame
