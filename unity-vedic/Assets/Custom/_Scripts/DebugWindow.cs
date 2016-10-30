@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class DebugWindow : MonoBehaviour
 {
     [SerializeField]
-    private TextMesh textMesh1;
-    private TextMesh textMesh2;
-    private TextMesh textMesh3;
-    private TextMesh textMesh4;
-
-    // Use this for initialization
-    void Start()
-    {
-        textMesh1 = gameObject.GetComponentInChildren<TextMesh>();
-        textMesh2 = gameObject.GetComponentInChildren<TextMesh>();
-        textMesh3 = gameObject.GetComponentInChildren<TextMesh>();
-        textMesh4 = gameObject.GetComponentInChildren<TextMesh>();
-    }
+    private Text textMesh1;
+    [SerializeField]
+    private Text textMesh2;
+    [SerializeField]
+    private Text textMesh3;
+    [SerializeField]
+    private Text textMesh4;
 
     void OnEnable()
     {
