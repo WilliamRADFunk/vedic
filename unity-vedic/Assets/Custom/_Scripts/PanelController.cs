@@ -9,6 +9,8 @@ public class PanelController : MonoBehaviour
     private bool isKeyboard = false;
     private bool isNodeSpawner = false;
     private bool isLaserOn = false;
+    private bool isSpeech = true;
+    private bool isSpeechPossible = true;
     private GameObject tableHarManager;
     private GameObject DbImporter;
     private GameObject DbExporter;
@@ -22,6 +24,8 @@ public class PanelController : MonoBehaviour
     private GameObject MenuPods;
     public GameObject teleporter;
     private GameObject NodeSpawner;
+    [SerializeField]
+    private GameObject SpeechRecognizer;
     public RaycastHandler[] Lasers;
 
     void Update()
@@ -268,6 +272,7 @@ public class PanelController : MonoBehaviour
         else
         {
             Keyboard.SetActive(true);
+            isKeyboard = true;
 
             if (MenuInput.activeSelf)
             {
@@ -294,6 +299,9 @@ public class PanelController : MonoBehaviour
     /*************************** SPEECH TOGGLING START *************************************/
     public void DeactivateSpeechToggle()
     {
+        isSpeech = false;
+        isSpeechPossible = false;
+
         if (MenuInput.activeSelf)
         {
             GameObject toggle = GameObject.FindGameObjectWithTag("SpeechToggle");
@@ -314,23 +322,39 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    public void ActivateSpeechToggle()
+    public void ToggleSpeech()
     {
-        if (MenuInput.activeSelf)
+        if (isSpeech)
         {
-            GameObject toggle = GameObject.FindGameObjectWithTag("SpeechToggle");
-            Toggle tog = toggle.GetComponent<Toggle>();
-            tog.isOn = true;
-            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+            SpeechRecognizer.GetComponent<SpeechController>().ToggleSpeech();
+            isSpeech = false;
+
+            if (MenuInput.activeSelf)
+            {
+                ToggleOff("SpeechToggle");
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                ToggleOff("SpeechToggle");
+                MenuInput.SetActive(false);
+            }
         }
-        else
+        else if(isSpeechPossible)
         {
-            MenuInput.SetActive(true);
-            GameObject toggle = GameObject.FindGameObjectWithTag("SpeechToggle");
-            Toggle tog = toggle.GetComponent<Toggle>();
-            tog.isOn = true;
-            tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
-            MenuInput.SetActive(false);
+            SpeechRecognizer.GetComponent<SpeechController>().ToggleSpeech();
+            isSpeech = true;
+
+            if (MenuInput.activeSelf)
+            {
+                ToggleOn("SpeechToggle");
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                ToggleOn("SpeechToggle");
+                MenuInput.SetActive(false);
+            }
         }
     }
     /*************************** SPEECH TOGGLING END ***************************************/
