@@ -9,6 +9,11 @@ public class WindowTextController : MonoBehaviour {
     public Text Window3;
     public Text Window4;
 
+    public Text Error1;
+    public Text Error2;
+    public Text Error3;
+    public Text Error4;
+
     void Start()
     {
         SwitchBoard(0);
@@ -19,13 +24,13 @@ public class WindowTextController : MonoBehaviour {
         DeactivateAll();
 
         if (stationNumber == 0)
-            ActivateWindow(Window1);
+            ActivateWindow(Window1, Error1);
         else if (stationNumber == 1)
-            ActivateWindow(Window2);
+            ActivateWindow(Window2, Error2);
         else if (stationNumber == 2)
-            ActivateWindow(Window3);
+            ActivateWindow(Window3, Error3);
         else if (stationNumber == 3)
-            ActivateWindow(Window4);
+            ActivateWindow(Window4, Error4);
 
     }
 
@@ -36,16 +41,22 @@ public class WindowTextController : MonoBehaviour {
         Window2.enabled = false;
         Window3.enabled = false;
         Window4.enabled = false;
+        Error1.enabled = false;
+        Error2.enabled = false;
+        Error3.enabled = false;
+        Error4.enabled = false;
     }
 
     //Process of activating a Text object to be viewable in scene
-    private void ActivateWindow(Text temp)
+    private void ActivateWindow(Text temp, Text errorTemp)
     {
-        if(temp == null)
+        if(temp == null || errorTemp == null)
         {
             return;
         }
-        temp.enabled = true;       
+
+        temp.enabled = true;
+        errorTemp.enabled = true;       
     }
 
 

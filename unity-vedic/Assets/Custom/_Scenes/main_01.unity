@@ -105993,7 +105993,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -110341,6 +110341,10 @@ MonoBehaviour:
   Window2: {fileID: 1831400347}
   Window3: {fileID: 548329281}
   Window4: {fileID: 1487377642}
+  Error1: {fileID: 1445563519}
+  Error2: {fileID: 843448676}
+  Error3: {fileID: 383201025}
+  Error4: {fileID: 1916339471}
 --- !u!1 &1889582076
 GameObject:
   m_ObjectHideFlags: 0
