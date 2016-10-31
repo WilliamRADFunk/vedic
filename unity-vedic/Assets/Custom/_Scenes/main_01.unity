@@ -47236,6 +47236,10 @@ Prefab:
       propertyPath: podManager
       value: 
       objectReference: {fileID: 1141546074}
+    - target: {fileID: 1000012990169856, guid: fdf79634d36d27841988a7e5e05028d2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000014219851714, guid: fdf79634d36d27841988a7e5e05028d2, type: 2}
     - {fileID: 114000010145410396, guid: fdf79634d36d27841988a7e5e05028d2, type: 2}
@@ -62484,6 +62488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a1f5658189cb74787aae210f2a9a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableDeposit: {fileID: 1656573198}
 --- !u!4 &1063232869
 Transform:
   m_ObjectHideFlags: 0
@@ -98190,6 +98195,67 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656389680}
   m_Mesh: {fileID: 4300018, guid: 8d468549643aa6c4799d143c2dbc0c62, type: 3}
+--- !u!1 &1656573197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1656573200}
+  - 114: {fileID: 1656573199}
+  - 114: {fileID: 1656573198}
+  m_Layer: 0
+  m_Name: TableDeposit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1656573198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1656573197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1714dcc9bc08484abe9ab8f399cba9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRTS: {fileID: 1656573199}
+--- !u!114 &1656573199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1656573197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe275910c9572e4690cf9f283366c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  _pinchDetectorA: {fileID: 1192715297}
+  _pinchDetectorB: {fileID: 740666909}
+  _oneHandedRotationMethod: 0
+  _twoHandedRotationMethod: 1
+  _allowScale: 1
+  _toggleGuiState: 0
+  _showGUI: 1
+--- !u!4 &1656573200
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1656573197}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.287, y: 0.099, z: 0.052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1886097242}
+  m_RootOrder: 7
 --- !u!1 &1657047264
 GameObject:
   m_ObjectHideFlags: 0
@@ -105926,7 +105992,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -110070,6 +110136,7 @@ Transform:
   - {fileID: 138769751}
   - {fileID: 2128819961}
   - {fileID: 301844799}
+  - {fileID: 1656573200}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1886097243

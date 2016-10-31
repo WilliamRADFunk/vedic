@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SelectorOverseer : MonoBehaviour {
 
+    public ViewMoveTool tableDeposit;
+
     GameObject tableSelected;
     bool occupied;
 
@@ -19,9 +21,10 @@ public class SelectorOverseer : MonoBehaviour {
 
     public bool Release(GameObject temp)
     {
-        if(!occupied)
+        if(temp.GetInstanceID() == tableSelected.GetInstanceID() && !occupied)
         {
             occupied = true;
+            tableDeposit.SetHolding(temp);
             return true;
         }
         else

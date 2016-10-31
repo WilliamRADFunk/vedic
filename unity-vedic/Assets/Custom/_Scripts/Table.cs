@@ -42,6 +42,8 @@ public class Table : MonoBehaviour, ViewObj
     bool activated;
     bool triggered;
     bool pinched;
+
+    bool newForm;
     int timer;
 
     // Use this for initialization
@@ -52,6 +54,7 @@ public class Table : MonoBehaviour, ViewObj
         triggered = false;
         pinched = false;
         secondFrame = false;
+        newForm = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
         selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
@@ -95,6 +98,11 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(false);
             }
             triggered = false;
+            if(newForm)
+            {
+                InteractOff();
+                newForm = false;
+            }
             t.UpdateText(ID, false); 
         }
     }
@@ -172,14 +180,18 @@ public class Table : MonoBehaviour, ViewObj
     {
         //Possibly Signal RtsHandler to turn off its respective rts
         //rtsInstanceMinor.AllowScale = false;
-        rtsInstanceMinor.enabled = true;
+        //rtsInstanceMinor.enabled = true;
+        BringToActive();
+        timer = 10;
+        newForm = true;
     }
 
     public void InteractOff()
     {
         ResetToDefault();
-        rtsInstanceMinor.enabled = false;
-
+        gameObject.transform.SetParent(rtsMinor);
+        ResetToDefault();
+        //rtsInstanceMinor.enabled = false;
     }
 
     /*
@@ -211,6 +223,10 @@ public class Table : MonoBehaviour, ViewObj
     public void OnTriggerStay(Collider other)
     {
         timer = 2;
+        if(newForm)
+        {
+            timer = 120;
+        }
 
         if(!triggered)
         {
