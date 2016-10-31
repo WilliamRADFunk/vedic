@@ -8,8 +8,8 @@ public class InputButton : NodeButton {
     public Vid_Object vidObj;
 
     bool used = false;
-    bool drawline = false;
-    OutputButton output;
+    [HideInInspector] public bool drawline = false;
+    public OutputButton output;
     public LineRenderer lineRender;
     Renderer r;
 
