@@ -5,12 +5,16 @@ using System.Collections.Generic;
 
 public class Table : MonoBehaviour, ViewObj
 {
+
+    
     public GameObject tempPrefabReference; //To be passed in by parent?
     List<GameObject> columns = new List<GameObject>();
     Vector3 location;
 
+    SelectorOverseer selectTool;
+
     Transform rtsMinor;
-    Leap.Unity.LeapRTS rtsInstanceMinor;
+    Leap.Unity.JamesV_LeapRTS rtsInstanceMinor;
 
     Vector3 initialWorldPos;
     Vector3 initialLocalPos;
@@ -23,6 +27,10 @@ public class Table : MonoBehaviour, ViewObj
     GameObject TactileText;
     TactileText t;
 
+    private Leap.Unity.PinchDetector lPinch;
+    private Leap.Unity.PinchDetector rPinch;
+    
+
     BoxCollider areaOfEffect;
 
     string ID;
@@ -30,8 +38,10 @@ public class Table : MonoBehaviour, ViewObj
 
     bool initialized = false;
     bool virgin = true;
+    bool secondFrame;
     bool activated;
     bool triggered;
+    bool pinched;
     int timer;
 
     // Use this for initialization
@@ -40,9 +50,11 @@ public class Table : MonoBehaviour, ViewObj
         timer = -1;
         activated = false;
         triggered = false;
+        pinched = false;
+        secondFrame = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
-
+        selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
         t = TactileText.GetComponent<TactileText>();
 
 
@@ -51,17 +63,29 @@ public class Table : MonoBehaviour, ViewObj
     // Update is called once per frame
     void Update()
     {
+
+
+        if (secondFrame)
+        {
+            secondFrame = false;
+            rtsMinor = gameObject.transform.parent;
+            rtsInstanceMinor.PinchDetectorA = lPinch;
+            rtsInstanceMinor.PinchDetectorB = rPinch;
+            rtsInstanceMinor.enabled = false;
+        }  
         if (virgin)
         {
             InvokeRepeating("CountDown", 0.1f, 0.1f);
             virgin = false;
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
 
-            rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.LeapRTS>();
-            rtsInstanceMinor.PinchDetectorA = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.LeapRTS>().PinchDetectorA;
-            rtsInstanceMinor.PinchDetectorB = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.LeapRTS>().PinchDetectorB;
-            rtsMinor = gameObject.transform.parent;
-            rtsInstanceMinor.enabled = false;
+            rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.JamesV_LeapRTS>();
+            lPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorA;
+            rPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorB;
+        
+            rtsInstanceMinor.enabled = true; ;
+
+            secondFrame = true;
         }
 
         if(timer == 0)
@@ -147,10 +171,11 @@ public class Table : MonoBehaviour, ViewObj
     private void InteractOn()
     {
         //Possibly Signal RtsHandler to turn off its respective rts
+        //rtsInstanceMinor.AllowScale = false;
         rtsInstanceMinor.enabled = true;
     }
 
-    private void InteractOff()
+    public void InteractOff()
     {
         ResetToDefault();
         rtsInstanceMinor.enabled = false;
@@ -185,16 +210,38 @@ public class Table : MonoBehaviour, ViewObj
 
     public void OnTriggerStay(Collider other)
     {
-        timer = 5;
+        timer = 2;
 
         if(!triggered)
         {
+            selectTool.InputTable(gameObject);
             triggered = true;
             for (int i = 0; i < columns.Count; i++)
             {
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
             t.UpdateText(ID, true);
+        }
+
+        //pinched = CheckPinch();
+        //if(pinched)
+        //{
+        //    if(selectTool.Release(gameObject))
+        //    {
+        //        InteractOn();
+        //    }
+        //}
+    }
+
+    private bool CheckPinch()
+    {
+        if(lPinch.IsPinching || rPinch.IsPinching)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

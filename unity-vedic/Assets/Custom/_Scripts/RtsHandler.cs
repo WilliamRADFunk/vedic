@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RtsHandler : MonoBehaviour {
 
+    public ViewMoveTool deposit;
+
     GameObject tableHarnessInstance;
     Transform rtsMain;
 
@@ -14,7 +16,7 @@ public class RtsHandler : MonoBehaviour {
     Vector3 initialLocalScale;
     Vector3 initialLocalRtsScale;
 
-    Leap.Unity.LeapRTS rtsInstance;
+    Leap.Unity.JamesV_LeapRTS rtsInstance;
     bool virgin;
     bool toggled;
     bool initialized;
@@ -26,7 +28,7 @@ public class RtsHandler : MonoBehaviour {
         toggled = false;
         initialized = false;
         firstTime = true;
-        rtsInstance = gameObject.GetComponent<Leap.Unity.LeapRTS>();
+        rtsInstance = gameObject.GetComponent<Leap.Unity.JamesV_LeapRTS>();
 	}
 	
 	// Update is called once per frame
@@ -53,12 +55,17 @@ public class RtsHandler : MonoBehaviour {
             if(firstTime)
             {
                 firstTime = false;
+                //rtsInstance.enabled = true;
                 BringToUser();
                 //SWAP :: ViewMoveTool.SetHolding(gameObject);
             }
+            else
+            {
+                deposit.RtsSetter(true);
+            }
             
             //SWAP :: ViewMoveTool.RtsSetter(true);
-            rtsInstance.enabled = true;
+            //rtsInstance.enabled = true;
             return true;
         }
         else
@@ -74,7 +81,7 @@ public class RtsHandler : MonoBehaviour {
         if(initialized)
         {
             //SWAP :: Call ViewMoveTool RtsSetter(false)
-            rtsInstance.enabled = false;
+            deposit.RtsSetter(false);
         }
         else
         {
@@ -98,6 +105,9 @@ public class RtsHandler : MonoBehaviour {
 
     private void ResetToDefault()
     {
+        gameObject.transform.SetParent(rtsMain.transform);
+        deposit.ResetAnchor();
+
         rtsMain.transform.localPosition = initialLocalRtsPos;
         rtsMain.transform.localRotation = initialLocalRtsRotation;
         rtsMain.transform.localScale = initialLocalRtsScale;
@@ -112,7 +122,7 @@ public class RtsHandler : MonoBehaviour {
         Transform tempCamLocation = GameObject.FindGameObjectWithTag("MainCamera").transform;
         Vector3 camWorldVector = tempCamLocation.position;
 
-        camWorldVector.x = camWorldVector.x + 1;
+        camWorldVector.x = camWorldVector.x - 2;
         camWorldVector.y--;
 
         initialWorldPos = gameObject.transform.position;
@@ -124,8 +134,10 @@ public class RtsHandler : MonoBehaviour {
         initialLocalRtsRotation = rtsMain.transform.localRotation;
         initialLocalRtsScale = rtsMain.transform.localScale;
 
-        gameObject.transform.position = camWorldVector;
-        gameObject.transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f);
+        deposit.SetHolding(gameObject);
+
+        //gameObject.transform.position = camWorldVector;
+        gameObject.transform.localScale -= new Vector3(0.7f, 0.7f, 0.7f);
     }
 
     public void SetInitializedBool(bool temp)
