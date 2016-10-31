@@ -35,6 +35,7 @@ TagManager:
   - 3dCursorToggle
   - LeftPinch
   - RightPinch
+  - DynamicSelect
   layers:
   - Default
   - TransparentFX
