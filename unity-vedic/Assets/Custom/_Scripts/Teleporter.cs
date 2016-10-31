@@ -15,6 +15,9 @@ public class Teleporter : MonoBehaviour
     int curStation;
     bool virgin = true;
 
+    [SerializeField]
+    private WindowTextController infoWindows;
+
     // Use this for initialization
     void Start()
     {
@@ -83,6 +86,7 @@ public class Teleporter : MonoBehaviour
 
         Fader.Instance.FadeOut(null);
 
+        infoWindows.SwitchBoard(station);
         currentPosition.localPosition = newCoordinate(teleLocations[station].localPosition);
         gameObject.transform.localRotation = teleLocations[station].localRotation;
         ui.transform.localRotation = teleLocations[station].localRotation;

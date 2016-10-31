@@ -73438,6 +73438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 1886097241}
+  infoWindows: {fileID: 1887005865}
 --- !u!1 &1204689892
 GameObject:
   m_ObjectHideFlags: 0
@@ -105992,7 +105993,7 @@ Prefab:
     - target: {fileID: 224000013339013086, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011316838646, guid: 338088151f99b824e98088a38c276d13,
         type: 2}
@@ -110302,6 +110303,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1093206777}
   - 114: {fileID: 1887005864}
+  - 114: {fileID: 1887005865}
   m_Layer: 0
   m_Name: MiddleScene
   m_TagString: Untagged
@@ -110324,6 +110326,21 @@ MonoBehaviour:
   textMesh2: {fileID: 1445563519}
   textMesh3: {fileID: 1916339471}
   textMesh4: {fileID: 843448676}
+--- !u!114 &1887005865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1887005863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de7f37cac422b74d93b369b07ebe4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Window1: {fileID: 852316806}
+  Window2: {fileID: 1831400347}
+  Window3: {fileID: 548329281}
+  Window4: {fileID: 1487377642}
 --- !u!1 &1889582076
 GameObject:
   m_ObjectHideFlags: 0
