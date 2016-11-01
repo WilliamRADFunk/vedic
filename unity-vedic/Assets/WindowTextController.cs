@@ -47,27 +47,26 @@ public class WindowTextController : MonoBehaviour {
         Error4.enabled = false;
     }
 
-    public void UpdateTexter(string message, bool active)
+    public void UpdateInfo(string message, bool active)
     {
-        Debug.Log("Made it to UpdateInfo...");
 
-        //if (!active)
-        //{
-        //    if (Window1.text == message)
-        //    {
-        //        Window1.text = "";
-        //        Window2.text = "";
-        //        Window3.text = "";
-        //        Window4.text = "";
-        //    }
-        //}
-        //else
-        //{
-        //    Window1.text = message;
-        //    Window2.text = message;
-        //    Window3.text = message;
-        //    Window4.text = message;
-        //}
+        if (!active)
+        {
+            if (Window1.text == message)
+            {
+                Window1.text = "";
+                Window2.text = "";
+                Window3.text = "";
+                Window4.text = "";
+            }
+        }
+        else
+        {
+            Window1.text = message;
+            Window2.text = message;
+            Window3.text = message;
+            Window4.text = message;
+        }
     }
 
     //Process of activating a Text object to be viewable in scene

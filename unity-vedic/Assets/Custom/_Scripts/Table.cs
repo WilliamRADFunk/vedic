@@ -25,7 +25,7 @@ public class Table : MonoBehaviour, ViewObj
     Vector3 initialLocalRtsScale;
 
     GameObject TactileText;
-    TactileText t;
+    WindowTextController t;
 
     private Leap.Unity.PinchDetector lPinch;
     private Leap.Unity.PinchDetector rPinch;
@@ -59,7 +59,7 @@ public class Table : MonoBehaviour, ViewObj
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
         selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
-        t = TactileText.GetComponent<TactileText>();
+        t = TactileText.GetComponent<WindowTextController>();
     }
 
     // Update is called once per frame
@@ -86,6 +86,8 @@ public class Table : MonoBehaviour, ViewObj
             rtsInstanceMinor.enabled = true; ;
 
             secondFrame = true;
+
+            RetrieveColumnNames();
         }
 
         if(timer == 0)
@@ -100,7 +102,7 @@ public class Table : MonoBehaviour, ViewObj
                 InteractOff();
                 newForm = false;
             }
-            t.UpdateText(ID, false); 
+            t.UpdateInfo(outPut, false); 
         }
     }
 
@@ -234,7 +236,7 @@ public class Table : MonoBehaviour, ViewObj
             {
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
-            t.UpdateText(ID, true);
+            t.UpdateInfo(outPut, true);
         }
 
         //pinched = CheckPinch();
@@ -275,7 +277,7 @@ public class Table : MonoBehaviour, ViewObj
             {
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
-            t.UpdateText(outPut, true);
+            t.UpdateInfo(outPut, true);
         }
     }
 
