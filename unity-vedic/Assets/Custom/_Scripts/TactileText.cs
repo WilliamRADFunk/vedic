@@ -2,15 +2,16 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class TactileText : MonoBehaviour {
+public class TactileText : MonoBehaviour
+{
 
     public Text birdo;
 
     public void UpdateText(string message, bool active)
     {
-        if(!active)
+        if (!active)
         {
-            if(birdo.text == message)
+            if (birdo.text == message)
             {
                 birdo.text = "";
             }
@@ -19,6 +20,6 @@ public class TactileText : MonoBehaviour {
         {
             birdo.text = message;
         }
-        
+
     }
 }

@@ -183,4 +183,9 @@ public class Column : MonoBehaviour, ViewObj {
         changeable = true;
         yield break;  
     }
+
+    public string GetName()
+    {
+        return ID;
+    }
 }

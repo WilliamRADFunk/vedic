@@ -34,6 +34,7 @@ public class Table : MonoBehaviour, ViewObj
     BoxCollider areaOfEffect;
 
     string ID;
+    string outPut = "";
     int tableHeight;
 
     bool initialized = false;
@@ -59,15 +60,11 @@ public class Table : MonoBehaviour, ViewObj
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
         selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
         t = TactileText.GetComponent<TactileText>();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (secondFrame)
         {
             secondFrame = false;
@@ -114,6 +111,7 @@ public class Table : MonoBehaviour, ViewObj
             initialize(columnObjects, father);
             initialized = true;
             ID = name;
+            outPut = name + ":\n";
             return true;
         }
         else
@@ -277,7 +275,16 @@ public class Table : MonoBehaviour, ViewObj
             {
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
-            t.UpdateText(ID, true);
+            t.UpdateText(outPut, true);
+        }
+    }
+
+    private void RetrieveColumnNames()
+    {
+        foreach(GameObject col in columns)
+        {
+            string tempCol = col.GetComponent<Column>().GetName();
+            outPut += "\t" + tempCol + "\n";
         }
     }
 
