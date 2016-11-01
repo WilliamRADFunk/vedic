@@ -54,4 +54,11 @@ public class UIMove_Tool : MonoBehaviour {
             obj2hold.transform.parent = parentObj.transform;
         }
     }
+
+    public void CopyNodes() {
+        foreach(GameObject go in holdingV2) {
+            GameObject g = (GameObject)Instantiate(go, go.transform.position + new Vector3(.5f,.5f,0), go.transform.rotation);
+        }
+
+    }
 }

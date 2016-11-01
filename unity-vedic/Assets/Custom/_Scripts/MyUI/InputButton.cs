@@ -22,12 +22,11 @@ public class InputButton : NodeButton {
                 drawline = false;
 
                 vidObj.removeInput(argumentIndex);
-
+                
                 output = null;
                 used = false;
                 ct.resetTool();
             }
-
         }
 
         else if (used && ct.getOutputButton() == null)
@@ -50,6 +49,10 @@ public class InputButton : NodeButton {
 
    void Update()
     {
+        if(output == null) {
+            lineRender.enabled = false;
+            return;
+        }
         if (drawline)
         {
             if (!lineRender.enabled)
