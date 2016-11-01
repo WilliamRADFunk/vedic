@@ -71,4 +71,70 @@ public class UIMove_Tool : MonoBehaviour {
             }
         }
     }
+
+    public void SelectGroup() {
+        if ((holdingV2.Count - 1) > -1) {
+            SelectGroup(holdingV2[holdingV2.Count - 1]);
+        }
+    }
+    public void SelectGroup(GameObject go) {
+        if (go == null) {
+            return;
+        }
+        Vid_Object vidObj = go.GetComponent<Vid_Object>();
+        Vid_ObjectInputs inputs = vidObj.GetInputs();
+        VidContainer container = go.GetComponent<VidContainer>();
+        container.Select();
+        if (inputs == null) {
+            return;
+        }
+        for (int i = 0; i < inputs.inputs.Length; i++) {
+            Debug.Log(i + ":here");
+            if (inputs.inputs[i] == null) {
+
+            }
+            else {
+                SelectGroup(inputs.inputs[i].gameObject);
+            }
+        }
+    }
+
+    public void DeselectGroup() {
+        if((holdingV2.Count -1) > -1) {
+            DeselectGroup(holdingV2[holdingV2.Count - 1]);
+        }
+    }
+    public void DeselectGroup(GameObject go) {
+        if(go == null) {
+            return;
+        }
+        Vid_Object vidObj = go.GetComponent<Vid_Object>();
+        Vid_ObjectInputs inputs = vidObj.GetInputs();
+        VidContainer container = go.GetComponent<VidContainer>();
+        container.Deselect();
+        if(inputs == null) {
+            return;
+        }
+        for (int i = 0; i<inputs.inputs.Length; i++) {
+            Debug.Log(i + ":here");
+            if(inputs.inputs[i] == null ) {
+
+            }
+            else {
+                DeselectGroup(inputs.inputs[i].gameObject);
+            }
+        }
+
+    }
+
+    public void DeselectAll() {
+        GameObject[] items = holdingV2.ToArray();
+        if(items == null) {
+            return;
+        }
+        foreach(GameObject g in items) {
+            VidContainer container = g.GetComponent<VidContainer>();
+            container.Deselect();
+        } 
+    }
 }

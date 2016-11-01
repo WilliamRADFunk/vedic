@@ -15,11 +15,25 @@ public class VidContainer : MonoBehaviour {
             return;
         }
         for (int i=0; i< lines.Count;i++) {
-            if(lines[i] != null) {
+            if(lines[i] != null) { 
                 Debug.Log(lines[i].ToString());
                 lines[i].drawline = false;
             }
         }
-    }
+    } 
 
+    public void Deselect() {
+        Toggle t = colorChanger.gameObject.GetComponent<Toggle>();
+        if(t == null) {
+            return;
+        }
+        t.isOn = false;
+    }
+    public void Select() {
+        Toggle t = colorChanger.gameObject.GetComponent<Toggle>();
+        if (t == null) {
+            return;
+        }
+        t.isOn = true;
+    }
 }
