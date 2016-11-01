@@ -51956,7 +51956,6 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 990394906}
   - {fileID: 1014917130}
   - {fileID: 913596571}
   m_Father: {fileID: 5849941}
@@ -58361,7 +58360,7 @@ RectTransform:
   - {fileID: 1815153081}
   - {fileID: 921469751}
   m_Father: {fileID: 782892399}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -58953,7 +58952,6 @@ GameObject:
   - 114: {fileID: 921469756}
   - 114: {fileID: 921469755}
   - 114: {fileID: 921469754}
-  - 114: {fileID: 921469753}
   - 114: {fileID: 921469752}
   m_Layer: 5
   m_Name: Button_Delete
@@ -59054,23 +59052,6 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
---- !u!114 &921469753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000011995145276, guid: f72017cf5a27fc24a9640a30b5aa7d62,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 921469750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d2569bebaf9c7e4782f71a881a99d3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  argumentIndex: 0
-  vidObj: {fileID: 0}
-  drawline: 0
-  output: {fileID: 0}
-  lineRender: {fileID: 0}
 --- !u!114 &921469754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63251,7 +63232,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990394905}
-  m_LocalRotation: {x: -0, y: -0.0000000012840502, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63259,11 +63240,11 @@ RectTransform:
   - {fileID: 1954101952}
   - {fileID: 469153035}
   - {fileID: 244544755}
-  m_Father: {fileID: 782892399}
-  m_RootOrder: 0
+  m_Father: {fileID: 1014917130}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98, y: 10}
+  m_AnchoredPosition: {x: 199, y: -0.0000047683716}
   m_SizeDelta: {x: 200, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990394907
@@ -64237,8 +64218,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_Children:
   - {fileID: 1640092712}
+  - {fileID: 990394906}
   m_Father: {fileID: 782892399}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101, y: 10}

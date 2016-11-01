@@ -4,16 +4,22 @@ using System.Collections.Generic;
 
 public class VidContainer : MonoBehaviour {
 
-    public List<GameObject> lines;
-    public List<GameObject> li;
+    public List<LineRenderer> lines;
+    public ToggleColorChanger colorChanger;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void ResetColor() {
+        colorChanger.ChangeColor(false);
+    }
+    public void DisableLines() {
+        if(lines == null ) {
+            return;
+        }
+        for (int i=0; i< lines.Count;i++) {
+            if(lines[i] != null) {
+                Debug.Log(lines[i].ToString());
+                lines[i].enabled = false;
+            }
+        }
+    }
+
 }

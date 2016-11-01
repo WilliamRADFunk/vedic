@@ -56,9 +56,19 @@ public class UIMove_Tool : MonoBehaviour {
     }
 
     public void CopyNodes() {
-        foreach(GameObject go in holdingV2) {
-            GameObject g = (GameObject)Instantiate(go, go.transform.position + new Vector3(.5f,.5f,0), go.transform.rotation);
-        }
+        if(holdingV2.Count < 0) { return; }
 
+        List<GameObject> copyGame = new List<GameObject>();
+        for(int i = 0; i< holdingV2.Count; i++) {
+            GameObject g = (GameObject)Instantiate(holdingV2[i], new Vector3(holdingV2[i].transform.position.x + .5f, holdingV2[i].transform.position.y + .5f, .3f), holdingV2[i].transform.rotation);
+            copyGame.Add(g);
+        }
+        for(int i =0; i<copyGame.Count; i++) {
+            setholding(copyGame[i]);
+            VidContainer container = copyGame[i].GetComponent<VidContainer>();
+            if (container != null) {
+                container.DisableLines();
+            }
+        }
     }
 }
