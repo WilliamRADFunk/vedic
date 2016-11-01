@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class VidContainer : MonoBehaviour {
 
-    public List<LineRenderer> lines;
+    public List<InputButton> lines;
     public ToggleColorChanger colorChanger;
 
     public void ResetColor() {
@@ -17,7 +17,7 @@ public class VidContainer : MonoBehaviour {
         for (int i=0; i< lines.Count;i++) {
             if(lines[i] != null) {
                 Debug.Log(lines[i].ToString());
-                lines[i].enabled = false;
+                lines[i].drawline = false;
             }
         }
     }
