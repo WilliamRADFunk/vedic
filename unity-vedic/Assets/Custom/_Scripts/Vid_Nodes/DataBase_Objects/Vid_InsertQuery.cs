@@ -55,7 +55,7 @@ public class Vid_InsertQuery : Vid_Query
                 else {
                     return false;
                 }
-            case 2:
+            case 1:
                 if (obj.output_dataType == VidData_Type.LIST) {
                     bool b = base.addInput(obj, 1);
                     return b;
