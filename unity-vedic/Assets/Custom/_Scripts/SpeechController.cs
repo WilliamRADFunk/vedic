@@ -15,6 +15,8 @@ public class SpeechController : MonoBehaviour
 
     [SerializeField]
     private PanelController PanelController;
+    [SerializeField]
+    private RtsHandler RtsHandler;
 
     private KeywordRecognizer m_Recognizer;
     private bool pristine = true;
