@@ -22,7 +22,7 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[9];
+        commandPhrases = new string[10];
     }
     void Update()
     {
@@ -95,6 +95,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("lobby");
         m_Keywords.Add("browser");
         m_Keywords.Add("query");
+        m_Keywords.Add("analytics");
         m_Keywords.Add("teleport");
 
         commandPhrases[0] = "keyboard toggle";
@@ -106,6 +107,7 @@ public class SpeechController : MonoBehaviour
         commandPhrases[6] = "teleport lobby";
         commandPhrases[7] = "teleport browser";
         commandPhrases[8] = "teleport query";
+        commandPhrases[9] = "teleport analytics";
     }
     private void ActivateWordChain()
     {
@@ -150,13 +152,17 @@ public class SpeechController : MonoBehaviour
                     Debug.Log(commandPhrases[8]); // teleport query
                     PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(2);
                     break;
+                case 9:
+                    Debug.Log(commandPhrases[9]); // teleport analytics
+                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(3);
+                    break;
                 default:
                     Debug.Log("Invalid Command");
                     break;
             }
-            Debug.Log("Flushing chain");
-            wordChain = new List<string>(); // Flush the chain
         }
+        Debug.Log("Flushing chain");
+        wordChain = new List<string>(); // Flush the chain
     }
     private int CheckCommands()
     {
