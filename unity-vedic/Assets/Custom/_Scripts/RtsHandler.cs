@@ -154,7 +154,7 @@ public class RtsHandler : MonoBehaviour {
     public void killHarness()
     {
         SetInitializedBool(false);
-        GameObject.Destroy(tableHarnessInstance);
         tableManager.DeleteAllPrevious();
+        GameObject.Destroy(tableHarnessInstance);
     }
 }

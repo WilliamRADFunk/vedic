@@ -72,7 +72,7 @@ public class SelectorOverseer : MonoBehaviour {
 
     private bool CheckPinch()
     {
-        if(lPinch.IsPinching || rPinch.IsPinching)
+        if(lPinch.DidStartPinch || rPinch.DidStartPinch)
         {
             return true;
         }
