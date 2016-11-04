@@ -47,7 +47,15 @@ public class InputButton : NodeButton {
         }
     }
 
-   void Update()
+    public void RemakeConnetion() {
+        if (output == null) {
+            return;
+        }
+        Vid_Object outputObj = output.vid_obj;
+        bool b = vidObj.addInput(outputObj, argumentIndex);
+    }
+
+    void Update()
     {
         if(output == null) {
             lineRender.enabled = false;
@@ -65,7 +73,7 @@ public class InputButton : NodeButton {
             lineRender.SetPositions(points);
         }
     }
-
+   
    private void transferData()
    {
         output = ct.getOutputButton();

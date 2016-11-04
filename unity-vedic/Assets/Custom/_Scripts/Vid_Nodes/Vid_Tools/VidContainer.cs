@@ -20,7 +20,18 @@ public class VidContainer : MonoBehaviour {
                 lines[i].drawline = false;
             }
         }
-    } 
+    }
+
+    public void ReConnectData() {
+        if (lines == null) {
+            return;
+        }
+        for (int i = 0; i < lines.Count; i++) {
+            if (lines[i] != null) {
+                lines[i].RemakeConnetion();
+            }
+        }
+    }
 
     public void Deselect() {
         Toggle t = colorChanger.gameObject.GetComponent<Toggle>();

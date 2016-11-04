@@ -42,9 +42,8 @@ public class UIMove_Tool : MonoBehaviour {
 
     private void setNewHolder(GameObject obj2hold) {
         rts.enabled = true;
-        obj2hold.transform.SetParent(this.transform);
+        obj2hold.transform.SetParent(rts.gameObject.transform);
     }
-
     private void deActivateHolder(GameObject obj2hold) {
         if (holdingV2.Count == 0) {
             rts.enabled = false;
@@ -55,6 +54,8 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
+
+    /*UX Actions*/
     public void CopyNodes() {
         if(holdingV2.Count < 0) { return; }
 
@@ -70,6 +71,31 @@ public class UIMove_Tool : MonoBehaviour {
                 container.DisableLines();
             }
         }
+    }
+    public void NewCopy() {
+        GameObject g = (GameObject)Instantiate(rts.gameObject, new Vector3(rts.gameObject.transform.position.x,
+                                                                           rts.gameObject.transform.position.y + .5f, 
+                                                                           rts.gameObject.transform.position.z), 
+                                               rts.gameObject.transform.rotation);
+        List<GameObject> copyGameObj = new List<GameObject>();
+        for (int i = 0; i< g.transform.childCount; i++) {
+            copyGameObj.Add(g.transform.GetChild(i).gameObject);
+        }
+        for (int i = 0; i < copyGameObj.Count; i++) {
+            setholding(copyGameObj[i]);
+            VidContainer container = copyGameObj[i].GetComponent<VidContainer>();
+            if (container != null) {
+                container.Deselect();
+                container.Select();
+                container.ReConnectData();
+            }
+        }
+
+        Destroy(g);
+    }
+
+    private void RemakeConnections() {
+
     }
 
     public void SelectGroup() {
