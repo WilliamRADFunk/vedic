@@ -9,6 +9,7 @@ public class SpeechController : MonoBehaviour
     private bool isSpeech = true;
 
     private List<string> m_Keywords;
+    private Dictionary<string, string> word2letter = new Dictionary<string, string>();
     private List<string> wordChain;
     private string[] commandPhrases;
 
@@ -22,7 +23,34 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[10];
+        commandPhrases = new string[21];
+
+        word2letter.Add("alpha", "a");
+        word2letter.Add("bravo", "b");
+        word2letter.Add("charlie", "c");
+        word2letter.Add("delta", "d");
+        word2letter.Add("echo", "e");
+        word2letter.Add("foxtrot", "f");
+        word2letter.Add("golf", "g");
+        word2letter.Add("hotel", "h");
+        word2letter.Add("indigo", "i");
+        word2letter.Add("juliet", "j");
+        word2letter.Add("kilo", "k");
+        word2letter.Add("lima", "l");
+        word2letter.Add("mike", "m");
+        word2letter.Add("nancy", "n");
+        word2letter.Add("oscar", "o");
+        word2letter.Add("papa", "p");
+        word2letter.Add("quebec", "q");
+        word2letter.Add("romeo", "r");
+        word2letter.Add("sierra", "s");
+        word2letter.Add("tango", "t");
+        word2letter.Add("uniform", "u");
+        word2letter.Add("victor", "v");
+        word2letter.Add("whiskey", "w");
+        word2letter.Add("x-ray", "x");
+        word2letter.Add("yankee", "y");
+        word2letter.Add("zulu", "z");
     }
     void Update()
     {
@@ -72,7 +100,7 @@ public class SpeechController : MonoBehaviour
         builder.AppendFormat("{0} ({1}){2}", args.text, args.confidence, Environment.NewLine);
         builder.AppendFormat("\tTimestamp: {0}{1}", args.phraseStartTime, Environment.NewLine);
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
-        wordChain.Add(args.text);
+        wordChain.Add(TranslateLetters(args.text));
         Debug.Log(builder.ToString());
         if (args.text.Equals("execute", StringComparison.OrdinalIgnoreCase)) ActivateWordChain();
     }
@@ -82,6 +110,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("execute");
         m_Keywords.Add("panel");
         m_Keywords.Add("import");
+        m_Keywords.Add("export");
         m_Keywords.Add("query");
         m_Keywords.Add("send");
         m_Keywords.Add("test");
@@ -97,6 +126,43 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("query");
         m_Keywords.Add("analytics");
         m_Keywords.Add("teleport");
+        m_Keywords.Add("select");
+        m_Keywords.Add("database");
+        m_Keywords.Add("one");
+        m_Keywords.Add("two");
+        m_Keywords.Add("three");
+        m_Keywords.Add("four");
+        m_Keywords.Add("five");
+        m_Keywords.Add("six");
+        m_Keywords.Add("seven");
+        m_Keywords.Add("eight");
+        m_Keywords.Add("nine");
+        m_Keywords.Add("alpha");
+        m_Keywords.Add("bravo");
+        m_Keywords.Add("charlie");
+        m_Keywords.Add("delta");
+        m_Keywords.Add("echo");
+        m_Keywords.Add("foxtrot");
+        m_Keywords.Add("golf");
+        m_Keywords.Add("hotel");
+        m_Keywords.Add("indigo");
+        m_Keywords.Add("juliet");
+        m_Keywords.Add("kilo");
+        m_Keywords.Add("lima");
+        m_Keywords.Add("mike");
+        m_Keywords.Add("nancy");
+        m_Keywords.Add("oscar");
+        m_Keywords.Add("papa");
+        m_Keywords.Add("quebec");
+        m_Keywords.Add("romeo");
+        m_Keywords.Add("sierra");
+        m_Keywords.Add("tango");
+        m_Keywords.Add("uniform");
+        m_Keywords.Add("victor");
+        m_Keywords.Add("whiskey");
+        m_Keywords.Add("x-ray");
+        m_Keywords.Add("yankee");
+        m_Keywords.Add("zulu");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -104,10 +170,21 @@ public class SpeechController : MonoBehaviour
         commandPhrases[3] = "threedee cursors toggle";
         commandPhrases[4] = "speech toggle";
         commandPhrases[5] = "panel import";
-        commandPhrases[6] = "teleport lobby";
-        commandPhrases[7] = "teleport browser";
-        commandPhrases[8] = "teleport query";
-        commandPhrases[9] = "teleport analytics";
+        commandPhrases[6] = "panel export";
+        commandPhrases[7] = "teleport lobby";
+        commandPhrases[8] = "teleport browser";
+        commandPhrases[9] = "teleport query";
+        commandPhrases[10] = "teleport analytics";
+        commandPhrases[11] = "select database one";
+        commandPhrases[12] = "select database two";
+        commandPhrases[13] = "select database three";
+        commandPhrases[14] = "select database four";
+        commandPhrases[15] = "select database five";
+        commandPhrases[16] = "select database six";
+        commandPhrases[17] = "select database seven";
+        commandPhrases[18] = "select database eight";
+        commandPhrases[19] = "select database nine";
+        commandPhrases[20] = "database import";
     }
     private void ActivateWordChain()
     {
@@ -141,20 +218,73 @@ public class SpeechController : MonoBehaviour
                     PanelController.ShowDbImporter();
                     break;
                 case 6:
-                    Debug.Log(commandPhrases[6]); // teleport lobby
-                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(0);
+                    Debug.Log(commandPhrases[6]); // panel export
+                    PanelController.ShowDbExporter();
                     break;
                 case 7:
-                    Debug.Log(commandPhrases[7]); // teleport browser
-                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(1);
+                    Debug.Log(commandPhrases[7]); // teleport lobby
+                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(0);
                     break;
                 case 8:
-                    Debug.Log(commandPhrases[8]); // teleport query
-                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(2);
+                    Debug.Log(commandPhrases[8]); // teleport browser
+                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(1);
                     break;
                 case 9:
-                    Debug.Log(commandPhrases[9]); // teleport analytics
+                    Debug.Log(commandPhrases[9]); // teleport query
+                    PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(2);
+                    break;
+                case 10:
+                    Debug.Log(commandPhrases[10]); // teleport analytics
                     PanelController.teleporter.GetComponent<Teleporter>().jumpSwitch(3);
+                    break;
+                case 11:
+                    Debug.Log(commandPhrases[11]); // select database one
+                    PanelController.ToggleOn("DatabaseToggle", 1);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(0);
+                    break;
+                case 12:
+                    Debug.Log(commandPhrases[12]); // select database two
+                    PanelController.ToggleOn("DatabaseToggle", 2);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(1);
+                    break;
+                case 13:
+                    Debug.Log(commandPhrases[13]); // select database three
+                    PanelController.ToggleOn("DatabaseToggle", 3);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(2);
+                    break;
+                case 14:
+                    Debug.Log(commandPhrases[14]); // select database four
+                    PanelController.ToggleOn("DatabaseToggle", 4);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(3);
+                    break;
+                case 15:
+                    Debug.Log(commandPhrases[15]); // select database five
+                    PanelController.ToggleOn("DatabaseToggle", 5);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(4);
+                    break;
+                case 16:
+                    Debug.Log(commandPhrases[16]); // select database six
+                    PanelController.ToggleOn("DatabaseToggle", 6);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(5);
+                    break;
+                case 17:
+                    Debug.Log(commandPhrases[17]); // select database seven
+                    PanelController.ToggleOn("DatabaseToggle", 7);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(6);
+                    break;
+                case 18:
+                    Debug.Log(commandPhrases[18]); // select database eight
+                    PanelController.ToggleOn("DatabaseToggle", 8);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(7);
+                    break;
+                case 19:
+                    Debug.Log(commandPhrases[19]); // select database nine
+                    PanelController.ToggleOn("DatabaseToggle", 9);
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().LoadDB(8);
+                    break;
+                case 20:
+                    Debug.Log(commandPhrases[20]); // database import
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().Send();
                     break;
                 default:
                     Debug.Log("Invalid Command");
@@ -194,5 +324,13 @@ public class SpeechController : MonoBehaviour
             }
         }
         return -1;
+    }
+    private string TranslateLetters(string word)
+    {
+        if (word2letter.ContainsKey(word))
+        {
+            return word2letter[word];
+        }
+        else return word;
     }
 }

@@ -12,7 +12,7 @@ public class PanelController : MonoBehaviour
     private bool isSpeech = true;
     private bool isSpeechPossible = true;
     private GameObject tableHarManager;
-    private GameObject DbImporter;
+    public GameObject DbImporter;
     private GameObject DbExporter;
     private GameObject MenuSound;
     private GameObject MenuInput;
@@ -428,7 +428,30 @@ public class PanelController : MonoBehaviour
         tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
     }
 
+    public void ToggleOn(string tagName, int index)
+    {
+        GameObject[] dbTogglers = GameObject.FindGameObjectsWithTag(tagName);
+        string name = "Tog_Database_" + index;
+        for (int i = 0; i < dbTogglers.Length; i++)
+        {
+            Toggle otherToggle = dbTogglers[i].GetComponent<Toggle>();
+            if (otherToggle.name == name)
+            {
+                otherToggle.isOn = true;
+                otherToggle.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(otherToggle);
+            }
+        }
+    }
+
     private void ToggleOff(string tagName)
+    {
+        GameObject toggle = GameObject.FindGameObjectWithTag(tagName);
+        Toggle tog = toggle.GetComponent<Toggle>();
+        tog.isOn = false;
+        tog.GetComponent<Leap.Unity.InputModule.ToggleToggler>().SetToggle(tog);
+    }
+
+    public void ToggleOff(string tagName, int index)
     {
         GameObject toggle = GameObject.FindGameObjectWithTag(tagName);
         Toggle tog = toggle.GetComponent<Toggle>();
