@@ -4,6 +4,7 @@ using System.Collections;
 public class RtsHandler : MonoBehaviour {
 
     public ViewMoveTool deposit;
+    public SelectorOverseer tableManager;
 
     GameObject tableHarnessInstance;
     Transform rtsMain;
@@ -154,5 +155,6 @@ public class RtsHandler : MonoBehaviour {
     {
         SetInitializedBool(false);
         GameObject.Destroy(tableHarnessInstance);
+        tableManager.DeleteAllPrevious();
     }
 }

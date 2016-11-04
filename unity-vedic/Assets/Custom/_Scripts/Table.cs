@@ -25,11 +25,7 @@ public class Table : MonoBehaviour, ViewObj
     Vector3 initialLocalRtsScale;
 
     GameObject TactileText;
-    WindowTextController t;
-
-    private Leap.Unity.PinchDetector lPinch;
-    private Leap.Unity.PinchDetector rPinch;
-    
+    WindowTextController t;    
 
     BoxCollider areaOfEffect;
 
@@ -69,8 +65,8 @@ public class Table : MonoBehaviour, ViewObj
         {
             secondFrame = false;
             rtsMinor = gameObject.transform.parent;
-            rtsInstanceMinor.PinchDetectorA = lPinch;
-            rtsInstanceMinor.PinchDetectorB = rPinch;
+            //rtsInstanceMinor.PinchDetectorA = lPinch;
+            //rtsInstanceMinor.PinchDetectorB = rPinch;
             rtsInstanceMinor.enabled = false;
         }  
         if (virgin)
@@ -80,8 +76,8 @@ public class Table : MonoBehaviour, ViewObj
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
 
             rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.JamesV_LeapRTS>();
-            lPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorA;
-            rPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorB;
+            //lPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorA;
+            //rPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorB;
         
             rtsInstanceMinor.enabled = true; ;
 
@@ -97,11 +93,12 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(false);
             }
             triggered = false;
-            if(newForm)
-            {
-                InteractOff();
-                newForm = false;
-            }
+            //if(newForm)
+            //{
+            //    InteractOff();
+            //    newForm = false;
+            //}
+            selectTool.removeTable(gameObject);
             t.UpdateInfo(outPut, false); 
         }
     }
@@ -222,7 +219,7 @@ public class Table : MonoBehaviour, ViewObj
 
     public void OnTriggerStay(Collider other)
     {
-        timer = 2;
+        timer = 5;
         if(newForm)
         {
             timer = 120;
@@ -249,17 +246,17 @@ public class Table : MonoBehaviour, ViewObj
         //}
     }
 
-    private bool CheckPinch()
-    {
-        if(lPinch.IsPinching || rPinch.IsPinching)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //private bool CheckPinch()
+    //{
+    //    if(lPinch.IsPinching || rPinch.IsPinching)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     private void CountDown()
     {
