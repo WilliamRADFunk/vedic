@@ -8,7 +8,10 @@ public class ViewMoveTool : MonoBehaviour {
     [SerializeField]
     private JamesV_LeapRTS viewRTS;
 
+    GameObject currentHolding;
     Transform moveToolRts;
+
+    public Transform dumpingGrounds;
 
     Vector3 initialLocalPos;
     Quaternion initialLocalRotation;
@@ -56,6 +59,11 @@ public class ViewMoveTool : MonoBehaviour {
         SetNewHolder(incommingObj);       
     }
 
+    public void SetHoldingEasy(GameObject incommingObj)
+    {
+        SetNewHolderEasy(incommingObj);
+    }
+
     public void ResetAnchor()
     {
         viewRTS.enabled = false;
@@ -92,14 +100,33 @@ public class ViewMoveTool : MonoBehaviour {
         viewRTS.enabled = true;
         obj2Set.transform.SetParent(this.transform);
         obj2Set.transform.localPosition = Vector3.zero;
+        currentHolding = obj2Set;
     }
 
-
+    private void SetNewHolderEasy(GameObject obj2Set)
+    {
+        viewRTS.enabled = true;
+        obj2Set.transform.SetParent(this.transform);
+        currentHolding = obj2Set;
+    }
 
     //Allows for activation and deactivation of RTS
     public void RtsSetter(bool state)
     {
         viewRTS.enabled = state;
+    }
+
+    public void SendToDumpingGrounds()
+    {
+        if(currentHolding != null)
+        {
+            if(dumpingGrounds != null)
+            {
+                currentHolding.transform.SetParent(dumpingGrounds);
+                currentHolding = null;
+
+            }
+        }
     }
 
     //~~~~~~~~~~~~~~~~~Remenants of Table seperation inclusion inside ViewMoveTool~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
