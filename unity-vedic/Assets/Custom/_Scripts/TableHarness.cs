@@ -69,7 +69,7 @@ public class TableHarness : MonoBehaviour
 
         if (gameObject.GetComponentInParent<RtsHandler>().GetInitializedBool())
         {
-            gameObject.GetComponentInParent<RtsHandler>().killHarness();
+            gameObject.GetComponentInParent<RtsHandler>().KillHarness();
         }
         gameObject.GetComponentInParent<RtsHandler>().AllocateTableHarness(gameObject);
         
@@ -153,8 +153,9 @@ public class TableHarness : MonoBehaviour
 
     public void Deconstruct()
     {
-        gameObject.GetComponentInParent<RtsHandler>().SetInitializedBool(false);
-        GameObject.Destroy(gameObject);
+        //gameObject.GetComponentInParent<RtsHandler>().SetInitializedBool(false);
+        gameObject.GetComponentInParent<RtsHandler>().KillHarness();
+        //GameObject.Destroy(gameObject);
     }
 
     private void ResetToDefault()
