@@ -13,6 +13,7 @@ public class SpeechController : MonoBehaviour
     private Dictionary<string, string> word2letter = new Dictionary<string, string>();
     private List<string> wordChain;
     private string[] commandPhrases;
+    private string[] commandsExplained;
 
     [SerializeField]
     private PanelController PanelController;
@@ -25,6 +26,7 @@ public class SpeechController : MonoBehaviour
     private KeywordRecognizer m_Recognizer;
     private List<string> dataList;
     private int dataPointer = 0;
+    private int dataInc = 15;
     private bool isTyping = false;
     private bool isScrolling = false;
     private bool isCapitalized = false;
@@ -35,7 +37,8 @@ public class SpeechController : MonoBehaviour
         m_Keywords = new List<string>();
         dataList = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[30];
+        commandPhrases = new string[31];
+        commandsExplained = new string[31];
 
         word2letter.Add("zero", "0");
         word2letter.Add("one", "1");
@@ -165,13 +168,13 @@ public class SpeechController : MonoBehaviour
         {
             if (args.text.Equals("up", StringComparison.OrdinalIgnoreCase))
             {
-                if (dataPointer - 30 <= 0) dataPointer = 0;
-                else dataPointer -= 30;
+                if (dataPointer - (2 * dataInc) <= 0) dataPointer = 0;
+                else dataPointer -= (2 * dataInc);
                 Debug.Log(dataPointer);
 
                 string message = "";
                 int counter = 0;
-                for (int i = dataPointer; counter < 15 && i < dataList.Count; i++)
+                for (int i = dataPointer; counter < dataInc && i < dataList.Count; i++)
                 {
                     if (TranslateLetters(dataList[i]) != dataList[i])
                     {
@@ -191,7 +194,7 @@ public class SpeechController : MonoBehaviour
                 Debug.Log(dataPointer);
                 string message = "";
                 int counter = 0;
-                for (int i = dataPointer; counter < 15 && i < dataList.Count; i++)
+                for (int i = dataPointer; counter < dataInc && i < dataList.Count; i++)
                 {
                     if (TranslateLetters(dataList[i]) != dataList[i])
                     {
@@ -367,41 +370,74 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("capitalize");
         m_Keywords.Add("show");
         m_Keywords.Add("vocabulary");
+        m_Keywords.Add("commands");
         m_Keywords.Add("explain");
         m_Keywords.Add("scroll");
         m_Keywords.Add("up");
         m_Keywords.Add("down");
 
         commandPhrases[0] = "keyboard toggle";
+        commandsExplained[0] = "Shows/Hides virtual keyboard";
         commandPhrases[1] = "laser toggle";
+        commandsExplained[1] = "Activates/Deactivates laser collider from hand";
         commandPhrases[2] = "node toggle";
+        commandsExplained[2] = "Shows/Hides node spawner and its spawn";
         commandPhrases[3] = "threedee cursors toggle";
+        commandsExplained[3] = "Activates/Deactivates 3D Cursor colliders";
         commandPhrases[4] = "speech toggle";
+        commandsExplained[4] = "Turns off speech recognition";
         commandPhrases[5] = "panel import";
+        commandsExplained[5] = "Shows database import panel on left menu";
         commandPhrases[6] = "panel export";
+        commandsExplained[6] = "Shows database export panel on left menu";
         commandPhrases[7] = "teleport lobby";
+        commandsExplained[7] = "Teleports user to lobby station";
         commandPhrases[8] = "teleport browser";
+        commandsExplained[8] = "Teleports user to browser station";
         commandPhrases[9] = "teleport query";
+        commandsExplained[9] = "Teleports user to query station";
         commandPhrases[10] = "teleport analytics";
+        commandsExplained[10] = "Teleports user to analytics station";
         commandPhrases[11] = "select database one";
+        commandsExplained[11] = "Selects first \"saved database\" toggle";
         commandPhrases[12] = "select database two";
+        commandsExplained[12] = "Selects second \"saved database\" toggle";
         commandPhrases[13] = "select database three";
+        commandsExplained[13] = "Selects third \"saved database\" toggle";
         commandPhrases[14] = "select database four";
+        commandsExplained[14] = "Selects fourth \"saved database\" toggle";
         commandPhrases[15] = "select database five";
+        commandsExplained[15] = "Selects fifth \"saved database\" toggle";
         commandPhrases[16] = "select database six";
+        commandsExplained[16] = "Selects sixth \"saved database\" toggle";
         commandPhrases[17] = "select database seven";
+        commandsExplained[17] = "Selects seventh \"saved database\" toggle";
         commandPhrases[18] = "select database eight";
+        commandsExplained[18] = "Selects eighth \"saved database\" toggle";
         commandPhrases[19] = "select database nine";
+        commandsExplained[19] = "Selects ninth \"saved database\" toggle";
         commandPhrases[20] = "database import";
+        commandsExplained[20] = "Imports database based off shown connection info";
         commandPhrases[21] = "database save";
+        commandsExplained[21] = "Saves database connection info in selected db toggle slot";
         commandPhrases[22] = "query input";
+        commandsExplained[22] = "Activates inputfield for query creation";
         commandPhrases[23] = "query submit";
+        commandsExplained[23] = "Sends query to database";
         commandPhrases[24] = "query clear";
+        commandsExplained[24] = "Clears results output from previous query";
         commandPhrases[25] = "database name";
+        commandsExplained[25] = "Activates inputfield for database name";
         commandPhrases[26] = "host name";
+        commandsExplained[26] = "Activates inputfield for host name";
         commandPhrases[27] = "user name";
+        commandsExplained[27] = "Activates inputfield for user name";
         commandPhrases[28] = "password";
+        commandsExplained[28] = "Activates inputfield for password";
         commandPhrases[29] = "show vocabulary";
+        commandsExplained[29] = "Displays speech recognition vocabulary";
+        commandPhrases[30] = "show commands";
+        commandsExplained[30] = "Displays speech recognition commands";
     }
     private void ActivateWordChain()
     {
@@ -538,26 +574,44 @@ public class SpeechController : MonoBehaviour
                     break;
                 case 29:
                     Debug.Log(commandPhrases[29]); // show vocabulary
-                    string message = "";
+                    string msgVocab = "";
                     dataList = new List<string>();
                     dataPointer = 0;
+                    dataInc = 15;
                     for (int i = 0; i < m_Keywords.Count; i++)
                     {
                         dataList.Add(m_Keywords[i]);
                     }
-                    for (int i = 0; i < 15 && i < dataList.Count; i++)
+                    for (int i = 0; i < dataInc && i < dataList.Count; i++)
                     {
                         if (TranslateLetters(dataList[i]) != dataList[i])
                         {
-                            message += dataList[i] + " --> " + TranslateLetters(dataList[i]) + "\n";
+                            msgVocab += dataList[i] + " --> " + TranslateLetters(dataList[i]) + "\n";
                         }
                         else
                         {
-                            message += dataList[i] + "\n";
+                            msgVocab += dataList[i] + "\n";
                         }
                         dataPointer++;
                     }
-                    WindowTextController.UpdateInfo(message, true);
+                    WindowTextController.UpdateInfo(msgVocab, true);
+                    break;
+                case 30:
+                    Debug.Log(commandPhrases[30]); // show commands
+                    string msgCom = "";
+                    dataList = new List<string>();
+                    dataPointer = 0;
+                    dataInc = 5;
+                    for (int i = 0; i < commandPhrases.Length; i++)
+                    {
+                        dataList.Add(commandPhrases[i] + " --> " + commandsExplained[i]);
+                    }
+                    for (int i = 0; i < dataInc && i < dataList.Count; i++)
+                    {
+                        msgCom += dataList[i] + "\n";
+                        dataPointer++;
+                    }
+                    WindowTextController.UpdateInfo(msgCom, true);
                     break;
                 default:
                     Debug.Log("Invalid Command");
