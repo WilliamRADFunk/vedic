@@ -38,9 +38,8 @@ public class Table : MonoBehaviour, ViewObj
     bool secondFrame;
     bool activated;
     bool triggered;
-    bool pinched;
-
     bool newForm;
+
     int timer;
 
     // Use this for initialization
@@ -49,7 +48,6 @@ public class Table : MonoBehaviour, ViewObj
         timer = -1;
         activated = false;
         triggered = false;
-        pinched = false;
         secondFrame = false;
         newForm = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
@@ -276,6 +274,11 @@ public class Table : MonoBehaviour, ViewObj
             }
             t.UpdateInfo(outPut, true);
         }
+    }
+
+    public void SetGuiState(bool state)
+    {
+        newForm = state;
     }
 
     private void RetrieveColumnNames()
