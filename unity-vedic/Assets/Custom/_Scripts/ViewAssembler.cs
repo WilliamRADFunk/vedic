@@ -74,14 +74,14 @@ public static class ViewAssembler {
             cols[i] = GenerateColumnObj(columnInfo[i], tableTransform, i);
         }
 
-        currentTable.GetComponent<Table>().initialization(table.GetName(), cols, harness);
+        currentTable.GetComponent<Table>().initialization(table.GetName(), table.GetId(), cols, harness);
         return currentTable;
     }
 
     private static GameObject GenerateColumnObj(DatabaseUtilities.Column col, Transform parent, int key)
     {
         GameObject curCol =  Generate((int)View_Type.Column);
-        curCol.GetComponent<Column>().Initialize(key, parent, col.GetName(), col.GetColor());
+        curCol.GetComponent<Column>().Initialize(key, parent, col.GetName(), col.GetId(), col.GetColor());
 
         return curCol;
     }
