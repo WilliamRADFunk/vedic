@@ -28,7 +28,7 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[27];
+        commandPhrases = new string[28];
 
         word2letter.Add("alpha", "a");
         word2letter.Add("bravo", "b");
@@ -58,6 +58,8 @@ public class SpeechController : MonoBehaviour
         word2letter.Add("zulu", "z");
         word2letter.Add("period", ".");
         word2letter.Add("space", " ");
+        word2letter.Add("star", "*");
+        word2letter.Add("equals", "=");
     }
     void Update()
     {
@@ -117,7 +119,11 @@ public class SpeechController : MonoBehaviour
         }
         else if (isTyping)
         {
-            if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
+            if (args.text.Equals("delete", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
+            {
+                textField.text = textField.text.Substring(0, textField.text.Length - 1);
+            }
+            else if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
             {
                 textField.text = textField.text.Substring(0, textField.text.Length - 1);
             }
@@ -210,17 +216,25 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("zulu");
         m_Keywords.Add("period");
         m_Keywords.Add("space");
+        m_Keywords.Add("star");
+        m_Keywords.Add("equals");
         m_Keywords.Add("save");
         m_Keywords.Add("flush");
         m_Keywords.Add("teletype");
         m_Keywords.Add("exit");
         m_Keywords.Add("back");
+        m_Keywords.Add("delete");
         m_Keywords.Add("erase");
         m_Keywords.Add("input");
         m_Keywords.Add("name");
         m_Keywords.Add("host");
         m_Keywords.Add("user");
         m_Keywords.Add("password");
+        m_Keywords.Add("where");
+        m_Keywords.Add("from");
+        m_Keywords.Add("into");
+        m_Keywords.Add("values");
+        m_Keywords.Add("like");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -245,10 +259,11 @@ public class SpeechController : MonoBehaviour
         commandPhrases[20] = "database import";
         commandPhrases[21] = "database save";
         commandPhrases[22] = "query input";
-        commandPhrases[23] = "database name";
-        commandPhrases[24] = "host name";
-        commandPhrases[25] = "user name";
-        commandPhrases[26] = "password";
+        commandPhrases[23] = "query submit";
+        commandPhrases[24] = "database name";
+        commandPhrases[25] = "host name";
+        commandPhrases[26] = "user name";
+        commandPhrases[27] = "password";
     }
     private void ActivateWordChain()
     {
@@ -359,19 +374,23 @@ public class SpeechController : MonoBehaviour
                     textField = GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>();
                     break;
                 case 23:
-                    Debug.Log(commandPhrases[23]); // database name
-                    textField = GameObject.FindGameObjectWithTag("DbName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[23]); // query submit
+                    PanelController.DbExporter.GetComponent<SendQuery>().Send(GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>());
                     break;
                 case 24:
-                    Debug.Log(commandPhrases[24]); // host name
-                    textField = GameObject.FindGameObjectWithTag("HostName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[24]); // database name
+                    textField = GameObject.FindGameObjectWithTag("DbName").GetComponent<InputField>();
                     break;
                 case 25:
-                    Debug.Log(commandPhrases[25]); // user name
-                    textField = GameObject.FindGameObjectWithTag("UserName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[25]); // host name
+                    textField = GameObject.FindGameObjectWithTag("HostName").GetComponent<InputField>();
                     break;
                 case 26:
-                    Debug.Log(commandPhrases[26]); // password
+                    Debug.Log(commandPhrases[26]); // user name
+                    textField = GameObject.FindGameObjectWithTag("UserName").GetComponent<InputField>();
+                    break;
+                case 27:
+                    Debug.Log(commandPhrases[27]); // password
                     textField = GameObject.FindGameObjectWithTag("Password").GetComponent<InputField>();
                     break;
                 default:

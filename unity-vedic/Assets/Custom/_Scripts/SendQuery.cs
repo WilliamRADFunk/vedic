@@ -16,7 +16,7 @@ public class SendQuery : MonoBehaviour
     public Text password;
 
     // Called from Send --- Makes it asynchronous
-    IEnumerator SendQ(Text input)
+    IEnumerator SendQ(InputField input)
     {
         string url = "http://www.williamrobertfunk.com/applications/vedic/actions/query.php";
         WWWForm form = new WWWForm();
@@ -66,7 +66,7 @@ public class SendQuery : MonoBehaviour
         }
     }
     // Use this for initialization
-    public void Send(Text input)
+    public void Send(InputField input)
     {
         StartCoroutine(SendQ(input));
     }
