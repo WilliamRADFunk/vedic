@@ -22,6 +22,7 @@ public class ViewMoveTool : MonoBehaviour {
     Vector3 initialLocalRtsScale;
 
     bool virgin;
+    bool secondFrame;
 
 	// Use this for initialization
     void Awake()
@@ -40,7 +41,8 @@ public class ViewMoveTool : MonoBehaviour {
 
     void Start()
     {
-        virgin = true;  
+        virgin = true;
+        secondFrame = false;
     }
 
     void Update()
@@ -49,6 +51,11 @@ public class ViewMoveTool : MonoBehaviour {
         {
             virgin = false;
             SaveOrigin();
+            secondFrame = true;
+        }
+        if(secondFrame)
+        {
+            secondFrame = false;
             viewRTS.enabled = false;
         }
     }
@@ -128,23 +135,4 @@ public class ViewMoveTool : MonoBehaviour {
             }
         }
     }
-
-    //~~~~~~~~~~~~~~~~~Remenants of Table seperation inclusion inside ViewMoveTool~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    ////Makes sure that the holder is not currently being occupied, managing the state in which a table is currently being used.
-    //private void DeactivateHolder()
-    //{
-    //    viewRTS.enabled = false;
-    //    RemoveTableInstance();
-    //}
-
-    //Checks to see if a table is currently being held to reset if needed
-    //private void RemoveTableInstance()
-    //{
-    //    if (holding)
-    //    {
-    //        holdingObj.transform.parent = returnObject.transform;
-    //        holdingObj.GetComponent<Table>().ResetObjectDefault();
-    //    }
-    //}
 }
