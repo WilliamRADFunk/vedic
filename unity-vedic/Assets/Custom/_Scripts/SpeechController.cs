@@ -23,13 +23,17 @@ public class SpeechController : MonoBehaviour
     private WindowTextController WindowTextController;
 
     private KeywordRecognizer m_Recognizer;
+    private List<string> dataList;
+    private int dataPointer = 0;
     private bool isTyping = false;
+    private bool isScrolling = false;
     private bool isCapitalized = false;
     private bool pristine = true;
 
     void Start()
     {
         m_Keywords = new List<string>();
+        dataList = new List<string>();
         wordChain = new List<string>();
         commandPhrases = new string[30];
 
@@ -153,8 +157,55 @@ public class SpeechController : MonoBehaviour
         if (args.text.Equals("exit", StringComparison.OrdinalIgnoreCase))
         {
             isTyping = false;
+            isScrolling = false;
             Debug.Log("Flushing chain");
             wordChain = new List<string>(); // Flush the chain
+        }
+        else if (isScrolling)
+        {
+            if (args.text.Equals("up", StringComparison.OrdinalIgnoreCase))
+            {
+                if (dataPointer - 30 <= 0) dataPointer = 0;
+                else dataPointer -= 30;
+                Debug.Log(dataPointer);
+
+                string message = "";
+                int counter = 0;
+                for (int i = dataPointer; counter < 15 && i < dataList.Count; i++)
+                {
+                    if (TranslateLetters(dataList[i]) != dataList[i])
+                    {
+                        message += dataList[i] + " --> " + TranslateLetters(dataList[i]) + "\n";
+                    }
+                    else
+                    {
+                        message += dataList[i] + "\n";
+                    }
+                    dataPointer++;
+                    counter++;
+                }
+                WindowTextController.UpdateInfo(message, true);
+            }
+            else if (args.text.Equals("down", StringComparison.OrdinalIgnoreCase))
+            {
+                Debug.Log(dataPointer);
+                string message = "";
+                int counter = 0;
+                for (int i = dataPointer; counter < 15 && i < dataList.Count; i++)
+                {
+                    if (TranslateLetters(dataList[i]) != dataList[i])
+                    {
+                        message += dataList[i] + " --> " + TranslateLetters(dataList[i]) + "\n";
+                    }
+                    else
+                    {
+                        message += dataList[i] + "\n";
+                    }
+                    if (dataPointer < dataList.Count-1) dataPointer++;
+                    counter++;
+                }
+                WindowTextController.UpdateInfo(message, true);
+            }
         }
         else if (isTyping)
         {
@@ -191,9 +242,9 @@ public class SpeechController : MonoBehaviour
             Debug.Log("Flushing chain");
             wordChain = new List<string>(); // Flush the chain
         }
-        else if (args.text.Equals("exit", StringComparison.OrdinalIgnoreCase))
+        else if (args.text.Equals("scroll", StringComparison.OrdinalIgnoreCase))
         {
-            isTyping = false;
+            isScrolling = true;
             Debug.Log("Flushing chain");
             wordChain = new List<string>(); // Flush the chain
         }
@@ -316,6 +367,10 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("capitalize");
         m_Keywords.Add("show");
         m_Keywords.Add("vocabulary");
+        m_Keywords.Add("explain");
+        m_Keywords.Add("scroll");
+        m_Keywords.Add("up");
+        m_Keywords.Add("down");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -483,7 +538,26 @@ public class SpeechController : MonoBehaviour
                     break;
                 case 29:
                     Debug.Log(commandPhrases[29]); // show vocabulary
-                    WindowTextController.UpdateInfo("Show vocabulary", true);
+                    string message = "";
+                    dataList = new List<string>();
+                    dataPointer = 0;
+                    for (int i = 0; i < m_Keywords.Count; i++)
+                    {
+                        dataList.Add(m_Keywords[i]);
+                    }
+                    for (int i = 0; i < 15 && i < dataList.Count; i++)
+                    {
+                        if (TranslateLetters(dataList[i]) != dataList[i])
+                        {
+                            message += dataList[i] + " --> " + TranslateLetters(dataList[i]) + "\n";
+                        }
+                        else
+                        {
+                            message += dataList[i] + "\n";
+                        }
+                        dataPointer++;
+                    }
+                    WindowTextController.UpdateInfo(message, true);
                     break;
                 default:
                     Debug.Log("Invalid Command");
