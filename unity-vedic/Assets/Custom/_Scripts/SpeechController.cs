@@ -19,6 +19,8 @@ public class SpeechController : MonoBehaviour
     [SerializeField]
     private RtsHandler RtsHandler;
     private InputField textField;
+    [SerializeField]
+    private WindowTextController WindowTextController;
 
     private KeywordRecognizer m_Recognizer;
     private bool isTyping = false;
@@ -29,7 +31,7 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[29];
+        commandPhrases = new string[30];
 
         word2letter.Add("zero", "0");
         word2letter.Add("one", "1");
@@ -312,6 +314,8 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("alter");
         m_Keywords.Add("table");
         m_Keywords.Add("capitalize");
+        m_Keywords.Add("show");
+        m_Keywords.Add("vocabulary");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -342,6 +346,7 @@ public class SpeechController : MonoBehaviour
         commandPhrases[26] = "host name";
         commandPhrases[27] = "user name";
         commandPhrases[28] = "password";
+        commandPhrases[29] = "show vocabulary";
     }
     private void ActivateWordChain()
     {
@@ -475,6 +480,10 @@ public class SpeechController : MonoBehaviour
                 case 28:
                     Debug.Log(commandPhrases[28]); // password
                     textField = GameObject.FindGameObjectWithTag("Password").GetComponent<InputField>();
+                    break;
+                case 29:
+                    Debug.Log(commandPhrases[29]); // show vocabulary
+                    WindowTextController.UpdateInfo("Show vocabulary", true);
                     break;
                 default:
                     Debug.Log("Invalid Command");
