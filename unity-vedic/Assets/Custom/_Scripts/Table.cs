@@ -190,32 +190,6 @@ public class Table : MonoBehaviour, ViewObj
         //rtsInstanceMinor.enabled = false;
     }
 
-    /*
-    public void OnTriggerEnter(Collider other)
-    {
-        if (!activated)
-        {
-            for (int i = 0; i < columns.Count; i++)
-            {
-                columns[i].GetComponent<Column>().columnTriggered(true);
-            }
-        }
-        activated = true;
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if(activated)
-        {
-            for (int i = 0; i < columns.Count; i++)
-            {
-                columns[i].GetComponent<Column>().columnTriggered(false);
-            }
-        }
-        activated = false;
-    }
-    */
-
     public void OnTriggerStay(Collider other)
     {
         timer = 5;
@@ -234,28 +208,7 @@ public class Table : MonoBehaviour, ViewObj
             }
             t.UpdateInfo(outPut, true);
         }
-
-        //pinched = CheckPinch();
-        //if(pinched)
-        //{
-        //    if(selectTool.Release(gameObject))
-        //    {
-        //        InteractOn();
-        //    }
-        //}
     }
-
-    //private bool CheckPinch()
-    //{
-    //    if(lPinch.IsPinching || rPinch.IsPinching)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
 
     private void CountDown()
     {
@@ -282,11 +235,11 @@ public class Table : MonoBehaviour, ViewObj
         newForm = state;
         if(newForm)
         {
-            btnToggle.enabled = false;
+            //btnToggle.enabled = false;
         }
         else
         {
-            btnToggle.enabled = true;
+            //btnToggle.enabled = true;
         }
     }
 
