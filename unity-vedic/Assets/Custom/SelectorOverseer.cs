@@ -47,9 +47,12 @@ public class SelectorOverseer : MonoBehaviour {
 
     public void removeTable(GameObject tempTable)
     {
-        if(tempTable.GetInstanceID() == tableSelected.GetInstanceID())
+        if(tableSelected != null && tempTable != null)
         {
-            tableSelected = null;
+            if (tempTable.GetInstanceID() == tableSelected.GetInstanceID())
+            {
+                tableSelected = null;
+            }
         }
     }
 
