@@ -23,8 +23,11 @@ public class Table : MonoBehaviour, ViewObj
     Vector3 initialLocalScale;
     Vector3 initialLocalRtsScale;
 
+
+    //External Elements
     GameObject TactileText;
-    WindowTextController t;    
+    WindowTextController t;
+    DataCache dCache; 
 
     BoxCollider areaOfEffect;
 
@@ -50,9 +53,12 @@ public class Table : MonoBehaviour, ViewObj
         secondFrame = false;
         newForm = false;
         areaOfEffect = gameObject.GetComponent<BoxCollider>();
+
+        //Retrieving External Objects...
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
-        selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
         t = TactileText.GetComponent<WindowTextController>();
+        selectTool = GameObject.FindGameObjectWithTag("DynamicSelect").GetComponent<SelectorOverseer>();
+        dCache = GameObject.FindGameObjectWithTag("DataCache").GetComponent<DataCache>();
     }
 
     // Update is called once per frame
@@ -62,8 +68,6 @@ public class Table : MonoBehaviour, ViewObj
         {
             secondFrame = false;
             rtsMinor = gameObject.transform.parent;
-            //rtsInstanceMinor.PinchDetectorA = lPinch;
-            //rtsInstanceMinor.PinchDetectorB = rPinch;
             rtsInstanceMinor.enabled = false;
         }  
         if (virgin)
@@ -73,9 +77,6 @@ public class Table : MonoBehaviour, ViewObj
             areaOfEffect.size = new Vector3(1.5f, tableHeight * 2, 1.5f);
 
             rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.JamesV_LeapRTS>();
-            //lPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorA;
-            //rPinch = GameObject.FindGameObjectWithTag("Pedestal").GetComponent<Leap.Unity.JamesV_LeapRTS>().PinchDetectorB;
-        
             rtsInstanceMinor.enabled = true; ;
 
             secondFrame = true;
@@ -90,11 +91,6 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(false);
             }
             triggered = false;
-            //if(newForm)
-            //{
-            //    InteractOff();
-            //    newForm = false;
-            //}
             selectTool.removeTable(gameObject);
             t.UpdateInfo(outPut, false); 
         }
@@ -173,9 +169,6 @@ public class Table : MonoBehaviour, ViewObj
 
     private void InteractOn()
     {
-        //Possibly Signal RtsHandler to turn off its respective rts
-        //rtsInstanceMinor.AllowScale = false;
-        //rtsInstanceMinor.enabled = true;
         BringToActive();
         timer = 10;
         newForm = true;
@@ -186,7 +179,6 @@ public class Table : MonoBehaviour, ViewObj
         ResetToDefault();
         gameObject.transform.SetParent(rtsMinor);
         ResetToDefault();
-        //rtsInstanceMinor.enabled = false;
     }
 
     public void OnTriggerStay(Collider other)
@@ -226,6 +218,7 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
             t.UpdateInfo(outPut, true);
+            dCache.PingCache(ID);
         }
     }
 
