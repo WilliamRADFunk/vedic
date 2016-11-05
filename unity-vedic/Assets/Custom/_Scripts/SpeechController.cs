@@ -31,6 +31,16 @@ public class SpeechController : MonoBehaviour
         wordChain = new List<string>();
         commandPhrases = new string[29];
 
+        word2letter.Add("zero", "0");
+        word2letter.Add("one", "1");
+        word2letter.Add("two", "2");
+        word2letter.Add("three", "3");
+        word2letter.Add("four", "4");
+        word2letter.Add("five", "5");
+        word2letter.Add("six", "6");
+        word2letter.Add("seven", "7");
+        word2letter.Add("eight", "8");
+        word2letter.Add("nine", "9");
         word2letter.Add("alpha", "a");
         word2letter.Add("bravo", "b");
         word2letter.Add("charlie", "c");
@@ -61,6 +71,32 @@ public class SpeechController : MonoBehaviour
         word2letter.Add("space", " ");
         word2letter.Add("star", "*");
         word2letter.Add("equals", "=");
+        word2letter.Add("plus", "+");
+        word2letter.Add("minus", "-");
+        word2letter.Add("dash", "-");
+        word2letter.Add("underscore", "_");
+        word2letter.Add("comma", ",");
+        word2letter.Add("at", "@");
+        word2letter.Add("pound", "#");
+        word2letter.Add("dollar", "$");
+        word2letter.Add("precent", "%");
+        word2letter.Add("caret", "^");
+        word2letter.Add("ampersand", "&");
+        word2letter.Add("exclaim", "!");
+        word2letter.Add("tilda", "~");
+        word2letter.Add("tildey", "~");
+        word2letter.Add("open-parenthesis", "(");
+        word2letter.Add("close-parenthesis", ")");
+        word2letter.Add("less-than", "<");
+        word2letter.Add("greater-than", ">");
+        word2letter.Add("back-slash", "\\");
+        word2letter.Add("forward-slash", "/");
+        word2letter.Add("question-mark", "?");
+        word2letter.Add("double-quote", "\"");
+        word2letter.Add("single-quote", "'");
+        word2letter.Add("colon", ":");
+        word2letter.Add("semi-colon", ";");
+        word2letter.Add("pipe", "|");
     }
     void Update()
     {
@@ -184,6 +220,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("teleport");
         m_Keywords.Add("select");
         m_Keywords.Add("database");
+        m_Keywords.Add("zero");
         m_Keywords.Add("one");
         m_Keywords.Add("two");
         m_Keywords.Add("three");
@@ -223,6 +260,32 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("space");
         m_Keywords.Add("star");
         m_Keywords.Add("equals");
+        m_Keywords.Add("plus");
+        m_Keywords.Add("minus");
+        m_Keywords.Add("dash");
+        m_Keywords.Add("underscore");
+        m_Keywords.Add("comma");
+        m_Keywords.Add("at");
+        m_Keywords.Add("pound");
+        m_Keywords.Add("dollar");
+        m_Keywords.Add("precent");
+        m_Keywords.Add("caret");
+        m_Keywords.Add("ampersand");
+        m_Keywords.Add("exclaim");
+        m_Keywords.Add("tilda");
+        m_Keywords.Add("tildey");
+        m_Keywords.Add("close-parenthesis");
+        m_Keywords.Add("open-parenthesis");
+        m_Keywords.Add("less-than");
+        m_Keywords.Add("greater-than");
+        m_Keywords.Add("back-slash");
+        m_Keywords.Add("forward-slash");
+        m_Keywords.Add("question-mark");
+        m_Keywords.Add("double-quote");
+        m_Keywords.Add("single-quote");
+        m_Keywords.Add("colon");
+        m_Keywords.Add("semi-colon");
+        m_Keywords.Add("pipe");
         m_Keywords.Add("save");
         m_Keywords.Add("flush");
         m_Keywords.Add("teletype");
@@ -242,6 +305,12 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("into");
         m_Keywords.Add("values");
         m_Keywords.Add("like");
+        m_Keywords.Add("drop");
+        m_Keywords.Add("table");
+        m_Keywords.Add("column");
+        m_Keywords.Add("table");
+        m_Keywords.Add("alter");
+        m_Keywords.Add("table");
         m_Keywords.Add("capitalize");
 
         commandPhrases[0] = "keyboard toggle";
