@@ -22,6 +22,7 @@ public class SpeechController : MonoBehaviour
 
     private KeywordRecognizer m_Recognizer;
     private bool isTyping = false;
+    private bool isCapitalized = false;
     private bool pristine = true;
 
     void Start()
@@ -119,7 +120,11 @@ public class SpeechController : MonoBehaviour
         }
         else if (isTyping)
         {
-            if (args.text.Equals("delete", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
+            if (args.text.Equals("capitalize", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
+            {
+                isCapitalized = true;
+            }
+            else if (args.text.Equals("delete", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
             {
                 textField.text = textField.text.Substring(0, textField.text.Length - 1);
             }
@@ -237,6 +242,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("into");
         m_Keywords.Add("values");
         m_Keywords.Add("like");
+        m_Keywords.Add("capitalize");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -442,7 +448,12 @@ public class SpeechController : MonoBehaviour
     }
     private string TranslateLetters(string word)
     {
-        if (word2letter.ContainsKey(word))
+        if (word2letter.ContainsKey(word) && isCapitalized)
+        {
+            isCapitalized = false;
+            return word2letter[word].ToUpper();
+        }
+        else if (word2letter.ContainsKey(word))
         {
             return word2letter[word];
         }
