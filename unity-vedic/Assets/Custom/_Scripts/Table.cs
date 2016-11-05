@@ -31,6 +31,7 @@ public class Table : MonoBehaviour, ViewObj
 
     BoxCollider areaOfEffect;
 
+    string tblName;
     string ID;
     string outPut = "";
     int tableHeight;
@@ -96,13 +97,14 @@ public class Table : MonoBehaviour, ViewObj
         }
     }
 
-    public bool initialization(string name, GameObject[] columnObjects, Transform father)
+    public bool initialization(string name, string id, GameObject[] columnObjects, Transform father)
     {
         if (!initialized)
         {
             initialize(columnObjects, father);
             initialized = true;
-            ID = name;
+            tblName = name;
+            ID = id;
             outPut = name + ":\n";
 
             return true;

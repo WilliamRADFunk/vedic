@@ -13,6 +13,7 @@ public class Column : MonoBehaviour, ViewObj {
     float distance;
     float finalHeight;
 
+    string colName;
     string ID;
     int colHeight;
     int timer;
@@ -27,6 +28,7 @@ public class Column : MonoBehaviour, ViewObj {
 
     private GameObject TactileText;
     private WindowTextController t;
+    private DataCache dCache;
 
 
     // Use this for initialization
@@ -41,11 +43,13 @@ public class Column : MonoBehaviour, ViewObj {
         gameObject.layer = 14;
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
         t = TactileText.GetComponent<WindowTextController>();
+        dCache = GameObject.FindGameObjectWithTag("DataCache").GetComponent<DataCache>();
+
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 	    if(virgin)
         {
             InvokeRepeating("CountDown", 0.1f, 0.1f);
@@ -70,7 +74,7 @@ public class Column : MonoBehaviour, ViewObj {
     
 
 
-    public void Initialize(int key, Transform father, string identification, string hexColor)
+    public void Initialize(int key, Transform father, string name, string identification, string hexColor)
     {
         //Initialize the positional vectors to keep track up for simple y vector movements.
         colHeight = key;
@@ -78,7 +82,8 @@ public class Column : MonoBehaviour, ViewObj {
         distance = finalTriggeredHeight - key;
         triggerMovementOffset = distance / offsetFrameCount;
         finalHeight = colHeight + distance + 0.5f;
- 
+
+        colName = name;
         ID = identification;
         instanceColor = HexToColor(hexColor);
         ParentObject(father);
@@ -212,6 +217,7 @@ public class Column : MonoBehaviour, ViewObj {
         {
             touched = true;
             t.UpdateInfo(ID, true);
+            dCache.PingCache(ID);
         }
     }
 
