@@ -6,6 +6,9 @@ public class RtsHandler : MonoBehaviour {
     public ViewMoveTool deposit;
     public SelectorOverseer tableManager;
 
+    [SerializeField]
+    private ImportDatabase importDbInstance;
+
     GameObject tableHarnessInstance;
     Transform rtsMain;
 
@@ -101,6 +104,9 @@ public class RtsHandler : MonoBehaviour {
 
             ResetToDefault();
         }
+
+        KillHarness();
+        importDbInstance.GetOldDatabase();
         
     }
 
