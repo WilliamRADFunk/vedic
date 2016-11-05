@@ -40,6 +40,8 @@ TagManager:
   - DbName
   - HostName
   - Password
+  - UserName
+  - QueryResult
   layers:
   - Default
   - TransparentFX

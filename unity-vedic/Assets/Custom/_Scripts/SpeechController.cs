@@ -28,7 +28,7 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[28];
+        commandPhrases = new string[29];
 
         word2letter.Add("alpha", "a");
         word2letter.Add("bravo", "b");
@@ -224,6 +224,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("exit");
         m_Keywords.Add("back");
         m_Keywords.Add("delete");
+        m_Keywords.Add("clear");
         m_Keywords.Add("erase");
         m_Keywords.Add("input");
         m_Keywords.Add("submit");
@@ -261,10 +262,11 @@ public class SpeechController : MonoBehaviour
         commandPhrases[21] = "database save";
         commandPhrases[22] = "query input";
         commandPhrases[23] = "query submit";
-        commandPhrases[24] = "database name";
-        commandPhrases[25] = "host name";
-        commandPhrases[26] = "user name";
-        commandPhrases[27] = "password";
+        commandPhrases[24] = "query clear";
+        commandPhrases[25] = "database name";
+        commandPhrases[26] = "host name";
+        commandPhrases[27] = "user name";
+        commandPhrases[28] = "password";
     }
     private void ActivateWordChain()
     {
@@ -379,19 +381,24 @@ public class SpeechController : MonoBehaviour
                     PanelController.DbExporter.GetComponentInChildren<SendQuery>().Send(GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>());
                     break;
                 case 24:
-                    Debug.Log(commandPhrases[24]); // database name
-                    textField = GameObject.FindGameObjectWithTag("DbName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[24]); // query clear
+                    Text text = GameObject.FindGameObjectWithTag("QueryResult").GetComponentInChildren<Text>();
+                    text.text = "";
                     break;
                 case 25:
-                    Debug.Log(commandPhrases[25]); // host name
-                    textField = GameObject.FindGameObjectWithTag("HostName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[25]); // database name
+                    textField = GameObject.FindGameObjectWithTag("DbName").GetComponent<InputField>();
                     break;
                 case 26:
-                    Debug.Log(commandPhrases[26]); // user name
-                    textField = GameObject.FindGameObjectWithTag("UserName").GetComponent<InputField>();
+                    Debug.Log(commandPhrases[26]); // host name
+                    textField = GameObject.FindGameObjectWithTag("HostName").GetComponent<InputField>();
                     break;
                 case 27:
-                    Debug.Log(commandPhrases[27]); // password
+                    Debug.Log(commandPhrases[27]); // user name
+                    textField = GameObject.FindGameObjectWithTag("UserName").GetComponent<InputField>();
+                    break;
+                case 28:
+                    Debug.Log(commandPhrases[28]); // password
                     textField = GameObject.FindGameObjectWithTag("Password").GetComponent<InputField>();
                     break;
                 default:
