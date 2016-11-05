@@ -15,6 +15,11 @@ public class DynamicButton : MonoBehaviour
         button.onClick.AddListener(delegate { switchTableState();});
     }
 
+    public Button GetButtonInstance()
+    {
+        return button;
+    }
+
     private void switchTableState()
     {
         instance.ForceOut();

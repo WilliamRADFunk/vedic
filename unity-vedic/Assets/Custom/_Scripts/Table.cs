@@ -110,6 +110,16 @@ public class Table : MonoBehaviour, ViewObj
             initialized = true;
             ID = name;
             outPut = name + ":\n";
+
+            GameObject prefabToggle = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/toggleTableBtn"));
+            prefabToggle.transform.SetParent(gameObject.transform);
+
+            Vector3 t = prefabToggle.transform.localPosition;
+            t.y += 1;
+            prefabToggle.transform.localPosition = t;
+            toggleButton = prefabToggle.GetComponent<DynamicButton>();
+            btnToggle = toggleButton.GetButtonInstance();
+
             return true;
         }
         else
@@ -235,11 +245,11 @@ public class Table : MonoBehaviour, ViewObj
         newForm = state;
         if(newForm)
         {
-            //btnToggle.enabled = false;
+            btnToggle.enabled = false;
         }
         else
         {
-            //btnToggle.enabled = true;
+            btnToggle.enabled = true;
         }
     }
 
