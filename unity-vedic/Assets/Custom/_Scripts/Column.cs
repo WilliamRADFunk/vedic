@@ -36,6 +36,7 @@ public class Column : MonoBehaviour, ViewObj {
         changeable = true;
         triggered = false;
         virgin = true;
+        touched = false;
         objMesh = gameObject.GetComponent<Renderer>().material;
         gameObject.layer = 14;
         TactileText = GameObject.FindGameObjectWithTag("DynamicText");
@@ -205,6 +206,8 @@ public class Column : MonoBehaviour, ViewObj {
 
     public void OnTriggerStay(Collider other)
     {
+        Debug.Log("Column interacted with...");
+
         timer = 5;
 
         if (!touched)
