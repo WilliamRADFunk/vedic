@@ -47,9 +47,11 @@ public class WindowTextController : MonoBehaviour {
         Error4.enabled = false;
     }
 
+    //Allows passing of a message to update on window border
+    // -- False dictates that the particular message be removed
+    // -- True dictates the overwrite of the message board
     public void UpdateInfo(string message, bool active)
     {
-
         if (!active)
         {
             if (Window1.text == message)
