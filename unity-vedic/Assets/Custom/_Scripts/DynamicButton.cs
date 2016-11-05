@@ -20,7 +20,7 @@ public class DynamicButton : MonoBehaviour
         return button;
     }
 
-    private void switchTableState()
+   private void switchTableState()
     {
         instance.ForceOut();
     }

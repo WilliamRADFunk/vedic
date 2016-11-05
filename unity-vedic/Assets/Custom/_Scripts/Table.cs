@@ -115,9 +115,10 @@ public class Table : MonoBehaviour, ViewObj
             prefabToggle.transform.SetParent(gameObject.transform);
 
             Vector3 t = prefabToggle.transform.localPosition;
-            t.y += 1;
+            t.x += 0.1f;
             prefabToggle.transform.localPosition = t;
             toggleButton = prefabToggle.GetComponent<DynamicButton>();
+            toggleButton.SetInstance(gameObject.GetComponent<Table>());
             btnToggle = toggleButton.GetButtonInstance();
 
             return true;
