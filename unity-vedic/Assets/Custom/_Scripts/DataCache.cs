@@ -14,6 +14,11 @@ public class DataCache : MonoBehaviour {
         cachedInt = -1;
     }
 
+    void Start()
+    {
+        //InvokeRepeating("RunCacheAnalysis", 5.0f, 5.0f);
+    }
+
 
     public void PingCache(GameObject tmp)
     {
