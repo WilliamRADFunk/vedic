@@ -8,6 +8,7 @@ namespace DatabaseUtilities
     public static class VedicDatabase
     {
         public static Database db;
+        public static bool isDatabaseNull = true;
     }
     public class DatabaseBuilder
     {

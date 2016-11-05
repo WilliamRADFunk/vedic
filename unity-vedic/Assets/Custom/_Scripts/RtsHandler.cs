@@ -151,7 +151,7 @@ public class RtsHandler : MonoBehaviour {
         return initialized;
     }
 
-    public void killHarness()
+    public void KillHarness()
     {
         SetInitializedBool(false);
         tableManager.DeleteAllPrevious();

@@ -82,7 +82,14 @@ public class ImportDatabase : MonoBehaviour
             Debug.Log("Received Database");
 
             VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, www.downloadHandler.text);
-
+            VedicDatabase.isDatabaseNull = false;
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
+        }
+    }
+    public void GetOldDatabase()
+    {
+        if(!VedicDatabase.isDatabaseNull)
+        {
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
         }
     }
