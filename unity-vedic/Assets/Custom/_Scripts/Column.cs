@@ -15,31 +15,39 @@ public class Column : MonoBehaviour, ViewObj {
 
     string ID;
     int colHeight;
+    int timer;
     Material objMesh;
     Color instanceColor;
 
     bool virgin;
     bool triggered;
+    bool touched;
     bool changeable;
     bool runnable;
 
+    private GameObject TactileText;
+    private WindowTextController t;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         runnable = false;
         changeable = true;
         triggered = false;
         virgin = true;
         objMesh = gameObject.GetComponent<Renderer>().material;
-
         gameObject.layer = 14;
+        TactileText = GameObject.FindGameObjectWithTag("DynamicText");
+        t = TactileText.GetComponent<WindowTextController>();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 	    if(virgin)
         {
+            InvokeRepeating("CountDown", 0.1f, 0.1f);
             virgin = false;
             objMesh.color = instanceColor;
         }
@@ -49,6 +57,12 @@ public class Column : MonoBehaviour, ViewObj {
             runnable = false;
             changeable = false;
             StartCoroutine(triggerTransition(triggered));
+        }
+
+        if(timer == 0)
+        {
+            t.UpdateInfo(ID, false);
+            touched = false;
         }
 	}
 
@@ -187,5 +201,21 @@ public class Column : MonoBehaviour, ViewObj {
     public string GetName()
     {
         return ID;
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        timer = 5;
+
+        if (!touched)
+        {
+            touched = true;
+            t.UpdateInfo(ID, true);
+        }
+    }
+
+    private void CountDown()
+    {
+        timer--;
     }
 }
