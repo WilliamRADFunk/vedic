@@ -129,13 +129,6 @@ public class ViewMoveTool : MonoBehaviour {
         {
             if(dumpingGrounds != null)
             {
-                Table tempRef = currentHolding.GetComponent<Table>();
-                
-                if(tempRef != null)
-                {
-                    tempRef.SetGuiState(false);
-                }
-
                 currentHolding.transform.SetParent(dumpingGrounds);
                 currentHolding = null;
 

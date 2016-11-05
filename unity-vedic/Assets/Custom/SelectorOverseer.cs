@@ -62,12 +62,6 @@ public class SelectorOverseer : MonoBehaviour {
         {
             tableDeposit.SetHoldingEasy(tableSelected);
 
-            Table tempRef = tableSelected.GetComponent<Table>();
-            if(tempRef != null)
-            {
-                tempRef.SetGuiState(true);
-            }
-
             occupied = true;
             previouslySelected.Add(tableSelected);
         }

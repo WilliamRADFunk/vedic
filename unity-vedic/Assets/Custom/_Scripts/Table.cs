@@ -11,8 +11,6 @@ public class Table : MonoBehaviour, ViewObj
     Vector3 location;
 
     SelectorOverseer selectTool;
-    Button btnToggle;
-    DynamicButton toggleButton;
 
     Transform rtsMinor;
     Leap.Unity.JamesV_LeapRTS rtsInstanceMinor;
@@ -110,16 +108,6 @@ public class Table : MonoBehaviour, ViewObj
             initialized = true;
             ID = name;
             outPut = name + ":\n";
-
-            GameObject prefabToggle = GameObject.Instantiate(Resources.Load<GameObject>("Prefab/toggleTableBtn"));
-            prefabToggle.transform.SetParent(gameObject.transform);
-
-            Vector3 t = prefabToggle.transform.localPosition;
-            t.x += 0.1f;
-            prefabToggle.transform.localPosition = t;
-            toggleButton = prefabToggle.GetComponent<DynamicButton>();
-            toggleButton.SetInstance(gameObject.GetComponent<Table>());
-            btnToggle = toggleButton.GetButtonInstance();
 
             return true;
         }
@@ -244,14 +232,6 @@ public class Table : MonoBehaviour, ViewObj
     public void SetGuiState(bool state)
     {
         newForm = state;
-        if(newForm)
-        {
-            btnToggle.enabled = false;
-        }
-        else
-        {
-            btnToggle.enabled = true;
-        }
     }
 
     public bool GetGuiState()
