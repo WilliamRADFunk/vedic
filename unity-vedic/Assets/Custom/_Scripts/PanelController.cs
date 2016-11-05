@@ -13,7 +13,7 @@ public class PanelController : MonoBehaviour
     private bool isSpeechPossible = true;
     private GameObject tableHarManager;
     public GameObject DbImporter;
-    private GameObject DbExporter;
+    public GameObject DbExporter;
     private GameObject MenuSound;
     private GameObject MenuInput;
     private GameObject MenuTeleport;
