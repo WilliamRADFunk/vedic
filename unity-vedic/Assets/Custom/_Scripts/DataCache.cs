@@ -16,7 +16,7 @@ public class DataCache : MonoBehaviour {
 
     void Start()
     {
-        //InvokeRepeating("RunCacheAnalysis", 5.0f, 5.0f);
+        InvokeRepeating("RunCacheAnalysis", 5.0f, 5.0f);
     }
 
 

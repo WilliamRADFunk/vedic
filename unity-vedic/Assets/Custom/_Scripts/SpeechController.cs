@@ -22,6 +22,8 @@ public class SpeechController : MonoBehaviour
     private InputField textField;
     [SerializeField]
     private WindowTextController WindowTextController;
+    [SerializeField]
+    private DataCache DataCache;
 
     private KeywordRecognizer m_Recognizer;
     private List<string> dataList;
@@ -212,7 +214,7 @@ public class SpeechController : MonoBehaviour
         }
         else if (isTyping)
         {
-            if (args.text.Equals("capitalize", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
+            if (args.text.Equals("capitalize", StringComparison.OrdinalIgnoreCase))
             {
                 isCapitalized = true;
             }
@@ -227,6 +229,10 @@ public class SpeechController : MonoBehaviour
             else if (args.text.Equals("erase", StringComparison.OrdinalIgnoreCase))
             {
                 textField.text = "";
+            }
+            else if (args.text.Equals("grab", StringComparison.OrdinalIgnoreCase))
+            {
+                textField.text += DataCache.ReadCacheMessage();
             }
             else textField.text += TranslateLetters(args.text);
         }
@@ -375,6 +381,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("scroll");
         m_Keywords.Add("up");
         m_Keywords.Add("down");
+        m_Keywords.Add("grab");
 
         commandPhrases[0] = "keyboard toggle";
         commandsExplained[0] = "Shows/Hides virtual keyboard";
