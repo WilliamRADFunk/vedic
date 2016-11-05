@@ -226,6 +226,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("delete");
         m_Keywords.Add("erase");
         m_Keywords.Add("input");
+        m_Keywords.Add("submit");
         m_Keywords.Add("name");
         m_Keywords.Add("host");
         m_Keywords.Add("user");
@@ -375,7 +376,7 @@ public class SpeechController : MonoBehaviour
                     break;
                 case 23:
                     Debug.Log(commandPhrases[23]); // query submit
-                    PanelController.DbExporter.GetComponent<SendQuery>().Send(GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>());
+                    PanelController.DbExporter.GetComponentInChildren<SendQuery>().Send(GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>());
                     break;
                 case 24:
                     Debug.Log(commandPhrases[24]); // database name
