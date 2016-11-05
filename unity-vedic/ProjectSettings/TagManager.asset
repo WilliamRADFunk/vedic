@@ -37,6 +37,9 @@ TagManager:
   - RightPinch
   - DynamicSelect
   - QueryInput
+  - DbName
+  - HostName
+  - Password
   layers:
   - Default
   - TransparentFX
