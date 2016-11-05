@@ -206,8 +206,6 @@ public class Column : MonoBehaviour, ViewObj {
 
     public void OnTriggerStay(Collider other)
     {
-        Debug.Log("Column interacted with...");
-
         timer = 5;
 
         if (!touched)
