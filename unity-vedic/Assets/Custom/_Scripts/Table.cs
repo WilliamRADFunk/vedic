@@ -97,15 +97,15 @@ public class Table : MonoBehaviour, ViewObj
         }
     }
 
-    public bool initialization(string name, string id, GameObject[] columnObjects, Transform father)
+    public bool initialization(string tName, string id, GameObject[] columnObjects, Transform father)
     {
         if (!initialized)
         {
             initialize(columnObjects, father);
             initialized = true;
-            tblName = name;
+            tblName = tName;
             ID = id;
-            outPut = name + ":\n";
+            outPut = tName + ":\n";
 
             return true;
         }

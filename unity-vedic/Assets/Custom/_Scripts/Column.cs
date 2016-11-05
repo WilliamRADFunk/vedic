@@ -26,6 +26,7 @@ public class Column : MonoBehaviour, ViewObj {
     bool changeable;
     bool runnable;
 
+    //External Elements
     private GameObject TactileText;
     private WindowTextController t;
     private DataCache dCache;
@@ -74,7 +75,7 @@ public class Column : MonoBehaviour, ViewObj {
     
 
 
-    public void Initialize(int key, Transform father, string name, string identification, string hexColor)
+    public void Initialize(int key, Transform father, string cName, string identification, string hexColor)
     {
         //Initialize the positional vectors to keep track up for simple y vector movements.
         colHeight = key;
@@ -83,7 +84,7 @@ public class Column : MonoBehaviour, ViewObj {
         triggerMovementOffset = distance / offsetFrameCount;
         finalHeight = colHeight + distance + 0.5f;
 
-        colName = name;
+        colName = cName;
         ID = identification;
         instanceColor = HexToColor(hexColor);
         ParentObject(father);
@@ -216,7 +217,7 @@ public class Column : MonoBehaviour, ViewObj {
         if (!touched)
         {
             touched = true;
-            t.UpdateInfo(ID, true);
+            t.UpdateInfo(colName, true);
             dCache.PingCache(ID);
         }
     }
