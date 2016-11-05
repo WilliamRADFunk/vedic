@@ -18,7 +18,7 @@ public class SpeechController : MonoBehaviour
     private PanelController PanelController;
     [SerializeField]
     private RtsHandler RtsHandler;
-    private Text textField;
+    private InputField textField;
 
     private KeywordRecognizer m_Recognizer;
     private bool isTyping = false;
@@ -28,7 +28,7 @@ public class SpeechController : MonoBehaviour
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[22];
+        commandPhrases = new string[27];
 
         word2letter.Add("alpha", "a");
         word2letter.Add("bravo", "b");
@@ -109,11 +109,17 @@ public class SpeechController : MonoBehaviour
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         wordChain.Add(args.text);
         Debug.Log(builder.ToString());
-        if(isTyping)
+        if (args.text.Equals("exit", StringComparison.OrdinalIgnoreCase))
         {
-            if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase))
+            isTyping = false;
+            Debug.Log("Flushing chain");
+            wordChain = new List<string>(); // Flush the chain
+        }
+        else if (isTyping)
+        {
+            if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
             {
-
+                textField.text = textField.text.Substring(0, textField.text.Length - 1);
             }
             else if (args.text.Equals("erase", StringComparison.OrdinalIgnoreCase))
             {
@@ -130,7 +136,7 @@ public class SpeechController : MonoBehaviour
             Debug.Log("Flushing chain");
             wordChain = new List<string>(); // Flush the chain
         }
-        else if (args.text.Equals("speaktype", StringComparison.OrdinalIgnoreCase))
+        else if (args.text.Equals("teletype", StringComparison.OrdinalIgnoreCase))
         {
             isTyping = true;
             Debug.Log("Flushing chain");
@@ -206,10 +212,15 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("space");
         m_Keywords.Add("save");
         m_Keywords.Add("flush");
-        m_Keywords.Add("speaktype");
+        m_Keywords.Add("teletype");
         m_Keywords.Add("exit");
         m_Keywords.Add("back");
         m_Keywords.Add("erase");
+        m_Keywords.Add("input");
+        m_Keywords.Add("name");
+        m_Keywords.Add("host");
+        m_Keywords.Add("user");
+        m_Keywords.Add("password");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -233,6 +244,11 @@ public class SpeechController : MonoBehaviour
         commandPhrases[19] = "select database nine";
         commandPhrases[20] = "database import";
         commandPhrases[21] = "database save";
+        commandPhrases[22] = "query input";
+        commandPhrases[23] = "database name";
+        commandPhrases[24] = "host name";
+        commandPhrases[25] = "user name";
+        commandPhrases[26] = "password";
     }
     private void ActivateWordChain()
     {
@@ -337,6 +353,26 @@ public class SpeechController : MonoBehaviour
                 case 21:
                     Debug.Log(commandPhrases[21]); // database save
                     PanelController.DbImporter.GetComponent<ImportDatabase>().SaveDB();
+                    break;
+                case 22:
+                    Debug.Log(commandPhrases[22]); // query import
+                    textField = GameObject.FindGameObjectWithTag("QueryInput").GetComponent<InputField>();
+                    break;
+                case 23:
+                    Debug.Log(commandPhrases[23]); // database name
+                    textField = GameObject.FindGameObjectWithTag("DbName").GetComponent<InputField>();
+                    break;
+                case 24:
+                    Debug.Log(commandPhrases[24]); // host name
+                    textField = GameObject.FindGameObjectWithTag("HostName").GetComponent<InputField>();
+                    break;
+                case 25:
+                    Debug.Log(commandPhrases[25]); // user name
+                    textField = GameObject.FindGameObjectWithTag("UserName").GetComponent<InputField>();
+                    break;
+                case 26:
+                    Debug.Log(commandPhrases[26]); // password
+                    textField = GameObject.FindGameObjectWithTag("Password").GetComponent<InputField>();
                     break;
                 default:
                     Debug.Log("Invalid Command");
