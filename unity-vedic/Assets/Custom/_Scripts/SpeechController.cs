@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
 
 public class SpeechController : MonoBehaviour
@@ -17,15 +18,17 @@ public class SpeechController : MonoBehaviour
     private PanelController PanelController;
     [SerializeField]
     private RtsHandler RtsHandler;
+    private Text textField;
 
     private KeywordRecognizer m_Recognizer;
+    private bool isTyping = false;
     private bool pristine = true;
 
     void Start()
     {
         m_Keywords = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[21];
+        commandPhrases = new string[22];
 
         word2letter.Add("alpha", "a");
         word2letter.Add("bravo", "b");
@@ -53,6 +56,8 @@ public class SpeechController : MonoBehaviour
         word2letter.Add("x-ray", "x");
         word2letter.Add("yankee", "y");
         word2letter.Add("zulu", "z");
+        word2letter.Add("period", ".");
+        word2letter.Add("space", " ");
     }
     void Update()
     {
@@ -102,9 +107,41 @@ public class SpeechController : MonoBehaviour
         builder.AppendFormat("{0} ({1}){2}", args.text, args.confidence, Environment.NewLine);
         builder.AppendFormat("\tTimestamp: {0}{1}", args.phraseStartTime, Environment.NewLine);
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
-        wordChain.Add(TranslateLetters(args.text));
+        wordChain.Add(args.text);
         Debug.Log(builder.ToString());
-        if (args.text.Equals("execute", StringComparison.OrdinalIgnoreCase)) ActivateWordChain();
+        if(isTyping)
+        {
+            if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+            else if (args.text.Equals("erase", StringComparison.OrdinalIgnoreCase))
+            {
+                textField.text = "";
+            }
+            else textField.text += TranslateLetters(args.text);
+        }
+        else if (args.text.Equals("execute", StringComparison.OrdinalIgnoreCase))
+        {
+            ActivateWordChain();
+        }
+        else if (args.text.Equals("flush", StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log("Flushing chain");
+            wordChain = new List<string>(); // Flush the chain
+        }
+        else if (args.text.Equals("speaktype", StringComparison.OrdinalIgnoreCase))
+        {
+            isTyping = true;
+            Debug.Log("Flushing chain");
+            wordChain = new List<string>(); // Flush the chain
+        }
+        else if (args.text.Equals("exit", StringComparison.OrdinalIgnoreCase))
+        {
+            isTyping = false;
+            Debug.Log("Flushing chain");
+            wordChain = new List<string>(); // Flush the chain
+        }
     }
     private void CreateRecognizedCommands()
     {
@@ -165,6 +202,14 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("x-ray");
         m_Keywords.Add("yankee");
         m_Keywords.Add("zulu");
+        m_Keywords.Add("period");
+        m_Keywords.Add("space");
+        m_Keywords.Add("save");
+        m_Keywords.Add("flush");
+        m_Keywords.Add("speaktype");
+        m_Keywords.Add("exit");
+        m_Keywords.Add("back");
+        m_Keywords.Add("erase");
 
         commandPhrases[0] = "keyboard toggle";
         commandPhrases[1] = "laser toggle";
@@ -187,6 +232,7 @@ public class SpeechController : MonoBehaviour
         commandPhrases[18] = "select database eight";
         commandPhrases[19] = "select database nine";
         commandPhrases[20] = "database import";
+        commandPhrases[21] = "database save";
     }
     private void ActivateWordChain()
     {
@@ -287,6 +333,10 @@ public class SpeechController : MonoBehaviour
                 case 20:
                     Debug.Log(commandPhrases[20]); // database import
                     PanelController.DbImporter.GetComponent<ImportDatabase>().Send();
+                    break;
+                case 21:
+                    Debug.Log(commandPhrases[21]); // database save
+                    PanelController.DbImporter.GetComponent<ImportDatabase>().SaveDB();
                     break;
                 default:
                     Debug.Log("Invalid Command");
