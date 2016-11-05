@@ -79,6 +79,18 @@ public class SelectorOverseer : MonoBehaviour {
         }
     }
 
+    public void ForceDump(GameObject obj2Dump)
+    {
+        if (tableSelected != null && obj2Dump != null)
+        {
+            if (obj2Dump.GetInstanceID() == tableSelected.GetInstanceID())
+            {
+                tableDeposit.SendToDumpingGrounds();
+                tableSelected = null;
+            }
+        }
+    }
+
     private bool CheckPinch()
     {
         if(lPinch.DidStartPinch || rPinch.DidStartPinch)

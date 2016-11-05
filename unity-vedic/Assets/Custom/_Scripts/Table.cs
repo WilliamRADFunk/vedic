@@ -2,16 +2,17 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Table : MonoBehaviour, ViewObj
 {
-
-    
     public GameObject tempPrefabReference; //To be passed in by parent?
     List<GameObject> columns = new List<GameObject>();
     Vector3 location;
 
     SelectorOverseer selectTool;
+    Button btnToggle;
+    DynamicButton toggleButton;
 
     Transform rtsMinor;
     Leap.Unity.JamesV_LeapRTS rtsInstanceMinor;
@@ -279,6 +280,25 @@ public class Table : MonoBehaviour, ViewObj
     public void SetGuiState(bool state)
     {
         newForm = state;
+        if(newForm)
+        {
+            btnToggle.enabled = false;
+        }
+        else
+        {
+            btnToggle.enabled = true;
+        }
+    }
+
+    public bool GetGuiState()
+    {
+        return newForm;
+    }
+
+    public void ForceOut()
+    {
+        selectTool.ForceDump(gameObject);
+        SetGuiState(false);
     }
 
     private void RetrieveColumnNames()

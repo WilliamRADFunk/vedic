@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class DynamicButton : MonoBehaviour {
+public class DynamicButton : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    [SerializeField]
+    private Button button;
+    private Table instance;
+
+    public void SetInstance(Table tempInstance)
+    {
+        instance = tempInstance;
+        button.onClick.AddListener(delegate { switchTableState();});
+    }
+
+    private void switchTableState()
+    {
+        instance.ForceOut();
+    }
+
+    private bool pullTableState()
+    {
+        return instance.GetGuiState();
+    }
 }
