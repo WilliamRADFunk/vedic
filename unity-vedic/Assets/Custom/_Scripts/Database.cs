@@ -9,6 +9,42 @@ namespace DatabaseUtilities
     {
         public static Database db;
         public static bool isDatabaseNull = true;
+
+        public static string GetTableName(string id)
+        {
+            for(int i = 0; i < db.tables.Count; i++)
+            {
+                if (db.tables[i].GetId() == id) return db.tables[i].GetName();
+            }
+            return "No table with that ID.";
+        }
+        public static List<string> GetTableColumns(string id)
+        {
+            for (int i = 0; i < db.tables.Count; i++)
+            {
+                if (db.tables[i].GetId() == id)
+                {
+                    List<string> cols = new List<string>();
+                    for (int j = 0; j < db.tables[i].columns.Count; j++)
+                    {
+                        cols.Add(db.tables[i].columns[j].GetName());
+                    }
+                    return cols;
+                }
+            }
+            return null;
+        }
+        public static string GetColumnName(string id)
+        {
+            for (int i = 0; i < db.tables.Count; i++)
+            {
+                for (int j = 0; j < db.tables[i].columns.Count; j++)
+                {
+                    if (db.tables[i].columns[j].GetId() == id) return db.tables[i].columns[j].GetName();
+                }
+            }
+            return "No column with that ID.";
+        }
     }
     public class DatabaseBuilder
     {

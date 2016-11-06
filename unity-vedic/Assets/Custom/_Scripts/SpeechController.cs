@@ -232,7 +232,11 @@ public class SpeechController : MonoBehaviour
             }
             else if (args.text.Equals("grab", StringComparison.OrdinalIgnoreCase))
             {
-                textField.text += DataCache.ReadCacheMessage();
+                if (DataCache.ReadCacheMessage().IndexOf("-") > -1)
+                {
+                    textField.text += DatabaseUtilities.VedicDatabase.GetColumnName(DataCache.ReadCacheMessage());
+                }
+                else textField.text += DatabaseUtilities.VedicDatabase.GetTableName(DataCache.ReadCacheMessage());
             }
             else textField.text += TranslateLetters(args.text);
         }
