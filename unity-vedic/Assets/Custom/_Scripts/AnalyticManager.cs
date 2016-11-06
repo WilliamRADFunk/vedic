@@ -24,5 +24,6 @@ public class AnalyticManager : MonoBehaviour {
         Database db1 = VedicDatabase.SortTablesByColumnQuantity();
         GameObject assembledHarness = ViewAssembler.GenerateViewObject(db1, false, true, 0);
         assembledHarness.transform.SetParent(gameObject.transform);
+        assembledHarness.transform.localPosition = new Vector3(0, 0, 0);
     }
 }
