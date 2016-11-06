@@ -25,6 +25,7 @@ public class AnalyticManager : MonoBehaviour {
 
     public void BuildAnalytics()
     {
+        aDepsoit.SetAsAnalytical();
         BuildAnalytic1();
     }
 

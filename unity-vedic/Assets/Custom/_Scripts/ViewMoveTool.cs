@@ -28,6 +28,8 @@ public class ViewMoveTool : MonoBehaviour {
     bool secondFrame;
     bool isTableDeposit;
     bool rtsHarnessActive;
+
+    public bool isAnalyticTool;
     
     [SerializeField]
     private HandModel leftHandMod;
@@ -70,6 +72,11 @@ public class ViewMoveTool : MonoBehaviour {
         {
             panelInstance = GameObject.FindGameObjectWithTag("UserInterface").GetComponent<PanelController>();
         }
+        
+        if(isAnalyticTool)
+        {
+            isTableDeposit = false;
+        }
     }
 
     void Update()
@@ -93,6 +100,16 @@ public class ViewMoveTool : MonoBehaviour {
                 if(CheckForThumbsUp())
                 {
                     SendToDumpingGrounds();
+                }
+            }
+        }
+        else if(isAnalyticTool)
+        {
+            if(currentHolding != null)
+            {
+                if(CheckForThumbsUp())
+                {
+                    RtsSetter(false);
                 }
             }
         }
@@ -232,5 +249,10 @@ public class ViewMoveTool : MonoBehaviour {
     public void ForceCurrentHoldingNull()
     {
         currentHolding = null;
+    }
+
+    public void SetAsAnalytical()
+    {
+        isAnalyticTool = true;
     }
 }
