@@ -39,8 +39,8 @@ public class SpeechController : MonoBehaviour
         m_Keywords = new List<string>();
         dataList = new List<string>();
         wordChain = new List<string>();
-        commandPhrases = new string[31];
-        commandsExplained = new string[31];
+        commandPhrases = new string[32];
+        commandsExplained = new string[32];
 
         word2letter.Add("zero", "0");
         word2letter.Add("one", "1");
@@ -386,6 +386,7 @@ public class SpeechController : MonoBehaviour
         m_Keywords.Add("up");
         m_Keywords.Add("down");
         m_Keywords.Add("grab");
+        m_Keywords.Add("interact");
 
         commandPhrases[0] = "keyboard toggle";
         commandsExplained[0] = "Shows/Hides virtual keyboard";
@@ -449,6 +450,8 @@ public class SpeechController : MonoBehaviour
         commandsExplained[29] = "Displays speech recognition vocabulary";
         commandPhrases[30] = "show commands";
         commandsExplained[30] = "Displays speech recognition commands";
+        commandPhrases[31] = "interact toggle";
+        commandsExplained[31] = "Activates/Deactivates harness rts system.";
     }
     private void ActivateWordChain()
     {
@@ -623,6 +626,10 @@ public class SpeechController : MonoBehaviour
                         dataPointer++;
                     }
                     WindowTextController.UpdateInfo(msgCom, true);
+                    break;
+                case 31:
+                    Debug.Log(commandPhrases[31]); // interact activate
+                    PanelController.ToggleRts();
                     break;
                 default:
                     Debug.Log("Invalid Command");

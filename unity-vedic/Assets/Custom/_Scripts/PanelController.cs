@@ -181,12 +181,34 @@ public class PanelController : MonoBehaviour
         {
             BigTable.GetComponent<RtsHandler>().InteractOff();
             isRTSon = false;
+
+            if (MenuInput.activeSelf)
+            {
+                ToggleOff("RtsToggle");
+            }
+            else
+            {
+                MenuInput.SetActive(true);
+                ToggleOff("RtsToggle");
+                MenuInput.SetActive(false);
+            }
         }
         else
         {
             if(BigTable.GetComponent<RtsHandler>().InteractOn())
             {
                 isRTSon = true;
+
+                if (MenuInput.activeSelf)
+                {
+                    ToggleOn("RtsToggle");
+                }
+                else
+                {
+                    MenuInput.SetActive(true);
+                    ToggleOn("RtsToggle");
+                    MenuInput.SetActive(false);
+                }
             }
             else
             {

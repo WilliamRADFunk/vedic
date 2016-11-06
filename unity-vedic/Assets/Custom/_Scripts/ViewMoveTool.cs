@@ -105,7 +105,7 @@ public class ViewMoveTool : MonoBehaviour {
                     if (CheckForThumbsUp())
                     {
                         panelInstance.ToggleRts();
-                        panelInstance.ToggleOff("RtsToggle");
+                        //panelInstance.ToggleOff("RtsToggle");
                     }
                 }
             }
