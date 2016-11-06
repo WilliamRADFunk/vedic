@@ -228,4 +228,9 @@ public class ViewMoveTool : MonoBehaviour {
             }
         }
     }
+
+    public void ForceCurrentHoldingNull()
+    {
+        currentHolding = null;
+    }
 }

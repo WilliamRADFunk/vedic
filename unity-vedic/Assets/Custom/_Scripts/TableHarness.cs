@@ -194,7 +194,7 @@ public class TableHarness : MonoBehaviour
                 for(int i = 0; i < tableSlots.Length; i++)
                 {
                     tableSlots[i] = start;
-                    start += new Vector3 (1,0,0);
+                    start += new Vector3 (0,0,(1 + (i*0.30f)));
                 }
             }
         }
