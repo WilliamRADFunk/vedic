@@ -2,6 +2,7 @@
 using Leap.Unity;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using Leap;
 
 public class ViewMoveTool : MonoBehaviour {
 
@@ -23,6 +24,15 @@ public class ViewMoveTool : MonoBehaviour {
 
     bool virgin;
     bool secondFrame;
+    bool thumbsUp;
+    
+    [SerializeField]
+    private HandModel leftHandMod;
+    [SerializeField]
+    private HandModel rightHandMod;
+
+    private Hand lHand;
+    private Hand rHand;
 
 	// Use this for initialization
     void Awake()
@@ -43,6 +53,20 @@ public class ViewMoveTool : MonoBehaviour {
     {
         virgin = true;
         secondFrame = false;
+        if(leftHandMod != null)
+        {
+            lHand = leftHandMod.GetLeapHand();
+            rHand = rightHandMod.GetLeapHand();
+        }
+        if(rightHandMod != null)
+        {
+            rHand = rightHandMod.GetLeapHand();
+        }
+
+        if(dumpingGrounds != null)
+        {
+            thumbsUp = true;
+        }
     }
 
     void Update()
@@ -57,6 +81,42 @@ public class ViewMoveTool : MonoBehaviour {
         {
             secondFrame = false;
             viewRTS.enabled = false;
+        }
+        
+        if(thumbsUp)
+        {
+            if(currentHolding != null)
+            {
+                CheckForThumbsUp();
+            }
+        }     
+    }
+
+    //Private Thumbs up detection
+    private void CheckForThumbsUp()
+    {
+        if(lHand != null)
+        {
+            if(lHand.GrabStrength == 1)
+            {
+                if(lHand.Finger(0).IsExtended)
+                {
+                    Debug.Log("Thumbs out!");
+                    return;
+                }
+            }
+        }
+
+        if(rHand != null)
+        {
+            if (rHand.GrabStrength == 1)
+            {
+                if (rHand.Finger(0).IsExtended)
+                {
+                    Debug.Log("Thumbs out!");
+                    return;
+                }
+            }
         }
     }
 
