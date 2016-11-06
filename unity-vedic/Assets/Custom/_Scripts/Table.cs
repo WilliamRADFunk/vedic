@@ -70,6 +70,8 @@ public class Table : MonoBehaviour, ViewObj
             secondFrame = false;
             rtsMinor = gameObject.transform.parent;
             rtsInstanceMinor.enabled = false;
+
+            RetrieveColumnNames();
         }  
         if (virgin)
         {
@@ -80,9 +82,7 @@ public class Table : MonoBehaviour, ViewObj
             rtsInstanceMinor = gameObject.AddComponent<Leap.Unity.JamesV_LeapRTS>();
             rtsInstanceMinor.enabled = true; ;
 
-            secondFrame = true;
-
-            RetrieveColumnNames();
+            secondFrame = true;         
         }
 
         if(timer == 0)
