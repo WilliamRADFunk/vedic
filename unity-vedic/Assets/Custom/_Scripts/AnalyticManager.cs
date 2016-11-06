@@ -32,7 +32,7 @@ public class AnalyticManager : MonoBehaviour {
     private void BuildAnalytic1()
     {
         Database db1 = VedicDatabase.SortTablesByColumnQuantity();
-        GameObject AnalyticObject1 = ViewAssembler.GenerateViewObject(db1, false, true, 0);
+        AnalyticObject1 = ViewAssembler.GenerateViewObject(db1, false, true, 0);
         AnalyticObject1.transform.SetParent(gameObject.transform);
         AnalyticObject1.transform.localPosition = new Vector3(0, 0, 0);
         genuineScale = AnalyticObject1.transform.localScale;
