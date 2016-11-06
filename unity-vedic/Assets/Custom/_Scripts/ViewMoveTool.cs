@@ -9,6 +9,8 @@ public class ViewMoveTool : MonoBehaviour {
     [SerializeField]
     private JamesV_LeapRTS viewRTS;
 
+    private PanelController panelInstance;
+
     GameObject currentHolding;
     Transform moveToolRts;
 
@@ -24,7 +26,8 @@ public class ViewMoveTool : MonoBehaviour {
 
     bool virgin;
     bool secondFrame;
-    bool thumbsUp;
+    bool isTableDeposit;
+    bool rtsHarnessActive;
     
     [SerializeField]
     private HandModel leftHandMod;
@@ -41,22 +44,17 @@ public class ViewMoveTool : MonoBehaviour {
         {
             viewRTS.enabled = true;
         }
-        else
-        {
-            //viewRTS = gameObject.AddComponent<JamesV_LeapRTS>();
-            //viewRTS.speed = 5;
-            //viewRTS.enabled = false;
-        }
     }
 
     void Start()
     {
+        rtsHarnessActive = false;
+        isTableDeposit = false;
         virgin = true;
         secondFrame = false;
         if(leftHandMod != null)
         {
             lHand = leftHandMod.GetLeapHand();
-            rHand = rightHandMod.GetLeapHand();
         }
         if(rightHandMod != null)
         {
@@ -65,8 +63,13 @@ public class ViewMoveTool : MonoBehaviour {
 
         if(dumpingGrounds != null)
         {
-            thumbsUp = true;
+            isTableDeposit = true;
         }
+
+        //if(!isTableDeposit)
+        //{
+        //    panelInstance = GameObject.FindGameObjectWithTag("UserInterface").GetComponent<PanelController>();
+        //}
     }
 
     void Update()
@@ -83,41 +86,71 @@ public class ViewMoveTool : MonoBehaviour {
             viewRTS.enabled = false;
         }
         
-        if(thumbsUp)
+        if(isTableDeposit)
         {
             if(currentHolding != null)
             {
-                CheckForThumbsUp();
+                if(CheckForThumbsUp())
+                {
+                    SendToDumpingGrounds();
+                }
             }
-        }     
+        }
+        //else
+        //{
+        //    if (viewRTS.enabled == true)
+        //    {
+        //        if (currentHolding != null)
+        //        {
+        //            if (CheckForThumbsUp())
+        //            {
+        //                panelInstance.ToggleRts();
+        //            }
+        //        }
+        //    }
+        //}     
     }
 
     //Private Thumbs up detection
-    private void CheckForThumbsUp()
+    private bool CheckForThumbsUp()
     {
+        lHand = leftHandMod.GetLeapHand();
+        rHand = rightHandMod.GetLeapHand();
+
         if(lHand != null)
         {
             if(lHand.GrabStrength == 1)
             {
-                if(lHand.Finger(0).IsExtended)
+                List<Leap.Finger> fingers = lHand.Fingers;
+                Finger thumb = fingers[0];
+
+                if(thumb != null)
                 {
-                    Debug.Log("Thumbs out!");
-                    return;
+                    if(thumb.IsExtended)
+                    {
+                        return true;
+                    }
                 }
             }
         }
-
         if(rHand != null)
         {
             if (rHand.GrabStrength == 1)
             {
-                if (rHand.Finger(0).IsExtended)
+                List<Leap.Finger> fingers = rHand.Fingers;
+                Finger thumb = fingers[0];
+       
+                if (thumb != null)
                 {
-                    Debug.Log("Thumbs out!");
-                    return;
+                    if (thumb.IsExtended)
+                    {
+                        return true;
+                    }
                 }
             }
         }
+
+        return false;
     }
 
     //Can be passed either the grid or table object to set rts anchor to said object
