@@ -218,7 +218,7 @@ public class Column : MonoBehaviour, ViewObj {
         {
             touched = true;
             t.UpdateInfo(colName, true);
-            dCache.PingCache(ID);
+            dCache.PingCache(ID, 2);
         }
     }
 

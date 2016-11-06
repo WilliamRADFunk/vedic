@@ -7,11 +7,21 @@ public class DataCache : MonoBehaviour {
     private string cachedMessage;
     private int cachedInt;
 
+    public GameObject SignalChange;
+
+    private enum PingType { general, viewTable, viewColumn };
+    int cacheParadigm;
+
 	void Awake()
     {
         cachedMessage = "";
         cachedItem = null;
         cachedInt = -1;
+    }
+
+    private void UpdateHandChange()
+    {
+        SignalChange.GetComponent<Renderer>().material.color = Color.black;
     }
 
     void Start()
@@ -25,9 +35,12 @@ public class DataCache : MonoBehaviour {
         cachedItem = tmp;
     }
 
-    public void PingCache(string tmp)
+    public void PingCache(string tmp, int type)
     {
         cachedMessage = tmp;
+        cacheParadigm = type;
+
+        UpdateHandChange();
     }
 
     public void PingCache(int tmp)
