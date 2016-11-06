@@ -16,11 +16,13 @@ public class Controller_MultiInput : MonoBehaviour, ButtonAdder {
         buttons.Add(rt);
         input.argumentIndex = buttons.Count;
         node.incromentInputs();
+        layout.spacing = new Vector2(layout.spacing.x, layout.spacing.y + 10);
     }
 
     public virtual void removeButton_fromLayout() {
         GameObject.Destroy(buttons[buttons.Count - 1].gameObject);
         buttons.RemoveAt(buttons.Count - 1);
         node.decromentInputs();
+        layout.spacing = new Vector2(layout.spacing.x, layout.spacing.y - 10);
     }
 }

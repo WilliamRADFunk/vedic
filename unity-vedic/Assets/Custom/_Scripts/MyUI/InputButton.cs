@@ -8,8 +8,8 @@ public class InputButton : NodeButton {
     public Vid_Object vidObj;
 
     bool used = false;
-    bool drawline = false;
-    OutputButton output;
+    [HideInInspector] public bool drawline = false;
+    public OutputButton output;
     public LineRenderer lineRender;
     Renderer r;
 
@@ -22,12 +22,11 @@ public class InputButton : NodeButton {
                 drawline = false;
 
                 vidObj.removeInput(argumentIndex);
-
+                
                 output = null;
                 used = false;
                 ct.resetTool();
             }
-
         }
 
         else if (used && ct.getOutputButton() == null)
@@ -48,8 +47,20 @@ public class InputButton : NodeButton {
         }
     }
 
-   void Update()
+    public void RemakeConnetion() {
+        if (output == null) {
+            return;
+        }
+        Vid_Object outputObj = output.vid_obj;
+        bool b = vidObj.addInput(outputObj, argumentIndex);
+    }
+
+    void Update()
     {
+        if(output == null) {
+            lineRender.enabled = false;
+            return;
+        }
         if (drawline)
         {
             if (!lineRender.enabled)
@@ -62,7 +73,7 @@ public class InputButton : NodeButton {
             lineRender.SetPositions(points);
         }
     }
-
+   
    private void transferData()
    {
         output = ct.getOutputButton();

@@ -10,7 +10,9 @@ public class Vid_ObjectInputs {
         maxsize = numOf_Inputs;
         inputs = new Vid_Object[numOf_Inputs];
     }
-
+    public int getLength() {
+        return inputs.Length;
+    }
     /*Builders*/
     public bool removeInput_atIndex(int index) {
         /*Used for CodeGenereation*/

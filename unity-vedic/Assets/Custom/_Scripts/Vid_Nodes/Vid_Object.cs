@@ -2,7 +2,7 @@
 
 public abstract class Vid_Object : MonoBehaviour, Inputable
 {
-    protected Vid_ObjectInputs inputs;
+    [HideInInspector] public Vid_ObjectInputs inputs;
     protected VidData_Type[] acceptableInputs;
     public VidData_Type output_dataType;
 
@@ -38,5 +38,9 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
 
     public void destroyObj() {
         GameObject.Destroy(this.gameObject);
+    }
+
+    public Vid_ObjectInputs GetInputs() {
+        return inputs;
     }
 }

@@ -9,7 +9,7 @@ public class Vid_InsertQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE;
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[3];
+        acceptableInputs = new VidData_Type[2];
             acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
             acceptableInputs[1] = VidData_Type.LIST;
     }
@@ -55,7 +55,7 @@ public class Vid_InsertQuery : Vid_Query
                 else {
                     return false;
                 }
-            case 2:
+            case 1:
                 if (obj.output_dataType == VidData_Type.LIST) {
                     bool b = base.addInput(obj, 1);
                     return b;
