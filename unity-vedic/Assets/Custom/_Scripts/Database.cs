@@ -74,7 +74,6 @@ namespace DatabaseUtilities
             for(int k = 0; k < tabs.Length; k++)
             {
                 tables.Add(tabs[k]);
-                Debug.Log(tabs[k].columns.Count);
             }
             db.tables = tables;
             return db;

@@ -84,8 +84,6 @@ public class ImportDatabase : MonoBehaviour
             VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, www.downloadHandler.text);
             VedicDatabase.isDatabaseNull = false;
 
-            VedicDatabase.SortTablesByColumnQuantity();
-
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false);
         }
     }
