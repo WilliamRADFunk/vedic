@@ -22,11 +22,14 @@ public class PanelController : MonoBehaviour
     private GameObject BigTable;
     private GameObject Keyboard;
     private GameObject MenuPods;
+    private GameObject MenuAnalytics;
     public GameObject teleporter;
     private GameObject NodeSpawner;
     [SerializeField]
     private GameObject SpeechRecognizer;
     public RaycastHandler[] Lasers;
+    [SerializeField]
+    private AnalyticManager AnalyticManager;
 
     void Update()
     {
@@ -42,6 +45,7 @@ public class PanelController : MonoBehaviour
             BigTable = GameObject.FindGameObjectWithTag("Pedestal");
             Keyboard = GameObject.FindGameObjectWithTag("Keyboard");
             MenuPods = GameObject.FindGameObjectWithTag("MenuPods");
+            MenuAnalytics = GameObject.FindGameObjectWithTag("MenuAnalytics");
             NodeSpawner = GameObject.FindGameObjectWithTag("NodeSpawner");
 
 
@@ -73,6 +77,10 @@ public class PanelController : MonoBehaviour
             {
                 MenuPods.SetActive(false);
             }
+            if (MenuAnalytics != null)
+            {
+                MenuAnalytics.SetActive(false);
+            }
             if (NodeSpawner != null)
             {
                 NodeSpawner.SetActive(false);
@@ -100,6 +108,7 @@ public class PanelController : MonoBehaviour
         MenuTeleport.SetActive(false);
         MenuInput.SetActive(false);
         MenuPods.SetActive(false);
+        MenuAnalytics.SetActive(false);
     }
 
     public void ShowMenuTeleport()
@@ -109,6 +118,7 @@ public class PanelController : MonoBehaviour
         MenuInput.SetActive(false);
         MenuMain.SetActive(false);
         MenuPods.SetActive(false);
+        MenuAnalytics.SetActive(false);
     }
 
     public void ShowMenuInput()
@@ -118,6 +128,7 @@ public class PanelController : MonoBehaviour
         MenuTeleport.SetActive(false);
         MenuMain.SetActive(false);
         MenuPods.SetActive(false);
+        MenuAnalytics.SetActive(false);
     }
 
     public void ShowMenuPods()
@@ -127,6 +138,17 @@ public class PanelController : MonoBehaviour
         MenuSound.SetActive(false);
         MenuTeleport.SetActive(false);
         MenuMain.SetActive(false);
+        MenuAnalytics.SetActive(false);
+    }
+
+    public void ShowMenuAnalytics()
+    {
+        MenuPods.SetActive(false);
+        MenuInput.SetActive(false);
+        MenuSound.SetActive(false);
+        MenuTeleport.SetActive(false);
+        MenuMain.SetActive(false);
+        MenuAnalytics.SetActive(true);
     }
 
     public void ShowMenuSound()
@@ -136,6 +158,7 @@ public class PanelController : MonoBehaviour
         MenuTeleport.SetActive(false);
         MenuMain.SetActive(false);
         MenuPods.SetActive(false);
+        MenuAnalytics.SetActive(false);
     }
     /*************************** 3DCURSORS TOGGLING START **********************************/
     public void Toggle3dCursors()
