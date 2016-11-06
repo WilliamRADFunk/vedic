@@ -18,6 +18,8 @@ public class TableHarness : MonoBehaviour
     Vector3[] tableSlots;
 
     bool virgin;
+    bool isAnalytic;
+    int analyticType;
    
     GameObject uiHead;
 
@@ -25,6 +27,7 @@ public class TableHarness : MonoBehaviour
 	void Start ()
     {
         virgin = true;
+        isAnalytic = false;
         uiHead = GameObject.FindGameObjectWithTag("UserInterface");
 	}
 	
@@ -37,6 +40,36 @@ public class TableHarness : MonoBehaviour
             SendGameObject();
         }
 	}
+
+    public void Initialize(GameObject[] tables, bool isAnalytics, int typeOfAnalytic)
+    {
+        int count = tables.Length;
+        tableCount = count;
+        isAnalytic = isAnalytics;
+        analyticType = typeOfAnalytic;
+        SetPositionMatrix();
+
+        for (int i = 0; i < tableCount; i++)
+        {
+            tables[i].transform.localPosition = tableSlots[i];
+        }
+
+
+        string type = "";
+
+        if (!isAnalytic)
+        {
+            Debug.Log("Something went wrong making the analytic object (boolean not set)");
+        }
+        else
+        {
+            if (analyticType == 0)
+            {
+                type = "ana1";
+                return;
+            }
+        }
+    }
 
     public void Initialize(GameObject[] tables, bool isTypePod)
     {
@@ -77,78 +110,95 @@ public class TableHarness : MonoBehaviour
 
     private void SetPositionMatrix()
     {
-        if (tableCount <= 1)
+        if(!isAnalytic)
         {
-            tableSlots = new Vector3[1];
-            tableSlots[0] = new Vector3(0, 0, 0);
-            float newScale = 1f;
-            initialLocalScale = new Vector3(newScale, newScale, newScale);
-            gameObject.transform.localScale = initialLocalScale;
+            if (tableCount <= 1)
+            {
+                tableSlots = new Vector3[1];
+                tableSlots[0] = new Vector3(0, 0, 0);
+                float newScale = 1f;
+                initialLocalScale = new Vector3(newScale, newScale, newScale);
+                gameObject.transform.localScale = initialLocalScale;
+            }
+            else
+            {
+                int matrixSize = Mathf.CeilToInt(Mathf.Sqrt(tableCount));
+                float newScale = 1 - (scaleBaseDecrease * (matrixSize - 2));
+                initialLocalScale = new Vector3(newScale, newScale, newScale);
+                gameObject.transform.localScale = initialLocalScale;
+
+                tableSlots = new Vector3[tableCount];
+                int counter = 0;
+
+                if (matrixSize % 2 == 1)
+                {
+                    int ceiling = Mathf.FloorToInt(matrixSize / 2);
+                    int floor = ceiling * -1;
+
+                    for (int i = floor; i <= ceiling; i++)
+                    {
+                        for (int j = floor; j <= ceiling; j++)
+                        {
+                            float x = (j * segments) + (NodeDivisions * j);
+                            float z = (i * segments) + (NodeDivisions * i);
+
+                            if ((i + j) > tableSlots.Length || counter >= tableCount)
+                            {
+                                break;
+                            }
+                            tableSlots[counter] = new Vector3(x, 0, z);
+                            counter++;
+                        }
+
+                        if (counter >= tableCount)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                else
+                {
+                    int ceiling = Mathf.FloorToInt(matrixSize / 2);
+                    int floor = ceiling * -1;
+
+                    for (int i = floor; i < ceiling; i++)
+                    {
+                        for (int j = floor; j < ceiling; j++)
+                        {
+                            float x = (j * segments) + (NodeDivisions * j) + NodeDivisions * ceiling;
+                            float z = (i * segments) + (NodeDivisions * i) + NodeDivisions * ceiling;
+
+                            if ((i + j) > tableSlots.Length || counter >= tableCount)
+                            {
+                                break;
+                            }
+                            tableSlots[counter] = new Vector3(x, 0, z);
+                            counter++;
+                        }
+
+                        if (counter >= tableCount)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
         }
         else
         {
-            int matrixSize = Mathf.CeilToInt(Mathf.Sqrt(tableCount));
-            float newScale = 1 - (scaleBaseDecrease * (matrixSize - 2));
-            initialLocalScale = new Vector3(newScale, newScale, newScale);
-            gameObject.transform.localScale = initialLocalScale;
-
-            tableSlots = new Vector3[tableCount];
-            int counter = 0;
-
-            if (matrixSize % 2 == 1)
+            if(analyticType == 0)
             {
-                int ceiling = Mathf.FloorToInt(matrixSize / 2);
-                int floor = ceiling * -1;
-
-                for (int i = floor; i <= ceiling; i++)
+                tableSlots = new Vector3[tableCount];
+                Vector3 start = new Vector3(0, 0, 0);
+                for(int i = 0; i < tableSlots.Length; i++)
                 {
-                    for (int j = floor; j <= ceiling; j++)
-                    {
-                        float x = (j * segments) + (NodeDivisions * j);
-                        float z = (i * segments) + (NodeDivisions * i);
-
-                        if ((i + j) > tableSlots.Length || counter >= tableCount)
-                        {
-                            break;
-                        }
-                        tableSlots[counter] = new Vector3(x, 0, z);
-                        counter++;
-                    }
-
-                    if (counter >= tableCount)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            else
-            {
-                int ceiling = Mathf.FloorToInt(matrixSize / 2);
-                int floor = ceiling * -1;
-
-                for (int i = floor; i < ceiling; i++)
-                {
-                    for (int j = floor; j < ceiling; j++)
-                    {
-                        float x = (j * segments) + (NodeDivisions * j) + NodeDivisions * ceiling;
-                        float z = (i * segments) + (NodeDivisions * i) + NodeDivisions * ceiling;
-
-                        if ((i + j) > tableSlots.Length || counter >= tableCount)
-                        {
-                            break;
-                        }
-                        tableSlots[counter] = new Vector3(x, 0, z);
-                        counter++;
-                    }
-
-                    if (counter >= tableCount)
-                    {
-                        break;
-                    }
+                    tableSlots[i] = start;
+                    start += new Vector3 (1,0,0);
                 }
             }
         }
+        
     }
 
     public void Deconstruct()

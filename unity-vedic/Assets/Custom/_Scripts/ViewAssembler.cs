@@ -38,7 +38,7 @@ public static class ViewAssembler {
         }
     }
 
-    public static GameObject GenerateViewObject(Database database, bool pod)
+    public static GameObject GenerateViewObject(Database database, bool pod, bool analytic, int analyticType)
     {
         GameObject currentHarness = Generate((int)View_Type.Harness);
         Transform harnessTransform =  currentHarness.transform;
@@ -52,8 +52,15 @@ public static class ViewAssembler {
         {
             tables[i] = GenerateTableObj(tableInfo[i], harnessTransform);
         }
-
-        currentHarness.GetComponent<TableHarness>().Initialize(tables, pod);
+        
+        if(!analytic)
+        {
+            currentHarness.GetComponent<TableHarness>().Initialize(tables, pod);
+        }
+        else
+        {
+            currentHarness.GetComponent<TableHarness>().Initialize(tables, analytic, analyticType);
+        }
 
         currentHarness.transform.localPosition = new Vector3(0, 0, 0);
         return currentHarness;

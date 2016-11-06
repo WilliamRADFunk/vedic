@@ -76,7 +76,7 @@ public class PodManager : MonoBehaviour {
         {
             if(podStates[i])
             {
-                GameObject assembledHarness = ViewAssembler.GenerateViewObject(obj, true);
+                GameObject assembledHarness = ViewAssembler.GenerateViewObject(obj, true, false, -1);
                 pods[i].GetComponent<Pod>().AllocateTableHarness(assembledHarness);
             }
         }
