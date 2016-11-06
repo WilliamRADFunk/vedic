@@ -21,7 +21,23 @@ public class DataCache : MonoBehaviour {
 
     private void UpdateHandChange()
     {
-        SignalChange.GetComponent<Renderer>().material.color = Color.black;
+        if(cacheParadigm == 0)
+        {
+            SignalChange.GetComponent<Renderer>().material.color = Color.black;
+        }
+        else if(cacheParadigm == 1)
+        {
+            SignalChange.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if(cacheParadigm == 2)
+        {
+            SignalChange.GetComponent<Renderer>().material.color = Color.yellow;
+        }
+        else
+        {
+            SignalChange.GetComponent<Renderer>().material.color = Color.white;
+        }
+
     }
 
     void Start()
