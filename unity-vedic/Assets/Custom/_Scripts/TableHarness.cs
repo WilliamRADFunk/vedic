@@ -190,11 +190,12 @@ public class TableHarness : MonoBehaviour
             if(analyticType == 0)
             {
                 tableSlots = new Vector3[tableCount];
-                Vector3 start = new Vector3(0, 0, 0);
+                int startLoc = -(tableCount / 2);
+                Vector3 start = new Vector3(0, 0, startLoc);
                 for(int i = 0; i < tableSlots.Length; i++)
                 {
                     tableSlots[i] = start;
-                    start += new Vector3 (0,0,(1 + (i*0.30f)));
+                    start += new Vector3 (0,0,(1f + 0.50f));
                 }
             }
         }
