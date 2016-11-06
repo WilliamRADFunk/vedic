@@ -683,4 +683,8 @@ public class SpeechController : MonoBehaviour
         }
         else return word;
     }
+    public void FocusOnText(InputField inp)
+    {
+        textField = inp;
+    }
 }
