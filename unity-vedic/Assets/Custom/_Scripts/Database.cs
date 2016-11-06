@@ -10,6 +10,7 @@ namespace DatabaseUtilities
         public static Database db;
         public static bool isDatabaseNull = true;
 
+        // Gets the string name of the table attached to the param id
         public static string GetTableName(string id)
         {
             for(int i = 0; i < db.tables.Count; i++)
@@ -18,6 +19,7 @@ namespace DatabaseUtilities
             }
             return "No table with that ID.";
         }
+        // Gets the string names, in list form, of all columns belonging to the table with the param id
         public static List<string> GetTableColumns(string id)
         {
             for (int i = 0; i < db.tables.Count; i++)
@@ -34,6 +36,7 @@ namespace DatabaseUtilities
             }
             return null;
         }
+        // Gets the string name of the column attached to the param id
         public static string GetColumnName(string id)
         {
             for (int i = 0; i < db.tables.Count; i++)
@@ -44,6 +47,37 @@ namespace DatabaseUtilities
                 }
             }
             return "No column with that ID.";
+        }
+        // Sorts the database tables by number of columns in descending order.
+        public static Database SortTablesByColumnQuantity()
+        {
+            Database db = new Database();
+            db.SetName("Analytic_1");
+            Table[] tabs = VedicDatabase.db.tables.ToArray();
+            for(int i = 0; i < tabs.Length; i++)
+            {
+                int min = tabs[i].columns.Count;
+                int mindex = i;
+                for(int j = i+1; j < tabs.Length; j++)
+                {
+                    if(tabs[j].columns.Count < min)
+                    {
+                        mindex = j;
+                        min = tabs[j].columns.Count;
+                    }
+                }
+                Table tempTab = tabs[i];
+                tabs[i] = tabs[mindex];
+                tabs[mindex] = tempTab;
+            }
+            List<Table> tables = new List<Table>();
+            for(int k = 0; k < tabs.Length; k++)
+            {
+                tables.Add(tabs[k]);
+                Debug.Log(tabs[k].columns.Count);
+            }
+            db.tables = tables;
+            return db;
         }
     }
     public class DatabaseBuilder
