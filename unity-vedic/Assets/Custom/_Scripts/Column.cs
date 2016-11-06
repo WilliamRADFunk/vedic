@@ -207,7 +207,7 @@ public class Column : MonoBehaviour, ViewObj {
 
     public string GetName()
     {
-        return ID;
+        return colName;
     }
 
     public void OnTriggerStay(Collider other)
