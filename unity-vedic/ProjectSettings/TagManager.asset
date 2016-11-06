@@ -43,6 +43,7 @@ TagManager:
   - UserName
   - QueryResult
   - DataCache
+  - Analytics
   layers:
   - Default
   - TransparentFX
