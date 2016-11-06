@@ -66,10 +66,10 @@ public class ViewMoveTool : MonoBehaviour {
             isTableDeposit = true;
         }
 
-        //if(!isTableDeposit)
-        //{
-        //    panelInstance = GameObject.FindGameObjectWithTag("UserInterface").GetComponent<PanelController>();
-        //}
+        if(!isTableDeposit)
+        {
+            panelInstance = GameObject.FindGameObjectWithTag("UserInterface").GetComponent<PanelController>();
+        }
     }
 
     void Update()
@@ -96,19 +96,20 @@ public class ViewMoveTool : MonoBehaviour {
                 }
             }
         }
-        //else
-        //{
-        //    if (viewRTS.enabled == true)
-        //    {
-        //        if (currentHolding != null)
-        //        {
-        //            if (CheckForThumbsUp())
-        //            {
-        //                panelInstance.ToggleRts();
-        //            }
-        //        }
-        //    }
-        //}     
+        else
+        {
+            if (viewRTS.enabled == true)
+            {
+                if (currentHolding != null)
+                {
+                    if (CheckForThumbsUp())
+                    {
+                        panelInstance.ToggleRts();
+                        panelInstance.ToggleOff("RtsToggle");
+                    }
+                }
+            }
+        }     
     }
 
     //Private Thumbs up detection

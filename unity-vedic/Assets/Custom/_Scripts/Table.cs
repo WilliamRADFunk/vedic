@@ -216,6 +216,7 @@ public class Table : MonoBehaviour, ViewObj
 
         if(!triggered)
         {
+            selectTool.InputTable(gameObject);
             triggered = true;
             for (int i = 0; i < columns.Count; i++)
             {

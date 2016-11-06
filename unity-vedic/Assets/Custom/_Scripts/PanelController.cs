@@ -443,7 +443,7 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    private void ToggleOff(string tagName)
+    public void ToggleOff(string tagName)
     {
         GameObject toggle = GameObject.FindGameObjectWithTag(tagName);
         Toggle tog = toggle.GetComponent<Toggle>();
