@@ -42,8 +42,6 @@ public class Vid_InsertQuery : Vid_Query
         return false;
     }
 
-
-
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
         switch (argumentIndex) {
@@ -66,7 +64,6 @@ public class Vid_InsertQuery : Vid_Query
         }
         return false;
     }
-
 
     /*Helper Functions*/
     public override int AcceptedInputIndex(VidData_Type t) {
