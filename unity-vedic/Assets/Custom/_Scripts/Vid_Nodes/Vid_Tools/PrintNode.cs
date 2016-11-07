@@ -14,7 +14,7 @@ public class PrintNode : MonoBehaviour {
     public void SetMySQLQuery() {
         if (ut == null) { return; }
         Vid_Object vidObj;
-        GameObject go =  ut.GetRoot();
+        GameObject go =  ut.LastObj();
         if(go != null) {
             vidObj = go.GetComponent<Vid_Object>();
             if (vidObj != null) {

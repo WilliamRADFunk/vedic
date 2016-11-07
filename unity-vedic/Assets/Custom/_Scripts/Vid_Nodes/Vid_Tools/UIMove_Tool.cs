@@ -20,6 +20,14 @@ public class UIMove_Tool : MonoBehaviour {
             rts.enabled = false;
         }
     }
+    public GameObject LastObj()
+    {
+        if(holdingV2.Capacity-1 >= 0)
+        {
+            return holdingV2[holdingV2.Capacity - 1];
+        }
+        return null;
+    }
 
     public GameObject GetRoot() {
         if(holdingV2 != null) {

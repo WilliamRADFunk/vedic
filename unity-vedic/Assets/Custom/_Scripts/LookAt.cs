@@ -6,6 +6,10 @@ public class LookAt : MonoBehaviour {
     public Transform objectViewAnchor;
     bool anchored;
     
+    void Awake()
+    {
+        objectViewAnchor = Camera.main.transform;
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +31,7 @@ public class LookAt : MonoBehaviour {
 
         if (anchored)
         {
-            gameObject.transform.LookAt(objectViewAnchor);
+            gameObject.transform.LookAt(objectViewAnchor.position);
         }
                 
 	}

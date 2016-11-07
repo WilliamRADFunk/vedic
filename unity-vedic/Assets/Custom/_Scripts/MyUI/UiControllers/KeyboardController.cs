@@ -13,7 +13,7 @@ public class KeyboardController : MonoBehaviour {
 
     public void SetInputField(InputField inputField) {
         this.inputField = inputField;
-        StringBuilder sb = new StringBuilder(inputField.text);
+        sb = new StringBuilder(inputField.text);
         topbar.text = sb.ToString();
     }
     public void buildString(string s) {

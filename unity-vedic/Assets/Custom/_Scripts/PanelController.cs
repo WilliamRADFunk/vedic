@@ -339,7 +339,10 @@ public class PanelController : MonoBehaviour
             Keyboard.GetComponent<KeyboardController>().SetInputField(inp);
             ToggleKeyboard();
         }
-        else Keyboard.GetComponent<KeyboardController>().SetInputField(inp);
+        else
+        {
+            Keyboard.GetComponent<KeyboardController>().SetInputField(inp);
+        }
     }
     /*************************** KEYBOARD TOGGLING END *************************************/
     /*************************** SPEECH TOGGLING START *************************************/
