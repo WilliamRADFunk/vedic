@@ -46,7 +46,7 @@ public class AnalyticManager : MonoBehaviour {
         if(type == 0)
         {
             aDepsoit.SetHolding(AnalyticObject1);
-            AnalyticObject1.transform.localScale -= new Vector3(0.7f, 0.7f, 0.7f);
+            AnalyticObject1.transform.localScale -= new Vector3(0.9f, 0.9f, 0.9f);
         }
     }
 
