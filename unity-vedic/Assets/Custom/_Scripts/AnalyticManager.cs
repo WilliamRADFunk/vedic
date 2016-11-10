@@ -50,6 +50,7 @@ public class AnalyticManager : MonoBehaviour {
             currentObj = 0;
             aDepsoit.SetHolding(AnalyticObject1);
             AnalyticObject1.transform.localScale -= new Vector3(0.9f, 0.9f, 0.9f);
+            AnalyticObject1.transform.localRotation = new Quaternion(0, 0, 0, 0);
         }
     }
 
