@@ -9,7 +9,7 @@ public class Con_Table : MonoBehaviour {
     public Vid_DB_Table vidObj;
     public Text dataText;
     public InputField inField_ColName;
-    Database? db = null;
+    Database db = null;
     List<string> tableNames;
     int tableIndex = 0;
 
@@ -23,7 +23,7 @@ public class Con_Table : MonoBehaviour {
             dataText.text = vidObj.tableName;
         }
         if (db == null) {
-            DatabaseUtilities.Table[] tables = db.GetValueOrDefault().tables.ToArray();
+            DatabaseUtilities.Table[] tables = db.tables.ToArray();
             foreach (DatabaseUtilities.Table t in tables) {
                 tableNames.Add(t.GetName());
             }

@@ -110,14 +110,14 @@ namespace DatabaseUtilities
                     col.SetName( data.Substring(0, data.IndexOf(":")) );
                     col.SetId("T" + tableCounter + "-C" + columnCounter);
                     // If column exists elsewhere, use same color.
-                    if (dic.ContainsKey(col.GetName()))
+                    if (dic.ContainsKey(tb.GetName()))
                     {
-                        col.SetColor(dic[col.GetName()]);
+                        col.SetColor(dic[tb.GetName()]);
                     }
                     else
                     {
                         string c = GetRandomColor();
-                        dic.Add(col.GetName(), c);
+                        dic.Add(tb.GetName(), c);
                         col.SetColor(c);
                     }
                     col.fields = new List<string>();
@@ -238,7 +238,7 @@ namespace DatabaseUtilities
             return table;
         }
     }
-    public struct Database
+    public class Database
     {
         private string name;
         public List<Table> tables;
@@ -256,7 +256,7 @@ namespace DatabaseUtilities
             return name;
         }
     }
-    public struct Table
+    public class Table
     {
         private string id;
         private string name;
@@ -283,7 +283,7 @@ namespace DatabaseUtilities
             return id;
         }
     }
-    public struct Column
+    public class Column
     {
         private string id;
         private string name;
@@ -326,6 +326,27 @@ namespace DatabaseUtilities
         public static int GetRandomNum(int number)
         {
             return rando.Next(number);
+        }
+    }
+    public static class VariableColorTable
+    {
+        private static Dictionary<string, string> dic = new Dictionary<string, string>()
+        {
+            { "varchar", "#222200" },
+            { "bigint", "#555500" },
+            { "longtext", "#888800" },
+            { "datetime", "#BBBB00" },
+            { "int", "#EEEE00" },
+            { "decimal", "#111122" },
+            { "double", "#000055" }
+        };
+        public static string GetVariableColor(string type)
+        {
+            if (dic.ContainsKey(type))
+            {
+                return dic[type];
+            }
+            else return "#FFFFFF";
         }
     }
 }
