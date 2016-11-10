@@ -12,8 +12,6 @@ public class Vid_MultiInput : Vid_Object {
 
     public override void Awake() {
         base.Awake();
-        acceptableInputs = new VidData_Type[1];
-            acceptableInputs[0] = output_dataType;
         inputs = new Vid_ObjectInputs(inputSize);
     }
 
