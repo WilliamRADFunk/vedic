@@ -42,6 +42,7 @@ public class Table : MonoBehaviour, ViewObj
     bool activated;
     bool triggered;
     bool newForm;
+    bool isAnalytic = false;
 
     int timer;
 
@@ -97,7 +98,7 @@ public class Table : MonoBehaviour, ViewObj
         }
     }
 
-    public bool initialization(string tName, string id, GameObject[] columnObjects, Transform father)
+    public bool initialization(string tName, string id, GameObject[] columnObjects, Transform father, bool aType)
     {
         if (!initialized)
         {
@@ -106,7 +107,7 @@ public class Table : MonoBehaviour, ViewObj
             tblName = tName;
             ID = id;
             outPut = tName + ":\n";
-
+            isAnalytic = aType;
             return true;
         }
         else
@@ -193,7 +194,11 @@ public class Table : MonoBehaviour, ViewObj
 
         if(!triggered)
         {
-            selectTool.InputTable(gameObject);
+            if (!isAnalytic)
+            {
+                selectTool.InputTable(gameObject);
+            }
+
             triggered = true;
             for (int i = 0; i < columns.Count; i++)
             {
@@ -216,7 +221,10 @@ public class Table : MonoBehaviour, ViewObj
 
         if(!triggered)
         {
-            selectTool.InputTable(gameObject);
+            if (!isAnalytic)
+            {
+                selectTool.InputTable(gameObject);
+            }
             triggered = true;
             for (int i = 0; i < columns.Count; i++)
             {

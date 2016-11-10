@@ -11,6 +11,8 @@ public class AnalyticManager : MonoBehaviour {
     private GameObject AnalyticObject3;
     private GameObject AnaylticObject4;
 
+    int currentObj;
+
     private Vector3 genuineScale;
 
 	// Use this for initialization
@@ -45,8 +47,22 @@ public class AnalyticManager : MonoBehaviour {
 
         if(type == 0)
         {
+            currentObj = 0;
             aDepsoit.SetHolding(AnalyticObject1);
-            AnalyticObject1.transform.localScale -= new Vector3(0.7f, 0.7f, 0.7f);
+            AnalyticObject1.transform.localScale -= new Vector3(0.9f, 0.9f, 0.9f);
+            AnalyticObject1.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+    }
+
+    public void toggleOnAnalyticRts()
+    {
+        if(currentObj == -1)
+        {
+            return;
+        }
+        else if(currentObj == 0)
+        {
+            aDepsoit.SetHolding(AnalyticObject1);
         }
     }
 
@@ -57,5 +73,6 @@ public class AnalyticManager : MonoBehaviour {
         AnalyticObject1.transform.localScale = genuineScale;
 
         aDepsoit.ForceCurrentHoldingNull();
+        currentObj = -1;
     }
 }

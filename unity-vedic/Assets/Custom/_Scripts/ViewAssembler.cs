@@ -50,7 +50,7 @@ public static class ViewAssembler {
 
         for(int i = 0; i < tableCount; i++)
         {
-            tables[i] = GenerateTableObj(tableInfo[i], harnessTransform);
+            tables[i] = GenerateTableObj(tableInfo[i], harnessTransform, analytic);
         }
         
         if(!analytic)
@@ -66,7 +66,7 @@ public static class ViewAssembler {
         return currentHarness;
     }
 
-    private static GameObject GenerateTableObj(DatabaseUtilities.Table table, Transform harness)
+    private static GameObject GenerateTableObj(DatabaseUtilities.Table table, Transform harness, bool aType)
     {
         GameObject currentTable = Generate((int)View_Type.Table);
         Transform tableTransform = currentTable.transform;
@@ -81,7 +81,7 @@ public static class ViewAssembler {
             cols[i] = GenerateColumnObj(columnInfo[i], tableTransform, i);
         }
 
-        currentTable.GetComponent<Table>().initialization(table.GetName(), table.GetId(), cols, harness);
+        currentTable.GetComponent<Table>().initialization(table.GetName(), table.GetId(), cols, harness, aType);
         return currentTable;
     }
 
