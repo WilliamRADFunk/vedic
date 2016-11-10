@@ -66,6 +66,33 @@ public static class ViewAssembler {
         return currentHarness;
     }
 
+    public static GameObject GenerateAnalyticObject(Database database, int analyticType)
+    {
+        GameObject currentHarness = Generate((int)View_Type.Harness);
+        Transform harnessTransform = currentHarness.transform;
+
+        List<DatabaseUtilities.Table> tableInfo = database.tables;
+        int tableCount = tableInfo.Count;
+
+        GameObject[] anaObjects = new GameObject[tableCount];
+
+        if(analyticType == 1)
+        {
+            DatabaseUtilities.Table infoObject = tableInfo[0];
+            List<DatabaseUtilities.Column> dataTypes = infoObject.columns;
+            int dataTypeSize = dataTypes.Count;
+
+            GameObject[] disks = new GameObject[dataTypeSize];
+
+            for(int i = 0; i < dataTypeSize; i++)
+            {
+                disks[i] = GenerateDiskObj(dataTypes[i], harnessTransform);
+            }
+        }
+
+        return currentHarness;
+    }
+
     private static GameObject GenerateTableObj(DatabaseUtilities.Table table, Transform harness, bool aType)
     {
         GameObject currentTable = Generate((int)View_Type.Table);
@@ -91,5 +118,20 @@ public static class ViewAssembler {
         curCol.GetComponent<Column>().Initialize(key, parent, col.GetName(), col.GetId(), col.GetColor());
 
         return curCol;
+    }
+
+    private static GameObject GenerateDiskObj(DatabaseUtilities.Column cylinderInfo, Transform harness)
+    {
+        GameObject disk = Generate(3);
+
+        //Convert scale size string from first field to float
+        // -- float scaleSize = cylinderInfo.fields[0]
+
+        string dataTypeName = cylinderInfo.GetName();
+
+        //Initialize the disk object...
+
+        return disk;
+
     }
 }
