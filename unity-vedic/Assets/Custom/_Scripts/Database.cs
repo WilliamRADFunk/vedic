@@ -36,6 +36,16 @@ namespace DatabaseUtilities
             }
             return null;
         }
+        // Get the total number of columns in the database
+        public static int GetNumOfColumns()
+        {
+            int count = 0;
+            for (int i = 0; i < db.tables.Count; i++)
+            {
+                count += db.tables[i].columns.Count;
+            }
+            return count;
+        }
         // Gets the string name of the column attached to the param id
         public static string GetColumnName(string id)
         {
@@ -332,12 +342,12 @@ namespace DatabaseUtilities
     {
         private static Dictionary<string, string> dic = new Dictionary<string, string>()
         {
-            { "varchar", "#222200" },
-            { "bigint", "#555500" },
-            { "longtext", "#888800" },
-            { "datetime", "#BBBB00" },
-            { "int", "#EEEE00" },
-            { "decimal", "#111122" },
+            { "varchar", "#000000" },
+            { "bigint", "#888800" },
+            { "longtext", "#880088" },
+            { "datetime", "#EEEE00" },
+            { "int", "#EE00EE" },
+            { "decimal", "#FF0000" },
             { "double", "#000055" }
         };
         public static string GetVariableColor(string type)

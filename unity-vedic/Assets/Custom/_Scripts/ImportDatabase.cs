@@ -84,7 +84,7 @@ public class ImportDatabase : MonoBehaviour
         {
             Debug.Log("Received Database");
 
-            GetColumnTypes("SELECT COLUMN_TYPE FROM information_schema.COLUMNS", www.downloadHandler.text);
+            GetColumnTypes("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS", www.downloadHandler.text);
 
             Debug.Log("This happened now.");
         }
@@ -134,28 +134,27 @@ public class ImportDatabase : MonoBehaviour
             List<string> colTypes = new List<string>();
             for (int i = 0; i < t.columns[0].fields.Count; i++)
             {
-                if (t.columns[0].fields[i].IndexOf('(') > -1)
-                {
-                    colTypes.Add(t.columns[0].fields[i].Substring(0, t.columns[0].fields[i].IndexOf('(')));
-                    //Debug.Log("Field" + i + ": " + t.columns[0].fields[i].Substring(0, t.columns[0].fields[i].IndexOf('(')));
-                }
+                //colTypes.Add(t.columns[0].fields[i]);
+                //Debug.Log("Field" + i + ": " + t.columns[0].fields[i]);
             }
+            int numOfColumns = VedicDatabase.GetNumOfColumns();
+            colTypes = colTypes.GetRange(colTypes.Count - numOfColumns - 1, numOfColumns);
             int counter = 0;
             for(int j = 0; j < VedicDatabase.db.tables.Count; j++)
             {
                 for(int k = 0; k < VedicDatabase.db.tables[j].columns.Count; k++)
-                {
+                {/*
                     Debug.Log("------------------------------ ");
                     Debug.Log("------------------------------ ");
                     Debug.Log("------------------------------ ");
                     Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
                                 " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
-                    Debug.Log("New Color: " + VariableColorTable.GetVariableColor(colTypes[counter]));
+                    Debug.Log("VarType: " + colTypes[counter] + " --- Counter: " + counter);*/
                     VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes[counter]));
-                    Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
+                    /*Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
                                 " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
-                    Debug.Log("------------------------------ ");
-                    counter += VedicDatabase.db.tables[j].columns[k].fields.Count;
+                    Debug.Log("------------------------------ ");*/
+                    counter += 1;// VedicDatabase.db.tables[j].columns[k].fields.Count;
                 }
             }
             GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
