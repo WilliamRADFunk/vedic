@@ -130,6 +130,7 @@ public static class ViewAssembler {
         // -- float scaleSize = cylinderInfo.fields[0]
 
         string dataTypeName = cylinderInfo.GetName();
+        string hexColor = cylinderInfo.GetColor();
 
         //Initialize the disk object...
         //disk.GetComponent<Disk>().Initialize();

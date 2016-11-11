@@ -95,7 +95,7 @@ public class Disk : MonoBehaviour, ViewObj
         ResetObjectDefault();
     }
 
-    public void Initialize(DatabaseUtilities.Column diskInfo, string dataString, Transform father, string hexColor)
+    public void Initialize(DatabaseUtilities.Column diskInfo, Transform father, string dataString, string hexColor)
     {
         //NEW INTIALIZATION FUNCTION
 

@@ -110,7 +110,7 @@ public class DiskHarness : MonoBehaviour
             triggered = true;
             for (int i = 0; i < housedDisks.Count; i++)
             {
-                housedDisks[i].GetComponent<Column>().columnTriggered(true);
+                housedDisks[i].GetComponent<Disk>().columnTriggered(true);
             }
         }
     }
@@ -129,7 +129,7 @@ public class DiskHarness : MonoBehaviour
             triggered = true;
             for (int i = 0; i < housedDisks.Count; i++)
             {
-                housedDisks[i].GetComponent<Column>().columnTriggered(true);
+                housedDisks[i].GetComponent<Disk>().columnTriggered(true);
             }
         }
     }

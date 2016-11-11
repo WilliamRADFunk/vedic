@@ -241,7 +241,6 @@ public class ViewMoveTool : MonoBehaviour {
             {
                 currentHolding.transform.SetParent(dumpingGrounds);
                 currentHolding = null;
-
             }
         }
     }
