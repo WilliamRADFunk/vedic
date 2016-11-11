@@ -13,6 +13,7 @@ public class Disk : MonoBehaviour, ViewObj
     float triggerMovementOffset;
     float distance;
     float finalHeight;
+    float storedYScaling;
 
     string typeName;
     string ID;
@@ -95,14 +96,14 @@ public class Disk : MonoBehaviour, ViewObj
         ResetObjectDefault();
     }
 
-    public void Initialize(DatabaseUtilities.Column diskInfo, Transform father, string dataString, string hexColor)
+    public void Initialize( Transform father, string dataString, string hexColor, float size)
     {
         //NEW INTIALIZATION FUNCTION
 
         //Convert string to float
         //float scaleSize;
-        float scaleSize = 0;
-        gameObject.transform.localScale = new Vector3(0, scaleSize, 0);
+        storedYScaling = size;
+        gameObject.transform.localScale = new Vector3(1, storedYScaling, 1);
         typeName = dataString;
         instanceColor = HexToColor(hexColor);
         ParentObject(father);
@@ -239,6 +240,7 @@ public class Disk : MonoBehaviour, ViewObj
     public void SaveOrigin()
     {
         initialLocalPos = gameObject.transform.localPosition;
+
         colHeight = gameObject.transform.localPosition.y;
 
         //Initialize the positional vectors to keep track up for simple y vector movements.
