@@ -20,6 +20,8 @@ public static class ViewAssembler {
         columnPrefab = Resources.Load<GameObject>(prefabDirectory + "column");
         tablePrefab = Resources.Load<GameObject>(prefabDirectory + "table");
         harnessPrefab = Resources.Load<GameObject>(prefabDirectory + "harness");
+        diskHarnessPrefab = Resources.Load<GameObject>(prefabDirectory + "DiskHarness");
+        diskPrefab = Resources.Load<GameObject>(prefabDirectory + "Disk");
     }
     
     private static GameObject Generate(int type)
