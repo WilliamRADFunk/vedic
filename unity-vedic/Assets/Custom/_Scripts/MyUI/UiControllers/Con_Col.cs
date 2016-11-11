@@ -9,7 +9,7 @@ public class Con_Col : MonoBehaviour {
     public Text dataText;
     public InputField inField_ColName;
     public Text colDataTypeText;
-    Database? db = null;
+    Database db = null;
     List<string> colNames;
     int colIndex = 0;
     
@@ -49,7 +49,7 @@ public class Con_Col : MonoBehaviour {
             }
         }
         if (db == null) {
-            DatabaseUtilities.Table[] tables = db.GetValueOrDefault().tables.ToArray();
+            DatabaseUtilities.Table[] tables = db.tables.ToArray();
             foreach(DatabaseUtilities.Table t in tables) {
                 if (vidObj.getTableName().Equals(t.GetName())) {
                     DatabaseUtilities.Column[] cols = t.columns.ToArray();

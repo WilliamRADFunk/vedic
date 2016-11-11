@@ -5,7 +5,9 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 
+
 using DatabaseUtilities;
+using System.Collections.Generic;
 
 public class ImportDatabase : MonoBehaviour
 {
@@ -73,6 +75,7 @@ public class ImportDatabase : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Post(url, form);
         yield return www.Send();
 
+        // Get the database data
         if (www.isError)
         {
             Debug.Log(www.error);
@@ -81,18 +84,81 @@ public class ImportDatabase : MonoBehaviour
         {
             Debug.Log("Received Database");
 
-            VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, www.downloadHandler.text);
-            VedicDatabase.isDatabaseNull = false;
+            GetColumnTypes("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS", www.downloadHandler.text);
 
-            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
-
-            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+            Debug.Log("This happened now.");
         }
     }
     public void GetOldDatabase()
     {
         if(!VedicDatabase.isDatabaseNull)
         {
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+        }
+    }
+    // Use this for getting column variable types
+    public void GetColumnTypes(String input, string baseData)
+    {
+        StartCoroutine(GetColumnTypesQ(input, baseData));
+    }
+    IEnumerator GetColumnTypesQ(String input, string baseData)
+    {
+        string url = "http://www.williamrobertfunk.com/applications/vedic/actions/query.php";
+        WWWForm form = new WWWForm();
+        form.AddField("dbname", dbname.text);
+        form.AddField("hostname", hostname.text);
+        form.AddField("username", username.text);
+        form.AddField("password", password.text);
+        form.AddField("query", input);
+
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        yield return www.Send();
+
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, baseData);
+            VedicDatabase.isDatabaseNull = false;
+
+            string reply = www.downloadHandler.text;
+            
+            string textBoxData = reply.Substring(0, reply.IndexOf("##SelectTable##"));
+            string podData = reply.Substring(reply.IndexOf("##SelectTable##:{") + 17);
+            // This Table ID sould be unlike original import
+            // It should consist of a combo db name it came from, and select query random unique hash
+            DatabaseUtilities.SelectTable sTable = new DatabaseUtilities.SelectTable(podData, "Test123", "FunkSelectTable");
+            DatabaseUtilities.Table t = sTable.GetTable();
+            List<string> colTypes = new List<string>();
+            for (int i = 0; i < t.columns[0].fields.Count; i++)
+            {
+                //colTypes.Add(t.columns[0].fields[i]);
+                //Debug.Log("Field" + i + ": " + t.columns[0].fields[i]);
+            }
+            int numOfColumns = VedicDatabase.GetNumOfColumns();
+            colTypes = colTypes.GetRange(colTypes.Count - numOfColumns - 1, numOfColumns);
+            int counter = 0;
+            for(int j = 0; j < VedicDatabase.db.tables.Count; j++)
+            {
+                for(int k = 0; k < VedicDatabase.db.tables[j].columns.Count; k++)
+                {/*
+                    Debug.Log("------------------------------ ");
+                    Debug.Log("------------------------------ ");
+                    Debug.Log("------------------------------ ");
+                    Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
+                                " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
+                    Debug.Log("VarType: " + colTypes[counter] + " --- Counter: " + counter);*/
+                    VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes[counter]));
+                    /*Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
+                                " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
+                    Debug.Log("------------------------------ ");*/
+                    counter += 1;// VedicDatabase.db.tables[j].columns[k].fields.Count;
+                }
+            }
+            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
+
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
         }
     }
