@@ -148,9 +148,12 @@ public class ImportDatabase : MonoBehaviour
                 for(int k = 0; k < VedicDatabase.db.tables[j].columns.Count && counter < colTypes2.Count; k++, counter++)
                 {
                     VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes2[counter]));
+                    VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
                 }
             }
             GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
+
+            Database dtb = VedicDatabase.GetDataTypeDB();
 
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
         }

@@ -88,6 +88,57 @@ namespace DatabaseUtilities
             db.tables = tables;
             return db;
         }
+        // Get Analytic 2 database (datatype proportions)
+        public static Database GetDataTypeDB()
+        {
+            Database db = new Database();
+            db.SetName("Analytic_2");
+            db.tables = new List<Table>();
+            Table tab = new Table();
+            tab.SetId("A-2");
+            tab.SetName("DataTypes in Proportion");
+            tab.columns = new List<Column>();
+            
+
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+
+            for(int i = 0; i < VedicDatabase.db.tables.Count; i++)
+            {
+                for(int j = 0; j < VedicDatabase.db.tables[i].columns.Count; j++)
+                {
+                    if (dic.ContainsKey(VedicDatabase.db.tables[i].columns[j].GetType()))
+                    {
+                        dic[VedicDatabase.db.tables[i].columns[j].GetType()]++;
+                    }
+                    else
+                    {
+                        dic.Add(VedicDatabase.db.tables[i].columns[j].GetType(), 1);
+                    }
+                }
+            }
+
+            Dictionary<string, int>.KeyCollection keyColl = dic.Keys;
+
+            int total = 0;
+            foreach (string s in keyColl)
+            {
+                total += dic[s];
+            }
+
+            foreach (string s in keyColl)
+            {
+                Column col = new Column();
+                col.SetName(s);
+                col.SetId(s + "-2");
+                col.SetColor(VariableColorTable.GetVariableColor(s));
+                col.SetType(s);
+                col.fields = new List<string>();
+                col.fields.Add( ( (double)dic[s] / (double)total).ToString() );
+                tab.columns.Add(col);
+            }
+            db.tables.Add(tab);
+            return db;
+        }
     }
     public class DatabaseBuilder
     {
@@ -299,6 +350,7 @@ namespace DatabaseUtilities
         private string name;
         public List<string> fields;
         private string color;
+        private string type = "varchar";
 
         public void AddField(string f)
         {
@@ -327,6 +379,14 @@ namespace DatabaseUtilities
         public void SetColor(string c)
         {
             color = c;
+        }
+        public string GetType()
+        {
+            return type;
+        }
+        public void SetType(string t)
+        {
+            type = t;
         }
     }
     // Miscellaneous functions used across the game.
