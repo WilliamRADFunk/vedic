@@ -50,6 +50,7 @@ public class DiskHarness : MonoBehaviour
         for (int i = 0; i < diskCount; i++)
         {
             disks[i].transform.localPosition = diskSlots[i];
+            disks[i].GetComponent<Disk>().SaveOrigin();
             housedDisks.Add(disks[i]);
         }
     }
@@ -109,7 +110,7 @@ public class DiskHarness : MonoBehaviour
             triggered = true;
             for (int i = 0; i < housedDisks.Count; i++)
             {
-                housedDisks[i].GetComponent<Column>().columnTriggered(true);
+                housedDisks[i].GetComponent<Disk>().columnTriggered(true);
             }
         }
     }
@@ -128,7 +129,7 @@ public class DiskHarness : MonoBehaviour
             triggered = true;
             for (int i = 0; i < housedDisks.Count; i++)
             {
-                housedDisks[i].GetComponent<Column>().columnTriggered(true);
+                housedDisks[i].GetComponent<Disk>().columnTriggered(true);
             }
         }
     }

@@ -88,6 +88,8 @@ public static class ViewAssembler {
             {
                 disks[i] = GenerateDiskObj(dataTypes[i], harnessTransform);
             }
+
+            currentHarness.GetComponent<DiskHarness>().Initialize(disks, dataTypes);
         }
 
         return currentHarness;
@@ -128,8 +130,10 @@ public static class ViewAssembler {
         // -- float scaleSize = cylinderInfo.fields[0]
 
         string dataTypeName = cylinderInfo.GetName();
+        string hexColor = cylinderInfo.GetColor();
 
         //Initialize the disk object...
+        //disk.GetComponent<Disk>().Initialize();
 
         return disk;
 
