@@ -29,6 +29,7 @@ public class AnalyticManager : MonoBehaviour {
     {
         aDepsoit.SetAsAnalytical();
         BuildAnalytic1();
+        BuildAnalytic2();
     }
 
     private void BuildAnalytic1()
@@ -42,6 +43,7 @@ public class AnalyticManager : MonoBehaviour {
 
     private void BuildAnalytic2()
     {
+        /*
         DatabaseUtilities.Table t = new DatabaseUtilities.Table();
         DatabaseUtilities.Column c = new DatabaseUtilities.Column();
         c.fields = new System.Collections.Generic.List<string>();
@@ -59,11 +61,12 @@ public class AnalyticManager : MonoBehaviour {
         DatabaseUtilities.Database d = new DatabaseUtilities.Database();
         d.tables = new System.Collections.Generic.List<DatabaseUtilities.Table>();
         d.AddTable(t);
+        */
+        Database d = VedicDatabase.GetDataTypeDB();
 
         AnalyticObject2 = ViewAssembler.GenerateAnalyticObject(d, 1);
         AnalyticObject2.transform.SetParent(gameObject.transform);
         AnalyticObject2.transform.localPosition = new Vector3(0, 0, 0);
-
     }
 
     public void ActivateAnalytic(int type)

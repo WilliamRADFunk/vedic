@@ -227,8 +227,7 @@ public class Disk : MonoBehaviour, ViewObj
         if (!touched)
         {
             touched = true;
-            t.UpdateInfo(typeName, true);
-            dCache.PingCache(ID, 2);
+            t.UpdateInfo(typeName + " - " + (storedYScaling * 100) + "%", true);
         }
     }
 

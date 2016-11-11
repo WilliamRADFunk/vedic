@@ -153,8 +153,6 @@ public class ImportDatabase : MonoBehaviour
             }
             GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
 
-            Database dtb = VedicDatabase.GetDataTypeDB();
-
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
         }
     }
