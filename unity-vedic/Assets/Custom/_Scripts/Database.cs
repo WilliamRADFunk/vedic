@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DatabaseUtilities
 {
-    public enum View_Type { Harness, Table, Column };
+    public enum View_Type { Harness, Table, Column, DiskHarness, Disk };
 
     public static class VedicDatabase
     {

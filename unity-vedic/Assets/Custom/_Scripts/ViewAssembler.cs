@@ -11,6 +11,8 @@ public static class ViewAssembler {
     static GameObject columnPrefab;
     static GameObject tablePrefab;
     static GameObject harnessPrefab;
+    static GameObject diskHarnessPrefab;
+    static GameObject diskPrefab;
 
 	// Use this for initialization
     static ViewAssembler()
@@ -18,6 +20,8 @@ public static class ViewAssembler {
         columnPrefab = Resources.Load<GameObject>(prefabDirectory + "column");
         tablePrefab = Resources.Load<GameObject>(prefabDirectory + "table");
         harnessPrefab = Resources.Load<GameObject>(prefabDirectory + "harness");
+        diskHarnessPrefab = Resources.Load<GameObject>(prefabDirectory + "DiskHarness");
+        diskPrefab = Resources.Load<GameObject>(prefabDirectory + "Disk");
     }
     
     private static GameObject Generate(int type)
@@ -32,6 +36,13 @@ public static class ViewAssembler {
 
             case (int)View_Type.Harness:
                 return GameObject.Instantiate(harnessPrefab);
+
+            case (int)View_Type.DiskHarness:
+                return GameObject.Instantiate(diskHarnessPrefab);
+
+            case (int)View_Type.Disk:
+                return GameObject.Instantiate(diskPrefab);
+
             default:
                 Debug.Log("ERROR: Input for ViewAssemlber failed to trigger object generation.");
                 return null;
@@ -68,7 +79,8 @@ public static class ViewAssembler {
 
     public static GameObject GenerateAnalyticObject(Database database, int analyticType)
     {
-        GameObject currentHarness = Generate((int)View_Type.Harness);
+        //Make sure to generate the correct type of harness (disk harness)
+        GameObject currentHarness = Generate((int)View_Type.DiskHarness);
         Transform harnessTransform = currentHarness.transform;
 
         List<DatabaseUtilities.Table> tableInfo = database.tables;
@@ -124,16 +136,15 @@ public static class ViewAssembler {
 
     private static GameObject GenerateDiskObj(DatabaseUtilities.Column cylinderInfo, Transform harness)
     {
-        GameObject disk = Generate(3);
+        //Generate Disk object from factory.
+        GameObject disk = Generate((int)View_Type.Disk);
 
-        //Convert scale size string from first field to float
-        // -- float scaleSize = cylinderInfo.fields[0]
-
+        float scaleSize = float.Parse(cylinderInfo.fields[0]);
         string dataTypeName = cylinderInfo.GetName();
         string hexColor = cylinderInfo.GetColor();
 
         //Initialize the disk object...
-        //disk.GetComponent<Disk>().Initialize();
+        disk.GetComponent<Disk>().Initialize(harness, dataTypeName, hexColor, scaleSize);
 
         return disk;
 

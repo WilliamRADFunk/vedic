@@ -67,8 +67,7 @@ public class DiskHarness : MonoBehaviour
             DatabaseUtilities.Column currentInfo = diskInfo[i];
 
             //Convert string in 1st field parameter into float
-            //float scaleSize = currentInfo.GetName() + convert to float
-            float scaleSize = 0;
+            float scaleSize = float.Parse(currentInfo.fields[0]);
 
             if (i == 0)
             {
@@ -79,6 +78,7 @@ public class DiskHarness : MonoBehaviour
             {
                 float newYUpdate = previousScale + scaleSize;
                 startingPosition += new Vector3(0, newYUpdate, 0);
+                Debug.Log("diskPosition " + startingPosition);
                 previousScale = scaleSize;
                 diskSlots[i] = startingPosition;
             }
