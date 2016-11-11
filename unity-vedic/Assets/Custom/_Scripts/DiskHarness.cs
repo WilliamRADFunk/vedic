@@ -50,6 +50,7 @@ public class DiskHarness : MonoBehaviour
         for (int i = 0; i < diskCount; i++)
         {
             disks[i].transform.localPosition = diskSlots[i];
+            disks[i].GetComponent<Disk>().SaveOrigin();
             housedDisks.Add(disks[i]);
         }
     }
