@@ -129,32 +129,25 @@ public class ImportDatabase : MonoBehaviour
             string podData = reply.Substring(reply.IndexOf("##SelectTable##:{") + 17);
             // This Table ID sould be unlike original import
             // It should consist of a combo db name it came from, and select query random unique hash
-            DatabaseUtilities.SelectTable sTable = new DatabaseUtilities.SelectTable(podData, "Test123", "FunkSelectTable");
+            SelectTable sTable = new SelectTable(podData, "Test123", "FunkSelectTable");
             DatabaseUtilities.Table t = sTable.GetTable();
             List<string> colTypes = new List<string>();
             for (int i = 0; i < t.columns[0].fields.Count; i++)
             {
-                //colTypes.Add(t.columns[0].fields[i]);
-                //Debug.Log("Field" + i + ": " + t.columns[0].fields[i]);
+                colTypes.Add(t.columns[0].fields[i]);
             }
             int numOfColumns = VedicDatabase.GetNumOfColumns();
-            colTypes = colTypes.GetRange(colTypes.Count - numOfColumns - 1, numOfColumns);
-            int counter = 0;
-            for(int j = 0; j < VedicDatabase.db.tables.Count; j++)
+            List<string> colTypes2 = new List<string>();
+            for (int i = (colTypes.Count - numOfColumns); i < colTypes.Count; i++)
             {
-                for(int k = 0; k < VedicDatabase.db.tables[j].columns.Count; k++)
-                {/*
-                    Debug.Log("------------------------------ ");
-                    Debug.Log("------------------------------ ");
-                    Debug.Log("------------------------------ ");
-                    Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
-                                " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
-                    Debug.Log("VarType: " + colTypes[counter] + " --- Counter: " + counter);*/
-                    VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes[counter]));
-                    /*Debug.Log("Table: " + VedicDatabase.db.tables[j].GetName() + " --- Column: " + VedicDatabase.db.tables[j].columns[k].GetName() +
-                                " --- Color: " + VedicDatabase.db.tables[j].columns[k].GetColor());
-                    Debug.Log("------------------------------ ");*/
-                    counter += 1;// VedicDatabase.db.tables[j].columns[k].fields.Count;
+                colTypes2.Add(colTypes[i]);
+            }
+            int counter = 0;
+            for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
+            {
+                for(int k = 0; k < VedicDatabase.db.tables[j].columns.Count && counter < colTypes2.Count; k++, counter++)
+                {
+                    VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes2[counter]));
                 }
             }
             GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
