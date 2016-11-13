@@ -40,7 +40,15 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
         GameObject.Destroy(this.gameObject);
     }
 
+    public void destroyObj(UIMove_Tool ut) {
+        ut.removeObjFromHolding(gameObject);
+        GameObject.Destroy(this.gameObject);
+    }
+
+
     public Vid_ObjectInputs GetInputs() {
         return inputs;
     }
+
+   
 }

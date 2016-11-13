@@ -21,6 +21,7 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
+
     public void setholding(GameObject obj2hold) {
         if (holdingV2.Contains(obj2hold)) {
             holdingV2.Remove(obj2hold);
@@ -31,7 +32,7 @@ public class UIMove_Tool : MonoBehaviour {
             setNewHolder(obj2hold);
         }
     }
-
+    /*Holding Helpers*/
     private void setNewHolder(GameObject obj2hold) {
         rts.enabled = true;
         obj2hold.transform.SetParent(rts.gameObject.transform);
@@ -46,7 +47,11 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
-
+    public void removeObjFromHolding(GameObject obj) {
+        if (holdingV2.Contains(obj)) {
+            holdingV2.Remove(obj);
+        }
+    }
     /*UX Actions*/
     public void CopyNodes() {
         if(holdingV2.Count < 0) { return; }
@@ -154,11 +159,12 @@ public class UIMove_Tool : MonoBehaviour {
         } 
     }
 
-
     /*Getter*/
     public GameObject LastObj() {
-        if (holdingV2.Capacity - 1 >= 0) {
-            return holdingV2[holdingV2.Capacity - 1];
+        int lastindex = holdingV2.ToArray().Length -1;
+        Debug.Log("lastindex:" + lastindex);
+        if (lastindex >= 0) {
+            return holdingV2[lastindex];
         }
         return null;
     }
