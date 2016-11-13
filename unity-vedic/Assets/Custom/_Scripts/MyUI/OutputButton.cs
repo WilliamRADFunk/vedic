@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class OutputButton : NodeButton {
     public int outputIndex = 0;
@@ -26,5 +27,16 @@ public class OutputButton : NodeButton {
     public void setIsUse(bool b)
     {
         this.inUse = b;
+        Image i = GetComponent<Image>();
+        if (i == null) { return; }
+        
+        if (b) {
+            i.color = Color.yellow;
+        }
+        else {
+
+            i.color = Color.white;
+        }
     }
+
 }

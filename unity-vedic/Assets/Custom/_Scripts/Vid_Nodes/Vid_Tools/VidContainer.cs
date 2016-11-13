@@ -7,9 +7,6 @@ public class VidContainer : MonoBehaviour {
     public List<InputButton> lines;
     public ToggleColorChanger colorChanger;
 
-    public void ResetColor() {
-        colorChanger.ChangeColor(false);
-    }
     public void DisableLines() {
         if(lines == null ) {
             return;
