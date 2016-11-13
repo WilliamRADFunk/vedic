@@ -181,7 +181,6 @@ public class Disk : MonoBehaviour, ViewObj
             triggered = true;
             yield return StartCoroutine(triggerTransition(true));
         }
-
     }
 
     private IEnumerator triggerTransition(bool temp)

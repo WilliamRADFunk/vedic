@@ -39,6 +39,15 @@ public class DiskHarness : MonoBehaviour
             virgin = false;
             //SendGameObject();
         }
+
+        if (timer == 0)
+        {
+            for (int i = 0; i < housedDisks.Count; i++)
+            {
+                housedDisks[i].GetComponent<Disk>().columnTriggered(false);
+            }
+            triggered = false;
+        }
     }
 
     public void Initialize(GameObject[] disks, List<DatabaseUtilities.Column> diskInfo)
