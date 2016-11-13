@@ -85,7 +85,7 @@ public class AnalyticManager : MonoBehaviour {
         {
             currentObj = 1;
             aDepsoit.SetHolding(AnalyticObject2);
-            //Possible reset needed for object here.
+            AnalyticObject2.transform.localScale -= new Vector3(0.9f, 0.9f, 0.9f);
         }
     }
 

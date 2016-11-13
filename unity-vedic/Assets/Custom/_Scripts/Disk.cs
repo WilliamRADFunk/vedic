@@ -201,7 +201,7 @@ public class Disk : MonoBehaviour, ViewObj
         }
         else
         {
-            while (currentPosition.y > colHeight + 0.5)
+            while (currentPosition.y > colHeight)
             {
                 currentPosition.y = currentPosition.y - triggerMovementOffset;
                 gameObject.transform.localPosition = currentPosition;
