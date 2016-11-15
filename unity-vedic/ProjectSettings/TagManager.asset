@@ -45,6 +45,8 @@ TagManager:
   - DataCache
   - Analytics
   - MenuAnalytics
+  - SelectedObj
+  - ConnectionSys
   layers:
   - Default
   - TransparentFX

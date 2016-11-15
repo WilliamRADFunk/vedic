@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using DatabaseUtilities;
 using System.Collections.Generic;
 
-public class Con_MultiInput : MonoBehaviour {
+public class Con_MultiInput : Con_Con {
     public Vid_MultiInput vidObj;
     public Text dataText;
 
 
     // Use this for initialization
     void Start() {
+        base.Start();
         if (vidObj != null &&
                 dataText != null) {
             dataText.text = PrintCondition();

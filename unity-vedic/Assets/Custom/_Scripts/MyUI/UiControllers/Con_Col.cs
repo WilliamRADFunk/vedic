@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using DatabaseUtilities;
 using System.Collections.Generic;
 
-public class Con_Col : MonoBehaviour {
+public class Con_Col : Con_Con {
 
     public Vid_DB_Col vidObj;
     public Text dataText;
@@ -16,6 +16,7 @@ public class Con_Col : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        base.Start();
         db = VedicDatabase.db;
         if (vidObj != null && inField_ColName != null
             && dataText != null) {

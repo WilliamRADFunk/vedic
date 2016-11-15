@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Con_Key : MonoBehaviour {
+public class Con_Key : Con_Con {
 
     public Vid_Key vidObj;
     public Text dataText;
 
     // Use this for initialization
     void Start() {
+        base.Start();
         switch (vidObj.keyType) {
             case Vid_Key.KeyType.PRIMARY:
                 if (dataText != null) {

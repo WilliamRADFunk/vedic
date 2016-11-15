@@ -2,12 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Con_BasicLogic : MonoBehaviour {
+public class Con_BasicLogic : Con_Con {
 
     public Vid_MySql_BasicLogic vidObj;
     public Text dataText;
 
     public void Start() {
+        base.Start();
         switch (vidObj.logicType) {
             case Vid_MySql_BasicLogic.BasicLogic.AND:
                 if (dataText != null) {

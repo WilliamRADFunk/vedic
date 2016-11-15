@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class Con_Where_Con : MonoBehaviour {
+public class Con_Where_Con : Con_Con {
 
     public Vid_Where_Condition vidObj;
     public Text dataText;
@@ -10,6 +10,7 @@ public class Con_Where_Con : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        base.Start();
         if (vidObj != null &&
                 dataText != null ) {
             dataText.text = PrintCondition();
