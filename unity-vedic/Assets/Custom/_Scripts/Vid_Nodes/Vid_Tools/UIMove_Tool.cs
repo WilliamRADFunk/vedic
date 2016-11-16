@@ -92,60 +92,22 @@ public class UIMove_Tool : MonoBehaviour {
     }
 
     public void ReactivateUI() {
-        if ((holdingV2.Count - 1) > -1) {
-            ReactivateUI(holdingV2[holdingV2.Count - 1]);
-        }
-    }
-    private void ReactivateUI(GameObject go) {
-        if (go == null) {
-            return;
-        }
-        Vid_Object vidObj = go.GetComponent<Vid_Object>();
-        Vid_ObjectInputs inputs = vidObj.GetInputs();
-        VidContainer container = go.GetComponent<VidContainer>();
-        if (container.UIControlls != null) {
-            container.UIControlls.SetActive(true);
-        }
-
-        if (inputs == null) {
-            return;
-        }
-        for (int i = 0; i < inputs.inputs.Length; i++) {
-            if (inputs.inputs[i] == null) {
-
-            }
-            else {
-                ReactivateUI(inputs.inputs[i].gameObject);
+        for (int i = 0; i < holdingV2.Count; i++) {
+            Vid_Object vidObj = holdingV2[i].GetComponent<Vid_Object>();
+            Vid_ObjectInputs inputs = vidObj.GetInputs();
+            VidContainer container = holdingV2[i].GetComponent<VidContainer>();
+            if (container.UIControlls != null) {
+                container.UIControlls.SetActive(true);
             }
         }
     }
-
     public void DeactivateUI() {
-        if ((holdingV2.Count - 1) > -1) {
-            DeactivateUI(holdingV2[holdingV2.Count - 1]);
-        }
-    }
-    private void DeactivateUI(GameObject go) {
-        if (go == null) {
-            return;
-        }
-        Vid_Object vidObj = go.GetComponent<Vid_Object>();
-        Vid_ObjectInputs inputs = vidObj.GetInputs();
-        VidContainer container = go.GetComponent<VidContainer>();
-        if(container.UIControlls != null) {
-            container.UIControlls.SetActive(false);
-        }
-            
-
-        if (inputs == null) {
-            return;
-        }
-        for (int i = 0; i < inputs.inputs.Length; i++) {
-            if (inputs.inputs[i] == null) {
-
-            }
-            else {
-                DeactivateUI(inputs.inputs[i].gameObject);
+        for(int i=0; i< holdingV2.Count; i++) {
+            Vid_Object vidObj = holdingV2[i].GetComponent<Vid_Object>();
+            Vid_ObjectInputs inputs = vidObj.GetInputs();
+            VidContainer container = holdingV2[i].GetComponent<VidContainer>();
+            if (container.UIControlls != null) {
+                container.UIControlls.SetActive(false);
             }
         }
     }
