@@ -16,8 +16,6 @@ public class Vid_MySql_BasicLogic : Vid_Object {
 
     public override void Awake() {
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[1];
-            acceptableInputs[0] = VidData_Type.WHERE_STATMENT;
     }
 
     public override string ToString() {

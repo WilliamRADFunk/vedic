@@ -11,10 +11,6 @@ public class Vid_UpdateQuery : Vid_Query
     public override void Awake() {
         base.Awake();
         inputs = new Vid_ObjectInputs(3);
-        acceptableInputs = new VidData_Type[3];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.LIST;
-            acceptableInputs[2] = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override string ToString() {
@@ -23,12 +19,16 @@ public class Vid_UpdateQuery : Vid_Query
             sb.AppendLine("UPDATE error::NoTable SET ");
         }
         else {
-            sb.AppendLine("UPDATE " + inputs.getInput_atIndex(0).ToString());
+            sb.AppendLine("UPDATE " + inputs.getInput_atIndex(0).ToString() + " SET");
             if (inputs.getInput_atIndex(1) != null) {
-                sb.AppendLine(TabTool.TabCount() + " SET " + inputs.getInput_atIndex(1).ToString() + " ");
+                TabTool.incromentCount();
+                sb.AppendLine(TabTool.TabCount() +  inputs.getInput_atIndex(1).ToString());
+                TabTool.deccromentCount();
             }
             if (inputs.getInput_atIndex(2) != null) {
+                TabTool.incromentCount();
                 sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(2).ToString());
+                TabTool.deccromentCount();
             }
         }
         return sb.ToString();

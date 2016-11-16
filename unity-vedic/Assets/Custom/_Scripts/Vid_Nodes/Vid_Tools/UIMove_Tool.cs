@@ -91,6 +91,65 @@ public class UIMove_Tool : MonoBehaviour {
         Destroy(g);
     }
 
+    public void ReactivateUI() {
+        if ((holdingV2.Count - 1) > -1) {
+            ReactivateUI(holdingV2[holdingV2.Count - 1]);
+        }
+    }
+    private void ReactivateUI(GameObject go) {
+        if (go == null) {
+            return;
+        }
+        Vid_Object vidObj = go.GetComponent<Vid_Object>();
+        Vid_ObjectInputs inputs = vidObj.GetInputs();
+        VidContainer container = go.GetComponent<VidContainer>();
+        if (container.UIControlls != null) {
+            container.UIControlls.SetActive(true);
+        }
+
+        if (inputs == null) {
+            return;
+        }
+        for (int i = 0; i < inputs.inputs.Length; i++) {
+            if (inputs.inputs[i] == null) {
+
+            }
+            else {
+                ReactivateUI(inputs.inputs[i].gameObject);
+            }
+        }
+    }
+
+    public void DeactivateUI() {
+        if ((holdingV2.Count - 1) > -1) {
+            DeactivateUI(holdingV2[holdingV2.Count - 1]);
+        }
+    }
+    private void DeactivateUI(GameObject go) {
+        if (go == null) {
+            return;
+        }
+        Vid_Object vidObj = go.GetComponent<Vid_Object>();
+        Vid_ObjectInputs inputs = vidObj.GetInputs();
+        VidContainer container = go.GetComponent<VidContainer>();
+        if(container.UIControlls != null) {
+            container.UIControlls.SetActive(false);
+        }
+            
+
+        if (inputs == null) {
+            return;
+        }
+        for (int i = 0; i < inputs.inputs.Length; i++) {
+            if (inputs.inputs[i] == null) {
+
+            }
+            else {
+                DeactivateUI(inputs.inputs[i].gameObject);
+            }
+        }
+    }
+
     public void SelectGroup() {
         Debug.Log("Check1:" + (holdingV2.Count - 1));
         if ((holdingV2.Count - 1) > -1) {
@@ -162,7 +221,6 @@ public class UIMove_Tool : MonoBehaviour {
     /*Getter*/
     public GameObject LastObj() {
         int lastindex = holdingV2.ToArray().Length -1;
-        Debug.Log("lastindex:" + lastindex);
         if (lastindex >= 0) {
             return holdingV2[lastindex];
         }
@@ -176,5 +234,7 @@ public class UIMove_Tool : MonoBehaviour {
         }
         return null;
     }
+
+
 
 }

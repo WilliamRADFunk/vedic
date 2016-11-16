@@ -6,6 +6,8 @@ public class VidContainer : MonoBehaviour {
 
     public List<InputButton> lines;
     public ToggleColorChanger colorChanger;
+    public GameObject UIControlls;
+    
 
     public void DisableLines() {
         if(lines == null ) {
@@ -44,4 +46,6 @@ public class VidContainer : MonoBehaviour {
         }
         t.isOn = true;
     }
+
+    
 }

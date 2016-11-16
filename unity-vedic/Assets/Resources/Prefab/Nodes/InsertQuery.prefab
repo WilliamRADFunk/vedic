@@ -628,10 +628,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114000011907907682}
         m_MethodName: destroyObj
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UIMove_Tool, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

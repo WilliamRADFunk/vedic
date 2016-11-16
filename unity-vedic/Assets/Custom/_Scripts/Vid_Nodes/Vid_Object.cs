@@ -37,11 +37,7 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
     }
 
     public void destroyObj() {
-        GameObject.Destroy(this.gameObject);
-    }
-
-    public void destroyObj(UIMove_Tool ut) {
-        ut.removeObjFromHolding(gameObject);
+        NodeSystemEssentials.uiMove_Tool.removeObjFromHolding(gameObject);
         GameObject.Destroy(this.gameObject);
     }
 
@@ -49,6 +45,4 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
     public Vid_ObjectInputs GetInputs() {
         return inputs;
     }
-
-   
 }

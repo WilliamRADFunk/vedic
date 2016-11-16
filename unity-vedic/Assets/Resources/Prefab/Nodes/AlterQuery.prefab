@@ -498,10 +498,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114000013938760990}
         m_MethodName: destroyObj
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UIMove_Tool, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1061,6 +1061,7 @@ MonoBehaviour:
   - {fileID: 114000014141011710}
   - {fileID: 114000013940829468}
   colorChanger: {fileID: 114000013102652334}
+  UIControlls: {fileID: 0}
 --- !u!114 &114000013938760990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1072,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca91cea2ea6c5a47b0e9a7f97c64c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output_dataType: 0
+  output_dataType: 1
   state: 0
 --- !u!114 &114000013940829468
 MonoBehaviour:

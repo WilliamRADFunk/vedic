@@ -9,22 +9,21 @@ public class Vid_CreateQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE;
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.LIST;
     }
 
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
         if (inputs.getInput_atIndex(0) == null) {
-            sb.AppendLine("CREATE TABLE  error::NoTable (");
+            sb.AppendLine("CREATE TABLE  error::NoTable ");
+            sb.AppendLine("(");
         }
         else {
-            sb.AppendLine("CREATE TABLE " + inputs.getInput_atIndex(0).ToString() + " ( ");
+            sb.AppendLine("CREATE TABLE " + inputs.getInput_atIndex(0).ToString());
+            sb.AppendLine("(");
         }
         if (inputs.getInput_atIndex(1) != null) {
             TabTool.incromentCount();
-            sb.AppendLine(inputs.getInput_atIndex(1).ToString());
+            sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
             TabTool.deccromentCount();
         }
         sb.AppendLine(")");

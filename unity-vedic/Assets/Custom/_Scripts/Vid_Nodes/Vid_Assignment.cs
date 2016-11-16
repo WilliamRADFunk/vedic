@@ -15,10 +15,10 @@ public class Vid_Assignment : Vid_Object {
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
         if (inputs.getInput_atIndex(0) == null) {
-            sb.Append(inputs.getInput_atIndex(0).ToString() + " = NoInput");
+            sb.Append("NoInput at index 0");
         }
-        else if (inputs.getInput_atIndex(2) == null) {
-            sb.Append("NoInput = " + inputs.getInput_atIndex(0).ToString());
+        else if (inputs.getInput_atIndex(1) == null) {
+            sb.Append("NoInput at index 1");
         }
         else {
             sb.Append(inputs.getInput_atIndex(0).ToString() + " = " + inputs.getInput_atIndex(1).ToString());

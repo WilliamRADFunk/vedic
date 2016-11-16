@@ -23,14 +23,23 @@ public class Con_MultiInput : Con_Con {
             case VidData_Type.ASSINMENT:
                 dataText.text = "COL";
                 vidObj.output_dataType = VidData_Type.DATABASE_COL;
+                for(int i =0; i< vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.DATABASE_COL);
+                }
                 break;
             case VidData_Type.DATABASE_COL:
                 vidObj.output_dataType = VidData_Type.STRING;
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.STRING);
+                }
                 dataText.text = "STRING";
                 break;
             case VidData_Type.STRING:
                 vidObj.output_dataType = VidData_Type.NUM;
                 dataText.text = "NUM";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.NUM);
+                }
                 break;
             case VidData_Type.NUM:
                 vidObj.output_dataType = VidData_Type.LIST;
@@ -39,6 +48,9 @@ public class Con_MultiInput : Con_Con {
             case VidData_Type.LIST:
                 vidObj.output_dataType = VidData_Type.ASSINMENT;
                 dataText.text = "ASSINMENT";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.ASSINMENT);
+                }
                 break;
         }
     }
@@ -52,19 +64,54 @@ public class Con_MultiInput : Con_Con {
             case VidData_Type.DATABASE_COL:
                 vidObj.output_dataType = VidData_Type.ASSINMENT;
                 dataText.text = "ASSINMENT";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.ASSINMENT);
+                }
                 break;
             case VidData_Type.STRING:
                 vidObj.output_dataType = VidData_Type.DATABASE_COL;
                 dataText.text = "COL";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.DATABASE_COL);
+                }
                 break;
             case VidData_Type.NUM:
                 vidObj.output_dataType = VidData_Type.STRING;
                 dataText.text = "STRING";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.STRING);
+                }
                 break;
             case VidData_Type.LIST:
                 vidObj.output_dataType = VidData_Type.NUM;
                 dataText.text = "NUM";
+                for (int i = 0; i < vidObj.inputSize; i++) {
+                    ConnectionChecker_NOTEQU(i, VidData_Type.NUM);
+                }
                 break;
+        }
+    }
+
+    private void ConnectionChecker(int index) {
+        VidContainer vc = gameObject.GetComponent<VidContainer>();
+        if (vidObj.inputs.getInput_atIndex(index) != null) {
+            vc.lines[index].BreakConnetion();
+        }
+    }
+    private void ConnectionChecker_NOTEQU(int index, VidData_Type dataType) {
+        VidContainer vc = gameObject.GetComponent<VidContainer>();
+        if (vidObj.inputs.getInput_atIndex(index) != null) {
+            if (vidObj.inputs.getInput_atIndex(index).output_dataType != dataType) {
+                vc.lines[index].BreakConnetion();
+            }
+        }
+    }
+    private void ConnectionChecker_EQU(int index, VidData_Type dataType) {
+        VidContainer vc = gameObject.GetComponent<VidContainer>();
+        if (vidObj.inputs.getInput_atIndex(index) != null) {
+            if (vidObj.inputs.getInput_atIndex(index).output_dataType == dataType) {
+                vc.lines[index].BreakConnetion();
+            }
         }
     }
 

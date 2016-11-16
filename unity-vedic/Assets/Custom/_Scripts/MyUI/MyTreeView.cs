@@ -129,7 +129,6 @@ namespace Battlehub.UIControls {
                         e.HasChildren = true;
                     }
                 }
-                
             }
         }
 

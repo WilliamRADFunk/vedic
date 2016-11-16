@@ -758,6 +758,7 @@ MonoBehaviour:
   - {fileID: 114000012490430804}
   - {fileID: 114000013769331348}
   colorChanger: {fileID: 114000012807688894}
+  UIControlls: {fileID: 1000010407055986}
 --- !u!114 &114000010769733446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -875,10 +876,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114000011930363676}
         m_MethodName: destroyObj
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UIMove_Tool, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1128,6 +1129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output_dataType: 6
   conditionType: 4
+  isEXISTS: 0
+  nothingFlag: 0
 --- !u!114 &114000012186090166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2273,7 +2276,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 1, y: -14.1}
   m_SizeDelta: {x: 215.70984, y: 236.675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010603195774

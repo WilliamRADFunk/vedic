@@ -17,9 +17,6 @@ public class Vid_AlterQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE;
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.DATABASE_COL;
     }
 
     public override string ToString() {
