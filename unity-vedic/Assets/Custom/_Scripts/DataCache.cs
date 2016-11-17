@@ -100,6 +100,11 @@ public class DataCache : MonoBehaviour {
         return cachedInt;
     }
 
+    public int ReadPingType()
+    {
+        return cacheParadigm;
+    }
+
     public void RunCacheAnalysis()
     {
         Debug.Log("Running Cache Analysis...");
