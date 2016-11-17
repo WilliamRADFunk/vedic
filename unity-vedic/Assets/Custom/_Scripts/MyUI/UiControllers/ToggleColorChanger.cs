@@ -4,6 +4,9 @@ using System.Collections;
 
 public class ToggleColorChanger : MonoBehaviour {
     //UIMove_Tool moveTool;
+
+    bool isColored = false;
+
     public void ChangeColor(Toggle t) {
         Image i = GetComponent<Image>();
         if(i != null) {
@@ -16,15 +19,15 @@ public class ToggleColorChanger : MonoBehaviour {
         }
     }
 
-    public void ChangeColor(bool b) {
+    public void ChangeColor() {
         Image i = GetComponent<Image>();
-        Toggle t = GetComponent<Toggle>();
-        //if (b) {
-        //    i.color = Color.green;
-        //}
-        //else {
+        if (!isColored) {
+            i.color = Color.yellow;
+        }
+        else {
 
-        //    i.color = Color.white;
-        //}
+            i.color = Color.white;
+        }
+        isColored = isColored ? false : true;
     }
 }

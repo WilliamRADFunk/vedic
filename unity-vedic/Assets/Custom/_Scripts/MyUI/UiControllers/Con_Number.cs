@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Con_Number : MonoBehaviour {
+public class Con_Number : Con_Con {
     public Vid_Number vidObj;
     public Text dataText;
     public InputField inField_Value;
@@ -10,6 +10,7 @@ public class Con_Number : MonoBehaviour {
 
 
     void Start() {
+        base.Start();
         if (vidObj != null && inField_Value != null
                            && dataText != null) {
             inField_Value.text = vidObj.ToString();

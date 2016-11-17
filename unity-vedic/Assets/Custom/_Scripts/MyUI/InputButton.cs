@@ -13,6 +13,7 @@ public class InputButton : NodeButton {
     public LineRenderer lineRender;
     Renderer r;
 
+    /* Event Actions */
     public override void buttonPressed()
     {
         if (used && ct.getOutputButton() != null) {
@@ -47,35 +48,8 @@ public class InputButton : NodeButton {
         }
     }
 
-    public void RemakeConnetion() {
-        if (output == null) {
-            return;
-        }
-        Vid_Object outputObj = output.vid_obj;
-        bool b = vidObj.addInput(outputObj, argumentIndex);
-    }
-
-    void Update()
-    {
-        if(output == null) {
-            lineRender.enabled = false;
-            return;
-        }
-        if (drawline)
-        {
-            if (!lineRender.enabled)
-            {
-                lineRender.enabled = true;
-            }
-            Vector3[] points = new Vector3[2];
-            points[0] = output.transform.position;
-            points[1] = this.transform.position;
-            lineRender.SetPositions(points);
-        }
-    }
-   
-   private void transferData()
-   {
+    /* Internal Helpers */
+    private void transferData() {
         output = ct.getOutputButton();
         Vid_Object outputObj = output.vid_obj;
         ct.setInputButton(this);
@@ -87,5 +61,35 @@ public class InputButton : NodeButton {
         }
         output.inButton = this;
         ct.resetTool();
+    }
+
+    /* Abilities */
+    public void RemakeConnetion() {
+        if (output == null) {
+            return;
+        }
+        Vid_Object outputObj = output.vid_obj;
+        bool b = vidObj.addInput(outputObj, argumentIndex);
+    }
+    public void BreakConnetion() {
+        if(output == null) { return; }
+        output.buttonPressed();
+        this.buttonPressed();
+    }
+
+    void Update() {
+        if (output == null) {
+            lineRender.enabled = false;
+            return;
+        }
+        if (drawline) {
+            if (!lineRender.enabled) {
+                lineRender.enabled = true;
+            }
+            Vector3[] points = new Vector3[2];
+            points[0] = output.transform.position;
+            points[1] = this.transform.position;
+            lineRender.SetPositions(points);
+        }
     }
 }

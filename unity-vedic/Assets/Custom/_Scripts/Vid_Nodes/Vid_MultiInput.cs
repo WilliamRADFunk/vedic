@@ -12,8 +12,6 @@ public class Vid_MultiInput : Vid_Object {
 
     public override void Awake() {
         base.Awake();
-        acceptableInputs = new VidData_Type[1];
-            acceptableInputs[0] = output_dataType;
         inputs = new Vid_ObjectInputs(inputSize);
     }
 
@@ -52,13 +50,21 @@ public class Vid_MultiInput : Vid_Object {
     }
     /*Helper functions*/
     private string writeInputs() {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         for (int i =0; i<inputs.getSize();i++) {
             Vid_Object obj = inputs.getInput_atIndex(i);
             if (obj != null) {
-                sb.Append(TabTool.TabCount() + obj.ToString());
-                if (i < inputs.getSize() - 1) {
-                    sb.AppendLine(", ");
+                if (i == 0) {
+                    sb.Append(obj.ToString());
+                    if (0 < inputs.getSize()) {
+                        sb.AppendLine(",");
+                    }
+                }
+                else {
+                    sb.Append(TabTool.TabCount() + obj.ToString());
+                    if (i < inputs.getSize() - 1) {
+                        sb.AppendLine(",");
+                    }
                 }
             }
         }

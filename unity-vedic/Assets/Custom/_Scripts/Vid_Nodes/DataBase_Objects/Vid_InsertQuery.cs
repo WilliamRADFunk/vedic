@@ -9,9 +9,6 @@ public class Vid_InsertQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE;
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.LIST;
     }
 
     public override string ToString() {
@@ -20,10 +17,14 @@ public class Vid_InsertQuery : Vid_Query
             sb.Append("INSERT INTO error::NoTable SET ");
         }
         else {
-            sb.Append("INSERT INTO " + inputs.getInput_atIndex(0).ToString() + " ");
+            sb.AppendLine("INSERT INTO " + inputs.getInput_atIndex(0).ToString() + " VALUES");
         }
         if (inputs.getInput_atIndex(1) != null) {
-                sb.AppendLine("VALUES (" + inputs.getInput_atIndex(1).ToString() + " )");       
+            sb.AppendLine("(");
+            TabTool.incromentCount();
+            sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+            TabTool.deccromentCount();
+            sb.AppendLine(")");
         }
         return sb.ToString();
     }
@@ -41,8 +42,6 @@ public class Vid_InsertQuery : Vid_Query
         }
         return false;
     }
-
-
 
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
@@ -66,7 +65,6 @@ public class Vid_InsertQuery : Vid_Query
         }
         return false;
     }
-
 
     /*Helper Functions*/
     public override int AcceptedInputIndex(VidData_Type t) {

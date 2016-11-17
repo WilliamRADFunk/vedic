@@ -5,6 +5,7 @@ public enum VidData_Type {
     ASSINMENT,
     DATABASE,
     DATABASE_COL,
+    FORMATED_COL,
     DATABASE_TABLE,
     DATABASE_CLAUSE,
     DATABASE_QUERY,
@@ -18,7 +19,7 @@ public enum VidData_Type {
     CLASS,
     FUNCTION,
     IMPORT,
-    /*NEW ENUMS: I AM GOINF TO SWITCH TO THEM*/
+    /* NEW ENUMS: 4 c# */
     BLOCK,
     DECLAR_CON,
     DECLAR_VAR,

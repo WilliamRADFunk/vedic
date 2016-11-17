@@ -17,9 +17,6 @@ public class Vid_AlterQuery : Vid_Query
         base.Awake();
         base.output_dataType = VidData_Type.DATABASE;
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.DATABASE_COL;
     }
 
     public override string ToString() {
@@ -51,7 +48,7 @@ public class Vid_AlterQuery : Vid_Query
             case VidData_Type.DATABASE_TABLE:
                 b = base.addInput(obj, 0);
                 return b;
-            case VidData_Type.DATABASE_COL:
+            case VidData_Type.FORMATED_COL:
                 b = base.addInput(obj, 1);
                 return b;
         }
@@ -69,7 +66,7 @@ public class Vid_AlterQuery : Vid_Query
                     return false;
                 }
             case 1:
-                if (obj.output_dataType == VidData_Type.DATABASE_COL) {
+                if (obj.output_dataType == VidData_Type.FORMATED_COL) {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
@@ -84,7 +81,7 @@ public class Vid_AlterQuery : Vid_Query
         switch (t) {
             case VidData_Type.DATABASE_TABLE:
                 return 0;
-            case VidData_Type.DATABASE_COL:
+            case VidData_Type.FORMATED_COL:
                 return 1;
         }
         return -1;

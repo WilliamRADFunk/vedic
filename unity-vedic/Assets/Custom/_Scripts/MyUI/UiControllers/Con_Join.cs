@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using DatabaseUtilities;
 using System.Collections.Generic;
 
-public class Con_Join : MonoBehaviour {
+public class Con_Join : Con_Con {
 
     public Vid_Join vidObj;
     public Text dataText;
 
     // Use this for initialization
     void Start() {
+        base.Start();
         if (vidObj != null &&
                 dataText != null) {
             dataText.text = PrintJoin();

@@ -10,17 +10,13 @@ public class Vid_ColFormater : Vid_Object {
     public bool doAutoIncrement = false;
 
     public Vid_ColFormater() {
-        output_dataType = VidData_Type.DATABASE_COL;
+        output_dataType = VidData_Type.FORMATED_COL;
     }
 
     public override void Awake() {
         if (inputs == null) {
             inputs = new Vid_ObjectInputs(2);
-            Debug.Log("hererererere:::::::");
         }
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_COL;
-            acceptableInputs[1] = VidData_Type.NUM;
     }
 
     public override string ToString() {

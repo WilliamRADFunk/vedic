@@ -20,23 +20,8 @@ public class UIMove_Tool : MonoBehaviour {
             rts.enabled = false;
         }
     }
-    public GameObject LastObj()
-    {
-        if(holdingV2.Capacity-1 >= 0)
-        {
-            return holdingV2[holdingV2.Capacity - 1];
-        }
-        return null;
-    }
 
-    public GameObject GetRoot() {
-        if(holdingV2 != null) {
-            if(holdingV2.Count > 0) {
-                return holdingV2[0];
-            }
-        }
-        return null;
-    }
+
     public void setholding(GameObject obj2hold) {
         if (holdingV2.Contains(obj2hold)) {
             holdingV2.Remove(obj2hold);
@@ -47,7 +32,7 @@ public class UIMove_Tool : MonoBehaviour {
             setNewHolder(obj2hold);
         }
     }
-
+    /*Holding Helpers*/
     private void setNewHolder(GameObject obj2hold) {
         rts.enabled = true;
         obj2hold.transform.SetParent(rts.gameObject.transform);
@@ -62,7 +47,11 @@ public class UIMove_Tool : MonoBehaviour {
         }
     }
 
-
+    public void removeObjFromHolding(GameObject obj) {
+        if (holdingV2.Contains(obj)) {
+            holdingV2.Remove(obj);
+        }
+    }
     /*UX Actions*/
     public void CopyNodes() {
         if(holdingV2.Count < 0) { return; }
@@ -102,16 +91,35 @@ public class UIMove_Tool : MonoBehaviour {
         Destroy(g);
     }
 
-    private void RemakeConnections() {
-
+    public void ReactivateUI() {
+        for (int i = 0; i < holdingV2.Count; i++) {
+            Vid_Object vidObj = holdingV2[i].GetComponent<Vid_Object>();
+            Vid_ObjectInputs inputs = vidObj.GetInputs();
+            VidContainer container = holdingV2[i].GetComponent<VidContainer>();
+            if (container.UIControlls != null) {
+                container.UIControlls.SetActive(true);
+            }
+        }
+    }
+    public void DeactivateUI() {
+        for(int i=0; i< holdingV2.Count; i++) {
+            Vid_Object vidObj = holdingV2[i].GetComponent<Vid_Object>();
+            Vid_ObjectInputs inputs = vidObj.GetInputs();
+            VidContainer container = holdingV2[i].GetComponent<VidContainer>();
+            if (container.UIControlls != null) {
+                container.UIControlls.SetActive(false);
+            }
+        }
     }
 
     public void SelectGroup() {
+        Debug.Log("Check1:" + (holdingV2.Count - 1));
         if ((holdingV2.Count - 1) > -1) {
+            Debug.Log("We are in");
             SelectGroup(holdingV2[holdingV2.Count - 1]);
         }
     }
-    public void SelectGroup(GameObject go) {
+    private void SelectGroup(GameObject go) {
         if (go == null) {
             return;
         }
@@ -119,15 +127,16 @@ public class UIMove_Tool : MonoBehaviour {
         Vid_ObjectInputs inputs = vidObj.GetInputs();
         VidContainer container = go.GetComponent<VidContainer>();
         container.Select();
+       
         if (inputs == null) {
             return;
         }
         for (int i = 0; i < inputs.inputs.Length; i++) {
-            Debug.Log(i + ":here");
             if (inputs.inputs[i] == null) {
 
             }
             else {
+                Debug.Log("Check2:" + inputs.inputs[i].gameObject.ToString());
                 SelectGroup(inputs.inputs[i].gameObject);
             }
         }
@@ -138,7 +147,7 @@ public class UIMove_Tool : MonoBehaviour {
             DeselectGroup(holdingV2[holdingV2.Count - 1]);
         }
     }
-    public void DeselectGroup(GameObject go) {
+    private void DeselectGroup(GameObject go) {
         if(go == null) {
             return;
         }
@@ -150,7 +159,6 @@ public class UIMove_Tool : MonoBehaviour {
             return;
         }
         for (int i = 0; i<inputs.inputs.Length; i++) {
-            Debug.Log(i + ":here");
             if(inputs.inputs[i] == null ) {
 
             }
@@ -171,4 +179,24 @@ public class UIMove_Tool : MonoBehaviour {
             container.Deselect();
         } 
     }
+
+    /*Getter*/
+    public GameObject LastObj() {
+        int lastindex = holdingV2.ToArray().Length -1;
+        if (lastindex >= 0) {
+            return holdingV2[lastindex];
+        }
+        return null;
+    }
+    public GameObject GetRoot() {
+        if (holdingV2 != null) {
+            if (holdingV2.Count > 0) {
+                return holdingV2[0];
+            }
+        }
+        return null;
+    }
+
+
+
 }

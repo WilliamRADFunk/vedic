@@ -37,8 +37,10 @@ public abstract class Vid_Object : MonoBehaviour, Inputable
     }
 
     public void destroyObj() {
+        NodeSystemEssentials.uiMove_Tool.removeObjFromHolding(gameObject);
         GameObject.Destroy(this.gameObject);
     }
+
 
     public Vid_ObjectInputs GetInputs() {
         return inputs;

@@ -4,7 +4,9 @@ using System.Text;
 
 public class Vid_Where_Condition : Vid_Object {
 
-    public Condition_Type conditionType = Condition_Type.EQU;
+    public WhereStatment_Type conditionType = WhereStatment_Type.EQU;
+    public bool isEXISTS = false;
+    public bool nothingFlag = false;
 
     public Vid_Where_Condition() {
         output_dataType = VidData_Type.WHERE_STATMENT;
@@ -12,44 +14,66 @@ public class Vid_Where_Condition : Vid_Object {
 
     public override void Awake() {
         inputs = new Vid_ObjectInputs(2);
-        acceptableInputs = new VidData_Type[4];
-            acceptableInputs[0] = VidData_Type.DATABASE_COL;
-            acceptableInputs[1] = VidData_Type.NUM;
-            acceptableInputs[2] = VidData_Type.STRING;
-            acceptableInputs[3] = VidData_Type.BOOL;
     }
 
     public override string ToString() {
         StringBuilder sb = new StringBuilder();
-        if (inputs.getInput_atIndex(0) == null
+        Vid_Object obj = inputs.getInput_atIndex(0);
+        if (obj == null
                 || inputs.getInput_atIndex(1) == null) {
             sb.Append("");
         }
         else {
             switch (conditionType) {
-                case Condition_Type.LESS:
+                case WhereStatment_Type.LESS:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" < " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
-                case Condition_Type.LESS_EQU:
+                case WhereStatment_Type.LESS_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" <= " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
-                case Condition_Type.GREATER:
+                case WhereStatment_Type.GREATER:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" > " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
-                case Condition_Type.GREATER_EQU:
+                case WhereStatment_Type.GREATER_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" >= " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
-                case Condition_Type.EQU:
+                case WhereStatment_Type.EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" = " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
-                case Condition_Type.NOT_EQU:
+                case WhereStatment_Type.NOT_EQU:
                     sb.Append(" " + inputs.getInput_atIndex(0).ToString());
                     sb.Append(" <> " + inputs.getInput_atIndex(1).ToString() + " ");
+                    break;
+                case WhereStatment_Type.IN:
+                    sb.Append(inputs.getInput_atIndex(0).ToString());
+                    sb.Append(" IN ");
+                    sb.AppendLine(TabTool.TabCount() + "(");
+                    TabTool.incromentCount();
+                    sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(1).ToString());
+                    TabTool.deccromentCount();
+                    sb.AppendLine(TabTool.TabCount() + ")");
+                    break;
+                case WhereStatment_Type.EXISTS:
+                    if (obj.output_dataType != VidData_Type.DATABASE_COL) {
+                        sb.AppendLine("EXISTS");
+                        sb.Append("( " + inputs.getInput_atIndex(1).ToString() + " )");
+                    }
+                    break;
+                case WhereStatment_Type.NOT_EXISTS:
+                    if (obj.output_dataType != VidData_Type.DATABASE_COL) {
+                        sb.AppendLine("NOT EXISTS");
+                        sb.Append("( " + inputs.getInput_atIndex(1).ToString() + " )");
+                    }
+                    break;
+                case WhereStatment_Type.LIKE:
+                    sb.Append(inputs.getInput_atIndex(0).ToString());
+                    sb.Append(" LIKE");
+                    sb.AppendLine(" " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 default:
                     break;
@@ -60,7 +84,54 @@ public class Vid_Where_Condition : Vid_Object {
 
     /*Builder functions*/
     public override bool addInput(Vid_Object obj, int index) {
-        if (obj.output_dataType == VidData_Type.DATABASE_COL
+
+        if (conditionType == WhereStatment_Type.EXISTS
+                    || conditionType == WhereStatment_Type.NOT_EXISTS) {
+
+            if (index == 0) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.Q_SELECT) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (conditionType == WhereStatment_Type.IN) {
+            if (index == 0 && obj.output_dataType != VidData_Type.DATABASE_COL) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.Q_SELECT) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (conditionType == WhereStatment_Type.LIKE) {
+            if (index == 0 && obj.output_dataType != VidData_Type.DATABASE_COL) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.STRING) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (conditionType == WhereStatment_Type.LESS ||
+                conditionType == WhereStatment_Type.LESS_EQU ||
+                conditionType == WhereStatment_Type.GREATER ||
+                conditionType == WhereStatment_Type.GREATER_EQU
+            ) {
+            if (index == 0 && obj.output_dataType != VidData_Type.DATABASE_COL) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.NUM) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (obj.output_dataType == VidData_Type.DATABASE_COL
                     || obj.output_dataType == VidData_Type.NUM
                     || obj.output_dataType == VidData_Type.STRING
                     || obj.output_dataType == VidData_Type.BOOL) {

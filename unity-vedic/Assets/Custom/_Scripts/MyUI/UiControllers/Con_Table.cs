@@ -4,7 +4,7 @@ using DatabaseUtilities;
 using System.Collections.Generic;
 
 
-public class Con_Table : MonoBehaviour {
+public class Con_Table : Con_Con {
 
     public Vid_DB_Table vidObj;
     public Text dataText;
@@ -16,6 +16,7 @@ public class Con_Table : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        base.Start();
         db = VedicDatabase.db;
         if (vidObj != null && inField_ColName != null
             && dataText != null) {

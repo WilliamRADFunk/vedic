@@ -1,20 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
-using System;
 using System.Text;
-
 
 public class Vid_UpdateQuery : Vid_Query
 {
+    public Vid_UpdateQuery() {
+        base.output_dataType = VidData_Type.DATABASE;
+    }
+
     public override void Awake() {
         base.Awake();
-        base.output_dataType = VidData_Type.DATABASE_TABLE;
         inputs = new Vid_ObjectInputs(3);
-        acceptableInputs = new VidData_Type[3];
-            acceptableInputs[0] = VidData_Type.DATABASE_TABLE;
-            acceptableInputs[1] = VidData_Type.ASSINMENT;
-            acceptableInputs[2] = VidData_Type.DATABASE_CLAUSE;
     }
 
     public override string ToString() {
@@ -23,12 +19,16 @@ public class Vid_UpdateQuery : Vid_Query
             sb.AppendLine("UPDATE error::NoTable SET ");
         }
         else {
-            sb.AppendLine("UPDATE " + inputs.getInput_atIndex(0).ToString());
+            sb.AppendLine("UPDATE " + inputs.getInput_atIndex(0).ToString() + " SET");
             if (inputs.getInput_atIndex(1) != null) {
-                sb.AppendLine(TabTool.TabCount() + " SET " + inputs.getInput_atIndex(1).ToString() + " ");
+                TabTool.incromentCount();
+                sb.AppendLine(TabTool.TabCount() +  inputs.getInput_atIndex(1).ToString());
+                TabTool.deccromentCount();
             }
             if (inputs.getInput_atIndex(2) != null) {
+                TabTool.incromentCount();
                 sb.AppendLine(TabTool.TabCount() + inputs.getInput_atIndex(2).ToString());
+                TabTool.deccromentCount();
             }
         }
         return sb.ToString();
@@ -41,7 +41,7 @@ public class Vid_UpdateQuery : Vid_Query
             case VidData_Type.DATABASE_TABLE:
                 b = base.addInput(obj, 0);
                 return b;
-            case VidData_Type.ASSINMENT:
+            case VidData_Type.LIST:
                 b = base.addInput(obj, 1);
                 return b;
             case VidData_Type.DATABASE_CLAUSE:
@@ -50,7 +50,6 @@ public class Vid_UpdateQuery : Vid_Query
         }
         return false;
     }
-
 
     public override bool addInput(Vid_Object obj, int argumentIndex) {
         // Note: don't change, Table=0,COL=1,Where=2 need to be these value.  
@@ -64,7 +63,7 @@ public class Vid_UpdateQuery : Vid_Query
                     return false;
                 }
             case 1:
-                if (obj.output_dataType == VidData_Type.ASSINMENT) {
+                if (obj.output_dataType == VidData_Type.LIST) {
                     bool b = base.addInput(obj, 1);
                     return b;
                 }
@@ -83,13 +82,12 @@ public class Vid_UpdateQuery : Vid_Query
         return false;
     }
 
-
     /*Helper Functions*/
     public override int AcceptedInputIndex(VidData_Type t) {
         switch (t) {
             case VidData_Type.DATABASE_TABLE:
                 return 0;
-            case VidData_Type.ASSINMENT:
+            case VidData_Type.LIST:
                 return 1;
             case VidData_Type.DATABASE_CLAUSE:
                 return 2;

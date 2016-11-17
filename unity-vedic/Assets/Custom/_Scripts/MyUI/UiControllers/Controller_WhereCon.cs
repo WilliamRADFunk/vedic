@@ -8,22 +8,22 @@ public class Controller_WhereCon : MonoBehaviour {
     public void changeConditionType(Dropdown d) {
         switch (d.value) {
             case 0:
-                node.conditionType = Condition_Type.LESS;
+                node.conditionType = WhereStatment_Type.LESS;
                 break;
             case 1:
-                node.conditionType = Condition_Type.LESS_EQU;
+                node.conditionType = WhereStatment_Type.LESS_EQU;
                 break;
             case 2:
-                node.conditionType = Condition_Type.GREATER;
+                node.conditionType = WhereStatment_Type.GREATER;
                 break;
             case 3:
-                node.conditionType = Condition_Type.GREATER_EQU;
+                node.conditionType = WhereStatment_Type.GREATER_EQU;
                 break;
             case 4:
-                node.conditionType = Condition_Type.EQU;
+                node.conditionType = WhereStatment_Type.EQU;
                 break;
             case 5:
-                node.conditionType = Condition_Type.NOT_EQU;
+                node.conditionType = WhereStatment_Type.NOT_EQU;
                 break;
         }
     }

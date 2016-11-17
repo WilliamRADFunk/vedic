@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class Con_ColFormater : MonoBehaviour {
+public class Con_ColFormater : Con_Con {
 
     public Vid_ColFormater vidObj;
     public List<Toggle> toggles;
   
     // Use this for initialization
     void Start () {
+        base.Start();
         if(toggles != null) {
             for(int i = 0; i < 4; i++) {
                 switch (i) {
