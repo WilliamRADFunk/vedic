@@ -85,14 +85,74 @@ public class ImportDatabase : MonoBehaviour
             Debug.Log("Received Database");
 
             GetColumnTypes("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS", www.downloadHandler.text);
-
-            Debug.Log("This happened now.");
         }
     }
     public void GetOldDatabase()
     {
         if(!VedicDatabase.isDatabaseNull)
         {
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+        }
+    }
+    // Use this for getting column variable types
+    public void GetKeyColumns(String input)
+    {
+        StartCoroutine(GetKeyColumnsQ(input));
+    }
+    IEnumerator GetKeyColumnsQ(String input)
+    {
+        string url = "http://www.williamrobertfunk.com/applications/vedic/actions/query.php";
+        WWWForm form = new WWWForm();
+        form.AddField("dbname", dbname.text);
+        form.AddField("hostname", hostname.text);
+        form.AddField("username", username.text);
+        form.AddField("password", password.text);
+        form.AddField("query", input);
+
+        UnityWebRequest www = UnityWebRequest.Post(url, form);
+        yield return www.Send();
+
+        if (www.isError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            //VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, baseData);
+            //VedicDatabase.isDatabaseNull = false;
+
+            string reply = www.downloadHandler.text;
+            Debug.Log(www.downloadHandler.text);
+            /*
+            string textBoxData = reply.Substring(0, reply.IndexOf("##SelectTable##"));
+            string podData = reply.Substring(reply.IndexOf("##SelectTable##:{") + 17);
+            // This Table ID sould be unlike original import
+            // It should consist of a combo db name it came from, and select query random unique hash
+            SelectTable sTable = new SelectTable(podData, "Test123", "FunkSelectTable");
+            DatabaseUtilities.Table t = sTable.GetTable();
+            List<string> colTypes = new List<string>();
+            for (int i = 0; i < t.columns[0].fields.Count; i++)
+            {
+                colTypes.Add(t.columns[0].fields[i]);
+            }
+            int numOfColumns = VedicDatabase.GetNumOfColumns();
+            List<string> colTypes2 = new List<string>();
+            for (int i = (colTypes.Count - numOfColumns); i < colTypes.Count; i++)
+            {
+                colTypes2.Add(colTypes[i]);
+            }
+            int counter = 0;
+            for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
+            {
+                for (int k = 0; k < VedicDatabase.db.tables[j].columns.Count && counter < colTypes2.Count; k++, counter++)
+                {
+                    VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes2[counter]));
+                    VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
+                }
+            }
+            */
+            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
+
             ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
         }
     }
@@ -151,9 +211,8 @@ public class ImportDatabase : MonoBehaviour
                     VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
                 }
             }
-            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
 
-            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+            GetKeyColumns("SELECT * FROM KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_NAME = '" + VedicDatabase.db.tables[0].GetName() + "' AND REFERENCED_COLUMN_NAME = '" + VedicDatabase.db.tables[0].columns[0].GetName() + "'");
         }
     }
     // Called from SaveDb --- Makes it asynchronous
