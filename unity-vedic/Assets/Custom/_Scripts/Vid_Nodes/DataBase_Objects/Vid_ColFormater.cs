@@ -17,9 +17,6 @@ public class Vid_ColFormater : Vid_Object {
         if (inputs == null) {
             inputs = new Vid_ObjectInputs(2);
         }
-        acceptableInputs = new VidData_Type[2];
-            acceptableInputs[0] = VidData_Type.DATABASE_COL;
-            acceptableInputs[1] = VidData_Type.NUM;
     }
 
     public override string ToString() {

@@ -11,5 +11,6 @@ public enum WhereStatment_Type  {
     NOTHING,
     EXISTS,
     NOT_EXISTS,
-    IN
+    IN,
+    LIKE
 }

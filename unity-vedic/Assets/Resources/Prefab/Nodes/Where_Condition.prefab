@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ca0421c52bd344786b34b5efc92cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output_dataType: 6
+  output_dataType: 7
   conditionType: 4
   isEXISTS: 0
   nothingFlag: 0

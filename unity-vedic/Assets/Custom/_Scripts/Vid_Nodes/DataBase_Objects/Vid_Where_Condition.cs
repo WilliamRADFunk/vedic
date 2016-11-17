@@ -70,6 +70,11 @@ public class Vid_Where_Condition : Vid_Object {
                         sb.Append("( " + inputs.getInput_atIndex(1).ToString() + " )");
                     }
                     break;
+                case WhereStatment_Type.LIKE:
+                    sb.Append(inputs.getInput_atIndex(0).ToString());
+                    sb.AppendLine(" LIKE");
+                    sb.Append(" " + inputs.getInput_atIndex(1).ToString() + " ");
+                    break;
                 default:
                     break;
             }
@@ -97,6 +102,30 @@ public class Vid_Where_Condition : Vid_Object {
                 return false;
             }
             if (index == 1 && obj.output_dataType != VidData_Type.Q_SELECT) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (conditionType == WhereStatment_Type.LIKE) {
+            if (index == 0 && obj.output_dataType != VidData_Type.DATABASE_COL) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.STRING) {
+                return false;
+            }
+            return base.addInput(obj, index);
+        }
+
+        else if (conditionType == WhereStatment_Type.LESS ||
+                conditionType == WhereStatment_Type.LESS_EQU ||
+                conditionType == WhereStatment_Type.GREATER ||
+                conditionType == WhereStatment_Type.GREATER_EQU
+            ) {
+            if (index == 0 && obj.output_dataType != VidData_Type.DATABASE_COL) {
+                return false;
+            }
+            if (index == 1 && obj.output_dataType != VidData_Type.NUM) {
                 return false;
             }
             return base.addInput(obj, index);

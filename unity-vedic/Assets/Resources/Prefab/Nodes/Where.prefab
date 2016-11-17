@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c605ba79d396f004db762a622937caa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output_dataType: 4
+  output_dataType: 5
 --- !u!114 &114000013564388866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1127,6 +1127,7 @@ MonoBehaviour:
   - {fileID: 114000012419864918}
   - {fileID: 114000012560170238}
   colorChanger: {fileID: 114000012601777288}
+  UIControlls: {fileID: 0}
 --- !u!114 &114000014182865090
 MonoBehaviour:
   m_ObjectHideFlags: 1

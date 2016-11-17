@@ -46,6 +46,9 @@ public class Con_Where_Con : Con_Con {
                 ToggleHelper(WhereStatment_Type.NOT_EXISTS, "NOT_EXISTS", 50);
                 break;
             case WhereStatment_Type.NOT_EXISTS:
+                ToggleHelper(WhereStatment_Type.LIKE, "LIKE", 150);
+                break;
+            case WhereStatment_Type.LIKE:
                 ToggleHelper(WhereStatment_Type.LESS, "<", 244);
                 break;
         }
@@ -55,7 +58,7 @@ public class Con_Where_Con : Con_Con {
     WhereStatment_Type conditionType = vidObj.conditionType;
     switch (conditionType) {
             case WhereStatment_Type.LESS:
-                ToggleHelper(WhereStatment_Type.NOT_EXISTS, "NOT_EXISTS", 50);
+                ToggleHelper(WhereStatment_Type.LIKE, "LIKE", 150);
                 break;
             case WhereStatment_Type.LESS_EQU:
                 ToggleHelper(WhereStatment_Type.LESS, "<", 244);
@@ -81,6 +84,9 @@ public class Con_Where_Con : Con_Con {
             case WhereStatment_Type.NOT_EXISTS:
                 ToggleHelper(WhereStatment_Type.EXISTS, "EXISTS", 75);
                 break;
+            case WhereStatment_Type.LIKE:
+                ToggleHelper(WhereStatment_Type.NOT_EXISTS, "NOT_EXISTS", 50);
+                break;
         }
         CheckInputs();
 }
@@ -92,6 +98,9 @@ public class Con_Where_Con : Con_Con {
             case WhereStatment_Type.LESS_EQU:
             case WhereStatment_Type.GREATER:
             case WhereStatment_Type.GREATER_EQU:
+                ConnectionChecker_NOTEQU(0, VidData_Type.DATABASE_COL);
+                ConnectionChecker_NOTEQU(1, VidData_Type.NUM);
+                break;
             case WhereStatment_Type.EQU:
             case WhereStatment_Type.NOT_EQU:
                 ConnectionChecker_NOTEQU(0, VidData_Type.DATABASE_COL);
@@ -105,6 +114,10 @@ public class Con_Where_Con : Con_Con {
             case WhereStatment_Type.NOT_EXISTS:
                 ConnectionChecker(0);
                 ConnectionChecker_NOTEQU(1, VidData_Type.Q_SELECT);
+                break;
+            case WhereStatment_Type.LIKE:
+                ConnectionChecker_NOTEQU(0, VidData_Type.DATABASE_COL);
+                ConnectionChecker_NOTEQU(1, VidData_Type.STRING);
                 break;
         }
     }
