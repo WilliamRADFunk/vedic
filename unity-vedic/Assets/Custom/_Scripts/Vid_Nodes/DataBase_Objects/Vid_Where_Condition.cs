@@ -72,8 +72,8 @@ public class Vid_Where_Condition : Vid_Object {
                     break;
                 case WhereStatment_Type.LIKE:
                     sb.Append(inputs.getInput_atIndex(0).ToString());
-                    sb.AppendLine(" LIKE");
-                    sb.Append(" " + inputs.getInput_atIndex(1).ToString() + " ");
+                    sb.Append(" LIKE");
+                    sb.AppendLine(" " + inputs.getInput_atIndex(1).ToString() + " ");
                     break;
                 default:
                     break;
