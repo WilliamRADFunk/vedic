@@ -212,7 +212,7 @@ public class ImportDatabase : MonoBehaviour
                 }
             }
 
-            GetKeyColumns("SELECT * FROM KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_NAME = '" + VedicDatabase.db.tables[0].GetName() + "' AND REFERENCED_COLUMN_NAME = '" + VedicDatabase.db.tables[0].columns[0].GetName() + "'");
+            GetKeyColumns("SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
         }
     }
     // Called from SaveDb --- Makes it asynchronous

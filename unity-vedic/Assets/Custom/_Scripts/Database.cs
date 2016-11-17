@@ -8,6 +8,7 @@ namespace DatabaseUtilities
     public static class VedicDatabase
     {
         public static Database db;
+        public static Database dbAnalytic3;
         public static bool isDatabaseNull = true;
 
         // Gets the string name of the table attached to the param id
