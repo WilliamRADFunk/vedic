@@ -151,9 +151,7 @@ public class ImportDatabase : MonoBehaviour
                 }
             }
             */
-            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
-
-            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+            
         }
     }
     // Use this for getting column variable types
@@ -211,8 +209,10 @@ public class ImportDatabase : MonoBehaviour
                     VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
                 }
             }
+            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
 
-            GetKeyColumns("SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+            //GetKeyColumns("SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
         }
     }
     // Called from SaveDb --- Makes it asynchronous

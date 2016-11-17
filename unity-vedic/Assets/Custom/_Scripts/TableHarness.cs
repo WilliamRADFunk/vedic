@@ -123,7 +123,26 @@ public class TableHarness : MonoBehaviour
             else
             {
                 int matrixSize = Mathf.CeilToInt(Mathf.Sqrt(tableCount));
-                float newScale = 1 - (scaleBaseDecrease * (matrixSize - 2));
+
+                float diff = 0;
+                if(matrixSize == 2)
+                {
+                    diff = 0;
+                }
+                if (matrixSize == 3)
+                {
+                    diff = 1;
+                }
+                else if (matrixSize == 4)
+                {
+                    diff = 1.1f;
+                }
+                else if (matrixSize == 5)
+                {
+                    diff = 1.2f;
+                }
+
+                float newScale = 1 - (scaleBaseDecrease * (diff));
                 initialLocalScale = new Vector3(newScale, newScale, newScale);
                 gameObject.transform.localScale = initialLocalScale;
 
@@ -162,12 +181,19 @@ public class TableHarness : MonoBehaviour
                     int ceiling = Mathf.FloorToInt(matrixSize / 2);
                     int floor = ceiling * -1;
 
+                    int divider = 1;
+
+                    if(matrixSize == 4)
+                    {
+                        divider = 2;
+                    }
+
                     for (int i = floor; i < ceiling; i++)
                     {
                         for (int j = floor; j < ceiling; j++)
                         {
-                            float x = (j * segments) + (NodeDivisions * j) + NodeDivisions * ceiling;
-                            float z = (i * segments) + (NodeDivisions * i) + NodeDivisions * ceiling;
+                            float x = (j * segments) + (NodeDivisions * j) + ((NodeDivisions * ceiling)/divider);
+                            float z = (i * segments) + (NodeDivisions * i) + ((NodeDivisions * ceiling)/divider);
 
                             if ((i + j) > tableSlots.Length || counter >= tableCount)
                             {
