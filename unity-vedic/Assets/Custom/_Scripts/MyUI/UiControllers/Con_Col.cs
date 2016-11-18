@@ -49,7 +49,7 @@ public class Con_Col : Con_Con {
                     break;
             }
         }
-        if (db == null) {
+        if (db != null) {
             DatabaseUtilities.Table[] tables = db.tables.ToArray();
             foreach(DatabaseUtilities.Table t in tables) {
                 if (vidObj.getTableName().Equals(t.GetName())) {

@@ -23,7 +23,7 @@ public class Con_Table : Con_Con {
             inField_ColName.text = vidObj.tableName;
             dataText.text = vidObj.tableName;
         }
-        if (db == null) {
+        if (db != null) {
             DatabaseUtilities.Table[] tables = db.tables.ToArray();
             foreach (DatabaseUtilities.Table t in tables) {
                 tableNames.Add(t.GetName());
