@@ -19,6 +19,7 @@ public class DataCache : MonoBehaviour {
         cachedName = "";
         cachedItem = null;
         cachedInt = -1;
+        cacheParadigm = 0;
     }
 
     private void UpdateHandChange()
