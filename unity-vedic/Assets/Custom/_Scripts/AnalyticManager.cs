@@ -178,7 +178,7 @@ public class AnalyticManager : MonoBehaviour {
         }
         else if(currentObj == 2)
         {
-            aDeposit.SetHolding(AnalyticObject3);
+            aDepsoit.SetHolding(AnalyticObject3);
         }
     }
 

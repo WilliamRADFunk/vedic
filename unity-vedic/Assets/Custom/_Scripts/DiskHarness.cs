@@ -87,7 +87,6 @@ public class DiskHarness : MonoBehaviour
             {
                 float newYUpdate = previousScale + scaleSize;
                 startingPosition += new Vector3(0, newYUpdate, 0);
-                Debug.Log("diskPosition " + startingPosition);
                 previousScale = scaleSize;
                 diskSlots[i] = startingPosition;
             }

@@ -131,6 +131,10 @@ public class HudUpdater : MonoBehaviour
             int tempCacheType = instD.ReadPingType();
             string cacheType = cacheTypeReturn(tempCacheType);
             string cacheName = instD.ReadCachename();
+            if (cacheName.Length > 6)
+            {
+                cacheName = cacheName.Substring(0, 6) + "...";
+            }
 
             DataCacheType.text = "Cached Type: " + cacheType;
             DataCacheContent.text = "Cached Content: " + cacheName;
