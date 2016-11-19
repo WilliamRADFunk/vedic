@@ -11,7 +11,7 @@ public class HudUpdater : MonoBehaviour
     [SerializeField]
     private Text PingLatency;
     [SerializeField]
-    private Text UploadSpeed;
+    private Text StationLocation;
     // Database Analytics
     [SerializeField]
     private Text numOfTables;
@@ -93,16 +93,26 @@ public class HudUpdater : MonoBehaviour
     {
 
         Ping p = new Ping("8.8.8.8");
-        string pingSpeed = "Unknown";
+        string pingSpeed = "Ping Latency: Unknown";
         int pingSpeedTime = -1;
+        int refreshCounter = 5;
 
         while (true)
         {
-            
-            if(p.isDone)
+            if (refreshCounter == 0)
+            {
+                p = new Ping("8.8.8.8");
+                refreshCounter = 5;
+            }
+            else
+            {
+                refreshCounter--;
+            }
+            if (p.isDone)
             {
                 pingSpeedTime = p.time;
-                PingLatency.text = "Ping Latency: " + pingSpeedTime;
+                pingSpeed = "Ping Latency: " + pingSpeedTime + " ms";
+                PingLatency.text = "Ping Latency: " + pingSpeedTime + " ms";
             }
             else
             {
@@ -111,7 +121,7 @@ public class HudUpdater : MonoBehaviour
 
             int stationNumber = tele.getCurrentStation();
             string stationLoc = stationTypeReturn(stationNumber);
-
+            StationLocation.text = "Station: " + stationLoc;
 
 
             //Pull cache information
@@ -165,11 +175,11 @@ public class HudUpdater : MonoBehaviour
         }
         else if(type == 1)
         {
-            stationId = "Query";
+            stationId = "Browser";
         }
         else if(type == 2)
         {
-            stationId = "Browser";
+            stationId = "Query";
         }
         else if(type == 3)
         {
