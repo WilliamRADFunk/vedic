@@ -145,7 +145,7 @@ namespace DatabaseUtilities
         public static Database ChangeColorsForKeys(string tabId, string colId)
         {
             Database db = new Database();
-            db = VedicDatabase.db;
+            db = DatabaseBuilder.Clone(VedicDatabase.db);
             db.SetName("Analytic_3");
             Table[] tabs = VedicDatabase.db.tables.ToArray();
             int tabIndex = -1;
@@ -282,6 +282,35 @@ namespace DatabaseUtilities
                 {
                     break;
                 }
+            }
+            return db;
+        }
+        public static Database Clone(Database oldDatabase)
+        {
+            Database db = new Database();
+            db.SetName(oldDatabase.GetName());
+            db.tables = new List<Table>();
+            for(int i = 0; i < oldDatabase.tables.Count; i++)
+            {
+                Table tab = new Table();
+                tab.SetId(oldDatabase.tables[i].GetId());
+                tab.SetName(oldDatabase.tables[i].GetName());
+                tab.columns = new List<Column>();
+                for(int j = 0; j < oldDatabase.tables[i].columns.Count; j++)
+                {
+                    Column col = new Column();
+                    col.SetId(oldDatabase.tables[i].columns[j].GetId());
+                    col.SetName(oldDatabase.tables[i].columns[j].GetName());
+                    col.SetColor(oldDatabase.tables[i].columns[j].GetColor());
+                    col.SetType(oldDatabase.tables[i].columns[j].GetType());
+                    col.fields = new List<string>();
+                    for(int k = 0; k < oldDatabase.tables[i].columns[j].fields.Count; k++)
+                    {
+                        col.AddField(oldDatabase.tables[i].columns[j].fields[k]);
+                    }
+                    tab.AddColumn(col);
+                }
+                db.AddTable(tab);
             }
             return db;
         }
