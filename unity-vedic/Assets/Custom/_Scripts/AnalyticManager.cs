@@ -176,6 +176,10 @@ public class AnalyticManager : MonoBehaviour {
         {
             aDepsoit.SetHolding(AnalyticObject2);
         }
+        else if(currentObj == 2)
+        {
+            aDeposit.SetHolding(AnalyticObject3);
+        }
     }
 
     private void ResetAllAnalytics()
