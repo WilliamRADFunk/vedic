@@ -19,6 +19,12 @@ public class HudUpdater : MonoBehaviour
     private Text DataCacheContent;
     [SerializeField]
     private Text numOfDatatypes;
+
+
+    //System Objects
+    [SerializeField]
+    private DataCache instD;
+
     public float timedBuffer;
     public int frameBufferLength;
 
@@ -81,6 +87,15 @@ public class HudUpdater : MonoBehaviour
     {
         while(true)
         {
+
+            //Pull cache information
+            int tempCacheType = instD.ReadPingType();
+            string cacheType = cacheTypeReturn(tempCacheType);
+            string cacheName = instD.ReadCachename();
+
+            DataCacheType.text = "Cached Type: " + cacheType;
+            DataCacheContent.text = "Cached Content: " + cacheName;
+
             //Delayed Dispay stuff here
             if (!DatabaseUtilities.VedicDatabase.isDatabaseNull)
             {
@@ -96,6 +111,22 @@ public class HudUpdater : MonoBehaviour
             
             yield return new WaitForSeconds(timedBuffer);
         }
+    }
+
+    private string cacheTypeReturn(int type)
+    {
+        string returnTyper = "Other";
+
+        if(type == 1)
+        {
+            returnTyper = "Table";
+        }
+        else if(type == 2)
+        {
+            returnTyper = "Column";
+        }
+
+        return returnTyper;
     }
 }
     
