@@ -23,6 +23,8 @@ public class HudUpdater : MonoBehaviour
     private Text DataCacheContent;
     [SerializeField]
     private Text numOfDatatypes;
+    [SerializeField]
+    private Teleporter tele;
 
 
     //System Objects
@@ -106,6 +108,8 @@ public class HudUpdater : MonoBehaviour
             {
                 PingLatency.text = pingSpeed;
             }
+
+            int stationNumber = tele.getCurrentStation();
 
 
             //Pull cache information
