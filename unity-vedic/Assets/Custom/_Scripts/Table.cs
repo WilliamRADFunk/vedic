@@ -205,7 +205,7 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
             t.UpdateInfo(outPut, true);
-            dCache.PingCache(ID, 1);
+            dCache.PingCache(ID, tblName, 1);
 
         }
     }
@@ -231,7 +231,7 @@ public class Table : MonoBehaviour, ViewObj
                 columns[i].GetComponent<Column>().columnTriggered(true);
             }
             t.UpdateInfo(outPut, true);
-            dCache.PingCache(ID, 1);
+            dCache.PingCache(ID, tblName, 1);
         }
     }
 
