@@ -8,6 +8,10 @@ public class HudUpdater : MonoBehaviour
     // System Analytics
     [SerializeField]
     private Text textFrameRate;
+    [SerializeField]
+    private Text DownloadSpeed;
+    [SerializeField]
+    private Text UploadSpeed;
     // Database Analytics
     [SerializeField]
     private Text numOfTables;
