@@ -118,40 +118,44 @@ public class ImportDatabase : MonoBehaviour
         }
         else
         {
-            //VedicDatabase.db = DatabaseBuilder.ConstructDB(dbname.text, baseData);
-            //VedicDatabase.isDatabaseNull = false;
-
             string reply = www.downloadHandler.text;
-            Debug.Log(www.downloadHandler.text);
-            /*
-            string textBoxData = reply.Substring(0, reply.IndexOf("##SelectTable##"));
             string podData = reply.Substring(reply.IndexOf("##SelectTable##:{") + 17);
             // This Table ID sould be unlike original import
             // It should consist of a combo db name it came from, and select query random unique hash
-            SelectTable sTable = new SelectTable(podData, "Test123", "FunkSelectTable");
+            SelectTable sTable = new SelectTable(podData, "Keys", "FunkKeysTable");
             DatabaseUtilities.Table t = sTable.GetTable();
             List<string> colTypes = new List<string>();
             for (int i = 0; i < t.columns[0].fields.Count; i++)
             {
-                colTypes.Add(t.columns[0].fields[i]);
-            }
-            int numOfColumns = VedicDatabase.GetNumOfColumns();
-            List<string> colTypes2 = new List<string>();
-            for (int i = (colTypes.Count - numOfColumns); i < colTypes.Count; i++)
-            {
-                colTypes2.Add(colTypes[i]);
-            }
-            int counter = 0;
-            for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
-            {
-                for (int k = 0; k < VedicDatabase.db.tables[j].columns.Count && counter < colTypes2.Count; k++, counter++)
+                int tabIndex = -1;
+                int colIndex = -1;
+                string fKey = t.columns[0].fields[i];
+                string referenced = t.columns[1].fields[i];
+                for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
                 {
-                    VedicDatabase.db.tables[j].columns[k].SetColor(VariableColorTable.GetVariableColor(colTypes2[counter]));
-                    VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
+                    if (VedicDatabase.db.tables[j].GetName() == referenced.Substring(0, referenced.IndexOf('.')))
+                    {
+                        tabIndex = j;
+                        break;
+                    }
                 }
+                if (tabIndex < 0) continue;
+                for (int k = 0; k < VedicDatabase.db.tables[tabIndex].columns.Count; k++)
+                {
+                    if (VedicDatabase.db.tables[tabIndex].columns[k].GetName() == referenced.Substring(referenced.IndexOf('.') + 1))
+                    {
+                        colIndex = k;
+                        break;
+                    }
+                }
+                if (colIndex < 0) continue;
+                VedicDatabase.db.tables[tabIndex].columns[colIndex].AddFKey(fKey.Substring(0, fKey.IndexOf('.')), fKey.Substring(fKey.IndexOf('.') + 1));
             }
-            */
-            
+
+            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
+
+            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
+
         }
     }
     // Use this for getting column variable types
@@ -182,12 +186,10 @@ public class ImportDatabase : MonoBehaviour
             VedicDatabase.isDatabaseNull = false;
 
             string reply = www.downloadHandler.text;
-            
-            string textBoxData = reply.Substring(0, reply.IndexOf("##SelectTable##"));
             string podData = reply.Substring(reply.IndexOf("##SelectTable##:{") + 17);
             // This Table ID sould be unlike original import
             // It should consist of a combo db name it came from, and select query random unique hash
-            SelectTable sTable = new SelectTable(podData, "Test123", "FunkSelectTable");
+            SelectTable sTable = new SelectTable(podData, "DTypes", "FunkDataTypesTable");
             DatabaseUtilities.Table t = sTable.GetTable();
             List<string> colTypes = new List<string>();
             for (int i = 0; i < t.columns[0].fields.Count; i++)
@@ -209,10 +211,10 @@ public class ImportDatabase : MonoBehaviour
                     VedicDatabase.db.tables[j].columns[k].SetType(colTypes2[counter]);
                 }
             }
-            GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
-
-            ViewAssembler.GenerateViewObject(VedicDatabase.db, false, false, -1);
-            //GetKeyColumns("SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE");
+            
+            GetKeyColumns("SELECT CONCAT(TABLE_NAME, '.', COLUMN_NAME) AS 'foreign key', " + 
+                            "CONCAT(REFERENCED_TABLE_NAME, '.', REFERENCED_COLUMN_NAME) AS 'references' FROM " +
+                            "INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_NAME IS NOT NULL");
         }
     }
     // Called from SaveDb --- Makes it asynchronous

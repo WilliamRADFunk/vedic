@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace DatabaseUtilities
 {
@@ -138,6 +139,67 @@ namespace DatabaseUtilities
                 tab.columns.Add(col);
             }
             db.tables.Add(tab);
+            return db;
+        }
+        // Returns a duplicate of the main DB, but with colors specific to foreign key references.
+        public static Database ChangeColorsForKeys(string tabId, string colId)
+        {
+            Database db = new Database();
+            db = VedicDatabase.db;
+            db.SetName("Analytic_3");
+            Table[] tabs = VedicDatabase.db.tables.ToArray();
+            int tabIndex = -1;
+            int colIndex = -1;
+            for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
+            {
+                if (VedicDatabase.db.tables[j].GetId() == tabId)
+                {
+                    tabIndex = j;
+                    break;
+                }
+            }
+            if (tabIndex < 0) return VedicDatabase.db;
+            for (int k = 0; k < VedicDatabase.db.tables[tabIndex].columns.Count; k++)
+            {
+                if (VedicDatabase.db.tables[tabIndex].columns[k].GetId() == colId)
+                {
+                    colIndex = k;
+                    break;
+                }
+            }
+            if (colIndex < 0) return VedicDatabase.db;
+
+            for (int m = 0; m < db.tables.Count; m++)
+            {
+                for (int n = 0; n < db.tables[m].columns.Count; n++)
+                {
+                    db.tables[m].columns[n].SetColor("#000000");
+                }
+            }
+            db.tables[tabIndex].columns[colIndex].SetColor("#FF0000");
+            if (VedicDatabase.db.tables[tabIndex].columns[colIndex].keys.Count > 0)
+            {
+                for(int x = 0; x < VedicDatabase.db.tables[tabIndex].columns[colIndex].keys.Count; x++)
+                {
+                    bool foundIt = false;
+                    for(int y = 0; y < VedicDatabase.db.tables.Count; y++)
+                    {
+                        if(VedicDatabase.db.tables[y].GetName() == VedicDatabase.db.tables[tabIndex].columns[colIndex].keys[x].Item1)
+                        {
+                            for(int z = 0; z < VedicDatabase.db.tables[y].columns.Count; z++)
+                            {
+                                if (VedicDatabase.db.tables[y].columns[z].GetName() == VedicDatabase.db.tables[tabIndex].columns[colIndex].keys[x].Item2)
+                                {
+                                    db.tables[y].columns[z].SetColor("#0000FF");
+                                    foundIt = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (foundIt) break;
+                    }
+                }
+            }
             return db;
         }
     }
@@ -350,12 +412,23 @@ namespace DatabaseUtilities
         private string id;
         private string name;
         public List<string> fields;
+        public List<Tuple<string, string>> keys;
         private string color;
         private string type = "varchar";
+
+        public Column()
+        {
+            keys = new List<Tuple<string, string>>();
+        }
 
         public void AddField(string f)
         {
             fields.Add(f);
+        }
+        public void AddFKey(string fkTab, string fkCol)
+        {
+            Tuple<string, string> fk = Tuple.Create(fkTab, fkCol);
+            keys.Add(fk);
         }
         public void SetName(string n)
         {
@@ -399,6 +472,25 @@ namespace DatabaseUtilities
             return rando.Next(number);
         }
     }
+    // Various Tuple constructs
+    public class Tuple<T, U>
+    {
+        public T Item1 { get; private set; }
+        public U Item2 { get; private set; }
+
+        public Tuple(T item1, U item2)
+        {
+            Item1 = item1;
+            Item2 = item2;
+        }
+    }
+    public static class Tuple
+    {
+        public static Tuple<T, U> Create<T, U>(T item1, U item2)
+        {
+            return new Tuple<T, U>(item1, item2);
+        }
+    }
     public static class VariableColorTable
     {
         private static Dictionary<string, string> dic = new Dictionary<string, string>()
@@ -409,7 +501,8 @@ namespace DatabaseUtilities
             { "datetime", "#EEEE00" },
             { "int", "#EE00EE" },
             { "decimal", "#FF0000" },
-            { "double", "#000055" }
+            { "double", "#000055" },
+            { "float", "#005555" }
         };
         public static string GetVariableColor(string type)
         {
