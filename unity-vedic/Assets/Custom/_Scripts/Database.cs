@@ -9,7 +9,7 @@ namespace DatabaseUtilities
     public static class VedicDatabase
     {
         public static Database db;
-        public static Database dbAnalytic3;
+        public static Dictionary<string, int> dataTypeDic = new Dictionary<string, int>();
         public static bool isDatabaseNull = true;
 
         // Gets the string name of the table attached to the param id
@@ -102,29 +102,27 @@ namespace DatabaseUtilities
             tab.columns = new List<Column>();
             
 
-            Dictionary<string, int> dic = new Dictionary<string, int>();
-
             for(int i = 0; i < VedicDatabase.db.tables.Count; i++)
             {
                 for(int j = 0; j < VedicDatabase.db.tables[i].columns.Count; j++)
                 {
-                    if (dic.ContainsKey(VedicDatabase.db.tables[i].columns[j].GetType()))
+                    if (dataTypeDic.ContainsKey(VedicDatabase.db.tables[i].columns[j].GetType()))
                     {
-                        dic[VedicDatabase.db.tables[i].columns[j].GetType()]++;
+                        dataTypeDic[VedicDatabase.db.tables[i].columns[j].GetType()]++;
                     }
                     else
                     {
-                        dic.Add(VedicDatabase.db.tables[i].columns[j].GetType(), 1);
+                        dataTypeDic.Add(VedicDatabase.db.tables[i].columns[j].GetType(), 1);
                     }
                 }
             }
 
-            Dictionary<string, int>.KeyCollection keyColl = dic.Keys;
+            Dictionary<string, int>.KeyCollection keyColl = dataTypeDic.Keys;
 
             int total = 0;
             foreach (string s in keyColl)
             {
-                total += dic[s];
+                total += dataTypeDic[s];
             }
 
             foreach (string s in keyColl)
@@ -135,7 +133,7 @@ namespace DatabaseUtilities
                 col.SetColor(VariableColorTable.GetVariableColor(s));
                 col.SetType(s);
                 col.fields = new List<string>();
-                col.fields.Add( ( (double)dic[s] / (double)total).ToString() );
+                col.fields.Add( ( (double)dataTypeDic[s] / (double)total).ToString() );
                 tab.columns.Add(col);
             }
             db.tables.Add(tab);
