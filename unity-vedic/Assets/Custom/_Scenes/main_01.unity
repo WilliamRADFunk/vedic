@@ -79805,7 +79805,7 @@ GameObject:
   - 222: {fileID: 1808526435}
   - 114: {fileID: 1808526434}
   m_Layer: 0
-  m_Name: DlSpeed
+  m_Name: PingLatency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79861,7 +79861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'DL Speed: '
+  m_Text: 'Ping Latency: '
 --- !u!222 &1808526435
 CanvasRenderer:
   m_ObjectHideFlags: 0
