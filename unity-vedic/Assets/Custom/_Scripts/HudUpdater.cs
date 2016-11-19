@@ -89,8 +89,24 @@ public class HudUpdater : MonoBehaviour
 
     IEnumerator secondBuffer()
     {
-        while(true)
+
+        Ping p = new Ping("www.google.com");
+        string pingSpeed = "Unknown";
+        int pingSpeedTime = -1;
+
+        while (true)
         {
+            
+            if(p.isDone)
+            {
+                pingSpeedTime = p.time;
+                PingLatency.text = "Ping Latency: " + pingSpeedTime;
+            }
+            else
+            {
+                PingLatency.text = pingSpeed;
+            }
+
 
             //Pull cache information
             int tempCacheType = instD.ReadPingType();
