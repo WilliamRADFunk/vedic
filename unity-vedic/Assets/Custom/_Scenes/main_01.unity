@@ -48129,8 +48129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textFrameRate: {fileID: 1182186266}
-  PingLatency: {fileID: 0}
-  UploadSpeed: {fileID: 0}
+  PingLatency: {fileID: 1808526434}
+  UploadSpeed: {fileID: 1749358004}
   numOfTables: {fileID: 562536005}
   numOfColumns: {fileID: 1300698396}
   DataCacheType: {fileID: 275024586}
