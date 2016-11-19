@@ -80,14 +80,15 @@ public class AnalyticManager : MonoBehaviour {
     {
         if(initial)
         {
-            ////Call the initial build of object
-            //Database dInitial = VedicDatabase.SortTablesByColumnQuantity();
-            //AnalyticObject3 = ViewAssembler.GenerateViewObject(dInitial, false, true, 2);
-            //AnalyticObject3.transform.SetParent(gameObject.transform);
-            //AnalyticObject3.transform.localPosition = new Vector3(0, 0, 0);
+            //Call the initial build of object
+            Database dInitial = VedicDatabase.ChangeColorsForKeys("T0", "T0-C0");
+            AnalyticObject3 = ViewAssembler.GenerateViewObject(dInitial, false, true, 2);
+            AnalyticObject3.transform.SetParent(gameObject.transform);
+            AnalyticObject3.transform.localPosition = new Vector3(0, 0, 0);
+            return;
         }
-        int cacheType = cacheHandle.ReadPingType();
 
+        int cacheType = cacheHandle.ReadPingType();
         if(cacheType == 2)
         {
             string message = cacheHandle.ReadCacheMessage();
@@ -98,8 +99,9 @@ public class AnalyticManager : MonoBehaviour {
                 AnalyticObject3 = null;
             }
 
+            string tableId = message.Substring(0, message.IndexOf('-'));
             //Build the object if we got this far with the info proivided by database (Use function to be created)
-            Database d = VedicDatabase.SortTablesByColumnQuantity();
+            Database d = VedicDatabase.ChangeColorsForKeys(tableId, message);
             AnalyticObject3 = ViewAssembler.GenerateViewObject(d, false, true, 2);
             AnalyticObject3.transform.SetParent(gameObject.transform);
             AnalyticObject3.transform.localPosition = new Vector3(0, 0, 0);
@@ -108,12 +110,6 @@ public class AnalyticManager : MonoBehaviour {
         {
             return;
         }
-        
-        //Call functions to retrieve column name and table name
-        //If it fails to verify, do not build analytic3. Break out of function and return false
-
-        //else, check that AnalyticObject3 is not already null
-        //If not null, go ahead and kill the object (We have safely called reset on the system by now
         
         
         
