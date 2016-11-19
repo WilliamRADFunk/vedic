@@ -13,6 +13,9 @@ public class AnalyticManager : MonoBehaviour {
 
     private DataCache cacheHandle;
 
+    [SerializeField]
+    HudUpdater h;
+
     int currentObj;
 
     private Vector3 genuineScale;
@@ -115,6 +118,12 @@ public class AnalyticManager : MonoBehaviour {
         
     }
 
+    private void BuildAnalytic4()
+    {
+        //Toggle HudUpdater
+        h.ToggleHUD();
+    }
+
     private void ResetSystemForNewImport()
     {
         ResetAllAnalytics();
@@ -146,6 +155,10 @@ public class AnalyticManager : MonoBehaviour {
             BuildAnalytic3(false);
             aDepsoit.SetHolding(AnalyticObject3);
             AnalyticObject3.transform.localScale -= new Vector3(0.9f, 0.9f, 0.9f);
+        }
+        if(type == 3)
+        {
+            BuildAnalytic4();
         }
     }
 
