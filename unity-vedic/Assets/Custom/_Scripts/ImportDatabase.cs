@@ -124,32 +124,34 @@ public class ImportDatabase : MonoBehaviour
             // It should consist of a combo db name it came from, and select query random unique hash
             SelectTable sTable = new SelectTable(podData, "Keys", "FunkKeysTable");
             DatabaseUtilities.Table t = sTable.GetTable();
-            List<string> colTypes = new List<string>();
             for (int i = 0; i < t.columns[0].fields.Count; i++)
             {
                 int tabIndex = -1;
                 int colIndex = -1;
                 string fKey = t.columns[0].fields[i];
                 string referenced = t.columns[1].fields[i];
-                for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
+                if (fKey != null && referenced != null && fKey.Length > 0 && referenced.Length > 0)
                 {
-                    if (VedicDatabase.db.tables[j].GetName() == referenced.Substring(0, referenced.IndexOf('.')))
+                    for (int j = 0; j < VedicDatabase.db.tables.Count; j++)
                     {
-                        tabIndex = j;
-                        break;
+                        if (VedicDatabase.db.tables[j].GetName() == referenced.Substring(0, referenced.IndexOf('.')))
+                        {
+                            tabIndex = j;
+                            break;
+                        }
                     }
-                }
-                if (tabIndex < 0) continue;
-                for (int k = 0; k < VedicDatabase.db.tables[tabIndex].columns.Count; k++)
-                {
-                    if (VedicDatabase.db.tables[tabIndex].columns[k].GetName() == referenced.Substring(referenced.IndexOf('.') + 1))
+                    if (tabIndex < 0) continue;
+                    for (int k = 0; k < VedicDatabase.db.tables[tabIndex].columns.Count; k++)
                     {
-                        colIndex = k;
-                        break;
+                        if (VedicDatabase.db.tables[tabIndex].columns[k].GetName() == referenced.Substring(referenced.IndexOf('.') + 1))
+                        {
+                            colIndex = k;
+                            break;
+                        }
                     }
+                    if (colIndex < 0) continue;
+                    VedicDatabase.db.tables[tabIndex].columns[colIndex].AddFKey(fKey.Substring(0, fKey.IndexOf('.')), fKey.Substring(fKey.IndexOf('.') + 1));
                 }
-                if (colIndex < 0) continue;
-                VedicDatabase.db.tables[tabIndex].columns[colIndex].AddFKey(fKey.Substring(0, fKey.IndexOf('.')), fKey.Substring(fKey.IndexOf('.') + 1));
             }
 
             GameObject.FindGameObjectWithTag("Analytics").GetComponent<AnalyticManager>().BuildAnalytics();
