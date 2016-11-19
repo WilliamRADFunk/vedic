@@ -4,22 +4,45 @@ using UnityEngine.UI;
 
 public class HudUpdater : MonoBehaviour {
 
-    float deltaTime = 0.0f;
-
     public Text textFrameRate;
+    public float timedBuffer;
+    public int frameBufferLength;
+
+    float deltaTime = 0.0f;
+    int delayedBuffer = 5;
 
     private string frameRate;
 
+
+
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start() {
+        if(timedBuffer < 1.0f)
+        {
+            timedBuffer = 1f;
+        }
+
+        if(frameBufferLength < 3)
+        {
+            frameBufferLength = 5;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         DisplayGameInfo();
+
+        if (delayedBuffer == 0)
+        {
+            delayedBuffer = frameBufferLength;
+            //Do delayed updaters
+        }
+        else
+        {
+            delayedBuffer--;
+        }
     }
 
     void DisplayGameInfo()
@@ -33,4 +56,15 @@ public class HudUpdater : MonoBehaviour {
     {
         textFrameRate.text = "FPS: " + frameRate;
     }
+
+    IEnumerator secondBuffer()
+    {
+        while(true)
+        {
+            //Delayed Dispay stuff here
+
+            yield return new WaitForSeconds(timedBuffer);
+        }
+    }
 }
+    
