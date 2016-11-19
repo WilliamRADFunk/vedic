@@ -32510,7 +32510,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -48177,7 +48177,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 998894951}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 454183963}
@@ -48210,7 +48210,7 @@ MonoBehaviour:
   DataCacheContent: {fileID: 72393154}
   numOfDatatypes: {fileID: 960142603}
   tele: {fileID: 1204062186}
-  gui: {fileID: 0}
+  gui: {fileID: 998894955}
   instD: {fileID: 783311616}
   timedBuffer: 1
   frameBufferLength: 5
