@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class HudUpdater : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class HudUpdater : MonoBehaviour
     private Text numOfTables;
     [SerializeField]
     private Text numOfColumns;
+    [SerializeField]
+    private Text DataCacheType;
+    [SerializeField]
+    private Text DataCacheContent;
     [SerializeField]
     private Text numOfDatatypes;
     public float timedBuffer;
@@ -76,12 +81,17 @@ public class HudUpdater : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log("HERE");
             //Delayed Dispay stuff here
             if (!DatabaseUtilities.VedicDatabase.isDatabaseNull)
             {
-                numOfTables.text = DatabaseUtilities.VedicDatabase.db.tables.Count + " Tables";
-                numOfColumns.text = DatabaseUtilities.VedicDatabase.GetNumOfColumns() + " Columns";
+                numOfTables.text = "Tables: " + DatabaseUtilities.VedicDatabase.db.tables.Count;
+                numOfColumns.text = "Columns: " + DatabaseUtilities.VedicDatabase.GetNumOfColumns();
+                Dictionary<string, int>.KeyCollection keyColl = DatabaseUtilities.VedicDatabase.dataTypeDic.Keys;
+                numOfDatatypes.text = "";
+                foreach (string s in keyColl)
+                {
+                    numOfDatatypes.text += s + " columns: " + DatabaseUtilities.VedicDatabase.dataTypeDic[s] + "\n";
+                }
             }
             
             yield return new WaitForSeconds(timedBuffer);
