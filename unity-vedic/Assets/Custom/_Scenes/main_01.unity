@@ -48210,6 +48210,7 @@ MonoBehaviour:
   DataCacheContent: {fileID: 72393154}
   numOfDatatypes: {fileID: 960142603}
   tele: {fileID: 1204062186}
+  gui: {fileID: 0}
   instD: {fileID: 783311616}
   timedBuffer: 1
   frameBufferLength: 5
@@ -72037,6 +72038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aDepsoit: {fileID: 754620069}
+  h: {fileID: 998894956}
 --- !u!1 &1552191801
 GameObject:
   m_ObjectHideFlags: 0
