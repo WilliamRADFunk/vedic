@@ -91,16 +91,26 @@ public class HudUpdater : MonoBehaviour
     {
 
         Ping p = new Ping("8.8.8.8");
-        string pingSpeed = "Unknown";
+        string pingSpeed = "Ping Latency: Unknown";
         int pingSpeedTime = -1;
+        int refreshCounter = 5;
 
         while (true)
         {
-            
-            if(p.isDone)
+            if (refreshCounter == 0)
+            {
+                p = new Ping("8.8.8.8");
+                refreshCounter = 5;
+            }
+            else
+            {
+                refreshCounter--;
+            }
+            if (p.isDone)
             {
                 pingSpeedTime = p.time;
-                PingLatency.text = "Ping Latency: " + pingSpeedTime;
+                pingSpeed = "Ping Latency: " + pingSpeedTime + " ms";
+                PingLatency.text = "Ping Latency: " + pingSpeedTime + " ms";
             }
             else
             {
