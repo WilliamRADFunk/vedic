@@ -5,6 +5,7 @@ public class DataCache : MonoBehaviour {
 
     private GameObject cachedItem;
     private string cachedMessage;
+    private string cachedName;
     private int cachedInt;
 
     public GameObject SignalChange;
@@ -15,6 +16,7 @@ public class DataCache : MonoBehaviour {
 	void Awake()
     {
         cachedMessage = "";
+        cachedName = "";
         cachedItem = null;
         cachedInt = -1;
     }
@@ -51,9 +53,10 @@ public class DataCache : MonoBehaviour {
         cachedItem = tmp;
     }
 
-    public void PingCache(string tmp, int type)
+    public void PingCache(string tmp, string nameTmp, int type)
     {
         cachedMessage = tmp;
+        cachedName = nameTmp;
         cacheParadigm = type;
 
         UpdateHandChange();
@@ -93,6 +96,11 @@ public class DataCache : MonoBehaviour {
     public string ReadCacheMessage()
     {
         return cachedMessage;
+    }
+
+    public string ReadCachename()
+    {
+        return cachedName;
     }
 
     public int ReadCacheInt()
