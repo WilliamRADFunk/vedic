@@ -90,7 +90,7 @@ public class HudUpdater : MonoBehaviour
     IEnumerator secondBuffer()
     {
 
-        Ping p = new Ping("www.google.com");
+        Ping p = new Ping("8.8.8.8");
         string pingSpeed = "Unknown";
         int pingSpeedTime = -1;
 
