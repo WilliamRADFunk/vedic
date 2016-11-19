@@ -26,6 +26,9 @@ public class HudUpdater : MonoBehaviour
     [SerializeField]
     private Teleporter tele;
 
+    [SerializeField]
+    private Canvas gui;
+
 
     //System Objects
     [SerializeField]
@@ -187,6 +190,18 @@ public class HudUpdater : MonoBehaviour
         }
 
         return stationId;
+    }
+
+    public void ToggleHUD()
+    {
+        if (gui.enabled == false)
+        {
+            gui.enabled = true;
+        }
+        else
+        {
+            gui.enabled = false;
+        }
     }
 }
     
