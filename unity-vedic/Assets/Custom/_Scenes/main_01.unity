@@ -32425,7 +32425,7 @@ GameObject:
   - 114: {fileID: 710968110}
   - 114: {fileID: 710968109}
   m_Layer: 5
-  m_Name: Btn_Explain
+  m_Name: Btn_HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32510,7 +32510,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -48203,12 +48203,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textFrameRate: {fileID: 1182186266}
   PingLatency: {fileID: 1808526434}
-  UploadSpeed: {fileID: 1749358004}
+  StationLocation: {fileID: 1749358004}
   numOfTables: {fileID: 562536005}
   numOfColumns: {fileID: 1300698396}
   DataCacheType: {fileID: 275024586}
   DataCacheContent: {fileID: 72393154}
   numOfDatatypes: {fileID: 960142603}
+  tele: {fileID: 1204062186}
   instD: {fileID: 783311616}
   timedBuffer: 1
   frameBufferLength: 5
@@ -77976,7 +77977,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Station: '
+  m_Text: 'Station: Lobby'
 --- !u!222 &1749358005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -91104,7 +91105,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Explain
+  m_Text: General
 --- !u!222 &2055522118
 CanvasRenderer:
   m_ObjectHideFlags: 0

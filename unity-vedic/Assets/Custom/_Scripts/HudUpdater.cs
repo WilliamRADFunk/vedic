@@ -11,7 +11,7 @@ public class HudUpdater : MonoBehaviour
     [SerializeField]
     private Text PingLatency;
     [SerializeField]
-    private Text UploadSpeed;
+    private Text StationLocation;
     // Database Analytics
     [SerializeField]
     private Text numOfTables;
@@ -121,7 +121,7 @@ public class HudUpdater : MonoBehaviour
 
             int stationNumber = tele.getCurrentStation();
             string stationLoc = stationTypeReturn(stationNumber);
-
+            StationLocation.text = "Station: " + stationLoc;
 
 
             //Pull cache information
@@ -175,11 +175,11 @@ public class HudUpdater : MonoBehaviour
         }
         else if(type == 1)
         {
-            stationId = "Query";
+            stationId = "Browser";
         }
         else if(type == 2)
         {
-            stationId = "Browser";
+            stationId = "Query";
         }
         else if(type == 3)
         {
