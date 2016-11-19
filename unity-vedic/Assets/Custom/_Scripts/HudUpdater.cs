@@ -23,6 +23,8 @@ public class HudUpdater : MonoBehaviour
     private Text DataCacheContent;
     [SerializeField]
     private Text numOfDatatypes;
+    [SerializeField]
+    private Teleporter tele;
 
 
     //System Objects
@@ -117,6 +119,10 @@ public class HudUpdater : MonoBehaviour
                 PingLatency.text = pingSpeed;
             }
 
+            int stationNumber = tele.getCurrentStation();
+            string stationLoc = stationTypeReturn(stationNumber);
+
+
 
             //Pull cache information
             int tempCacheType = instD.ReadPingType();
@@ -157,6 +163,30 @@ public class HudUpdater : MonoBehaviour
         }
 
         return returnTyper;
+    }
+
+    private string stationTypeReturn(int type)
+    {
+        string stationId = "Misc";
+
+        if(type == 0)
+        {
+            stationId = "Lobby";
+        }
+        else if(type == 1)
+        {
+            stationId = "Query";
+        }
+        else if(type == 2)
+        {
+            stationId = "Browser";
+        }
+        else if(type == 3)
+        {
+            stationId = "Analytics";
+        }
+
+        return stationId;
     }
 }
     
