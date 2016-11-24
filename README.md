@@ -3,7 +3,7 @@ Virtual Environment for Developing Interactive Code<br/><br/>
 
 The purpose of his project will be to create a two-part Integrated Development Environment entirely in virtual reality (ie. Oculus Rift). Where an IDE like Sublime Text or Eclipse does in 2D space, VEDIC will do in 3D space. <br/><br/>
 
-Part One: A data-structure analytical tool for databases; primarily MySQL for the initial prototype. This will be able to virtually model an MySQL database (local or remote). This program will perform the complete CRUD spectrum (Create, Read, Update, and Delete), as well as perform various analysis of the database itself. It's modular design will allow for additional analytics to be added over time.<br/><br/>
+Part One: A data-structure analytical tool for databases; primarily MySQL for the initial prototype. This will be able to virtually model a MySQL database (local or remote). This program will perform the complete CRUD spectrum (Create, Read, Update, and Delete), as well as perform various analysis of the database itself. Its modular design will allow for additional analytics to be added over time.<br/><br/>
 
 Part Two (not for initial prototype): Import a C# project package of files, create virtual elements representing the various classes and their components, and illustrate the relationships between those files (import statements, instantiations of objects, etc.).<br/><br/>
 
