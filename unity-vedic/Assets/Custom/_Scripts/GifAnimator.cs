@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/* Taken from a js script online (http://adf.ly/1aNYlD).
+ * Most of it was gutted by me and made Funk-original */
 public class GifAnimator : MonoBehaviour
 {
     int index = 0;
