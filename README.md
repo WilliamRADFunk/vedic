@@ -17,12 +17,12 @@ The final part of this program's functionality will be the creation of code in a
 
 ### Interior Assets (Free for non-commercial use)
 -Tales from the Rift by Peter Koch
--Cat gif by https://media.giphy.com/media/j7KLubcofrzZm/giphy.gif
--Corgu gif by http://24.media.tumblr.com/6e2041bd576bd9560e653185e027b3b0/tumblr_mxgo71pj2U1rn8gxao1_1280.gif
+-Cat gif by https://media.giphy.com/media/j7KLubcofrzZm/giphy.gif</br>
+-Corgu gif by http://24.media.tumblr.com/6e2041bd576bd9560e653185e027b3b0/tumblr_mxgo71pj2U1rn8gxao1_1280.gif</br>
 
 ### UI Assets & Functionality (Paid)
 -Star Wanderer GUI by Vengeance MK 1 </br>
 
 ### UI Assets & Functionality (Free for non-commercial use)
--Leap Motion Controller Modules
--Unity/Oculus Headset API
+-Leap Motion Controller Modules</br>
+-Unity/Oculus Headset API</br>
