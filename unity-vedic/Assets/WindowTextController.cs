@@ -4,6 +4,11 @@ using UnityEngine.UI;
 
 public class WindowTextController : MonoBehaviour {
 
+    public Text QueryOutput1;
+    public Text QueryOutput2;
+    public Text QueryOutput3;
+    public Text QueryOutput4;
+
     public Text Window1;
     public Text Window2;
     public Text Window3;
@@ -24,19 +29,23 @@ public class WindowTextController : MonoBehaviour {
         DeactivateAll();
 
         if (stationNumber == 0)
-            ActivateWindow(Window1, Error1);
+            ActivateWindow(QueryOutput1, Window1, Error1);
         else if (stationNumber == 1)
-            ActivateWindow(Window2, Error2);
+            ActivateWindow(QueryOutput2, Window2, Error2);
         else if (stationNumber == 2)
-            ActivateWindow(Window3, Error3);
+            ActivateWindow(QueryOutput3, Window3, Error3);
         else if (stationNumber == 3)
-            ActivateWindow(Window4, Error4);
+            ActivateWindow(QueryOutput4, Window4, Error4);
 
     }
 
     //Deactivates visibility of all Text objects on the Main Windows in scene
     private void DeactivateAll()
     {
+        QueryOutput1.enabled = false;
+        QueryOutput2.enabled = false;
+        QueryOutput3.enabled = false;
+        QueryOutput4.enabled = false;
         Window1.enabled = false;
         Window2.enabled = false;
         Window3.enabled = false;
@@ -72,13 +81,14 @@ public class WindowTextController : MonoBehaviour {
     }
 
     //Process of activating a Text object to be viewable in scene
-    private void ActivateWindow(Text temp, Text errorTemp)
+    private void ActivateWindow(Text qOutput, Text temp, Text errorTemp)
     {
-        if(temp == null || errorTemp == null)
+        if(qOutput == null || temp == null || errorTemp == null)
         {
             return;
         }
 
+        qOutput.enabled = true;
         temp.enabled = true;
         errorTemp.enabled = true;       
     }

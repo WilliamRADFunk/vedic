@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class NodePrinter {
     private static NodePrinter instance;
     public Vid_Object vidObj;
-    public Text text;
+    public Text LobbyText;
+    public Text BrowserText;
+    public Text QueryText;
+    public Text AnalyticText;
     public InputField panelText;
 
     private NodePrinter() {}
@@ -18,9 +21,24 @@ public class NodePrinter {
     }
 
     public void PrintText() {
-        if(text != null &&
+        if(LobbyText != null &&
             vidObj != null) {
-            text.text = vidObj.ToString();
+            LobbyText.text = vidObj.ToString();
+        }
+        if (BrowserText != null &&
+            vidObj != null)
+        {
+            BrowserText.text = vidObj.ToString();
+        }
+        if (QueryText != null &&
+            vidObj != null)
+        {
+            QueryText.text = vidObj.ToString();
+        }
+        if (AnalyticText != null &&
+            vidObj != null)
+        {
+            AnalyticText.text = vidObj.ToString();
         }
         if (panelText != null &&
             vidObj != null) {
