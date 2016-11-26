@@ -24,6 +24,8 @@ public class SpeechController : MonoBehaviour
     private WindowTextController WindowTextController;
     [SerializeField]
     private DataCache DataCache;
+    [SerializeField]
+    private KeyboardController KeyboardController;
 
     private KeywordRecognizer m_Recognizer;
     private List<string> dataList;
@@ -221,24 +223,36 @@ public class SpeechController : MonoBehaviour
             else if (args.text.Equals("delete", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
             {
                 textField.text = textField.text.Substring(0, textField.text.Length - 1);
+                KeyboardController.backSpace();
             }
             else if (args.text.Equals("back", StringComparison.OrdinalIgnoreCase) && textField.text.Length > 0)
             {
                 textField.text = textField.text.Substring(0, textField.text.Length - 1);
+                KeyboardController.backSpace();
             }
             else if (args.text.Equals("erase", StringComparison.OrdinalIgnoreCase))
             {
                 textField.text = "";
+                KeyboardController.clearText();
             }
             else if (args.text.Equals("grab", StringComparison.OrdinalIgnoreCase))
             {
                 if (DataCache.ReadCacheMessage().IndexOf("-") > -1)
                 {
                     textField.text += DatabaseUtilities.VedicDatabase.GetColumnName(DataCache.ReadCacheMessage());
+                    KeyboardController.buildString(DatabaseUtilities.VedicDatabase.GetColumnName(DataCache.ReadCacheMessage()));
                 }
-                else textField.text += DatabaseUtilities.VedicDatabase.GetTableName(DataCache.ReadCacheMessage());
+                else
+                {
+                    textField.text += DatabaseUtilities.VedicDatabase.GetTableName(DataCache.ReadCacheMessage());
+                    KeyboardController.buildString(DatabaseUtilities.VedicDatabase.GetTableName(DataCache.ReadCacheMessage()));
+                }
             }
-            else textField.text += TranslateLetters(args.text);
+            else
+            {
+                textField.text += TranslateLetters(args.text);
+                KeyboardController.buildString(TranslateLetters(args.text));
+            }
         }
         else if (args.text.Equals("execute", StringComparison.OrdinalIgnoreCase))
         {

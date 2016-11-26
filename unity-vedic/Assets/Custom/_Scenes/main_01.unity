@@ -94397,6 +94397,7 @@ MonoBehaviour:
   RtsHandler: {fileID: 1141546073}
   WindowTextController: {fileID: 1887005865}
   DataCache: {fileID: 783311616}
+  KeyboardController: {fileID: 251553092}
 --- !u!4 &2128819961
 Transform:
   m_ObjectHideFlags: 0
