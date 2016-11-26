@@ -44,6 +44,8 @@ public class KeyboardController : MonoBehaviour {
     }
     public void clearText() {
         sb = new StringBuilder();
+        inputField.text = "";
+        topbar.text = "";
     }
     public void Shift(Toggle t) {
         if (t.isOn) {
