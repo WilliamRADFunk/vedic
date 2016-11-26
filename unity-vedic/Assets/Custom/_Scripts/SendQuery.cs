@@ -8,12 +8,15 @@ using System.Collections.Generic;
 
 public class SendQuery : MonoBehaviour
 {
+    private int index = 0;
     public PodManager podManager; 
     public Text Output;
     public Text dbname;
     public Text hostname;
     public Text username;
     public Text password;
+
+    public List<string> pastQueries = new List<string>();
 
     // Called from Send --- Makes it asynchronous
     IEnumerator SendQ(InputField input)
@@ -25,6 +28,9 @@ public class SendQuery : MonoBehaviour
         form.AddField("username", username.text);
         form.AddField("password", password.text);
         form.AddField("query", input.text);
+
+        pastQueries.Add(input.text);
+        index = pastQueries.Count;
 
         UnityWebRequest www = UnityWebRequest.Post(url, form);
         yield return www.Send();
@@ -69,5 +75,31 @@ public class SendQuery : MonoBehaviour
     public void Send(InputField input)
     {
         StartCoroutine(SendQ(input));
+    }
+    // Moves backward through the pastQueries List
+    public void Backward(InputField input)
+    {
+        if(index > 0 && pastQueries.Count > 0)
+        {
+            index = index - 1;
+            input.text = pastQueries[index];
+        }
+        else if (index == 0 && pastQueries.Count > 0)
+        {
+            input.text = pastQueries[index];
+        }
+    }
+    // Moves forward through the pastQueries List
+    public void Forward(InputField input)
+    {
+        if (index < (pastQueries.Count - 1) && pastQueries.Count > 0)
+        {
+            index++;
+            input.text = pastQueries[index];
+        }
+        else if (index == (pastQueries.Count - 1) && pastQueries.Count > 0)
+        {
+            input.text = pastQueries[index];
+        }
     }
 }
