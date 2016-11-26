@@ -6,6 +6,7 @@ public class NodePrinter {
     private static NodePrinter instance;
     public Vid_Object vidObj;
     public Text text;
+    public InputField panelText;
 
     private NodePrinter() {}
 
@@ -20,6 +21,10 @@ public class NodePrinter {
         if(text != null &&
             vidObj != null) {
             text.text = vidObj.ToString();
+        }
+        if (panelText != null &&
+            vidObj != null) {
+            panelText.text = vidObj.ToString();
         }
     }
 

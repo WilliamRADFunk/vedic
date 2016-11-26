@@ -6,9 +6,11 @@ public class PrintNode : MonoBehaviour {
     
     public UIMove_Tool ut;
     public Text text;
+    public InputField panelText;
 
     public void Start() {
         NodePrinter.GetInstance().text = text;
+        NodePrinter.GetInstance().panelText = panelText;
     }
 
     public void SetMySQLQuery() {
