@@ -46,27 +46,20 @@ public class SendQuery : MonoBehaviour
             // For SELECT queries only
             if (reply.IndexOf("##SelectTable##") > -1 )
             {
-                Debug.Log("It was a select");
                 string textBoxData = reply.Substring(0, reply.IndexOf("##SelectTable##"));
                 string podData = reply.Substring(reply.IndexOf("##SelectTable##:{")+17);
-                // This Table ID sould be unlike original import
-                // It should consist of a combo db name it came from, and select query random unique hash
+                // This Table ID should be unlike original import
+                // It should consist of a combo dbname it came from, and select query random unique hash
                 DatabaseUtilities.SelectTable sTable = new DatabaseUtilities.SelectTable(podData, "Test123", "FunkSelectTable");
                 DatabaseUtilities.Table t = sTable.GetTable();
                 podManager.SendPod(t, dbname + "-" + t.GetName());
-                for (int i = 0; i < t.columns.Count; i++)
-                {
-                    Debug.Log("Name: " + t.columns[i].GetName() + "   ID: " + t.columns[i].GetId() + "   Color: " + t.columns[i].GetColor());
-                    for (int j = 0; j < t.columns[i].fields.Count; j++)
-                    {
-                        Debug.Log("Field" + j + ": " + t.columns[i].fields[j]);
-                    }
-                }
+                Debug.Log(textBoxData);
                 Output.text = textBoxData;
             }
             // For non-Select Queries
             else
             {
+                Debug.Log(reply);
                 Output.text = reply;
             }
         }

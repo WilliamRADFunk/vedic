@@ -102,8 +102,6 @@ public class PodManager : MonoBehaviour {
 
     public void SendPod(DatabaseUtilities.Table tab, string name)
     {
-        Debug.Log("STARTING TEST...");
-
         Database test = new Database();
         test.SetName(name);
         test.tables = new List<DatabaseUtilities.Table>();
